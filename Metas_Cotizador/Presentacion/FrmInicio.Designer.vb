@@ -23,10 +23,8 @@ Partial Class FrmInicio
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim Animation10 As BunifuAnimatorNS.Animation = New BunifuAnimatorNS.Animation()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmInicio))
         Me.linerocket = New System.Windows.Forms.Panel()
-        Me.anim = New BunifuAnimatorNS.BunifuTransition(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
@@ -34,37 +32,15 @@ Partial Class FrmInicio
         'linerocket
         '
         Me.linerocket.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(172, Byte), Integer), CType(CType(221, Byte), Integer))
-        Me.anim.SetDecoration(Me.linerocket, BunifuAnimatorNS.DecorationType.None)
         Me.linerocket.Location = New System.Drawing.Point(286, 268)
         Me.linerocket.Name = "linerocket"
         Me.linerocket.Size = New System.Drawing.Size(465, 10)
         Me.linerocket.TabIndex = 9
         '
-        'anim
-        '
-        Me.anim.AnimationType = BunifuAnimatorNS.AnimationType.Transparent
-        Me.anim.Cursor = Nothing
-        Animation10.AnimateOnlyDifferences = True
-        Animation10.BlindCoeff = CType(resources.GetObject("Animation10.BlindCoeff"), System.Drawing.PointF)
-        Animation10.LeafCoeff = 0!
-        Animation10.MaxTime = 1.0!
-        Animation10.MinTime = 0!
-        Animation10.MosaicCoeff = CType(resources.GetObject("Animation10.MosaicCoeff"), System.Drawing.PointF)
-        Animation10.MosaicShift = CType(resources.GetObject("Animation10.MosaicShift"), System.Drawing.PointF)
-        Animation10.MosaicSize = 0
-        Animation10.Padding = New System.Windows.Forms.Padding(0)
-        Animation10.RotateCoeff = 0!
-        Animation10.RotateLimit = 0!
-        Animation10.ScaleCoeff = CType(resources.GetObject("Animation10.ScaleCoeff"), System.Drawing.PointF)
-        Animation10.SlideCoeff = CType(resources.GetObject("Animation10.SlideCoeff"), System.Drawing.PointF)
-        Animation10.TimeCoeff = 0!
-        Animation10.TransparencyCoeff = 1.0!
-        Me.anim.DefaultAnimation = Animation10
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.anim.SetDecoration(Me.Label1, BunifuAnimatorNS.DecorationType.None)
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(172, Byte), Integer), CType(CType(221, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(440, 281)
@@ -76,7 +52,6 @@ Partial Class FrmInicio
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.anim.SetDecoration(Me.Label2, BunifuAnimatorNS.DecorationType.None)
         Me.Label2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.SteelBlue
         Me.Label2.Location = New System.Drawing.Point(544, 340)
@@ -96,7 +71,6 @@ Partial Class FrmInicio
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.linerocket)
-        Me.anim.SetDecoration(Me, BunifuAnimatorNS.DecorationType.None)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
@@ -109,7 +83,6 @@ Partial Class FrmInicio
     End Sub
 
     Private WithEvents linerocket As Panel
-    Private WithEvents anim As BunifuAnimatorNS.BunifuTransition
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
 End Class

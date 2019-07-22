@@ -1,8 +1,4 @@
-﻿Imports System.IO
-Imports System.Data.SqlClient
-Imports System.Windows.Forms
-Imports System.Drawing
-Imports System.Threading
+﻿
 Imports Timer = System.Windows.Forms.Timer
 Public Class FrmInicio
     Public variable As String
