@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7F0875A1-E2F4-4AC8-84A4-482DD6F40599}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Metas_Cotizador.My.MyApplication</StartupObject>
+    <RootNamespace>Metas_Cotizador</RootNamespace>
+    <AssemblyName>Metas_Cotizador</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Metas_Cotizador.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Metas_Cotizador.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>cotizador.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bunifu_UI_v1.52">
+      <HintPath>..\..\..\..\Downloads\Bunifu_UI_v1.52.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.3.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1358.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Clases\Conexiones.vb" />
+    <Compile Include="Clases\Funciones.vb" />
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Cotizaciones.Designer.vb">
+      <DependentUpon>Cotizaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\Cotizaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmAutorizarSolicitudes.Designer.vb">
+      <DependentUpon>FrmAutorizarSolicitudes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmAutorizarSolicitudes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmCompletarOV.Designer.vb">
+      <DependentUpon>FrmCompletarOV.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmCompletarOV.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmContactos.Designer.vb">
+      <DependentUpon>FrmContactos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmContactos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmCotizadorLIMS.Designer.vb">
+      <DependentUpon>FrmCotizadorLIMS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmCotizadorLIMS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\frmEdicionCot2018-2019.Designer.vb">
+      <DependentUpon>frmEdicionCot2018-2019.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\frmEdicionCot2018-2019.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmFiltarCampo.Designer.vb">
+      <DependentUpon>FrmFiltarCampo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmFiltarCampo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmFiltrar.Designer.vb">
+      <DependentUpon>FrmFiltrar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmFiltrar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmHOME.Designer.vb">
+      <DependentUpon>FrmHOME.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmHOME.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Presentacion\FrmInicio.Designer.vb">
+      <DependentUpon>FrmInicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmInicio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmNuevoContacto.Designer.vb">
+      <DependentUpon>FrmNuevoContacto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmNuevoContacto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmSeguimientoCot.Designer.vb">
+      <DependentUpon>FrmSeguimientoCot.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmSeguimientoCot.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\ConfirmacionDeDatos.Designer.vb">
+      <DependentUpon>ConfirmacionDeDatos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ConfirmacionDeDatos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\cotLIMSAct.Designer.vb">
+      <DependentUpon>cotLIMSAct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\cotLIMSAct.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\DataSet1.Designer.vb">
+      <DependentUpon>DataSet1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DataSet1.vb">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FrmReportes.Designer.vb">
+      <DependentUpon>FrmReportes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\FrmReportes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Presentacion\Cotizaciones.resx">
+      <DependentUpon>Cotizaciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmAutorizarSolicitudes.resx">
+      <DependentUpon>FrmAutorizarSolicitudes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmCompletarOV.resx">
+      <DependentUpon>FrmCompletarOV.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmContactos.resx">
+      <DependentUpon>FrmContactos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmCotizadorLIMS.resx">
+      <DependentUpon>FrmCotizadorLIMS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\frmEdicionCot2018-2019.resx">
+      <DependentUpon>frmEdicionCot2018-2019.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmFiltarCampo.resx">
+      <DependentUpon>FrmFiltarCampo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmFiltrar.resx">
+      <DependentUpon>FrmFiltrar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmHOME.resx">
+      <DependentUpon>FrmHOME.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmInicio.resx">
+      <DependentUpon>FrmInicio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmNuevoContacto.resx">
+      <DependentUpon>FrmNuevoContacto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmSeguimientoCot.resx">
+      <DependentUpon>FrmSeguimientoCot.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\ConfirmacionDeDatos.rdlc" />
+    <EmbeddedResource Include="Reportes\ConfirmacionDeDatos.resx">
+      <DependentUpon>ConfirmacionDeDatos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\cotActualizada.rdlc" />
+    <EmbeddedResource Include="Reportes\CotizacionModelo.rdlc" />
+    <EmbeddedResource Include="Reportes\cotLIMSAct.resx">
+      <DependentUpon>cotLIMSAct.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\FomaDeTransito.rdlc" />
+    <EmbeddedResource Include="Reportes\FrmReportes.resx">
+      <DependentUpon>FrmReportes.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Reportes\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>DataSet11.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Reportes\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-window-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-maximize-window-filled-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-minimize-window-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-restore-window-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-contacts-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-view-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-order-history-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-numbered-list-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-folder-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-profile-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-file-48 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-new-post-48.png" />
+    <None Include="Resources\icons8-notification-48 %281%29.png" />
+    <None Include="Resources\metas_esta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cotizador.ico" />
+    <Content Include="SqlServerTypes\Loader.cs" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
