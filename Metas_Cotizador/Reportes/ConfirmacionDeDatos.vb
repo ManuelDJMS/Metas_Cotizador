@@ -64,7 +64,7 @@ Public Class ConfirmacionDeDatos
         Else
             domEnvio = lectorLIMS(17)
             'MsgBox(domEnvio)
-            cdEnvio = "HOLA"
+            cdEnvio = lectorLIMS(18)
             'MsgBox(cdEnvio)
             estEvi = lectorLIMS(19)
             'MsgBox(estEvi)
@@ -205,8 +205,8 @@ Public Class ConfirmacionDeDatos
                 'Me.ReportEmbeddedResource = "MyAppNamespace.CotizacionModelo.rdlc"
                 FrmReportes.ReportViewer1.LocalReport.ReportEmbeddedResource = "MyAppNamespace.ConfirmacionDeDatos.rdlc"
             Dim pdfContent As Byte() = FrmReportes.ReportViewer1.LocalReport.Render("PDF")
-                Dim pdfPath As String = "C:\Users\Software TI\Desktop\REPORTES\Confirmacion_Datos\" & nombreConfirmacion & ".pdf"
-                Dim pdfFile As New System.IO.FileStream(pdfPath, System.IO.FileMode.Create)
+            Dim pdfPath As String = "\\10.10.10.7\Public-2\REPORTES\CONFIRMACION_DATOS\" & nombreConfirmacion & ".pdf"
+            Dim pdfFile As New System.IO.FileStream(pdfPath, System.IO.FileMode.Create)
             pdfFile.Write(pdfContent, 0, pdfContent.Length)
             pdfFile.Close()
             conexionLIMS.Close()
@@ -296,7 +296,7 @@ Public Class ConfirmacionDeDatos
             MsgBox(nombreFormaTransito)
             FrmReportes.ReportViewer1.LocalReport.ReportEmbeddedResource = "MyAppNamespace.FomaDeTransito.rdlc"
             Dim pdfContent2 As Byte() = FrmReportes.ReportViewer1.LocalReport.Render("PDF")
-            Dim pdfPath2 As String = "C:\Users\Software TI\Desktop\REPORTES\Forma_Transito\" & nombreFormaTransito & ".pdf"
+            Dim pdfPath2 As String = "\\10.10.10.7\Public-2\REPORTES\FORMA_DE_TRANSITO\" & nombreFormaTransito & ".pdf"
             Dim pdfFile2 As New System.IO.FileStream(pdfPath2, System.IO.FileMode.Create)
             pdfFile2.Write(pdfContent2, 0, pdfContent2.Length)
             pdfFile2.Close()
