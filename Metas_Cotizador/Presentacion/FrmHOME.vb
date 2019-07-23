@@ -137,6 +137,7 @@ Public Class FrmHOME
         colorearpanel(PanelMenu, PL_Cotizacion)
         AbrirFormEnPanel(Of FrmCotizadorLIMS)()
     End Sub
+
 #End Region
     'METODO DE ABRIR FORMULARIO
     Private Sub AbrirFormEnPanel(Of Miform As {Form, New})()
