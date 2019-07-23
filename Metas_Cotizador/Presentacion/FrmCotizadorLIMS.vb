@@ -533,7 +533,7 @@ Public Class FrmCotizadorLIMS
         ELSE [identificadorInventarioCliente] COLLATE SQL_Latin1_General_CP1_CI_AS  END) AS Comparacion,[SetupServices].[ServiceName],[ServiceDescription] +', ' + [TurnAroundTime]+' dias para calibración' as Descrip, [SetupEquipmentServiceMapping].[Price], [SetupEquipmentServiceMapping].[Price] * Cantidad AS sub,
         [idUsuarioAdministrador], [Usuarios].[Nombre], [LugarCondicion].[Descripcon] AS lugar, [MonedaCondicion].[Descripcion] AS moneda, 
         [PagoCondicion].[Descripcion] AS pago, [ModalidadCondicion].[Descripcion] AS modalidad,
-        [Cotizaciones].[Observaciones],[CalibrationMethod], [ServiceDescription], [BillAddress1] +' '+ [BillCity] +', '+ [BillState]+'. '+[BillCountry]+' CP '+[BillZip] AS domFac, [TaxIDNo],
+        [Cotizaciones].[Observaciones],isnull([CalibrationMethod], '-'), [ServiceDescription], [BillAddress1] +' '+ [BillCity] +', '+ [BillState]+'. '+[BillCountry]+' CP '+[BillZip] AS domFac, [TaxIDNo],
         [Usuarios].[Email], [Usuarios].[Depto]
                     from [MetasCotizador].[dbo].[Cotizaciones]
         INNER JOIN [Usuarios] ON [Cotizaciones].[idUsuarioCotizacion] = [Usuarios].[idUsuarioAdministrador]
@@ -584,9 +584,18 @@ Public Class FrmCotizadorLIMS
         'MsgBox(modalidad)
         obser = lectorMetasCotizador(23)
         ' MsgBox(obser)
-        calmetho = lectorMetasCotizador(24)
+        If lectorMetasCotizador(24) = "" Then
+            calmetho = "-"
+        Else
+            calmetho = lectorMetasCotizador(24)
+        End If
         'MsgBox(calmetho)
-        services = lectorMetasCotizador(25)
+        If lectorMetasCotizador(24) = "" Then
+            services = "-"
+        Else
+            services = lectorMetasCotizador(25)
+        End If
+
         ' MsgBox(services)
         domFac = lectorMetasCotizador(26)
 

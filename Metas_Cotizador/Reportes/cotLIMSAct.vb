@@ -22,7 +22,7 @@ Public Class cotLIMSAct
         ELSE [identificadorInventarioCliente] COLLATE SQL_Latin1_General_CP1_CI_AS  END) AS Comparacion,[SetupServices].[ServiceName],[ServiceDescription] +', ' + [TurnAroundTime]+' dias para calibración' as Descrip, [SetupEquipmentServiceMapping].[Price], [SetupEquipmentServiceMapping].[Price] * Cantidad AS sub,
         [idUsuarioAdministrador], [Usuarios].[Nombre], [LugarCondicion].[Descripcon] AS lugar, [MonedaCondicion].[Descripcion] AS moneda, 
         [PagoCondicion].[Descripcion] AS pago, [ModalidadCondicion].[Descripcion] AS modalidad,
-        [Cotizaciones].[Observaciones],[CalibrationMethod], [ServiceDescription], [BillAddress1] +' '+ [BillCity] +', '+ [BillState]+'. '+[BillCountry]+' CP '+[BillZip] AS domFac, [TaxIDNo],
+        [Cotizaciones].[Observaciones],isnull([CalibrationMethod], '-'), [ServiceDescription], [BillAddress1] +' '+ [BillCity] +', '+ [BillState]+'. '+[BillCountry]+' CP '+[BillZip] AS domFac, [TaxIDNo],
         [Usuarios].[Email], [Usuarios].[Depto]
                     from [MetasCotizador].[dbo].[Cotizaciones]
         INNER JOIN [Usuarios] ON [Cotizaciones].[idUsuarioCotizacion] = [Usuarios].[idUsuarioAdministrador]
@@ -73,9 +73,18 @@ Public Class cotLIMSAct
         'MsgBox(modalidad)
         obser = lectorMetasCotizador(23)
         ' MsgBox(obser)
-        calmetho = lectorMetasCotizador(24)
+        If lectorMetasCotizador(24) = "" Then
+            calmetho = "-"
+        Else
+            calmetho = lectorMetasCotizador(24)
+        End If
         'MsgBox(calmetho)
-        services = lectorMetasCotizador(25)
+        If lectorMetasCotizador(24) = "" Then
+            services = "-"
+        Else
+            services = lectorMetasCotizador(25)
+        End If
+
         ' MsgBox(services)
         domFac = lectorMetasCotizador(26)
 
@@ -224,13 +233,13 @@ Public Class cotLIMSAct
                                                              p19, p20, p21, p22, p23, p24})
         FrmReportes.ReportViewer1.RefreshReport()
 
-        Dim nombreCot As String = "COT"
+        Dim nombreCot As String = "COT "
         nombreCot = nombreCot + COT.ToString
         MsgBox(nombreCot)
         'Me.ReportEmbeddedResource = "MyAppNamespace.CotizacionModelo.rdlc"
         FrmReportes.ReportViewer1.LocalReport.ReportEmbeddedResource = "MyAppNamespace.CotizacionModelo.rdlc"
         Dim pdfContent As Byte() = FrmReportes.ReportViewer1.LocalReport.Render("PDF")
-        Dim pdfPath As String = "C:\Users\Software TI\Documents\REPORTES\" & nombreCot & ".pdf"
+        Dim pdfPath As String = "\\10.10.10.7\Public-2\REPORTES\COTIZACIONES\" & nombreCot & ".pdf"
         Dim pdfFile As New System.IO.FileStream(pdfPath, System.IO.FileMode.Create)
         pdfFile.Write(pdfContent, 0, pdfContent.Length)
         pdfFile.Close()
