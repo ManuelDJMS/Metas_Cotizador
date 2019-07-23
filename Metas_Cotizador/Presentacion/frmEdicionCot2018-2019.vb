@@ -6,6 +6,7 @@ Public Class frmEdicionCot2018_2019
     Dim iva As Double
     Dim maximo As Integer
     Dim inventarioCliente, observacion As String
+    Dim marcaGen, modGen As String
 
     Private Sub frmEdicionCot2018_2019_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
@@ -250,11 +251,16 @@ Public Class frmEdicionCot2018_2019
                     MetodoMetasCotizador()
 
                     inventarioCliente = InputBox("¿Deseas agregar el número de inventario del articulo: """ & DGCopia.Item(1, i).Value.ToString & """ del cliente?", "No. de Inventario de cliente")
-                    Dim cad As String = "update DetalleCotizaciones set identificadorInventarioCliente='" & inventarioCliente & "', Observaciones='" & observacion & "'
+                    If DGCopia.Item(2, i).Value.ToString = "GENERICO" Then
+                        marcaGen = InputBox("¿Deseas agregar la marca del articulo: """ & DGCopia.Item(1, i).Value.ToString & """?", "Marca")
+                        modGen = InputBox("¿Deseas agregar el modelo del articulo: """ & DGCopia.Item(1, i).Value.ToString & """?", "Modelo")
+                        observacion = observacion + "MARCA: " + marcaGen + " MODELO:" + modGen
+                        Dim cad As String = "update DetalleCotizaciones set identificadorInventarioCliente='" & inventarioCliente & "', Observaciones='" & observacion & "'
                     where idListaCotizacion =" & Val(DGCopia.Item(0, i).Value) & ""
-                    Dim t As New SqlCommand(cad, conexionMetasCotizador)
-                    t.ExecuteNonQuery()
-                    conexionMetasCotizador.Close()
+                        Dim t As New SqlCommand(cad, conexionMetasCotizador)
+                        t.ExecuteNonQuery()
+                        conexionMetasCotizador.Close()
+                    End If
                 Next i
 
 
@@ -445,7 +451,6 @@ Public Class frmEdicionCot2018_2019
         ' MsgBox(R)
         comandoMetasCotizador.CommandText = R
         comandoMetasCotizador.ExecuteNonQuery()
-
         For i = 0 To DGCotizaciones.Rows.Count - 2
             R = "insert into DetalleCotizaciones (NumCot,EquipId, PartidaNo,Cantidad, CantidadReal, identificadorInventarioCliente, Observaciones) values (" & maximo & "," & DGCotizaciones.Item(10, i).Value & "," & Val(DGCotizaciones.Item(0, i).Value) & ",
                 " & Val(DGCotizaciones.Item(3, i).Value) & "," & Val(DGCotizaciones.Item(9, i).Value) & ",'-','-')"
