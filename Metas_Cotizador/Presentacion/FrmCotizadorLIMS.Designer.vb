@@ -38,9 +38,16 @@ Partial Class FrmCotizadorLIMS
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCotizadorLIMS))
         Me.TabConsulta = New System.Windows.Forms.TabControl()
         Me.Tab2018 = New System.Windows.Forms.TabPage()
+        Me.btCargarArticulos = New System.Windows.Forms.PictureBox()
         Me.DgAgregar = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGCotizaciones = New System.Windows.Forms.DataGridView()
+        Me.s = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGEmpresas = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -50,6 +57,7 @@ Partial Class FrmCotizadorLIMS
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PanelNormal = New System.Windows.Forms.GroupBox()
+        Me.btCargarClientes = New System.Windows.Forms.PictureBox()
         Me.txtClave = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
@@ -59,7 +67,6 @@ Partial Class FrmCotizadorLIMS
         Me.txtNombreProspecto = New System.Windows.Forms.Label()
         Me.txtclavee = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
         Me.txtNombreCompania = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -129,18 +136,14 @@ Partial Class FrmCotizadorLIMS
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.s = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabConsulta.SuspendLayout()
         Me.Tab2018.SuspendLayout()
+        CType(Me.btCargarArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DgAgregar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGCotizaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGEmpresas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNormal.SuspendLayout()
+        CType(Me.btCargarClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgCot, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -164,6 +167,7 @@ Partial Class FrmCotizadorLIMS
         'Tab2018
         '
         Me.Tab2018.BackColor = System.Drawing.Color.White
+        Me.Tab2018.Controls.Add(Me.btCargarArticulos)
         Me.Tab2018.Controls.Add(Me.DgAgregar)
         Me.Tab2018.Controls.Add(Me.DGCotizaciones)
         Me.Tab2018.Controls.Add(Me.DGEmpresas)
@@ -189,6 +193,17 @@ Partial Class FrmCotizadorLIMS
         Me.Tab2018.Size = New System.Drawing.Size(1140, 621)
         Me.Tab2018.TabIndex = 5
         Me.Tab2018.Text = "Nueva cotización"
+        '
+        'btCargarArticulos
+        '
+        Me.btCargarArticulos.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btCargarArticulos.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_update_left_rotation_64
+        Me.btCargarArticulos.Location = New System.Drawing.Point(10, 356)
+        Me.btCargarArticulos.Name = "btCargarArticulos"
+        Me.btCargarArticulos.Size = New System.Drawing.Size(30, 30)
+        Me.btCargarArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.btCargarArticulos.TabIndex = 262
+        Me.btCargarArticulos.TabStop = False
         '
         'DgAgregar
         '
@@ -251,6 +266,44 @@ Partial Class FrmCotizadorLIMS
         Me.DGCotizaciones.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DGCotizaciones.Size = New System.Drawing.Size(1128, 226)
         Me.DGCotizaciones.TabIndex = 261
+        '
+        's
+        '
+        Me.s.HeaderText = "Seleccionar"
+        Me.s.Name = "s"
+        Me.s.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.s.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.s.Width = 80
+        '
+        'ID
+        '
+        Me.ID.HeaderText = "ID"
+        Me.ID.Name = "ID"
+        Me.ID.Visible = False
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Número de Artículo (SKU)"
+        Me.Column5.Name = "Column5"
+        Me.Column5.Width = 160
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Descripción"
+        Me.Column6.Name = "Column6"
+        Me.Column6.Width = 400
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "Marca/Fabricante"
+        Me.Column7.Name = "Column7"
+        Me.Column7.Width = 200
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Modelo"
+        Me.Column8.Name = "Column8"
+        Me.Column8.Width = 200
         '
         'DGEmpresas
         '
@@ -322,6 +375,8 @@ Partial Class FrmCotizadorLIMS
         '
         'PanelNormal
         '
+        Me.PanelNormal.BackColor = System.Drawing.Color.Transparent
+        Me.PanelNormal.Controls.Add(Me.btCargarClientes)
         Me.PanelNormal.Controls.Add(Me.txtClave)
         Me.PanelNormal.Controls.Add(Me.Label4)
         Me.PanelNormal.Controls.Add(Me.Label42)
@@ -335,6 +390,17 @@ Partial Class FrmCotizadorLIMS
         Me.PanelNormal.TabIndex = 249
         Me.PanelNormal.TabStop = False
         Me.PanelNormal.Text = "Datos de cotización"
+        '
+        'btCargarClientes
+        '
+        Me.btCargarClientes.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btCargarClientes.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_update_left_rotation_64
+        Me.btCargarClientes.Location = New System.Drawing.Point(688, 29)
+        Me.btCargarClientes.Name = "btCargarClientes"
+        Me.btCargarClientes.Size = New System.Drawing.Size(30, 30)
+        Me.btCargarClientes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.btCargarClientes.TabIndex = 164
+        Me.btCargarClientes.TabStop = False
         '
         'txtClave
         '
@@ -390,7 +456,6 @@ Partial Class FrmCotizadorLIMS
         Me.GroupBox2.Controls.Add(Me.txtNombreProspecto)
         Me.GroupBox2.Controls.Add(Me.txtclavee)
         Me.GroupBox2.Controls.Add(Me.Label11)
-        Me.GroupBox2.Controls.Add(Me.Label21)
         Me.GroupBox2.Controls.Add(Me.txtNombreCompania)
         Me.GroupBox2.Controls.Add(Me.Label20)
         Me.GroupBox2.Controls.Add(Me.Label12)
@@ -438,19 +503,6 @@ Partial Class FrmCotizadorLIMS
         Me.Label11.Size = New System.Drawing.Size(308, 16)
         Me.Label11.TabIndex = 157
         Me.Label11.Text = "Esta cotización será realizada para el cliente:"
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Label21.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.ForeColor = System.Drawing.Color.Blue
-        Me.Label21.Location = New System.Drawing.Point(256, 199)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(58, 14)
-        Me.Label21.TabIndex = 172
-        Me.Label21.Text = "click aquí"
-        Me.Label21.Visible = False
         '
         'txtNombreCompania
         '
@@ -565,7 +617,7 @@ Partial Class FrmCotizadorLIMS
         'TextArticulo
         '
         Me.TextArticulo.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextArticulo.Location = New System.Drawing.Point(394, 358)
+        Me.TextArticulo.Location = New System.Drawing.Point(452, 357)
         Me.TextArticulo.Name = "TextArticulo"
         Me.TextArticulo.Size = New System.Drawing.Size(139, 21)
         Me.TextArticulo.TabIndex = 182
@@ -574,7 +626,7 @@ Partial Class FrmCotizadorLIMS
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(337, 360)
+        Me.Label7.Location = New System.Drawing.Point(395, 359)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(61, 17)
         Me.Label7.TabIndex = 183
@@ -599,7 +651,7 @@ Partial Class FrmCotizadorLIMS
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.SteelBlue
-        Me.Label3.Location = New System.Drawing.Point(35, 359)
+        Me.Label3.Location = New System.Drawing.Point(93, 358)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(75, 16)
         Me.Label3.TabIndex = 163
@@ -608,7 +660,7 @@ Partial Class FrmCotizadorLIMS
         'txtMarca
         '
         Me.txtMarca.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtMarca.Location = New System.Drawing.Point(596, 357)
+        Me.txtMarca.Location = New System.Drawing.Point(654, 356)
         Me.txtMarca.Name = "txtMarca"
         Me.txtMarca.Size = New System.Drawing.Size(139, 21)
         Me.txtMarca.TabIndex = 129
@@ -617,7 +669,7 @@ Partial Class FrmCotizadorLIMS
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(139, 360)
+        Me.Label1.Location = New System.Drawing.Point(197, 359)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(69, 17)
         Me.Label1.TabIndex = 166
@@ -627,7 +679,7 @@ Partial Class FrmCotizadorLIMS
         '
         Me.lblMarca.AutoSize = True
         Me.lblMarca.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMarca.Location = New System.Drawing.Point(537, 360)
+        Me.lblMarca.Location = New System.Drawing.Point(595, 359)
         Me.lblMarca.Name = "lblMarca"
         Me.lblMarca.Size = New System.Drawing.Size(53, 17)
         Me.lblMarca.TabIndex = 132
@@ -636,7 +688,7 @@ Partial Class FrmCotizadorLIMS
         'TextID
         '
         Me.TextID.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextID.Location = New System.Drawing.Point(208, 359)
+        Me.TextID.Location = New System.Drawing.Point(266, 358)
         Me.TextID.Name = "TextID"
         Me.TextID.Size = New System.Drawing.Size(112, 21)
         Me.TextID.TabIndex = 165
@@ -655,7 +707,7 @@ Partial Class FrmCotizadorLIMS
         '
         Me.lblModelo.AutoSize = True
         Me.lblModelo.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModelo.Location = New System.Drawing.Point(744, 362)
+        Me.lblModelo.Location = New System.Drawing.Point(802, 361)
         Me.lblModelo.Name = "lblModelo"
         Me.lblModelo.Size = New System.Drawing.Size(61, 17)
         Me.lblModelo.TabIndex = 153
@@ -664,7 +716,7 @@ Partial Class FrmCotizadorLIMS
         'txtModelo
         '
         Me.txtModelo.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtModelo.Location = New System.Drawing.Point(811, 359)
+        Me.txtModelo.Location = New System.Drawing.Point(869, 358)
         Me.txtModelo.Name = "txtModelo"
         Me.txtModelo.Size = New System.Drawing.Size(140, 21)
         Me.txtModelo.TabIndex = 152
@@ -1130,44 +1182,6 @@ Partial Class FrmCotizadorLIMS
         Me.PictureBox5.TabIndex = 143
         Me.PictureBox5.TabStop = False
         '
-        's
-        '
-        Me.s.HeaderText = "Seleccionar"
-        Me.s.Name = "s"
-        Me.s.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.s.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.s.Width = 80
-        '
-        'ID
-        '
-        Me.ID.HeaderText = "ID"
-        Me.ID.Name = "ID"
-        Me.ID.Visible = False
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "Número de Artículo (SKU)"
-        Me.Column5.Name = "Column5"
-        Me.Column5.Width = 160
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "Descripción"
-        Me.Column6.Name = "Column6"
-        Me.Column6.Width = 400
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "Marca/Fabricante"
-        Me.Column7.Name = "Column7"
-        Me.Column7.Width = 200
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "Modelo"
-        Me.Column8.Name = "Column8"
-        Me.Column8.Width = 200
-        '
         'FrmCotizadorLIMS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1176,6 +1190,7 @@ Partial Class FrmCotizadorLIMS
         Me.ClientSize = New System.Drawing.Size(1157, 673)
         Me.Controls.Add(Me.PictureBox5)
         Me.Controls.Add(Me.TabConsulta)
+        Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Location = New System.Drawing.Point(203, 47)
         Me.Name = "FrmCotizadorLIMS"
@@ -1184,11 +1199,13 @@ Partial Class FrmCotizadorLIMS
         Me.TabConsulta.ResumeLayout(False)
         Me.Tab2018.ResumeLayout(False)
         Me.Tab2018.PerformLayout()
+        CType(Me.btCargarArticulos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DgAgregar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DGCotizaciones, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DGEmpresas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNormal.ResumeLayout(False)
         Me.PanelNormal.PerformLayout()
+        CType(Me.btCargarClientes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.TabPage1.ResumeLayout(False)
@@ -1275,7 +1292,6 @@ Partial Class FrmCotizadorLIMS
     Friend WithEvents PanelNormal As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents txtclavee As Label
-    Friend WithEvents Label21 As Label
     Friend WithEvents txtNombreCompania As Label
     Friend WithEvents Label20 As Label
     Friend WithEvents Label12 As Label
@@ -1299,4 +1315,6 @@ Partial Class FrmCotizadorLIMS
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
     Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents btCargarClientes As PictureBox
+    Friend WithEvents btCargarArticulos As PictureBox
 End Class

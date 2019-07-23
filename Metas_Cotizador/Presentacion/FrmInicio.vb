@@ -34,6 +34,7 @@ Public Class FrmInicio
             Me.Opacity -= 0.105
         Else
             Timer1.Stop()
+            FrmHOME.Show()
             Me.Dispose()
         End If
     End Sub

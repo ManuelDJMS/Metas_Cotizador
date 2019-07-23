@@ -3,26 +3,7 @@ Imports Microsoft.Reporting.WinForms
 Public Class FrmCotizadorLIMS
     Dim R As String
     Dim clave1 As String
-    Private Sub FrmCotizadorLIMS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        MetodoLIMS()
-        comandoLIMS = conexionLIMS.CreateCommand
-        R = "select CustomerId, concat(FirstName, ' ' , MiddleName) as Nombre, LastName,  Organization, KeyFiscal, Email, Phone FROM SetupCustomerDetails"
-        comandoLIMS.CommandText = R
-        lectorLIMS = comandoLIMS.ExecuteReader
-        While lectorLIMS.Read()
-            DGEmpresas.Rows.Add(lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5), lectorLIMS(6))
-        End While
-        lectorLIMS.Close()
-        R = "SELECT CustomerId, SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model from  SetupCustomerEquipmentMapping inner join SetUpEquipment on 
-                 SetupCustomerEquipmentMapping.EquipId=SetUpEquipment.EquipId"
-        comandoLIMS.CommandText = R
-        lectorLIMS = comandoLIMS.ExecuteReader
-        While lectorLIMS.Read()
-            DGCotizaciones.Rows.Add(False, lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5))
-        End While
-        lectorLIMS.Close()
-        conexionLIMS.Close()
-    End Sub
+
     Private Sub TextCorreo_TextChanged(sender As Object, e As EventArgs) Handles TextCorreo.TextChanged
         Try
             MetodoLIMS()
@@ -71,26 +52,7 @@ Public Class FrmCotizadorLIMS
         End Try
     End Sub
 
-    Private Sub Label21_Click(sender As Object, e As EventArgs) Handles Label21.Click
-        PanelNormal.Enabled = True
-        Try
-            MetodoMetasCotizador()
-            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-            R = "select idProspecto, Nombre, Apellidos,  Prospectos.Compania, RFC, Correo FROM Prospectos inner join Empresas on Prospectos.idClaveEmpresa=Empresas.Clavempresa"
-            comandoMetasCotizador.CommandText = R
-            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-            While lectorMetasCotizador.Read()
-                DGEmpresas.Rows.Add(lectorMetasCotizador(0), lectorMetasCotizador(1), lectorMetasCotizador(2), lectorMetasCotizador(3), lectorMetasCotizador(4), lectorMetasCotizador(5))
-            End While
-            lectorMetasCotizador.Close()
-            conexionMetasCotizador.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al cargar el formulario", Err.Number, cadena)
-        End Try
-    End Sub
+
 
     Private Sub PictureBox5_Click(sender As Object, e As EventArgs) Handles PictureBox5.Click
         Me.Dispose()
@@ -746,8 +708,68 @@ Public Class FrmCotizadorLIMS
         FrmReportes.Show()
         conexionMetasCotizador.Close()
     End Sub
+    Private Sub btCotizacion_Click(sender As Object, e As EventArgs) Handles btCotizacion.Click
+        origen = "LIMS"
+        If DgAgregar.Rows.Count < 2 Then
+            MsgBox("No hay articulos para Cotizar", MsgBoxStyle.Critical, "Error del sistema.")
+        Else
+            For i As Integer = DgAgregar.Rows.Count() - 2 To 0 Step -1
+                MetodoLIMS()
+                comandoLIMS = conexionLIMS.CreateCommand
+                R = "SELECT CustomerId, SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price from  SetupCustomerEquipmentMapping 
+                            inner join SetUpEquipment on SetupCustomerEquipmentMapping.EquipId=SetUpEquipment.EquipId inner join SetupEquipmentServiceMapping on  
+                            SetupEquipment.EquipId=SetupEquipmentServiceMapping.EquipId where SetUpEquipment.EquipId=" & DgAgregar.Rows(i).Cells(0).Value
+                comandoLIMS.CommandText = R
+                lectorLIMS = comandoLIMS.ExecuteReader
+                lectorLIMS.Read()
+                frmEdicionCot2018_2019.DGCotizaciones.Rows.Add(i + 1, lectorLIMS(2), lectorLIMS(7), 1, lectorLIMS(3), lectorLIMS(4), lectorLIMS(5), lectorLIMS(6), lectorLIMS(8), 0, lectorLIMS(1))
+            Next
+            frmEdicionCot2018_2019.ShowDialog()
+        End If
+    End Sub
 
-    Private Sub DgCot_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs)
+    Private Sub DGCotizaciones_CellContentClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles DGCotizaciones.CellContentClick
+        If e.ColumnIndex = DGCotizaciones.Columns.Item("s").Index Then
+            DgAgregar.Rows.Add(DGCotizaciones.Rows(e.RowIndex).Cells(1).Value)
+        End If
+    End Sub
+
+    Private Sub BtCargarClientes_Click(sender As Object, e As EventArgs) Handles btCargarClientes.Click
+        MetodoLIMS()
+        comandoLIMS = conexionLIMS.CreateCommand
+        R = "select CustomerId, concat(FirstName, ' ' , MiddleName) as Nombre, LastName,  Organization, KeyFiscal, Email, Phone FROM SetupCustomerDetails"
+        comandoLIMS.CommandText = R
+        lectorLIMS = comandoLIMS.ExecuteReader
+        While lectorLIMS.Read()
+            DGEmpresas.Rows.Add(lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5), lectorLIMS(6))
+        End While
+        lectorLIMS.Close()
+    End Sub
+
+    Private Sub BtCargarArticulos_Click(sender As Object, e As EventArgs) Handles btCargarArticulos.Click
+        MetodoLIMS()
+        comandoLIMS = conexionLIMS.CreateCommand
+        'R = "select CustomerId, concat(FirstName, ' ' , MiddleName) as Nombre, LastName,  Organization, KeyFiscal, Email, Phone FROM SetupCustomerDetails"
+        'comandoLIMS.CommandText = R
+        'lectorLIMS = comandoLIMS.ExecuteReader
+        'While lectorLIMS.Read()
+        '    DGEmpresas.Rows.Add(lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5), lectorLIMS(6))
+        'End While
+        'lectorLIMS.Close()
+        R = "SELECT CustomerId, SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model from  SetupCustomerEquipmentMapping inner join SetUpEquipment on 
+                 SetupCustomerEquipmentMapping.EquipId=SetUpEquipment.EquipId"
+        comandoLIMS.CommandText = R
+        lectorLIMS = comandoLIMS.ExecuteReader
+        While lectorLIMS.Read()
+            DGCotizaciones.Rows.Add(False, lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5))
+        End While
+        lectorLIMS.Close()
+        conexionLIMS.Close()
+    End Sub
+
+
+
+    Private Sub DgCot_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgCot.RowHeaderMouseClick
         Dim COT As Integer
         COT = Val(dgCot.Rows(e.RowIndex).Cells(0).Value)
         MsgBox(COT)
@@ -972,39 +994,25 @@ Public Class FrmCotizadorLIMS
         conexionMetasCotizador.Close()
     End Sub
 
-    Private Sub DGEmpresas_RowHeaderMouseClick_1(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGEmpresas.RowHeaderMouseClick
-        clave1 = DGEmpresas.Rows(e.RowIndex).Cells(0).Value.ToString()
-        txtNombreProspecto.Text = DGEmpresas.Rows(e.RowIndex).Cells(1).Value & " " & DGEmpresas.Rows(e.RowIndex).Cells(2).Value
-        txtNombreCompania.Text = DGEmpresas.Rows(e.RowIndex).Cells(3).Value
-        txtCorreo.Text = DGEmpresas.Rows(e.RowIndex).Cells(5).Value
-        txtTelefono.Text = DGEmpresas.Rows(e.RowIndex).Cells(6).Value
-        empresa = Val(DGEmpresas.Rows(e.RowIndex).Cells(0).Value)
-    End Sub
-
-    Private Sub btCotizacion_Click(sender As Object, e As EventArgs) Handles btCotizacion.Click
-        origen = "LIMS"
-        If DgAgregar.Rows.Count < 2 Then
-            MsgBox("No hay articulos para Cotizar", MsgBoxStyle.Critical, "Error del sistema.")
+    Private Sub DgEmpresa_RowHeaderMouseClick_1(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgEmpresa.RowHeaderMouseClick
+        If dgCot.Rows.Count < 2 Then
         Else
-            For i As Integer = DgAgregar.Rows.Count() - 2 To 0 Step -1
-                MetodoLIMS()
-                comandoLIMS = conexionLIMS.CreateCommand
-                R = "SELECT CustomerId, SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price from  SetupCustomerEquipmentMapping 
-                            inner join SetUpEquipment on SetupCustomerEquipmentMapping.EquipId=SetUpEquipment.EquipId inner join SetupEquipmentServiceMapping on  
-                            SetupEquipment.EquipId=SetupEquipmentServiceMapping.EquipId where SetUpEquipment.EquipId=" & DgAgregar.Rows(i).Cells(0).Value
-                comandoLIMS.CommandText = R
-                lectorLIMS = comandoLIMS.ExecuteReader
-                lectorLIMS.Read()
-                frmEdicionCot2018_2019.DGCotizaciones.Rows.Add(i + 1, lectorLIMS(2), lectorLIMS(7), 1, lectorLIMS(3), lectorLIMS(4), lectorLIMS(5), lectorLIMS(6), lectorLIMS(8), 0, lectorLIMS(1))
-            Next
-            frmEdicionCot2018_2019.ShowDialog()
+            'dgCot.Rows.RemoveAt(DGCotizaciones.CurrentRow.Index)
+            dgCot.Rows.Clear()
         End If
-    End Sub
-
-    Private Sub DGCotizaciones_CellContentClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles DGCotizaciones.CellContentClick
-        If e.ColumnIndex = DGCotizaciones.Columns.Item("s").Index Then
-            DgAgregar.Rows.Add(DGCotizaciones.Rows(e.RowIndex).Cells(1).Value)
-        End If
+        empresa = Val(dgEmpresa.Rows(e.RowIndex).Cells(0).Value)
+        MetodoMetasCotizador()
+        comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+        R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[DetalleCotizaciones] x1
+              inner join [DATABASESERVER\COMPAC].[MetAs_Live-Clouding].[dbo].[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join [DATABASESERVER\COMPAC].[MetAs_Live-Clouding].[dbo].[SetupEquipmentServiceMapping] x3
+			  on x1.EquipId=x3.EquipId inner join [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa
+        comandoMetasCotizador.CommandText = R
+        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+        While lectorMetasCotizador.Read()
+            dgCot.Rows.Add(lectorMetasCotizador(1), lectorMetasCotizador(2), lectorMetasCotizador(4), lectorMetasCotizador(8), lectorMetasCotizador(11), lectorMetasCotizador(5), lectorMetasCotizador(6), lectorMetasCotizador(7), lectorMetasCotizador(8), lectorMetasCotizador(10), lectorMetasCotizador(12), lectorMetasCotizador(14))
+        End While
+        lectorMetasCotizador.Close()
+        conexionMetasCotizador.Close()
     End Sub
 
 
