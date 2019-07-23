@@ -27,7 +27,8 @@ Partial Class FrmInicio
         Me.linerocket = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.SuspendLayout()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.SuspendLayout
         '
         'linerocket
         '
@@ -36,7 +37,6 @@ Partial Class FrmInicio
         Me.linerocket.Name = "linerocket"
         Me.linerocket.Size = New System.Drawing.Size(465, 10)
         Me.linerocket.TabIndex = 9
-        '
         '
         'Label1
         '
@@ -60,6 +60,9 @@ Partial Class FrmInicio
         Me.Label2.TabIndex = 11
         Me.Label2.Text = "Cotizador LIMS Versión 2.0"
         '
+        'Timer1
+        '
+        '
         'FrmInicio
         '
         Me.AllowDrop = True
@@ -78,11 +81,12 @@ Partial Class FrmInicio
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Autenticación de Usuarios"
         Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.PerformLayout
 
     End Sub
 
     Private WithEvents linerocket As Panel
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
+    Friend WithEvents Timer1 As Timer
 End Class
