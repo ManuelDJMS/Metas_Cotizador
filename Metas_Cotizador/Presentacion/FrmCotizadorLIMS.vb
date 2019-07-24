@@ -1015,6 +1015,15 @@ Public Class FrmCotizadorLIMS
         conexionMetasCotizador.Close()
     End Sub
 
+    Private Sub DGEmpresas_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGEmpresas.RowHeaderMouseClick
+        clave1 = DGEmpresas.Rows(e.RowIndex).Cells(0).Value.ToString()
+        txtNombreProspecto.Text = DGEmpresas.Rows(e.RowIndex).Cells(1).Value & " " & DGEmpresas.Rows(e.RowIndex).Cells(2).Value
+        txtNombreCompania.Text = DGEmpresas.Rows(e.RowIndex).Cells(3).Value
+        txtCorreo.Text = DGEmpresas.Rows(e.RowIndex).Cells(5).Value
+        txtTelefono.Text = DGEmpresas.Rows(e.RowIndex).Cells(6).Value
+        empresa = Val(DGEmpresas.Rows(e.RowIndex).Cells(0).Value)
+    End Sub
+
 
     'Private Sub DGCotizaciones_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGCotizaciones.CellClick
     '    If e.ColumnIndex = 0 Then
