@@ -500,7 +500,7 @@ Public Class frmEdicionCot2018_2019
             Dim R As String
             R = "SELECT * FROM [MetasCotizador].[dbo].[DetalleCotizaciones] where NumCot=" & NumCot & ""
             Dim comando As New SqlCommand(R, conexionMetasCotizador)
-            comando.CommandType = CommandType.Text
+            'comando.CommandType = CommandType.Text
             Dim da As New SqlDataAdapter(comando)
             Dim dt As New DataTable
             da.Fill(dt)
