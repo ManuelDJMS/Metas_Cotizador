@@ -117,7 +117,6 @@ Partial Class FrmCotizadorLIMS
         Me.Label24 = New System.Windows.Forms.Label()
         Me.TextDescripcion = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.TextDom = New System.Windows.Forms.TextBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TextEmail = New System.Windows.Forms.TextBox()
@@ -733,7 +732,6 @@ Partial Class FrmCotizadorLIMS
         Me.TabPage1.Controls.Add(Me.Label24)
         Me.TabPage1.Controls.Add(Me.TextDescripcion)
         Me.TabPage1.Controls.Add(Me.Label13)
-        Me.TabPage1.Controls.Add(Me.Button1)
         Me.TabPage1.Controls.Add(Me.TextDom)
         Me.TabPage1.Controls.Add(Me.Label14)
         Me.TabPage1.Controls.Add(Me.TextEmail)
@@ -998,20 +996,6 @@ Partial Class FrmCotizadorLIMS
         Me.Label13.TabIndex = 200
         Me.Label13.Text = "Artículo:"
         '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(1011, 333)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(111, 33)
-        Me.Button1.TabIndex = 198
-        Me.Button1.Text = "Cotizar"
-        Me.Button1.UseVisualStyleBackColor = False
-        '
         'TextDom
         '
         Me.TextDom.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1245,7 +1229,6 @@ Partial Class FrmCotizadorLIMS
     Friend WithEvents Label8 As Label
     Friend WithEvents TextDescripcion As TextBox
     Friend WithEvents Label13 As Label
-    Friend WithEvents Button1 As Button
     Friend WithEvents TextDom As TextBox
     Friend WithEvents Label14 As Label
     Friend WithEvents TextEmail As TextBox

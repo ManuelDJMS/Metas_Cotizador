@@ -225,8 +225,8 @@ Public Class frmEdicionCot2018_2019
             'Actualizar Los datos de la cotizacion
             'Consultar la ultima cotizacion y asignarla a un LABEL para poder hacer el update conforme al LABEL
 
-            Try
-                Dim ultimo As Integer
+            'Try
+            Dim ultimo As Integer
                 'consultar ultima Cotizacion-----------------------------------------------------------------------------------------------
                 MetodoMetasCotizador()
                 Dim comandoo As New SqlCommand("select MAX(Numcot) from [Cotizaciones]", conexionMetasCotizador)
@@ -246,16 +246,16 @@ Public Class frmEdicionCot2018_2019
                     If observacion = "" Then
                         observacion = " "
                     Else
-                        observacion = DGCopia.Item(6, i).Value
-                    End If
+                    observacion = DGCopia.Item(6, i).Value + ".  "
+                End If
                     MetodoMetasCotizador()
 
                     inventarioCliente = InputBox("¿Deseas agregar el número de inventario del articulo: """ & DGCopia.Item(1, i).Value.ToString & """ del cliente?", "No. de Inventario de cliente")
                     If DGCopia.Item(2, i).Value.ToString = "GENERICO" Then
                         marcaGen = InputBox("¿Deseas agregar la marca del articulo: """ & DGCopia.Item(1, i).Value.ToString & """?", "Marca")
                         modGen = InputBox("¿Deseas agregar el modelo del articulo: """ & DGCopia.Item(1, i).Value.ToString & """?", "Modelo")
-                        observacion = observacion + "MARCA: " + marcaGen + " MODELO:" + modGen
-                        Dim cad As String = "update DetalleCotizaciones set identificadorInventarioCliente='" & inventarioCliente & "', Observaciones='" & observacion & "'
+                    observacion = observacion + "MARCA: " + marcaGen + "  MODELO:" + modGen
+                    Dim cad As String = "update DetalleCotizaciones set identificadorInventarioCliente='" & inventarioCliente & "', Observaciones='" & observacion & "'
                     where idListaCotizacion =" & Val(DGCopia.Item(0, i).Value) & ""
                         Dim t As New SqlCommand(cad, conexionMetasCotizador)
                         t.ExecuteNonQuery()
@@ -291,9 +291,9 @@ Public Class frmEdicionCot2018_2019
                     MsgBox("Error de guardado.", MsgBoxStyle.Critical)
                 End Try
                 Me.Dispose()
-            Catch ex As Exception
-                MsgBox("Error de lectura de datos de ultima COT", MsgBoxStyle.Critical)
-            End Try
+            'Catch ex As Exception
+            '    MsgBox("Error de lectura de datos de ultima COT", MsgBoxStyle.Critical)
+            'End Try
         End If
 
 
