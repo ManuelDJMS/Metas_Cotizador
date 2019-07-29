@@ -106,6 +106,32 @@ Public Class FrmCompletarOV
                 coma.ExecuteNonQuery()
                 MsgBox("ORDEN DE VENTA " & NumOV.Text & " ACTUALIZADA")
             End If
+            '----------------------------Se da de alta el equipamiento al cliente--------------------------------------
+            If txtRefCot.Visible = True Then
+                R = "select Cotizaciones.NumCot, idContacto, x1.EquipId, isnull(SrlNo,'-'), isnull(Dept,'-'), isnull(Location,'-'), isnull(CALInterval,'-'), isnull(CALCycle,'-'), isnull(CALDue,'-'),
+                IsActive,OnSite,isnull(ShortNotes,'-') from Cotizaciones inner join DetalleCotizaciones
+                on Cotizaciones.NumCot=DetalleCotizaciones.NumCot inner join " & servidor & "[SetupEquipment] x1 on DetalleCotizaciones.EquipId=x1.EquipId where Cotizaciones.NumCot=" & txtRefCot.Text
+                consultasCotizador(R, dgEquipamiento)
+                MetodoMetasCotizador()
+                For i = 0 To dgEquipamiento.Rows.Count - 2
+                    R = "if exists(select CustomerId, x1.EquipId, x3.NumCot from [DATABASESERVER\COMPAC].[MetAs_Live-pruebas].[dbo].[SetupCustomerEquipmentMapping] x1 inner join [MetasCotizador].[dbo].[Cotizaciones] x2
+                    on x1.CustomerId=x2.idContacto inner join [MetasCotizador].[dbo].[DetalleCotizaciones] x3 on x2.NumCot=x3.NumCot where x1.CustomerId=" & Val(dgEquipamiento.Item(1, i).Value) & " and x1.EquipId=" & Val(dgEquipamiento.Item(2, i).Value) & "and x3.NumCot=" & Val(dgEquipamiento.Item(0, i).Value) & ") 
+                    begin print 'El artículo ya esta equipado al cliente' end else begin insert into [DATABASESERVER\COMPAC].[MetAs_Live-pruebas].[dbo].[SetupCustomerEquipmentMapping]
+                    (CustomerId,EquipId,InstrumentId,SrlNo,Dept,Location,CALInterval,CALCycle,CALDue,IsActive,OnSite,ShortNotes,AssetNo) values(" & Val(dgEquipamiento.Item(1, i).Value) & "," & Val(dgEquipamiento.Item(2, i).Value) &
+                        ",(select top 1 CustEquipMapId +1 as id from " & servidor & "[SetupCustomerEquipmentMapping] order by CustEquipMapId desc),'" & dgEquipamiento.Item(3, i).Value &
+                        "','" & dgEquipamiento.Item(4, i).Value & "','" & dgEquipamiento.Item(5, i).Value & "'," & Val(dgEquipamiento.Item(6, i).Value) & ",'" & dgEquipamiento.Item(7, i).Value &
+                        "','" & dgEquipamiento.Item(8, i).Value & "','" & dgEquipamiento.Item(9, i).Value & "',' ','" & dgEquipamiento.Item(10, i).Value & "','-'); end"
+                    MsgBox(R)
+                    comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+                    comandoMetasCotizador.CommandText = R
+                    comandoMetasCotizador.ExecuteNonQuery()
+                    MsgBox("fdsdsfdsf")
+                Next
+            End If
+
+
+
+            '----------------------------------------------------------------------------------------------------------
             If txtCorreo.Text.Equals("") Then
                 MsgBox("Se necesita al menos un correo electrónico.", MsgBoxStyle.Critical)
             Else

@@ -31,6 +31,20 @@ Module Funciones
             MsgBox("Ocurrio un error en la lectura de datos, verifica nuevamente", MsgBoxStyle.Exclamation)
         End Try
     End Sub
+    Public Sub consultasCotizador(ByVal script As String, ByVal dgrid As DataGridView)
+        'Try
+        MetodoMetasCotizador()
+            comandoMetasCotizador = New SqlCommand(script, conexionMetasCotizador)
+            comandoMetasCotizador.CommandType = CommandType.Text
+            adapterMetasCotizador = New SqlDataAdapter(comandoMetasCotizador)
+            datatableMetasCotizador = New DataTable
+            adapterMetasCotizador.Fill(datatableMetasCotizador)
+            dgrid.DataSource = datatableMetasCotizador
+            conexionMetasCotizador.Close()
+        'Catch ex As Exception
+        '    MsgBox("Ocurrio un error en la lectura de datos, verifica nuevamente", MsgBoxStyle.Exclamation)
+        'End Try
+    End Sub
     Public Sub consultaGeneralDeCotizaciones(ByVal dg As DataGridView)
         Try
             MetodoMetasCotizador()

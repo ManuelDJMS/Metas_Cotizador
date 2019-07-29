@@ -89,10 +89,10 @@ Public Class FrmAutorizarSolicitudes
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim cu, ca As Integer
+        Dim cu, ca As Int64
         Dim correos As String
-        Try
-            Dim seleccionado As Boolean
+        'Try
+        Dim seleccionado As Boolean
             Dim R As String
             Dim b, RecDate, OnSite As Boolean
             RecDate = True
@@ -227,12 +227,12 @@ Public Class FrmAutorizarSolicitudes
                     MsgBox("No ha seleccionado ningúna cotización", MsgBoxStyle.Critical, "Error del sistema.")
                 End If
             End If
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("FrmAutorizarSolicitudes", "Error al guardar la OV", Err.Number, cadena)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
+        '    cadena = Err.Description
+        '    cadena = cadena.Replace("'", "")
+        '    Bitacora("FrmAutorizarSolicitudes", "Error al guardar la OV", Err.Number, cadena)
+        'End Try
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs)
