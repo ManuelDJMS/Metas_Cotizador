@@ -127,6 +127,8 @@ Partial Class frmEdicionCot2018_2019
         Me.txtMaximo = New System.Windows.Forms.Label()
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
+        Me.numCot = New System.Windows.Forms.Label()
+        Me.btActualizarCliente = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.DGCotizaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -144,6 +146,7 @@ Partial Class frmEdicionCot2018_2019
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.numCot)
         Me.Panel1.Controls.Add(Me.DGCotizaciones)
         Me.Panel1.Controls.Add(Me.GroupBox1)
         Me.Panel1.Controls.Add(Me.GroupBox2)
@@ -800,6 +803,7 @@ Partial Class frmEdicionCot2018_2019
         '
         'GroupBox6
         '
+        Me.GroupBox6.Controls.Add(Me.btActualizarCliente)
         Me.GroupBox6.Controls.Add(Me.txtNumCond)
         Me.GroupBox6.Controls.Add(Me.Label3)
         Me.GroupBox6.Controls.Add(Me.txtEstado)
@@ -1087,9 +1091,9 @@ Partial Class frmEdicionCot2018_2019
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(880, 13)
+        Me.Button1.Location = New System.Drawing.Point(829, 13)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(151, 33)
+        Me.Button1.Size = New System.Drawing.Size(109, 33)
         Me.Button1.TabIndex = 166
         Me.Button1.Text = "Activar Servicios"
         Me.Button1.UseVisualStyleBackColor = False
@@ -1186,6 +1190,31 @@ Partial Class frmEdicionCot2018_2019
         Me.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.btnCerrar.TabIndex = 187
         Me.btnCerrar.TabStop = False
+        '
+        'numCot
+        '
+        Me.numCot.AutoSize = True
+        Me.numCot.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.numCot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
+        Me.numCot.Location = New System.Drawing.Point(246, 26)
+        Me.numCot.Name = "numCot"
+        Me.numCot.Size = New System.Drawing.Size(152, 18)
+        Me.numCot.TabIndex = 194
+        Me.numCot.Text = "Guardar cotización"
+        '
+        'btActualizarCliente
+        '
+        Me.btActualizarCliente.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
+        Me.btActualizarCliente.FlatAppearance.BorderSize = 0
+        Me.btActualizarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btActualizarCliente.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btActualizarCliente.ForeColor = System.Drawing.Color.White
+        Me.btActualizarCliente.Location = New System.Drawing.Point(309, 269)
+        Me.btActualizarCliente.Name = "btActualizarCliente"
+        Me.btActualizarCliente.Size = New System.Drawing.Size(75, 23)
+        Me.btActualizarCliente.TabIndex = 195
+        Me.btActualizarCliente.Text = "Clientes"
+        Me.btActualizarCliente.UseVisualStyleBackColor = False
         '
         'frmEdicionCot2018_2019
         '
@@ -1319,4 +1348,6 @@ Partial Class frmEdicionCot2018_2019
     Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewCheckBoxColumn
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents numCot As Label
+    Friend WithEvents btActualizarCliente As Button
 End Class

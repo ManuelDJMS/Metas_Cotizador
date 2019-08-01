@@ -7,191 +7,232 @@ Public Class frmEdicionCot2018_2019
     Dim maximo As Integer
     Dim inventarioCliente, observacion As String
     Dim marcaGen, modGen As String
+    Dim idContacto As Integer
 
     Private Sub frmEdicionCot2018_2019_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
+        'Try
+        If editar = True Then
+            btGuardarInf.Text = "ACTUALIZAR COT"
+            btGuardarInf.Visible = True
+            Button1.Visible = False
+            Label79.Text = "Actualizar COTIZACIÓN NUM. "
+            MetodoMetasCotizador()
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            comandoMetasCotizador.CommandText = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre,[SetupCustomerDetails].[CustomerId],[CompanyName],[TaxIDNo],
+				[ContAddress1] AS DomCont,[ContCity], [ContState],[Phone],[SetupCustomerDetails].[Email],
+				PartidaNo,[SetUpEquipment].[EquipmentName] AS Articulo, [Mfr],[Model],[SetUpEquipment].[EquipId], [DetalleCotizaciones].[Observaciones], [SetupServices].[ServicesId],
+				[SetupServices].[ServiceName],[idUsuarioCotizacion],[Referencia], [DetalleCotizaciones].[idListaCotizacion],[Subtotal],[Total]
+				from [MetasCotizador].[dbo].[Cotizaciones]
+				INNER JOIN [Usuarios] ON [Cotizaciones].[idUsuarioCotizacion] = [Usuarios].[idUsuarioAdministrador]
+				INNER JOIN " & servidor & "[SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
+				INNER JOIN " & servidor & "[SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
+                INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
+				INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
+				INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
+				INNER JOIN [ModalidadCondicion] ON [Cotizaciones].[idModalidadCondicion] = [ModalidadCondicion].[idModalidadCondicion]
+				INNER JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
+				WHERE [Cotizaciones].NumCot = " & COT2
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                numCot.Text = lectorMetasCotizador(0)
+                txtNombreC.Text = lectorMetasCotizador(3)
+                txtCveContacto.Text = lectorMetasCotizador(4)
+                txtNombreEmpresa.Text = lectorMetasCotizador(5)
+                txtNumCond.Text = lectorMetasCotizador(6)
+                txtDomicilio.Text = lectorMetasCotizador(7)
+                txtCiudad.Text = lectorMetasCotizador(8)
+                txtEstado.Text = lectorMetasCotizador(9)
+                txtTelefono.Text = lectorMetasCotizador(10)
+                TextCorreo.Text = lectorMetasCotizador(11)
+                txtCotizo2019.Text = lectorMetasCotizador(20)
+                DTPDesde.Value = lectorMetasCotizador(1)
+                DTPHasta.Value = lectorMetasCotizador(2)
+                txtReferencia.Text = lectorMetasCotizador(21)
+                TextSubtotal.Text = lectorMetasCotizador(23)
+                TextTotal.Text = lectorMetasCotizador(24)
+                DGCopia.Rows.Add(lectorMetasCotizador(12), lectorMetasCotizador(13), lectorMetasCotizador(14), lectorMetasCotizador(15), lectorMetasCotizador(16), True, lectorMetasCotizador(17))
+                DGServicios.Rows.Add(lectorMetasCotizador(22), lectorMetasCotizador(16), lectorMetasCotizador(18), lectorMetasCotizador(19))
+            End While
+        Else
             DTPHasta.Value.AddDays(30)
-            MetodoLIMS()
-            comandoLIMS = conexionLIMS.CreateCommand
-            R = "select [SetupCustomerDetails].CustomerId, isnull(Organization,'-'), isnull(concat(FirstName, ' ' , MiddleName, ' ', LastName),'-') as Nombre, 
+                MetodoLIMS()
+                comandoLIMS = conexionLIMS.CreateCommand
+                R = "select [SetupCustomerDetails].CustomerId, isnull(Organization,'-'), isnull(concat(FirstName, ' ' , MiddleName, ' ', LastName),'-') as Nombre, 
                 isnull(ContAddress1,'-'), isnull(ContCity,'-'), isnull(ContState,'-'), isnull(Phone,'-'), isnull(Email,'-') 
                 from " & servidor & "[SetupCustomerDetails] inner join  
                 SetupCustomerAddressDtls on [SetupCustomerDetails].CustomerId=[SetupCustomerAddressDtls].CustomerId
                 where [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails].CustomerId=" & empresa
-            comandoLIMS.CommandText = R
-            lectorLIMS = comandoLIMS.ExecuteReader
-            lectorLIMS.Read()
-            txtCveContacto.Text = lectorLIMS(0)
-            txtNombreEmpresa.Text = lectorLIMS(1)
-            txtNombreC.Text = lectorLIMS(2)
-            txtDomicilio.Text = lectorLIMS(3)
-            txtCiudad.Text = lectorLIMS(4)
-            txtEstado.Text = lectorLIMS(5)
-            txtTelefono.Text = lectorLIMS(6)
-            TextCorreo.Text = lectorLIMS(7)
-            lectorLIMS.Close()
+                comandoLIMS.CommandText = R
+                lectorLIMS = comandoLIMS.ExecuteReader
+                lectorLIMS.Read()
+                txtCveContacto.Text = lectorLIMS(0)
+                txtNombreEmpresa.Text = lectorLIMS(1)
+                txtNombreC.Text = lectorLIMS(2)
+                txtDomicilio.Text = lectorLIMS(3)
+                txtCiudad.Text = lectorLIMS(4)
+                txtEstado.Text = lectorLIMS(5)
+                txtTelefono.Text = lectorLIMS(6)
+                TextCorreo.Text = lectorLIMS(7)
+                lectorLIMS.Close()
             conexionLIMS.Close()
-
-            MetodoMetasCotizador()
-            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-        '-----------------Combo cuando ------------------------
-        comandoMetasCotizador.CommandText = "select * from CuandoCondicion"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-            While lectorMetasCotizador.Read()
-            Cbcuando.Items.Add(lectorMetasCotizador(1))
-        End While
-        lectorMetasCotizador.Close()
-        comandoMetasCotizador.CommandText = "select * from CuandoCondicion where idCuandoCondicion=1"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        Cbcuando.Tag = lectorMetasCotizador(0)
-        Cbcuando.Text = lectorMetasCotizador(1)
-        lectorMetasCotizador.Close()
-        '-----------------Combo documentps ------------------------
-        comandoMetasCotizador.CommandText = "select * from DocumentosCondicion"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        While lectorMetasCotizador.Read()
-            ComboDocCond.Items.Add(lectorMetasCotizador(1))
-        End While
-        lectorMetasCotizador.Close()
-        comandoMetasCotizador.CommandText = "select * from DocumentosCondicion where idDocumentoCondicion=1"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        ComboDocCond.Tag = lectorMetasCotizador(0)
-        ComboDocCond.Text = lectorMetasCotizador(1)
-        lectorMetasCotizador.Close()
-        '-----------------Combo Leyenda ------------------------
-        comandoMetasCotizador.CommandText = "select * from LeyendaCondicion"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        While lectorMetasCotizador.Read()
-            CboLeyenda.Items.Add(lectorMetasCotizador(1))
-        End While
-        lectorMetasCotizador.Close()
-        comandoMetasCotizador.CommandText = "select * from LeyendaCondicion where idLeyendaCondicion=1"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        CboLeyenda.Tag = lectorMetasCotizador(0)
-        CboLeyenda.Text = lectorMetasCotizador(1)
-        lectorMetasCotizador.Close()
-        '-----------------Combo Lugar ------------------------
-        comandoMetasCotizador.CommandText = "select * from LugarCondicion"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        While lectorMetasCotizador.Read()
-            cboServicio.Items.Add(lectorMetasCotizador(1))
-        End While
-        lectorMetasCotizador.Close()
-        comandoMetasCotizador.CommandText = "select * from LugarCondicion where idLugarCondicion=1"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        cboServicio.Tag = lectorMetasCotizador(0)
-        cboServicio.Text = lectorMetasCotizador(1)
-        lectorMetasCotizador.Close()
-        '-----------------Combo modalidad ------------------------
-        comandoMetasCotizador.CommandText = "select * from ModalidadCondicion"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        While lectorMetasCotizador.Read()
-            CbModalidad.Items.Add(lectorMetasCotizador(1))
-        End While
-        lectorMetasCotizador.Close()
-        comandoMetasCotizador.CommandText = "select * from ModalidadCondicion where idModalidadCondicion=1"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        CbModalidad.Tag = lectorMetasCotizador(0)
-        CbModalidad.Text = lectorMetasCotizador(1)
-        lectorMetasCotizador.Close()
-        '-----------------Combo  modo de contabilizar ------------------------
-        comandoMetasCotizador.CommandText = "select * from Modo_de_Contabilizar"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        While lectorMetasCotizador.Read()
-            CboContabilizar.Items.Add(lectorMetasCotizador(1))
-        End While
-        lectorMetasCotizador.Close()
-        comandoMetasCotizador.CommandText = "select * from Modo_de_Contabilizar where idModoCont=1"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        CboContabilizar.Tag = lectorMetasCotizador(0)
-        CboContabilizar.Text = lectorMetasCotizador(1)
-        lectorMetasCotizador.Close()
-        lectorMetasCotizador.Close()
-        '-----------------Combo moneda ------------------------
-        comandoMetasCotizador.CommandText = "select * from MonedaCondicion"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        While lectorMetasCotizador.Read()
-            CboMoneda.Items.Add(lectorMetasCotizador(1))
-        End While
-        lectorMetasCotizador.Close()
-        comandoMetasCotizador.CommandText = "select * from MonedaCondicion where idMonedaCondicion=1"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        CboMoneda.Tag = lectorMetasCotizador(0)
-        CboMoneda.Text = lectorMetasCotizador(1)
-        lectorMetasCotizador.Close()
-        '-----------------Combo Pago------------------------
-        comandoMetasCotizador.CommandText = "select * from PagoCondicion"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        While lectorMetasCotizador.Read()
-            CCondPago.Items.Add(lectorMetasCotizador(1))
-        End While
-        lectorMetasCotizador.Close()
-        comandoMetasCotizador.CommandText = "select * from PagoCondicion where idPagoCondicion=2"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        CCondPago.Tag = lectorMetasCotizador(0)
-        CCondPago.Text = lectorMetasCotizador(1)
-        lectorMetasCotizador.Close()
-        '-----------------Combo tiempo ------------------------
-        comandoMetasCotizador.CommandText = "select * from TiemposEntregaCondicion"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        While lectorMetasCotizador.Read()
-            CboTiempo.Items.Add(lectorMetasCotizador(1))
-        End While
-        lectorMetasCotizador.Close()
-        comandoMetasCotizador.CommandText = "select * from TiemposEntregaCondicion where idTiempoEntregaCondicion=2"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        CboTiempo.Tag = lectorMetasCotizador(0)
-        CboTiempo.Text = lectorMetasCotizador(1)
-        lectorMetasCotizador.Close()
-        '-----------------Combo validez ------------------------
-        comandoMetasCotizador.CommandText = "select * from ValidezCondicion"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        While lectorMetasCotizador.Read()
-            CboValidez.Items.Add(lectorMetasCotizador(1))
-        End While
-        lectorMetasCotizador.Close()
-        comandoMetasCotizador.CommandText = "select * from ValidezCondicion where idValidezCondicion=1"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        CboValidez.Tag = lectorMetasCotizador(0)
-        CboValidez.Text = lectorMetasCotizador(1)
-        lectorMetasCotizador.Close()
-        For Each fila In DGCotizaciones.Rows
-            subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
-        Next
-        iva = (subtotal * 0.16)
-        total = subtotal + iva
-        TextSubtotal.Text = subtotal
+            For Each fila In DGCotizaciones.Rows
+                subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
+            Next
+            iva = (subtotal * 0.16)
+            total = subtotal + iva
+            TextSubtotal.Text = subtotal
             TextTotal.Text = total
-
-
-            DGCotizaciones.Visible = False
             consultaEquipos()
             Button1.PerformClick()
             consultaGeneralDeDetalles(Val(txtMaximo.Text))
             agregar_a_Res()
-            alternarColorColumnas(DGCotizaciones)
+        End If
+
+            MetodoMetasCotizador()
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            '-----------------Combo cuando ------------------------
+            comandoMetasCotizador.CommandText = "select * from CuandoCondicion"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                Cbcuando.Items.Add(lectorMetasCotizador(1))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = "select * from CuandoCondicion where idCuandoCondicion=1"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            Cbcuando.Tag = lectorMetasCotizador(0)
+            Cbcuando.Text = lectorMetasCotizador(1)
+            lectorMetasCotizador.Close()
+            '-----------------Combo documentps ------------------------
+            comandoMetasCotizador.CommandText = "select * from DocumentosCondicion"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                ComboDocCond.Items.Add(lectorMetasCotizador(1))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = "select * from DocumentosCondicion where idDocumentoCondicion=1"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            ComboDocCond.Tag = lectorMetasCotizador(0)
+            ComboDocCond.Text = lectorMetasCotizador(1)
+            lectorMetasCotizador.Close()
+            '-----------------Combo Leyenda ------------------------
+            comandoMetasCotizador.CommandText = "select * from LeyendaCondicion"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                CboLeyenda.Items.Add(lectorMetasCotizador(1))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = "select * from LeyendaCondicion where idLeyendaCondicion=1"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            CboLeyenda.Tag = lectorMetasCotizador(0)
+            CboLeyenda.Text = lectorMetasCotizador(1)
+            lectorMetasCotizador.Close()
+            '-----------------Combo Lugar ------------------------
+            comandoMetasCotizador.CommandText = "select * from LugarCondicion"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                cboServicio.Items.Add(lectorMetasCotizador(1))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = "select * from LugarCondicion where idLugarCondicion=1"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            cboServicio.Tag = lectorMetasCotizador(0)
+            cboServicio.Text = lectorMetasCotizador(1)
+            lectorMetasCotizador.Close()
+            '-----------------Combo modalidad ------------------------
+            comandoMetasCotizador.CommandText = "select * from ModalidadCondicion"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                CbModalidad.Items.Add(lectorMetasCotizador(1))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = "select * from ModalidadCondicion where idModalidadCondicion=1"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            CbModalidad.Tag = lectorMetasCotizador(0)
+            CbModalidad.Text = lectorMetasCotizador(1)
+            lectorMetasCotizador.Close()
+            '-----------------Combo  modo de contabilizar ------------------------
+            comandoMetasCotizador.CommandText = "select * from Modo_de_Contabilizar"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                CboContabilizar.Items.Add(lectorMetasCotizador(1))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = "select * from Modo_de_Contabilizar where idModoCont=1"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            CboContabilizar.Tag = lectorMetasCotizador(0)
+            CboContabilizar.Text = lectorMetasCotizador(1)
+            lectorMetasCotizador.Close()
+            lectorMetasCotizador.Close()
+            '-----------------Combo moneda ------------------------
+            comandoMetasCotizador.CommandText = "select * from MonedaCondicion"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                CboMoneda.Items.Add(lectorMetasCotizador(1))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = "select * from MonedaCondicion where idMonedaCondicion=1"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            CboMoneda.Tag = lectorMetasCotizador(0)
+            CboMoneda.Text = lectorMetasCotizador(1)
+            lectorMetasCotizador.Close()
+            '-----------------Combo Pago------------------------
+            comandoMetasCotizador.CommandText = "select * from PagoCondicion"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                CCondPago.Items.Add(lectorMetasCotizador(1))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = "select * from PagoCondicion where idPagoCondicion=2"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            CCondPago.Tag = lectorMetasCotizador(0)
+            CCondPago.Text = lectorMetasCotizador(1)
+            lectorMetasCotizador.Close()
+            '-----------------Combo tiempo ------------------------
+            comandoMetasCotizador.CommandText = "select * from TiemposEntregaCondicion"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                CboTiempo.Items.Add(lectorMetasCotizador(1))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = "select * from TiemposEntregaCondicion where idTiempoEntregaCondicion=2"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            CboTiempo.Tag = lectorMetasCotizador(0)
+            CboTiempo.Text = lectorMetasCotizador(1)
+            lectorMetasCotizador.Close()
+            '-----------------Combo validez ------------------------
+            comandoMetasCotizador.CommandText = "select * from ValidezCondicion"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                CboValidez.Items.Add(lectorMetasCotizador(1))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = "select * from ValidezCondicion where idValidezCondicion=1"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            CboValidez.Tag = lectorMetasCotizador(0)
+            CboValidez.Text = lectorMetasCotizador(1)
+            lectorMetasCotizador.Close()
+        DGCotizaciones.Visible = False
+        alternarColorColumnas(DGCotizaciones)
             alternarColorColumnas(DGCopia)
             alternarColorColumnas(DGServicios)
             alternarColorColumnas(DGEquipos)
             alternarColorColumnas(DGDetalles)
-
-
-        Catch ex As Exception
-        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
-        cadena = Err.Description
-        cadena = cadena.Replace("'", "")
-            Bitacora("frmEdicionCot2018-2019", "Error al cargar el formulario", Err.Number, cadena)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
+        '    cadena = Err.Description
+        '    cadena = cadena.Replace("'", "")
+        '    Bitacora("frmEdicionCot2018-2019", "Error al cargar el formulario", Err.Number, cadena)
+        'End Try
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs)
         Me.Dispose()
@@ -224,9 +265,18 @@ Public Class frmEdicionCot2018_2019
         Else
             'Actualizar Los datos de la cotizacion
             'Consultar la ultima cotizacion y asignarla a un LABEL para poder hacer el update conforme al LABEL
-
-            'Try
-            Dim ultimo As Integer
+            If btGuardarInf.Text = "ACTUALIZAR COT" Then
+                MetodoMetasCotizador()
+                Dim R As String
+                R = "update Cotizaciones set FechaDesde='" & DTPDesde.Value & "', FechaHasta='" & DTPHasta.Value & "', Observaciones='" & txtObservaciones.Text & "', idUsuarioCotizacion=
+                    " & Val(txtCotizo2019.Text) & ",  Referencia='" & txtReferencia.Text & "' where NumCot = " & Val(numCot.Text) & ""
+                Dim comando As New SqlCommand(R, conexionMetasCotizador)
+                comando.ExecuteNonQuery()
+                MsgBox("Cotización " & numCot.Text & " Actualizada")
+                conexionMetasCotizador.Close()
+            Else
+                'Try
+                Dim ultimo As Integer
                 'consultar ultima Cotizacion-----------------------------------------------------------------------------------------------
                 MetodoMetasCotizador()
                 Dim comandoo As New SqlCommand("select MAX(Numcot) from [Cotizaciones]", conexionMetasCotizador)
@@ -246,16 +296,16 @@ Public Class frmEdicionCot2018_2019
                     If observacion = "" Then
                         observacion = " "
                     Else
-                    observacion = DGCopia.Item(6, i).Value + ".  "
-                End If
+                        observacion = DGCopia.Item(6, i).Value + ".  "
+                    End If
                     MetodoMetasCotizador()
 
                     inventarioCliente = InputBox("¿Deseas agregar el número de inventario del articulo: """ & DGCopia.Item(1, i).Value.ToString & """ del cliente?", "No. de Inventario de cliente")
                     If DGCopia.Item(2, i).Value.ToString = "GENERICO" Then
                         marcaGen = InputBox("¿Deseas agregar la marca del articulo: """ & DGCopia.Item(1, i).Value.ToString & """?", "Marca")
                         modGen = InputBox("¿Deseas agregar el modelo del articulo: """ & DGCopia.Item(1, i).Value.ToString & """?", "Modelo")
-                    observacion = observacion + "MARCA: " + marcaGen + "  MODELO:" + modGen
-                    Dim cad As String = "update DetalleCotizaciones set identificadorInventarioCliente='" & inventarioCliente & "', Observaciones='" & observacion & "'
+                        observacion = observacion + "MARCA: " + marcaGen + "  MODELO:" + modGen
+                        Dim cad As String = "update DetalleCotizaciones set identificadorInventarioCliente='" & inventarioCliente & "', Observaciones='" & observacion & "'
                     where idListaCotizacion =" & Val(DGCopia.Item(0, i).Value) & ""
                         Dim t As New SqlCommand(cad, conexionMetasCotizador)
                         t.ExecuteNonQuery()
@@ -291,12 +341,11 @@ Public Class frmEdicionCot2018_2019
                     MsgBox("Error de guardado.", MsgBoxStyle.Critical)
                 End Try
                 Me.Dispose()
-            'Catch ex As Exception
-            '    MsgBox("Error de lectura de datos de ultima COT", MsgBoxStyle.Critical)
-            'End Try
+                'Catch ex As Exception
+                '    MsgBox("Error de lectura de datos de ultima COT", MsgBoxStyle.Critical)
+                'End Try
+            End If
         End If
-
-
     End Sub
 
     Private Sub CboValidez_SelectedIndexChanged(sender As Object, e As EventArgs)
@@ -515,7 +564,23 @@ Public Class frmEdicionCot2018_2019
         Try
             MetodoLIMS()
             Dim R As String
-            R = " select [EquipId], [EquipmentName], [Mfr], [Model], [SrlNo] from [SetUpEquipment]"
+            R = "select [EquipId], [EquipmentName], [Mfr], [Model], [SrlNo] from [SetUpEquipment]"
+            Dim comando As New SqlCommand(R, conexionLIMS)
+            comando.CommandType = CommandType.Text
+            Dim da As New SqlDataAdapter(comando)
+            Dim dt As New DataTable
+            da.Fill(dt)
+            DGEquipos.DataSource = dt
+            conexionLIMS.Close()
+        Catch ex As Exception
+            MsgBox("Ocurrio un error en la lectura de datos, llama al administrador general.")
+        End Try
+    End Sub
+    Public Sub consultaEquipos2()
+        Try
+            MetodoLIMS()
+            Dim R As String
+            R = "select [EquipId], [EquipmentName], [Mfr], [Model], [SrlNo] from [SetUpEquipment]"
             Dim comando As New SqlCommand(R, conexionLIMS)
             comando.CommandType = CommandType.Text
             Dim da As New SqlDataAdapter(comando)
@@ -530,6 +595,10 @@ Public Class frmEdicionCot2018_2019
 
     Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
         Me.Dispose()
+    End Sub
+
+    Private Sub btActualizarCliente_Click(sender As Object, e As EventArgs) Handles btActualizarCliente.Click
+        FrmContactos.Show()
     End Sub
 
     Private Sub DGCopia_CellContentClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles DGCopia.CellContentClick

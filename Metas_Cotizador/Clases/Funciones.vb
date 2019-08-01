@@ -17,6 +17,10 @@ Module Funciones
     Public formcorreos As Integer
     Public formcorreos2 As Integer
 
+    '--------------------------------------
+    Public editar As Boolean = False
+    Public COT2 As Integer
+
     Public Sub consultasLIMS(ByVal script As String, ByVal dgrid As DataGridView)
         Try
             MetodoLIMS()

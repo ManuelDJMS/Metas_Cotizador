@@ -135,6 +135,8 @@ Partial Class FrmCotizadorLIMS
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.btnEditarCot = New System.Windows.Forms.Button()
         Me.TabConsulta.SuspendLayout()
         Me.Tab2018.SuspendLayout()
         CType(Me.btCargarArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,6 +168,7 @@ Partial Class FrmCotizadorLIMS
         'Tab2018
         '
         Me.Tab2018.BackColor = System.Drawing.Color.White
+        Me.Tab2018.Controls.Add(Me.Label6)
         Me.Tab2018.Controls.Add(Me.btCargarArticulos)
         Me.Tab2018.Controls.Add(Me.DgAgregar)
         Me.Tab2018.Controls.Add(Me.DGCotizaciones)
@@ -723,6 +726,7 @@ Partial Class FrmCotizadorLIMS
         'TabPage1
         '
         Me.TabPage1.BackColor = System.Drawing.Color.White
+        Me.TabPage1.Controls.Add(Me.btnEditarCot)
         Me.TabPage1.Controls.Add(Me.dgCot)
         Me.TabPage1.Controls.Add(Me.dgEmpresa)
         Me.TabPage1.Controls.Add(Me.Button2)
@@ -1166,6 +1170,31 @@ Partial Class FrmCotizadorLIMS
         Me.PictureBox5.TabIndex = 143
         Me.PictureBox5.TabStop = False
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
+        Me.Label6.Location = New System.Drawing.Point(173, 31)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(140, 18)
+        Me.Label6.TabIndex = 263
+        Me.Label6.Text = "Nueva Cotización"
+        '
+        'btnEditarCot
+        '
+        Me.btnEditarCot.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
+        Me.btnEditarCot.FlatAppearance.BorderSize = 0
+        Me.btnEditarCot.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnEditarCot.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnEditarCot.ForeColor = System.Drawing.Color.White
+        Me.btnEditarCot.Location = New System.Drawing.Point(797, 15)
+        Me.btnEditarCot.Name = "btnEditarCot"
+        Me.btnEditarCot.Size = New System.Drawing.Size(151, 33)
+        Me.btnEditarCot.TabIndex = 261
+        Me.btnEditarCot.Text = "Editar COT"
+        Me.btnEditarCot.UseVisualStyleBackColor = False
+        '
         'FrmCotizadorLIMS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1300,4 +1329,6 @@ Partial Class FrmCotizadorLIMS
     Friend WithEvents Column8 As DataGridViewTextBoxColumn
     Friend WithEvents btCargarClientes As PictureBox
     Friend WithEvents btCargarArticulos As PictureBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents btnEditarCot As Button
 End Class

@@ -1024,6 +1024,25 @@ Public Class FrmCotizadorLIMS
         empresa = Val(DGEmpresas.Rows(e.RowIndex).Cells(0).Value)
     End Sub
 
+    Private Sub btnEditarCot_Click(sender As Object, e As EventArgs) Handles btnEditarCot.Click
+        COT2 = InputBox("Ingrese el número de Cotización", "Folios")
+        MetodoMetasCotizador()
+        comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+        R = "SELECT NumCot, Creado FROM [Cotizaciones] WHERE NumCot= " & COT2
+        comandoMetasCotizador.CommandText = R
+        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+        lectorMetasCotizador.Read()
+        If lectorMetasCotizador(1) = 0 Then
+            editar = True
+            frmEdicionCot2018_2019.ShowDialog()
+        Else
+            MsgBox("La cotización ya fue convertida en ORDEN DE VENTA NUM " & lectorMetasCotizador(1))
+            lectorMetasCotizador.Close()
+            conexionMetasCotizador.Close()
+        End If
+
+    End Sub
+
 
     'Private Sub DGCotizaciones_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGCotizaciones.CellClick
     '    If e.ColumnIndex = 0 Then

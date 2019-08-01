@@ -36,13 +36,32 @@ Public Class FrmContactos
 
     Private Sub DGConsulta_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGConsulta.RowHeaderMouseClick
         Try
-            Dim clave As String
-            clave = DGConsulta.Rows(e.RowIndex).Cells(0).Value.ToString()
-            txtClaveRecopilada.Text = clave
-            'TextBox2.Text = clave
-            consultaDatosContactos(clave)
-            TabConsulta.SelectTab(1)
-            'Evento click para la regilla---------------------------
+            If editar = True Then
+                Dim clave As String
+                clave = DGConsulta.Rows(e.RowIndex).Cells(0).Value.ToString()
+                idContacto.Text = clave
+                txtClaveRecopilada.Text = clave
+                consultaDatosContactos(clave)
+                frmEdicionCot2018_2019.txtNombreC.Text = Me.txtNombreDeContacto.Text
+                frmEdicionCot2018_2019.txtCveContacto.Text = Me.idContacto.Text
+                frmEdicionCot2018_2019.txtNombreEmpresa.Text = Me.txtNombreCompania.Text
+                frmEdicionCot2018_2019.txtNumCond.Text = Me.txtKeyFiscal.Text
+                frmEdicionCot2018_2019.txtDomicilio.Text = Me.txtDireccion.Text
+                frmEdicionCot2018_2019.txtCiudad.Text = Me.txtCiudad.Text
+                frmEdicionCot2018_2019.txtEstado.Text = Me.txtEdo.Text
+                frmEdicionCot2018_2019.txtTelefono.Text = Me.txtTelefono.Text
+                frmEdicionCot2018_2019.TextCorreo.Text = Me.txtCorreo1.Text
+                Me.Close()
+            Else
+
+                Dim clave As String
+                clave = DGConsulta.Rows(e.RowIndex).Cells(0).Value.ToString()
+                txtClaveRecopilada.Text = clave
+                'TextBox2.Text = clave
+                consultaDatosContactos(clave)
+                TabConsulta.SelectTab(1)
+                'Evento click para la regilla---------------------------
+            End If
         Catch ex As Exception
             MsgBox("Selecciona un registro válido de la regilla.", MsgBoxStyle.Information)
         End Try
