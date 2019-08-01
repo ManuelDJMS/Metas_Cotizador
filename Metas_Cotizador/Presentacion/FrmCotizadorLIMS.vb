@@ -58,20 +58,17 @@ Public Class FrmCotizadorLIMS
         Me.Dispose()
     End Sub
 
-
-
-    Private Sub TextID_TextChanged(sender As Object, e As EventArgs) Handles TextID.TextChanged
+    Sub consultasarticuloscot()
         Try
             MetodoLIMS()
             DGCotizaciones.Rows.Clear()
             comandoLIMS = conexionLIMS.CreateCommand
-            R = "SELECT CustomerId, SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model from  SetupCustomerEquipmentMapping inner join SetUpEquipment on 
-                 SetupCustomerEquipmentMapping.EquipId = SetUpEquipment.EquipId where ItemNumber like '" & TextID.Text & "%' and 
+            R = "SELECT SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model from SetUpEquipment where ItemNumber like '" & TextID.Text & "%' and 
                  Mfr like'" & txtMarca.Text & "%' and Model like '" & txtModelo.Text & "%' and EquipmentName like '" & TextArticulo.Text & "%'"
             comandoLIMS.CommandText = R
             lectorLIMS = comandoLIMS.ExecuteReader
             While lectorLIMS.Read()
-                DGCotizaciones.Rows.Add(False, lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5))
+                DGCotizaciones.Rows.Add(False, lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4))
             End While
             lectorLIMS.Close()
             conexionLIMS.Close()
@@ -82,78 +79,22 @@ Public Class FrmCotizadorLIMS
             cadena = cadena.Replace("'", "")
             Bitacora("FrmCotizacion2018", "Error al filtrar por empresa", Err.Number, cadena)
         End Try
+    End Sub
+
+    Private Sub TextID_TextChanged(sender As Object, e As EventArgs) Handles TextID.TextChanged
+        consultasarticuloscot()
     End Sub
 
     Private Sub TextArticulo_TextChanged(sender As Object, e As EventArgs) Handles TextArticulo.TextChanged
-        Try
-            MetodoLIMS()
-            DGCotizaciones.Rows.Clear()
-            comandoLIMS = conexionLIMS.CreateCommand
-            R = "SELECT CustomerId, SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model from  SetupCustomerEquipmentMapping inner join SetUpEquipment on 
-                 SetupCustomerEquipmentMapping.EquipId = SetUpEquipment.EquipId where ItemNumber like '" & TextID.Text & "%' and 
-                 Mfr like'" & txtMarca.Text & "%' and Model like '" & txtModelo.Text & "%' and EquipmentName like '" & TextArticulo.Text & "%'"
-            comandoLIMS.CommandText = R
-            lectorLIMS = comandoLIMS.ExecuteReader
-            While lectorLIMS.Read()
-                DGCotizaciones.Rows.Add(False, lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5))
-            End While
-            lectorLIMS.Close()
-            conexionLIMS.Close()
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al filtrar por empresa", Err.Number, cadena)
-        End Try
+        consultasarticuloscot()
     End Sub
 
     Private Sub TxtMarca_TextChanged(sender As Object, e As EventArgs) Handles txtMarca.TextChanged
-        Try
-            MetodoLIMS()
-            DGCotizaciones.Rows.Clear()
-            comandoLIMS = conexionLIMS.CreateCommand
-            R = "SELECT CustomerId, SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model from  SetupCustomerEquipmentMapping inner join SetUpEquipment on 
-                 SetupCustomerEquipmentMapping.EquipId = SetUpEquipment.EquipId where ItemNumber like '" & TextID.Text & "%' and 
-                 Mfr like'" & txtMarca.Text & "%' and Model like '" & txtModelo.Text & "%' and EquipmentName like '" & TextArticulo.Text & "%'"
-            comandoLIMS.CommandText = R
-            lectorLIMS = comandoLIMS.ExecuteReader
-            While lectorLIMS.Read()
-                DGCotizaciones.Rows.Add(False, lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5))
-            End While
-            lectorLIMS.Close()
-            conexionLIMS.Close()
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al filtrar por empresa", Err.Number, cadena)
-        End Try
+        consultasarticuloscot()
     End Sub
 
     Private Sub TxtModelo_TextChanged(sender As Object, e As EventArgs) Handles txtModelo.TextChanged
-        Try
-            MetodoLIMS()
-            DGCotizaciones.Rows.Clear()
-            comandoLIMS = conexionLIMS.CreateCommand
-            R = "SELECT CustomerId, SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model from  SetupCustomerEquipmentMapping inner join SetUpEquipment on 
-                 SetupCustomerEquipmentMapping.EquipId = SetUpEquipment.EquipId where ItemNumber like '" & TextID.Text & "%' and 
-                 Mfr like'" & txtMarca.Text & "%' and Model like '" & txtModelo.Text & "%' and EquipmentName like '" & TextArticulo.Text & "%'"
-            comandoLIMS.CommandText = R
-            lectorLIMS = comandoLIMS.ExecuteReader
-            While lectorLIMS.Read()
-                DGCotizaciones.Rows.Add(False, lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5))
-            End While
-            lectorLIMS.Close()
-            conexionLIMS.Close()
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al filtrar por empresa", Err.Number, cadena)
-        End Try
+        consultasarticuloscot()
     End Sub
 
     Private Sub TxtClave_TextChanged(sender As Object, e As EventArgs) Handles txtClave.TextChanged
@@ -716,13 +657,14 @@ Public Class FrmCotizadorLIMS
             For i As Integer = DgAgregar.Rows.Count() - 2 To 0 Step -1
                 MetodoLIMS()
                 comandoLIMS = conexionLIMS.CreateCommand
-                R = "SELECT CustomerId, SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price from  SetupCustomerEquipmentMapping 
-                            inner join SetUpEquipment on SetupCustomerEquipmentMapping.EquipId=SetUpEquipment.EquipId inner join SetupEquipmentServiceMapping on  
+                R = "SELECT SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price from 
+                            SetUpEquipment inner join SetupEquipmentServiceMapping on  
                             SetupEquipment.EquipId=SetupEquipmentServiceMapping.EquipId where SetUpEquipment.EquipId=" & DgAgregar.Rows(i).Cells(0).Value
+                MsgBox(R)
                 comandoLIMS.CommandText = R
                 lectorLIMS = comandoLIMS.ExecuteReader
                 lectorLIMS.Read()
-                frmEdicionCot2018_2019.DGCotizaciones.Rows.Add(i + 1, lectorLIMS(2), lectorLIMS(7), 1, lectorLIMS(3), lectorLIMS(4), lectorLIMS(5), lectorLIMS(6), lectorLIMS(8), 0, lectorLIMS(1))
+                frmEdicionCot2018_2019.DGCotizaciones.Rows.Add(i + 1, lectorLIMS(1), lectorLIMS(6), 1, lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5), lectorLIMS(7), 0, lectorLIMS(0))
             Next
             frmEdicionCot2018_2019.ShowDialog()
         End If
@@ -756,12 +698,11 @@ Public Class FrmCotizadorLIMS
         '    DGEmpresas.Rows.Add(lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5), lectorLIMS(6))
         'End While
         'lectorLIMS.Close()
-        R = "SELECT CustomerId, SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model from  SetupCustomerEquipmentMapping inner join SetUpEquipment on 
-                 SetupCustomerEquipmentMapping.EquipId=SetUpEquipment.EquipId"
+        R = "SELECT SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model from SetUpEquipment"
         comandoLIMS.CommandText = R
         lectorLIMS = comandoLIMS.ExecuteReader
         While lectorLIMS.Read()
-            DGCotizaciones.Rows.Add(False, lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5))
+            DGCotizaciones.Rows.Add(False, lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4))
         End While
         lectorLIMS.Close()
         conexionLIMS.Close()
@@ -1023,8 +964,6 @@ Public Class FrmCotizadorLIMS
         txtTelefono.Text = DGEmpresas.Rows(e.RowIndex).Cells(6).Value
         empresa = Val(DGEmpresas.Rows(e.RowIndex).Cells(0).Value)
     End Sub
-
-
     'Private Sub DGCotizaciones_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGCotizaciones.CellClick
     '    If e.ColumnIndex = 0 Then
     '        For Each fila In DGCotizaciones.Rows
