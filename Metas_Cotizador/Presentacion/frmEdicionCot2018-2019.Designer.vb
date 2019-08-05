@@ -33,6 +33,7 @@ Partial Class frmEdicionCot2018_2019
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.numCot = New System.Windows.Forms.Label()
         Me.DGCotizaciones = New System.Windows.Forms.DataGridView()
         Me.partida = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -47,6 +48,7 @@ Partial Class frmEdicionCot2018_2019
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.s = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnAgregarArticulos = New System.Windows.Forms.Button()
         Me.TextTotal = New System.Windows.Forms.TextBox()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.TextSubtotal = New System.Windows.Forms.TextBox()
@@ -96,6 +98,7 @@ Partial Class frmEdicionCot2018_2019
         Me.Label25 = New System.Windows.Forms.Label()
         Me.CboValidez = New System.Windows.Forms.ComboBox()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.btActualizarCliente = New System.Windows.Forms.Button()
         Me.txtNumCond = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtEstado = New System.Windows.Forms.Label()
@@ -127,8 +130,6 @@ Partial Class frmEdicionCot2018_2019
         Me.txtMaximo = New System.Windows.Forms.Label()
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
-        Me.numCot = New System.Windows.Forms.Label()
-        Me.btActualizarCliente = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.DGCotizaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -163,6 +164,17 @@ Partial Class frmEdicionCot2018_2019
         Me.Panel1.Size = New System.Drawing.Size(1220, 676)
         Me.Panel1.TabIndex = 0
         '
+        'numCot
+        '
+        Me.numCot.AutoSize = True
+        Me.numCot.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.numCot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
+        Me.numCot.Location = New System.Drawing.Point(246, 26)
+        Me.numCot.Name = "numCot"
+        Me.numCot.Size = New System.Drawing.Size(152, 18)
+        Me.numCot.TabIndex = 194
+        Me.numCot.Text = "Guardar cotización"
+        '
         'DGCotizaciones
         '
         Me.DGCotizaciones.BackgroundColor = System.Drawing.Color.Gainsboro
@@ -179,9 +191,9 @@ Partial Class frmEdicionCot2018_2019
         Me.DGCotizaciones.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DGCotizaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DGCotizaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.partida, Me.Column1, Me.codigoServicio, Me.cantidad, Me.equipoDescripcion, Me.marca, Me.modelo, Me.intervalo, Me.precioUnitario, Me.Column2, Me.Column3, Me.s})
-        Me.DGCotizaciones.Location = New System.Drawing.Point(514, 13)
+        Me.DGCotizaciones.Location = New System.Drawing.Point(542, 15)
         Me.DGCotizaciones.Name = "DGCotizaciones"
-        Me.DGCotizaciones.Size = New System.Drawing.Size(73, 33)
+        Me.DGCotizaciones.Size = New System.Drawing.Size(45, 31)
         Me.DGCotizaciones.TabIndex = 156
         '
         'partida
@@ -258,6 +270,7 @@ Partial Class frmEdicionCot2018_2019
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.btnAgregarArticulos)
         Me.GroupBox1.Controls.Add(Me.TextTotal)
         Me.GroupBox1.Controls.Add(Me.Label29)
         Me.GroupBox1.Controls.Add(Me.TextSubtotal)
@@ -273,6 +286,21 @@ Partial Class frmEdicionCot2018_2019
         Me.GroupBox1.TabIndex = 193
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Resumen de cotización"
+        '
+        'btnAgregarArticulos
+        '
+        Me.btnAgregarArticulos.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
+        Me.btnAgregarArticulos.FlatAppearance.BorderSize = 0
+        Me.btnAgregarArticulos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAgregarArticulos.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAgregarArticulos.ForeColor = System.Drawing.Color.White
+        Me.btnAgregarArticulos.Location = New System.Drawing.Point(813, 262)
+        Me.btnAgregarArticulos.Name = "btnAgregarArticulos"
+        Me.btnAgregarArticulos.Size = New System.Drawing.Size(117, 23)
+        Me.btnAgregarArticulos.TabIndex = 196
+        Me.btnAgregarArticulos.Text = "Agregar artículos"
+        Me.btnAgregarArticulos.UseVisualStyleBackColor = False
+        Me.btnAgregarArticulos.Visible = False
         '
         'TextTotal
         '
@@ -401,7 +429,7 @@ Partial Class frmEdicionCot2018_2019
         Me.DGCopia.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
         DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
         Me.DGCopia.RowsDefaultCellStyle = DataGridViewCellStyle9
-        Me.DGCopia.Size = New System.Drawing.Size(924, 233)
+        Me.DGCopia.Size = New System.Drawing.Size(924, 213)
         Me.DGCopia.TabIndex = 261
         '
         'g
@@ -834,6 +862,21 @@ Partial Class frmEdicionCot2018_2019
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Información del cliente"
         '
+        'btActualizarCliente
+        '
+        Me.btActualizarCliente.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
+        Me.btActualizarCliente.FlatAppearance.BorderSize = 0
+        Me.btActualizarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btActualizarCliente.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btActualizarCliente.ForeColor = System.Drawing.Color.White
+        Me.btActualizarCliente.Location = New System.Drawing.Point(309, 269)
+        Me.btActualizarCliente.Name = "btActualizarCliente"
+        Me.btActualizarCliente.Size = New System.Drawing.Size(75, 23)
+        Me.btActualizarCliente.TabIndex = 195
+        Me.btActualizarCliente.Text = "Clientes"
+        Me.btActualizarCliente.UseVisualStyleBackColor = False
+        Me.btActualizarCliente.Visible = False
+        '
         'txtNumCond
         '
         Me.txtNumCond.AutoSize = True
@@ -1191,31 +1234,6 @@ Partial Class frmEdicionCot2018_2019
         Me.btnCerrar.TabIndex = 187
         Me.btnCerrar.TabStop = False
         '
-        'numCot
-        '
-        Me.numCot.AutoSize = True
-        Me.numCot.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.numCot.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
-        Me.numCot.Location = New System.Drawing.Point(246, 26)
-        Me.numCot.Name = "numCot"
-        Me.numCot.Size = New System.Drawing.Size(152, 18)
-        Me.numCot.TabIndex = 194
-        Me.numCot.Text = "Guardar cotización"
-        '
-        'btActualizarCliente
-        '
-        Me.btActualizarCliente.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
-        Me.btActualizarCliente.FlatAppearance.BorderSize = 0
-        Me.btActualizarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btActualizarCliente.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btActualizarCliente.ForeColor = System.Drawing.Color.White
-        Me.btActualizarCliente.Location = New System.Drawing.Point(309, 269)
-        Me.btActualizarCliente.Name = "btActualizarCliente"
-        Me.btActualizarCliente.Size = New System.Drawing.Size(75, 23)
-        Me.btActualizarCliente.TabIndex = 195
-        Me.btActualizarCliente.Text = "Clientes"
-        Me.btActualizarCliente.UseVisualStyleBackColor = False
-        '
         'frmEdicionCot2018_2019
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1350,4 +1368,5 @@ Partial Class frmEdicionCot2018_2019
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
     Friend WithEvents numCot As Label
     Friend WithEvents btActualizarCliente As Button
+    Friend WithEvents btnAgregarArticulos As Button
 End Class

@@ -38,7 +38,7 @@ Partial Class FrmCotizadorLIMS
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmCotizadorLIMS))
         Me.TabConsulta = New System.Windows.Forms.TabControl()
         Me.Tab2018 = New System.Windows.Forms.TabPage()
-        Me.btCargarArticulos = New System.Windows.Forms.PictureBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.DgAgregar = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGCotizaciones = New System.Windows.Forms.DataGridView()
@@ -57,7 +57,6 @@ Partial Class FrmCotizadorLIMS
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PanelNormal = New System.Windows.Forms.GroupBox()
-        Me.btCargarClientes = New System.Windows.Forms.PictureBox()
         Me.txtClave = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
@@ -89,6 +88,7 @@ Partial Class FrmCotizadorLIMS
         Me.lblModelo = New System.Windows.Forms.Label()
         Me.txtModelo = New System.Windows.Forms.TextBox()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.btnEditarCot = New System.Windows.Forms.Button()
         Me.dgCot = New System.Windows.Forms.DataGridView()
         Me.NumCot = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.partida = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -135,21 +135,21 @@ Partial Class FrmCotizadorLIMS
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.btnEditarCot = New System.Windows.Forms.Button()
+        Me.btCargarArticulos = New System.Windows.Forms.PictureBox()
+        Me.btCargarClientes = New System.Windows.Forms.PictureBox()
         Me.TabConsulta.SuspendLayout()
         Me.Tab2018.SuspendLayout()
-        CType(Me.btCargarArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DgAgregar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGCotizaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGEmpresas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNormal.SuspendLayout()
-        CType(Me.btCargarClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgCot, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgEmpresa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btCargarArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.btCargarClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabConsulta
@@ -196,16 +196,16 @@ Partial Class FrmCotizadorLIMS
         Me.Tab2018.TabIndex = 5
         Me.Tab2018.Text = "Nueva cotización"
         '
-        'btCargarArticulos
+        'Label6
         '
-        Me.btCargarArticulos.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btCargarArticulos.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_update_left_rotation_64
-        Me.btCargarArticulos.Location = New System.Drawing.Point(10, 356)
-        Me.btCargarArticulos.Name = "btCargarArticulos"
-        Me.btCargarArticulos.Size = New System.Drawing.Size(30, 30)
-        Me.btCargarArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.btCargarArticulos.TabIndex = 262
-        Me.btCargarArticulos.TabStop = False
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
+        Me.Label6.Location = New System.Drawing.Point(173, 31)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(140, 18)
+        Me.Label6.TabIndex = 263
+        Me.Label6.Text = "Nueva Cotización"
         '
         'DgAgregar
         '
@@ -392,17 +392,6 @@ Partial Class FrmCotizadorLIMS
         Me.PanelNormal.TabIndex = 249
         Me.PanelNormal.TabStop = False
         Me.PanelNormal.Text = "Datos de cotización"
-        '
-        'btCargarClientes
-        '
-        Me.btCargarClientes.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btCargarClientes.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_update_left_rotation_64
-        Me.btCargarClientes.Location = New System.Drawing.Point(688, 29)
-        Me.btCargarClientes.Name = "btCargarClientes"
-        Me.btCargarClientes.Size = New System.Drawing.Size(30, 30)
-        Me.btCargarClientes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.btCargarClientes.TabIndex = 164
-        Me.btCargarClientes.TabStop = False
         '
         'txtClave
         '
@@ -758,6 +747,20 @@ Partial Class FrmCotizadorLIMS
         Me.TabPage1.Size = New System.Drawing.Size(1140, 621)
         Me.TabPage1.TabIndex = 6
         Me.TabPage1.Text = "Búsqueda y Reimpresión de Cot"
+        '
+        'btnEditarCot
+        '
+        Me.btnEditarCot.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
+        Me.btnEditarCot.FlatAppearance.BorderSize = 0
+        Me.btnEditarCot.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnEditarCot.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnEditarCot.ForeColor = System.Drawing.Color.White
+        Me.btnEditarCot.Location = New System.Drawing.Point(797, 15)
+        Me.btnEditarCot.Name = "btnEditarCot"
+        Me.btnEditarCot.Size = New System.Drawing.Size(151, 33)
+        Me.btnEditarCot.TabIndex = 261
+        Me.btnEditarCot.Text = "Editar COT"
+        Me.btnEditarCot.UseVisualStyleBackColor = False
         '
         'dgCot
         '
@@ -1170,30 +1173,27 @@ Partial Class FrmCotizadorLIMS
         Me.PictureBox5.TabIndex = 143
         Me.PictureBox5.TabStop = False
         '
-        'Label6
+        'btCargarArticulos
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
-        Me.Label6.Location = New System.Drawing.Point(173, 31)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(140, 18)
-        Me.Label6.TabIndex = 263
-        Me.Label6.Text = "Nueva Cotización"
+        Me.btCargarArticulos.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btCargarArticulos.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_update_left_rotation_64
+        Me.btCargarArticulos.Location = New System.Drawing.Point(10, 356)
+        Me.btCargarArticulos.Name = "btCargarArticulos"
+        Me.btCargarArticulos.Size = New System.Drawing.Size(30, 30)
+        Me.btCargarArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.btCargarArticulos.TabIndex = 262
+        Me.btCargarArticulos.TabStop = False
         '
-        'btnEditarCot
+        'btCargarClientes
         '
-        Me.btnEditarCot.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
-        Me.btnEditarCot.FlatAppearance.BorderSize = 0
-        Me.btnEditarCot.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnEditarCot.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnEditarCot.ForeColor = System.Drawing.Color.White
-        Me.btnEditarCot.Location = New System.Drawing.Point(797, 15)
-        Me.btnEditarCot.Name = "btnEditarCot"
-        Me.btnEditarCot.Size = New System.Drawing.Size(151, 33)
-        Me.btnEditarCot.TabIndex = 261
-        Me.btnEditarCot.Text = "Editar COT"
-        Me.btnEditarCot.UseVisualStyleBackColor = False
+        Me.btCargarClientes.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btCargarClientes.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_update_left_rotation_64
+        Me.btCargarClientes.Location = New System.Drawing.Point(688, 29)
+        Me.btCargarClientes.Name = "btCargarClientes"
+        Me.btCargarClientes.Size = New System.Drawing.Size(30, 30)
+        Me.btCargarClientes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.btCargarClientes.TabIndex = 164
+        Me.btCargarClientes.TabStop = False
         '
         'FrmCotizadorLIMS
         '
@@ -1212,13 +1212,11 @@ Partial Class FrmCotizadorLIMS
         Me.TabConsulta.ResumeLayout(False)
         Me.Tab2018.ResumeLayout(False)
         Me.Tab2018.PerformLayout()
-        CType(Me.btCargarArticulos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DgAgregar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DGCotizaciones, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DGEmpresas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNormal.ResumeLayout(False)
         Me.PanelNormal.PerformLayout()
-        CType(Me.btCargarClientes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.TabPage1.ResumeLayout(False)
@@ -1226,6 +1224,8 @@ Partial Class FrmCotizadorLIMS
         CType(Me.dgCot, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgEmpresa, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btCargarArticulos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.btCargarClientes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

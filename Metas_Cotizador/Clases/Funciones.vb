@@ -17,10 +17,14 @@ Module Funciones
     Public formcorreos As Integer
     Public formcorreos2 As Integer
 
-    '--------------------------------------
+    '--------------------------------------EDITAR COTIZACION
     Public editar As Boolean = False
     Public COT2 As Integer
-
+    Public numPartida As Integer
+    Public precio As Double
+    Public iva As Double
+    Public totalEdiCot As Double
+    Public subtotalEdiCot As Double
     Public Sub consultasLIMS(ByVal script As String, ByVal dgrid As DataGridView)
         Try
             MetodoLIMS()

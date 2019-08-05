@@ -5,6 +5,11 @@ Public Class FrmCompletarOV
     'Dim objOutlook As Object
     'Dim objOutlookMsg As Object
     Dim DirEnv, estEnv, cdEnv, cpEnv As String
+
+    Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
+        Me.Close()
+    End Sub
+
     Private Sub FrmCompletarOV_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         MetodoLIMS()
         'Dim R As String

@@ -25,6 +25,7 @@ Partial Class FrmCompletarOV
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.btCotizacion = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.dgEquipamiento = New System.Windows.Forms.DataGridView()
         Me.NumOV = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.domEnvio = New System.Windows.Forms.CheckBox()
@@ -64,13 +65,12 @@ Partial Class FrmCompletarOV
         Me.txtVolumen = New System.Windows.Forms.TextBox()
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
-        Me.dgEquipamiento = New System.Windows.Forms.DataGridView()
         Me.Panel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.dgEquipamiento, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.btnMinimizar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnCerrar, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dgEquipamiento, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -135,6 +135,14 @@ Partial Class FrmCompletarOV
         Me.GroupBox2.TabIndex = 191
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Información del Cliente"
+        '
+        'dgEquipamiento
+        '
+        Me.dgEquipamiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgEquipamiento.Location = New System.Drawing.Point(355, 217)
+        Me.dgEquipamiento.Name = "dgEquipamiento"
+        Me.dgEquipamiento.Size = New System.Drawing.Size(190, 86)
+        Me.dgEquipamiento.TabIndex = 197
         '
         'NumOV
         '
@@ -558,14 +566,6 @@ Partial Class FrmCompletarOV
         Me.btnCerrar.TabIndex = 189
         Me.btnCerrar.TabStop = False
         '
-        'dgEquipamiento
-        '
-        Me.dgEquipamiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgEquipamiento.Location = New System.Drawing.Point(355, 217)
-        Me.dgEquipamiento.Name = "dgEquipamiento"
-        Me.dgEquipamiento.Size = New System.Drawing.Size(190, 86)
-        Me.dgEquipamiento.TabIndex = 197
-        '
         'FrmCompletarOV
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -584,11 +584,11 @@ Partial Class FrmCompletarOV
         Me.Panel1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.dgEquipamiento, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.btnMinimizar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnCerrar, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgEquipamiento, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
