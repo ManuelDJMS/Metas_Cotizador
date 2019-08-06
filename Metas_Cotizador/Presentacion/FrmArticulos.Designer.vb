@@ -187,9 +187,9 @@ Partial Class FrmArticulos
         Me.DgAgregar.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.DgAgregar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DgAgregar.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn4})
-        Me.DgAgregar.Location = New System.Drawing.Point(16, 408)
+        Me.DgAgregar.Location = New System.Drawing.Point(16, 421)
         Me.DgAgregar.Name = "DgAgregar"
-        Me.DgAgregar.Size = New System.Drawing.Size(194, 48)
+        Me.DgAgregar.Size = New System.Drawing.Size(149, 35)
         Me.DgAgregar.TabIndex = 274
         Me.DgAgregar.Visible = False
         '

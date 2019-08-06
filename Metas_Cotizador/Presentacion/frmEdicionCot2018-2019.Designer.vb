@@ -32,6 +32,7 @@ Partial Class frmEdicionCot2018_2019
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.numCot = New System.Windows.Forms.Label()
         Me.DGCotizaciones = New System.Windows.Forms.DataGridView()
@@ -59,13 +60,6 @@ Partial Class frmEdicionCot2018_2019
         Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGCopia = New System.Windows.Forms.DataGridView()
-        Me.g = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.txtReferencia = New System.Windows.Forms.TextBox()
@@ -130,6 +124,14 @@ Partial Class frmEdicionCot2018_2019
         Me.txtMaximo = New System.Windows.Forms.Label()
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
+        Me.g = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.eliminar = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Panel1.SuspendLayout()
         CType(Me.DGCotizaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -407,73 +409,38 @@ Partial Class frmEdicionCot2018_2019
         Me.DGCopia.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(170, Byte), Integer))
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle7.ForeColor = System.Drawing.Color.White
         DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White
         DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DGCopia.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
         Me.DGCopia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGCopia.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.g, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn13, Me.Column4, Me.Column7})
+        Me.DGCopia.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.g, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn13, Me.Column4, Me.Column7, Me.eliminar})
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DGCopia.DefaultCellStyle = DataGridViewCellStyle8
         Me.DGCopia.EnableHeadersVisualStyles = False
         Me.DGCopia.Location = New System.Drawing.Point(6, 40)
         Me.DGCopia.Name = "DGCopia"
         Me.DGCopia.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGCopia.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
-        Me.DGCopia.RowsDefaultCellStyle = DataGridViewCellStyle9
-        Me.DGCopia.Size = New System.Drawing.Size(924, 213)
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGCopia.RowHeadersDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle10.BackColor = System.Drawing.Color.White
+        Me.DGCopia.RowsDefaultCellStyle = DataGridViewCellStyle10
+        Me.DGCopia.Size = New System.Drawing.Size(937, 213)
         Me.DGCopia.TabIndex = 261
-        '
-        'g
-        '
-        Me.g.HeaderText = "idPartidaDetalle"
-        Me.g.Name = "g"
-        Me.g.Width = 95
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.HeaderText = "Descripción"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        Me.DataGridViewTextBoxColumn7.Width = 200
-        '
-        'DataGridViewTextBoxColumn8
-        '
-        Me.DataGridViewTextBoxColumn8.HeaderText = "Marca/Fabricante"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        Me.DataGridViewTextBoxColumn8.Width = 120
-        '
-        'DataGridViewTextBoxColumn9
-        '
-        Me.DataGridViewTextBoxColumn9.HeaderText = "Modelo"
-        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
-        Me.DataGridViewTextBoxColumn9.Width = 120
-        '
-        'DataGridViewTextBoxColumn13
-        '
-        Me.DataGridViewTextBoxColumn13.HeaderText = "IdArticulo"
-        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = ""
-        Me.Column4.Name = "Column4"
-        Me.Column4.Width = 40
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "Observaciones"
-        Me.Column7.Name = "Column7"
-        Me.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column7.Width = 205
         '
         'Label31
         '
@@ -1180,14 +1147,14 @@ Partial Class frmEdicionCot2018_2019
         Me.DGDetalles.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DGDetalles.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal
         Me.DGDetalles.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.WhiteSmoke
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle10.ForeColor = System.Drawing.Color.Gainsboro
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.SteelBlue
-        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGDetalles.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.Gainsboro
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.SteelBlue
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGDetalles.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.DGDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DGDetalles.Location = New System.Drawing.Point(782, 13)
         Me.DGDetalles.Name = "DGDetalles"
@@ -1233,6 +1200,56 @@ Partial Class frmEdicionCot2018_2019
         Me.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.btnCerrar.TabIndex = 187
         Me.btnCerrar.TabStop = False
+        '
+        'g
+        '
+        Me.g.HeaderText = "Partidad"
+        Me.g.Name = "g"
+        Me.g.Width = 70
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Descripción"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.Width = 200
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Marca/Fabricante"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.HeaderText = "Modelo"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        '
+        'DataGridViewTextBoxColumn13
+        '
+        Me.DataGridViewTextBoxColumn13.HeaderText = "IdArticulo"
+        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
+        Me.DataGridViewTextBoxColumn13.Width = 70
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = ""
+        Me.Column4.Name = "Column4"
+        Me.Column4.Width = 40
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "Observaciones"
+        Me.Column7.Name = "Column7"
+        Me.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Column7.Width = 205
+        '
+        'eliminar
+        '
+        Me.eliminar.HeaderText = "Eliminar"
+        Me.eliminar.Name = "eliminar"
+        Me.eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.eliminar.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.eliminar.Text = "Eliminar"
         '
         'frmEdicionCot2018_2019
         '
@@ -1359,6 +1376,9 @@ Partial Class frmEdicionCot2018_2019
     Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents DGCopia As DataGridView
+    Friend WithEvents numCot As Label
+    Friend WithEvents btActualizarCliente As Button
+    Friend WithEvents btnAgregarArticulos As Button
     Friend WithEvents g As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
@@ -1366,7 +1386,5 @@ Partial Class frmEdicionCot2018_2019
     Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewCheckBoxColumn
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
-    Friend WithEvents numCot As Label
-    Friend WithEvents btActualizarCliente As Button
-    Friend WithEvents btnAgregarArticulos As Button
+    Friend WithEvents eliminar As DataGridViewButtonColumn
 End Class
