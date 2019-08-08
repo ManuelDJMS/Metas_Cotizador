@@ -138,6 +138,11 @@ Public Class FrmHOME
         AbrirFormEnPanel(Of FrmCotizadorLIMS)()
     End Sub
 
+    Private Sub BtnPreFact_Click(sender As Object, e As EventArgs) Handles btnPreFact.Click
+
+        colorearpanel(PanelMenu, PL_Cotizacion)
+        AbrirFormEnPanel(Of FrmCompletarOT)()
+    End Sub
 #End Region
     'METODO DE ABRIR FORMULARIO
     Private Sub AbrirFormEnPanel(Of Miform As {Form, New})()

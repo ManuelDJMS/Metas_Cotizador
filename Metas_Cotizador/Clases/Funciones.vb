@@ -95,6 +95,28 @@ Module Funciones
             'Bitacora("FrmAutorizarSolicitudes", "Error al cargar el formulario", Err.Number, cadena)
         End Try
     End Sub
+    Public Sub busquedasOT(ByVal dg As DataGridView, ByVal email As TextBox, ByVal cot As TextBox, ByVal empresa As TextBox)
+        Try
+            dg.Rows.Clear()
+            MetodoMetasCotizador()
+            Dim R As String = "select SOid, NumCot, (FirstName + ' ' + MiddleName + ' ' + LastName) as Nombre, CompanyName, Email, Total from Cotizaciones x1
+				INNER JOIN " & servidor & "[SetupCustomerDetails] x2 ON x1.idContacto = x2.[CustomerId]
+                INNER JOIN " & servidor & "[SalesOrderDetails] x3 ON x1.NumCot = x3.RefNo where Creado <> 0 and CompanyName like '" & empresa.Text & "%'
+                and Email like '" & email.Text & "%' and NumCot like '" & cot.Text & "%'"
+            Dim comando As New SqlCommand(R, conexionMetasCotizador)
+            Dim lector As SqlDataReader
+            lector = comando.ExecuteReader
+            While lector.Read()
+                dg.Rows.Add(False, lector(0), lector(1), lector(2), lector(3), lector(4), lector(5))
+            End While
+            conexionMetasCotizador.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmAutorizarSolicitudes", "Error al cargar el formulario", Err.Number, cadena)
+        End Try
+    End Sub
     Public Sub Bitacora(Formulario As String, Evento As String, error1 As String, Descripcion As String)
         Try
             Dim conexionbit As New SqlConnection("Data Source=SERVER3\COMPAC2;Initial Catalog=Bitacora; User Id=sa; Password=Met99011578a;Integrated Security=False")
@@ -118,6 +140,19 @@ Module Funciones
             conexionbit.Close()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del Sistema")
+        End Try
+    End Sub
+    Public Sub alternarColorColumnas(ByVal DGV As DataGridView)
+        Try
+            With DGV
+                .RowsDefaultCellStyle.BackColor = Color.WhiteSmoke
+                .AlternatingRowsDefaultCellStyle.BackColor = Color.White
+            End With
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmAutorizarSolicitudes", "Error al buscar cot", Err.Number, cadena)
         End Try
     End Sub
 End Module

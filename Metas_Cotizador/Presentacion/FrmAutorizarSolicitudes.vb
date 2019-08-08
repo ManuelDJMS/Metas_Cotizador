@@ -6,21 +6,6 @@ Public Class FrmAutorizarSolicitudes
         consultaGeneralDeCotizaciones(DGRes)
         alternarColorColumnas(DGRes)
     End Sub
-
-    Public Sub alternarColorColumnas(ByVal DGV As DataGridView)
-        Try
-            With DGV
-                .RowsDefaultCellStyle.BackColor = Color.WhiteSmoke
-                .AlternatingRowsDefaultCellStyle.BackColor = Color.White
-            End With
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("FrmAutorizarSolicitudes", "Error al buscar cot", Err.Number, cadena)
-        End Try
-    End Sub
-
     Private Sub PictureBox5_Click(sender As Object, e As EventArgs) Handles PictureBox5.Click
         Me.Dispose()
     End Sub
