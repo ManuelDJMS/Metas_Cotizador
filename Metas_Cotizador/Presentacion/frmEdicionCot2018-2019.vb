@@ -14,9 +14,14 @@ Public Class frmEdicionCot2018_2019
         If editar = True Then
             DGCopia.Rows.Clear()
             DGServicios.Rows.Clear()
+            DGCopia.Columns(1).Width = 200
+            DGCopia.Columns(2).Width = 100
+            DGCopia.Columns(3).Width = 100
+            DGCopia.Columns(7).Visible = True
             btGuardarInf.Text = "ACTUALIZAR COT"
             btGuardarInf.Visible = True
             btActualizarCliente.Visible = True
+            btnEliminar.Visible = True
             Button1.Visible = False
             btnAgregarArticulos.Visible = True
             Label79.Text = "Actualizar COTIZACIÓN NUM. "
@@ -686,9 +691,27 @@ Public Class frmEdicionCot2018_2019
         FrmContactos.Show()
     End Sub
 
+    Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
+        For i = 0 To dgEliminar.Rows.Count - 2
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            R = "if exists (Select [Cotizaciones].NumCot,[SetUpEquipment].[EquipId],[SetupServices].[ServicesId]
+                            from [MetasCotizador].[dbo].[Cotizaciones]
+                            INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
+				            INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
+				            INNER JOIN [DATABASESERVER\COMPAC].[MetAs_Live-pruebas].[dbo].[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
+				            INNER JOIN [DATABASESERVER\COMPAC].[MetAs_Live-pruebas].[dbo].[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
+				            where [Cotizaciones].NumCot = " & Val(numCot.Text) & " and [SetUpEquipment].[EquipId] =" & Val(DGCopia.Item(4, i).Value) & ")
+				            begin DELETE FROM [DetalleCotizaciones] FROM [DetalleCotizaciones] DC INNER JOIN [ServiciosEnCotizaciones] S ON DC.idListaCotizacion = S.idListaCotizacion  WHERE DC.NumCot = " & Val(DGCopia.Item(0, i).Value) & "
+                            end else begin print 'articulo eliminado de la cot' end"
+            Dim c As New SqlCommand(R, conexionMetasCotizador)
+            c.ExecuteNonQuery()
+            'DGCopia.Rows.RemoveAt(DGCopia.CurrentRow.Index)
+        Next i
+    End Sub
+
     Private Sub btnAgregarArticulos_Click(sender As Object, e As EventArgs) Handles btnAgregarArticulos.Click
         FrmArticulos.Show()
-           End Sub
+    End Sub
 
     Private Sub DGCopia_CellContentClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles DGCopia.CellContentClick
         If e.ColumnIndex = DGCopia.Columns.Item("Column4").Index Then
@@ -700,7 +723,10 @@ Public Class frmEdicionCot2018_2019
             Admin.consultaServicios(DGCopia.Rows(e.RowIndex).Cells(4).Value)
             'Admin.txtIDListaDetalle.Text = DGAdicionales
             Admin.ShowDialog()
+        End If
 
+        If e.ColumnIndex = DGCopia.Columns.Item("Eliminar").Index Then
+            dgEliminar.Rows.Add(DGCopia.Rows(e.RowIndex).Cells(4).Value)
         End If
     End Sub
 
