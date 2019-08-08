@@ -36,6 +36,7 @@ Partial Class FrmArticulos
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.DgAgregar = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TextArticulo = New System.Windows.Forms.TextBox()
@@ -49,7 +50,7 @@ Partial Class FrmArticulos
         Me.lblModelo = New System.Windows.Forms.Label()
         Me.lblMarca = New System.Windows.Forms.Label()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.DGArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.DgAgregar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,6 +153,7 @@ Partial Class FrmArticulos
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Gainsboro
+        Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.DgAgregar)
         Me.Panel1.Controls.Add(Me.TextArticulo)
@@ -171,6 +173,16 @@ Partial Class FrmArticulos
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1094, 478)
         Me.Panel1.TabIndex = 263
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(420, 13)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(69, 17)
+        Me.Label2.TabIndex = 275
+        Me.Label2.Text = "MetAs_id:"
         '
         'DgAgregar
         '
@@ -311,15 +323,15 @@ Partial Class FrmArticulos
         Me.btnCerrar.TabIndex = 264
         Me.btnCerrar.TabStop = False
         '
-        'Label2
+        'Label4
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(420, 13)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(69, 17)
-        Me.Label2.TabIndex = 275
-        Me.Label2.Text = "MetAs_id:"
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(517, 14)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(69, 17)
+        Me.Label4.TabIndex = 276
+        Me.Label4.Text = "MetAs_id:"
         '
         'FrmArticulos
         '
@@ -367,4 +379,5 @@ Partial Class FrmArticulos
     Friend WithEvents DgAgregar As DataGridView
     Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
     Friend WithEvents Label2 As Label
+    Friend WithEvents Label4 As Label
 End Class
