@@ -687,8 +687,8 @@ Public Class frmEdicionCot2018_2019
     End Sub
 
     Private Sub btnAgregarArticulos_Click(sender As Object, e As EventArgs) Handles btnAgregarArticulos.Click
-        FrmArticulos.Show()
-           End Sub
+        'FrmArticulos.Show()
+    End Sub
 
     Private Sub DGCopia_CellContentClick_1(sender As Object, e As DataGridViewCellEventArgs) Handles DGCopia.CellContentClick
         If e.ColumnIndex = DGCopia.Columns.Item("Column4").Index Then
