@@ -49,6 +49,7 @@ Partial Class FrmArticulos
         Me.lblModelo = New System.Windows.Forms.Label()
         Me.lblMarca = New System.Windows.Forms.Label()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.DGArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.DgAgregar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,6 +152,7 @@ Partial Class FrmArticulos
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Gainsboro
+        Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.DgAgregar)
         Me.Panel1.Controls.Add(Me.TextArticulo)
         Me.Panel1.Controls.Add(Me.txtNombreDeContacto)
@@ -309,6 +311,16 @@ Partial Class FrmArticulos
         Me.btnCerrar.TabIndex = 264
         Me.btnCerrar.TabStop = False
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(420, 13)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(69, 17)
+        Me.Label2.TabIndex = 275
+        Me.Label2.Text = "MetAs_id:"
+        '
         'FrmArticulos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -354,4 +366,5 @@ Partial Class FrmArticulos
     Friend WithEvents btnCerrar As PictureBox
     Friend WithEvents DgAgregar As DataGridView
     Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
+    Friend WithEvents Label2 As Label
 End Class
