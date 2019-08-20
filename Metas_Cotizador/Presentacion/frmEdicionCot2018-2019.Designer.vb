@@ -332,6 +332,7 @@ Partial Class frmEdicionCot2018_2019
         Me.dgEliminar.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.dgEliminar.Size = New System.Drawing.Size(137, 123)
         Me.dgEliminar.TabIndex = 268
+        Me.dgEliminar.Visible = False
         '
         'DataGridViewTextBoxColumn1
         '

@@ -8,6 +8,7 @@ Public Class frmEdicionCot2018_2019
     Dim marcaGen, modGen As String
     Dim idContacto As Integer
     Dim agregar1, agregar2 As Integer
+    Dim eliminar1, eliminar2 As Integer
 
     Private Sub frmEdicionCot2018_2019_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Try
@@ -692,7 +693,22 @@ Public Class frmEdicionCot2018_2019
     End Sub
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
+        Dim numDetCot As Integer
         For i = 0 To dgEliminar.Rows.Count - 2
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            comandoMetasCotizador.CommandText = "SELECT COUNT (idListaCotizacion) FROM [DetalleCotizaciones]"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            eliminar1 = lectorMetasCotizador(0)
+            'MsgBox(eliminar1)
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = "SELECT * FROM [DetalleCotizaciones] where NumCot = " & Val(numCot.Text) & "  and [EquipId] = " & Val(DGCopia.Item(4, i).Value) & ""
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            numDetCot = lectorMetasCotizador(0)
+            'MsgBox(numDetCot)
+            lectorMetasCotizador.Close()
+            MetodoMetasCotizador()
             comandoMetasCotizador = conexionMetasCotizador.CreateCommand
             R = "if exists (Select [Cotizaciones].NumCot,[SetUpEquipment].[EquipId],[SetupServices].[ServicesId]
                             from [MetasCotizador].[dbo].[Cotizaciones]
@@ -701,11 +717,26 @@ Public Class frmEdicionCot2018_2019
 				            INNER JOIN [DATABASESERVER\COMPAC].[MetAs_Live-pruebas].[dbo].[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
 				            INNER JOIN [DATABASESERVER\COMPAC].[MetAs_Live-pruebas].[dbo].[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
 				            where [Cotizaciones].NumCot = " & Val(numCot.Text) & " and [SetUpEquipment].[EquipId] =" & Val(DGCopia.Item(4, i).Value) & ")
-				            begin DELETE FROM [DetalleCotizaciones] FROM [DetalleCotizaciones] DC INNER JOIN [ServiciosEnCotizaciones] S ON DC.idListaCotizacion = S.idListaCotizacion  WHERE DC.NumCot = " & Val(DGCopia.Item(0, i).Value) & "
+				            begin DELETE FROM [DetalleCotizaciones] where NumCot = " & Val(numCot.Text) & " and [EquipId] =" & Val(DGCopia.Item(4, i).Value) & "
                             end else begin print 'articulo eliminado de la cot' end"
             Dim c As New SqlCommand(R, conexionMetasCotizador)
             c.ExecuteNonQuery()
-            'DGCopia.Rows.RemoveAt(DGCopia.CurrentRow.Index)
+            lectorMetasCotizador.Close()
+            MetodoMetasCotizador()
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            comandoMetasCotizador.CommandText = "SELECT COUNT (idListaCotizacion) FROM [DetalleCotizaciones]"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            eliminar2 = lectorMetasCotizador(0)
+            lectorMetasCotizador.Close()
+            'MsgBox(eliminar2)
+            If eliminar1.ToString <> eliminar2.ToString Then
+                R = "DELETE FROM [ServiciosEnCotizaciones] WHERE [ServiciosEnCotizaciones].idListaCotizacion = " & numDetCot & ""
+                Dim a As New SqlCommand(R, conexionMetasCotizador)
+                a.ExecuteNonQuery()
+            End If
+            DGCopia.Rows.RemoveAt(DGCopia.CurrentRow.Index)
+            DGServicios.Rows.RemoveAt(DGServicios.CurrentRow.Index)
         Next i
     End Sub
 
