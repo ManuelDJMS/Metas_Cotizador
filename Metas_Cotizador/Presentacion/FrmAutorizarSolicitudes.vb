@@ -109,10 +109,9 @@ Public Class FrmAutorizarSolicitudes
                                 FrmFiltarCampo.dgEmpresas.Rows.Add(False, vColeccion(j))
                             Next
                             empresa = DGRes.Rows(i).Cells(12).Value
-
                             'formcorreos = 1
                             'formcorreos2 = i - 1
-                            MsgBox(formcorreos2)
+                            'MsgBox(formcorreos2)
                             FrmFiltarCampo.Show()
                             '-----------------------------------
                             bancorreo = 1
@@ -143,6 +142,7 @@ Public Class FrmAutorizarSolicitudes
                             lector.Read()
                             Dim numOV As Integer = lector(0)
                             conexionLIMS.Close()
+
                             MetodoMetasCotizador()
                             R = "update Cotizaciones set Creado= '" & numOV & "' where NumCot=" & Val(DGRes.Rows(i).Cells(1).Value) & ""
 

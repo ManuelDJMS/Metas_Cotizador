@@ -183,6 +183,7 @@ Partial Class frmEdicionCot2018_2019
         Me.numCot.Size = New System.Drawing.Size(152, 18)
         Me.numCot.TabIndex = 194
         Me.numCot.Text = "Guardar cotización"
+        Me.numCot.Visible = False
         '
         'DGCotizaciones
         '
