@@ -14,6 +14,7 @@ Public Class FrmCompletarOV
         MetodoLIMS()
         'Dim R As String
         If bancorreo = 1 Then
+            MsgBox("Entra opcion1")
             R = "Select [SetupCustomerAddressDtls].[CustomerId], [CustAccountNo], [FirstName] +' '+[MiddleName] +' '+ [LastName] as Nombre ,[Phone],[Email],[CompanyName],[PaymentTerms], [ContAddress1], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]
                 FROM [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails] x1 INNER JOIN [SetupCustomerAddressDtls] ON x1.[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
 		        where x1.[CustomerId] =" & empresa
@@ -23,6 +24,8 @@ Public Class FrmCompletarOV
             txtRefCot.Visible = False
             'bancorreo = 3
         ElseIf bancorreo = 2 Then
+            MsgBox("Entra opcion2")
+            MsgBox(var.Text)
             R = "SELECT [SetupCustomerAddressDtls].[CustomerId],[CustAccountNo],[FirstName] +' '+[MiddleName] +' '+ [LastName] as Nombre ,[Phone],[Email],[CompanyName],[PaymentTerms], [ContAddress1], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]
             FROM [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails] 
 	        INNER JOIN [SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
@@ -81,13 +84,14 @@ Public Class FrmCompletarOV
             MetodoLIMS()
             '-------------------------------------------Domicilio igual al de envio------------------------------------------------------------------
             If NumOV.Text = "ov" Then
+                MsgBox("Entra")
                 If domEnvio.Checked = True Then
-                    R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RecDate, DataRequested, OnSite,[PONo],[RecBy],[ReceivedVia],[ShipVia],[Remarks],[CreatedBy],[CreatedOn],[BoxCount],[Weight],[Volume],[PaymentTerms], [RefNo], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]) 
-                                            values(" & customerId & ",'" & numCuenta.Text & "','" & dtpFechaRecep.Value.ToShortDateString & "', '" & True & "','" & False & "', '" & txtOrdenCompra.Text & "','" & cboRecibidoPor.Text & "','" & cboRecepcion.Text & "', '" & embarcarPor.Text & "', '" & txtObservaciones.Text & "', 'USR00000008', '" & dtpFechaRecep.Value.ToShortDateString & "', '" & txtCantCajas.Text & "', '" & txtPeso.Text & "', '" & txtVolumen.Text & "','" & terminosPago.Text & "', ' ', '" & DirEnv.ToString & "', '" & cdEnv.ToString & "', '" & estEnv.ToString & "', '" & cpEnv.ToString & "')"
+                    R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RecDate, DataRequested, OnSite,[PONo],[RecBy],[Priority],[ReceivedVia],[ShipVia],[Remarks],[CreatedBy],[CreatedOn],[TrackingNo],[BoxCount],[Weight],[Volume],[PaymentTerms], [RefNo], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]) 
+                                            values(" & customerId & ",'" & numCuenta.Text & "','" & dtpFechaRecep.Value.ToShortDateString & "', '" & True & "','" & False & "', '" & txtOrdenCompra.Text & "','" & cboRecibidoPor.Text & "','" & cboPrioridad.Text & "','" & cboRecepcion.Text & "', '" & embarcarPor.Text & "', '" & txtObservaciones.Text & "', 'USR00000008', '" & dtpFechaRecep.Value.ToShortDateString & "', '" & txtNumGuia.Text & "','" & txtCantCajas.Text & "', '" & txtPeso.Text & "', '" & txtVolumen.Text & "','" & terminosPago.Text & "', ' ', '" & DirEnv.ToString & "', '" & cdEnv.ToString & "', '" & estEnv.ToString & "', '" & cpEnv.ToString & "')"
                     MsgBox(R)
                 Else
-                    R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RecDate, DataRequested, OnSite,[PONo],[RecBy],[ReceivedVia],[ShipVia],[Remarks],[CreatedBy],[CreatedOn],[BoxCount],[Weight],[Volume],[PaymentTerms], [RefNo]) 
-                                        values(" & customerId & ",'" & numCuenta.Text & "','" & dtpFechaRecep.Value.ToShortDateString & "', '" & True & "','" & False & "', '" & txtOrdenCompra.Text & "','" & cboRecibidoPor.Text & "','" & cboRecepcion.Text & "', '" & embarcarPor.Text & "', '" & txtObservaciones.Text & "', 'USR00000008', '" & dtpFechaRecep.Value.ToShortDateString & "', '" & txtCantCajas.Text & "', '" & txtPeso.Text & "', '" & txtVolumen.Text & "','" & terminosPago.Text & "', ' ')"
+                    R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RecDate, DataRequested, OnSite,[PONo],[RecBy],[Priority],[ReceivedVia],[ShipVia],[Remarks],[CreatedBy],[CreatedOn],[TrackingNo],[BoxCount],[Weight],[Volume],[PaymentTerms], [RefNo]) 
+                                        values(" & customerId & ",'" & numCuenta.Text & "','" & dtpFechaRecep.Value.ToShortDateString & "', '" & True & "','" & False & "', '" & txtOrdenCompra.Text & "','" & cboRecibidoPor.Text & "','" & cboPrioridad.Text & "','" & cboRecepcion.Text & "', '" & embarcarPor.Text & "', '" & txtObservaciones.Text & "', 'USR00000008', '" & dtpFechaRecep.Value.ToShortDateString & "', '" & txtNumGuia.Text & "','" & txtCantCajas.Text & "', '" & txtPeso.Text & "', '" & txtVolumen.Text & "','" & terminosPago.Text & "', ' ')"
                     ''MsgBox(R)
                 End If
                 Dim comando As New SqlCommand
@@ -97,12 +101,12 @@ Public Class FrmCompletarOV
                 MsgBox("ORDEN DE VENTA GUARDADA")
             Else
                 If domEnvio.Checked = True Then
-                    R = "UPDATE [MetAs_Live-pruebas].[dbo].[SalesOrderDetails] set [PONo] = '" & txtOrdenCompra.Text & "', RecDate ='" & dtpFechaRecep.Value.ToShortDateString & "', [RecBy] = '" & cboRecibidoPor.Text & "', [BoxCount] = '" & txtCantCajas.Text & "', 
+                    R = "UPDATE [MetAs_Live-pruebas].[dbo].[SalesOrderDetails] set [PONo] = '" & txtOrdenCompra.Text & "', RecDate ='" & dtpFechaRecep.Value.ToShortDateString & "', [RecBy] = '" & cboRecibidoPor.Text & "',[Priority] ='" & cboPrioridad.Text & "',[TrackingNo]='" & txtNumGuia.Text & "',[BoxCount] = '" & txtCantCajas.Text & "', 
                 [Weight] = '" & txtPeso.Text & "', [ReceivedVia] = '" & cboRecepcion.Text & "', [ShipVia] = '" & embarcarPor.Text & "', [Remarks] ='" & txtObservaciones.Text & "', [RefNo] = '" & txtRefCot.Text & "',
                 [Volume] = '" & txtVolumen.Text & "',  [ShipAddress1] = '" & DirEnv.ToString & "', [ShipCity] = '" & cdEnv.ToString & "',[ShipState] = '" & estEnv.ToString & "', [ShipZip]  = '" & cpEnv.ToString & "'
                 where [SOId] = " & Val(NumOV.Text) & ""
                 Else
-                    R = "UPDATE [MetAs_Live-pruebas].[dbo].[SalesOrderDetails] set [PONo] = '" & txtOrdenCompra.Text & "', RecDate ='" & dtpFechaRecep.Value.ToShortDateString & "', [RecBy] = '" & cboRecibidoPor.Text & "', [BoxCount] = '" & txtCantCajas.Text & "', 
+                    R = "UPDATE [MetAs_Live-pruebas].[dbo].[SalesOrderDetails] set [PONo] = '" & txtOrdenCompra.Text & "', RecDate ='" & dtpFechaRecep.Value.ToShortDateString & "', [RecBy] = '" & cboRecibidoPor.Text & "',[Priority] ='" & cboPrioridad.Text & "',[TrackingNo]='" & txtNumGuia.Text & "', [BoxCount] = '" & txtCantCajas.Text & "', 
                 [Weight] = '" & txtPeso.Text & "', [ReceivedVia] = '" & cboRecepcion.Text & "', [ShipVia] = '" & embarcarPor.Text & "', [Remarks] ='" & txtObservaciones.Text & "', [RefNo] = '" & txtRefCot.Text & "',
                 [Volume] = '" & txtVolumen.Text & "'
                 where [SOId] = " & Val(NumOV.Text) & ""
@@ -171,7 +175,9 @@ Public Class FrmCompletarOV
                     <body lang=ES-MX link='#0563C1' vlink='#954F72' style='tab-interval:35.4pt'>
                         <p style ='color:#4169E1';><span style=font-size:11.0pt;font-family:Helvetica><b>Estimado Cliente,</b></span></p>
                         <p style='font-size:110%;'>Le informamos que ha llegado al almacén de MetAs un envío por parte de ustedes.<p>
-                        <p style='font-size:110%;'>El proceso de su servicio iniciará.<p>
+                        <p style='font-size:110%;'>Mensajería de recepción: " & cboRecepcion.Text & ".           Número de guía: " & txtNumGuia.Text & ".<p>
+                        <p style='font-size:110%;'>Fecha de recepción: " & dtpFechaRecep.Value & ".              Número de cajas: " & txtCantCajas.Text & ".<p>   
+                        <p style='font-size:110%;'><b>El proceso de su servicio iniciará con la ORDEN DE VENTA número: " & NumOV.Text & ".<p></b>
                         <table>
                             <tr>
                                 <td>Click para:</td>

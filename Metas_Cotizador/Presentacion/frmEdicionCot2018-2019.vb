@@ -20,6 +20,7 @@ Public Class frmEdicionCot2018_2019
                 DGCopia.Columns(3).Width = 100
                 DGCopia.Columns(7).Visible = True
                 btGuardarInf.Text = "ACTUALIZAR COT"
+                numCot.Visible = True
                 btGuardarInf.Visible = True
                 btActualizarCliente.Visible = True
                 btnEliminar.Visible = True
@@ -71,6 +72,9 @@ Public Class frmEdicionCot2018_2019
                 lectorMetasCotizador.Read()
                 numPartida = lectorMetasCotizador(0)
             Else
+                btGuardarInf.Text = "Guardar cotización"
+                Label79.Text = "Guardar cotización"
+                numCot.Visible = False
                 DTPHasta.Value.AddDays(30)
                 MetodoLIMS()
                 comandoLIMS = conexionLIMS.CreateCommand
@@ -432,6 +436,7 @@ Public Class frmEdicionCot2018_2019
                     Me.Dispose()
                 End If
             End If
+            editar = False
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
         cadena = Err.Description
@@ -699,6 +704,7 @@ Public Class frmEdicionCot2018_2019
 
     Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
         Me.Dispose()
+        editar = False
     End Sub
 
     Private Sub btActualizarCliente_Click(sender As Object, e As EventArgs) Handles btActualizarCliente.Click

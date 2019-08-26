@@ -64,6 +64,10 @@ Partial Class FrmCompletarOV
         Me.txtVolumen = New System.Windows.Forms.TextBox()
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.cboPrioridad = New System.Windows.Forms.ComboBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtNumGuia = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -83,7 +87,7 @@ Partial Class FrmCompletarOV
         Me.Panel1.Controls.Add(Me.txtVolumen)
         Me.Panel1.Location = New System.Drawing.Point(5, 30)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(585, 495)
+        Me.Panel1.Size = New System.Drawing.Size(585, 567)
         Me.Panel1.TabIndex = 167
         '
         'btCotizacion
@@ -102,6 +106,10 @@ Partial Class FrmCompletarOV
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.txtNumGuia)
+        Me.GroupBox2.Controls.Add(Me.Label3)
+        Me.GroupBox2.Controls.Add(Me.cboPrioridad)
+        Me.GroupBox2.Controls.Add(Me.Label1)
         Me.GroupBox2.Controls.Add(Me.NumOV)
         Me.GroupBox2.Controls.Add(Me.Label15)
         Me.GroupBox2.Controls.Add(Me.domEnvio)
@@ -128,7 +136,7 @@ Partial Class FrmCompletarOV
         Me.GroupBox2.ForeColor = System.Drawing.Color.SteelBlue
         Me.GroupBox2.Location = New System.Drawing.Point(18, 177)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(551, 312)
+        Me.GroupBox2.Size = New System.Drawing.Size(551, 387)
         Me.GroupBox2.TabIndex = 191
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Información del Cliente"
@@ -137,7 +145,7 @@ Partial Class FrmCompletarOV
         '
         Me.NumOV.AutoSize = True
         Me.NumOV.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumOV.Location = New System.Drawing.Point(95, 274)
+        Me.NumOV.Location = New System.Drawing.Point(95, 331)
         Me.NumOV.Name = "NumOV"
         Me.NumOV.Size = New System.Drawing.Size(20, 14)
         Me.NumOV.TabIndex = 168
@@ -148,7 +156,7 @@ Partial Class FrmCompletarOV
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.Black
-        Me.Label15.Location = New System.Drawing.Point(16, 106)
+        Me.Label15.Location = New System.Drawing.Point(16, 163)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(119, 16)
         Me.Label15.TabIndex = 184
@@ -159,7 +167,7 @@ Partial Class FrmCompletarOV
         Me.domEnvio.AutoSize = True
         Me.domEnvio.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.domEnvio.ForeColor = System.Drawing.Color.Black
-        Me.domEnvio.Location = New System.Drawing.Point(353, 193)
+        Me.domEnvio.Location = New System.Drawing.Point(353, 250)
         Me.domEnvio.Name = "domEnvio"
         Me.domEnvio.Size = New System.Drawing.Size(137, 20)
         Me.domEnvio.TabIndex = 196
@@ -200,7 +208,7 @@ Partial Class FrmCompletarOV
         '
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(19, 274)
+        Me.Label22.Location = New System.Drawing.Point(19, 331)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(62, 15)
         Me.Label22.TabIndex = 169
@@ -218,12 +226,11 @@ Partial Class FrmCompletarOV
         '
         Me.var.AutoSize = True
         Me.var.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.var.Location = New System.Drawing.Point(96, 259)
+        Me.var.Location = New System.Drawing.Point(96, 316)
         Me.var.Name = "var"
         Me.var.Size = New System.Drawing.Size(20, 14)
         Me.var.TabIndex = 170
         Me.var.Text = "ov"
-        Me.var.Visible = False
         '
         'Label13
         '
@@ -239,7 +246,7 @@ Partial Class FrmCompletarOV
         'txtObservaciones
         '
         Me.txtObservaciones.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtObservaciones.Location = New System.Drawing.Point(149, 217)
+        Me.txtObservaciones.Location = New System.Drawing.Point(149, 274)
         Me.txtObservaciones.Multiline = True
         Me.txtObservaciones.Name = "txtObservaciones"
         Me.txtObservaciones.Size = New System.Drawing.Size(200, 86)
@@ -283,7 +290,7 @@ Partial Class FrmCompletarOV
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label20.ForeColor = System.Drawing.Color.Black
-        Me.Label20.Location = New System.Drawing.Point(16, 214)
+        Me.Label20.Location = New System.Drawing.Point(16, 271)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(100, 16)
         Me.Label20.TabIndex = 194
@@ -292,7 +299,7 @@ Partial Class FrmCompletarOV
         'txtCantCajas
         '
         Me.txtCantCajas.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCantCajas.Location = New System.Drawing.Point(149, 107)
+        Me.txtCantCajas.Location = New System.Drawing.Point(149, 164)
         Me.txtCantCajas.Name = "txtCantCajas"
         Me.txtCantCajas.Size = New System.Drawing.Size(200, 20)
         Me.txtCantCajas.TabIndex = 185
@@ -302,7 +309,7 @@ Partial Class FrmCompletarOV
         Me.embarcarPor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.embarcarPor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.embarcarPor.FormattingEnabled = True
-        Me.embarcarPor.Location = New System.Drawing.Point(149, 187)
+        Me.embarcarPor.Location = New System.Drawing.Point(149, 244)
         Me.embarcarPor.Name = "embarcarPor"
         Me.embarcarPor.Size = New System.Drawing.Size(200, 21)
         Me.embarcarPor.TabIndex = 193
@@ -312,7 +319,7 @@ Partial Class FrmCompletarOV
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.ForeColor = System.Drawing.Color.Black
-        Me.Label16.Location = New System.Drawing.Point(16, 133)
+        Me.Label16.Location = New System.Drawing.Point(16, 190)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(39, 16)
         Me.Label16.TabIndex = 186
@@ -323,7 +330,7 @@ Partial Class FrmCompletarOV
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label19.ForeColor = System.Drawing.Color.Black
-        Me.Label19.Location = New System.Drawing.Point(16, 187)
+        Me.Label19.Location = New System.Drawing.Point(16, 244)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(91, 16)
         Me.Label19.TabIndex = 192
@@ -332,7 +339,7 @@ Partial Class FrmCompletarOV
         'txtPeso
         '
         Me.txtPeso.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPeso.Location = New System.Drawing.Point(149, 134)
+        Me.txtPeso.Location = New System.Drawing.Point(149, 191)
         Me.txtPeso.Name = "txtPeso"
         Me.txtPeso.Size = New System.Drawing.Size(200, 20)
         Me.txtPeso.TabIndex = 187
@@ -342,7 +349,7 @@ Partial Class FrmCompletarOV
         Me.cboRecepcion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboRecepcion.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboRecepcion.FormattingEnabled = True
-        Me.cboRecepcion.Location = New System.Drawing.Point(149, 161)
+        Me.cboRecepcion.Location = New System.Drawing.Point(149, 218)
         Me.cboRecepcion.Name = "cboRecepcion"
         Me.cboRecepcion.Size = New System.Drawing.Size(200, 21)
         Me.cboRecepcion.TabIndex = 191
@@ -352,7 +359,7 @@ Partial Class FrmCompletarOV
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.ForeColor = System.Drawing.Color.Black
-        Me.Label18.Location = New System.Drawing.Point(16, 160)
+        Me.Label18.Location = New System.Drawing.Point(16, 217)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(133, 16)
         Me.Label18.TabIndex = 190
@@ -555,12 +562,53 @@ Partial Class FrmCompletarOV
         Me.btnCerrar.TabIndex = 189
         Me.btnCerrar.TabStop = False
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(16, 107)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(64, 16)
+        Me.Label1.TabIndex = 197
+        Me.Label1.Text = "Prioridad:"
+        '
+        'cboPrioridad
+        '
+        Me.cboPrioridad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboPrioridad.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboPrioridad.FormattingEnabled = True
+        Me.cboPrioridad.Items.AddRange(New Object() {"1.- Normal", "2.-Alto", "3.-Bajo", "4.-Urgente"})
+        Me.cboPrioridad.Location = New System.Drawing.Point(149, 107)
+        Me.cboPrioridad.Name = "cboPrioridad"
+        Me.cboPrioridad.Size = New System.Drawing.Size(200, 21)
+        Me.cboPrioridad.TabIndex = 198
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(16, 135)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(79, 16)
+        Me.Label3.TabIndex = 199
+        Me.Label3.Text = "No. de guía:"
+        '
+        'txtNumGuia
+        '
+        Me.txtNumGuia.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNumGuia.Location = New System.Drawing.Point(149, 138)
+        Me.txtNumGuia.Name = "txtNumGuia"
+        Me.txtNumGuia.Size = New System.Drawing.Size(200, 20)
+        Me.txtNumGuia.TabIndex = 200
+        '
         'FrmCompletarOV
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(595, 532)
+        Me.ClientSize = New System.Drawing.Size(595, 609)
         Me.ControlBox = False
         Me.Controls.Add(Me.btnMinimizar)
         Me.Controls.Add(Me.btnCerrar)
@@ -622,4 +670,8 @@ Partial Class FrmCompletarOV
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents lbSubtitylo As Label
     Friend WithEvents lbTitulo As Label
+    Friend WithEvents txtNumGuia As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents cboPrioridad As ComboBox
+    Friend WithEvents Label1 As Label
 End Class

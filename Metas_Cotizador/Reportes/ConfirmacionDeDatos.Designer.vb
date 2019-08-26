@@ -140,6 +140,7 @@ Partial Class ConfirmacionDeDatos
         Me.Controls.Add(Me.Label26)
         Me.Controls.Add(Me.txtOV)
         Me.Name = "ConfirmacionDeDatos"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Confirmacion De Datos"
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()

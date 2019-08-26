@@ -156,7 +156,7 @@ Public Class FrmFiltarCampo
                 objOutlook = Nothing
 
             Else
-                bancorreo = 1
+                bancorreo = 2
                 correos2 = True
                 FrmCompletarOV.Show()
             End If
