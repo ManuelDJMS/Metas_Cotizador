@@ -1,6 +1,9 @@
 ﻿Imports System.Data.SqlClient
 Public Class FrmCompletarOT
     Dim seleccionado, b As Boolean
+    Dim salesorderId, customerid, numcot As Integer
+    Dim totalcot As Decimal
+
     Private Sub FrmCompletarOT_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             alternarColorColumnas(DGRes)
@@ -41,6 +44,7 @@ Public Class FrmCompletarOT
     End Sub
 
     Private Sub BtGenerarOT_Click(sender As Object, e As EventArgs) Handles btGenerarOT.Click
+
         For i As Integer = DGRes.Rows.Count() - 1 To 0 Step -1
             seleccionado = DGRes.Rows(i).Cells(0).Value
             If seleccionado = True Then
@@ -57,13 +61,31 @@ Public Class FrmCompletarOT
 
 
                 If seleccionado = True Then
-                    '----------------------------Se da de alta el equipamiento al cliente--------------------------------------
+                    '----------------------------Se sacan los datos para levantar el equipamiento al cliente--------------------------------------
 
                     R = "select Cotizaciones.NumCot, idContacto, x1.EquipId, isnull(SrlNo,'-'), isnull(Dept,'-'), isnull(Location,'-'), isnull(CALInterval,'-'), isnull(CALCycle,'-'), isnull(CALDue,'-'),
-                IsActive,OnSite,isnull(ShortNotes,'-') from Cotizaciones inner join DetalleCotizaciones
-                on Cotizaciones.NumCot=DetalleCotizaciones.NumCot inner join " & servidor & "[SetupEquipment] x1 on DetalleCotizaciones.EquipId=x1.EquipId where Cotizaciones.NumCot=" & DGRes.Rows(i).Cells(2).Value
+                        IsActive,OnSite,isnull(ShortNotes,'-') from Cotizaciones inner join DetalleCotizaciones
+                        on Cotizaciones.NumCot=DetalleCotizaciones.NumCot inner join " & servidor & "[SetupEquipment] x1 on DetalleCotizaciones.EquipId=x1.EquipId where Cotizaciones.NumCot=" & DGRes.Rows(i).Cells(2).Value
                     consultasCotizador(R, dgEquipamiento)
-                        MetodoMetasCotizador()
+                    conexionMetasCotizador.Close()
+                    '////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    '----------------Sacar campos de consultas LIMS para insertar en WORKORDER---------------------
+                    MetodoMetasCotizador()
+                    R = "select SOid, CustomerId, NumCot, Total from Cotizaciones inner join " & servidor & "[SalesOrderDetails] x2 on Cotizaciones.NumCot=x2.RefNo where SOId=" & DGRes.Rows(i).Cells(1).Value
+                    comandoMetasCotizador = New SqlCommand(R, conexionMetasCotizador)
+                    'Dim lector As SqlDataReader
+                    lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+                    lectorMetasCotizador.Read()
+                    salesorderId = lectorMetasCotizador(0)
+                    customerid = lectorMetasCotizador(1)
+                    numcot = lectorMetasCotizador(2)
+                    totalcot = lectorMetasCotizador(3)
+                    conexionMetasCotizador.Close()
+                    '////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    '----------------------------------------------------Aqui se da de alta el quipamiento al cliente---------------------------------------------
+                    MetodoMetasCotizador()
                     For ii = 0 To dgEquipamiento.Rows.Count - 2
                         R = "if exists(select CustomerId, x1.EquipId, x3.NumCot from [DATABASESERVER\COMPAC].[MetAs_Live-pruebas].[dbo].[SetupCustomerEquipmentMapping] x1 inner join [MetasCotizador].[dbo].[Cotizaciones] x2
                     on x1.CustomerId=x2.idContacto inner join [MetasCotizador].[dbo].[DetalleCotizaciones] x3 on x2.NumCot=x3.NumCot where x1.CustomerId=" & Val(dgEquipamiento.Item(1, ii).Value) & " and x1.EquipId=" & Val(dgEquipamiento.Item(2, ii).Value) & "and x3.NumCot=" & Val(dgEquipamiento.Item(0, ii).Value) & ") 
@@ -75,9 +97,16 @@ Public Class FrmCompletarOT
                         comandoMetasCotizador = conexionMetasCotizador.CreateCommand
                         comandoMetasCotizador.CommandText = R
                         comandoMetasCotizador.ExecuteNonQuery()
+                        MsgBox(R)
+                        'R = "insert into [MetAs_Live-pruebas].[dbo].[WorkOrderDetails] (WOid, SOid, CustEquipMapId, CustomerId, )"
                     Next
+                    '////////////////////////////////////////////////////////////////////////////////////////////////////
 
                     '---------------------------------------------------------------------------------------------------------
+                    '----------------Sacar campos de consultas LIMS-Cotizador para insertar en WORKORDER---------------------
+                    'MetodoMetasCotizador()
+                    'R = "select NumCot, Total, EquipId, from  "
+                    '////////////////////////////////////////////////////////////////////////////////////////////////////
                 End If
             Next
         Else

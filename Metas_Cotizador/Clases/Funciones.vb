@@ -25,6 +25,8 @@ Module Funciones
     Public iva As Double
     Public totalEdiCot As Double
     Public subtotalEdiCot As Double
+    '--------------------------------------Llenar la WORK ORDER
+    Public arreglosales()
     Public Sub consultasLIMS(ByVal script As String, ByVal dgrid As DataGridView)
         Try
             MetodoLIMS()
