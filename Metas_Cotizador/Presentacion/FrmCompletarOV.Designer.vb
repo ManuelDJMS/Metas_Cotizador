@@ -272,6 +272,7 @@ Partial Class FrmCompletarOV
         Me.var.Size = New System.Drawing.Size(20, 14)
         Me.var.TabIndex = 170
         Me.var.Text = "ov"
+        Me.var.Visible = False
         '
         'Label13
         '

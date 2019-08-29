@@ -120,13 +120,14 @@ Public Class FrmAutorizarSolicitudes
                             R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RefNo,RecDate, DataRequested, OnSite, ShipAddress1, ShipAddress2, ShipAddress3, [CreatedBy],[CreatedOn]) 
                             values(" & Val(DGRes.Rows(i).Cells(12).Value) & ",'" & DGRes.Rows(i).Cells(13).Value & "','" & DGRes.Rows(i).Cells(1).Value & "','" & dtp.Value.ToShortDateString & "', '" & True & "','" &
                             False & "','" & DGRes.Rows(i).Cells(5).Value & "','-','-','USR00000008', '" &
-                        dtp.Value.ToShortDateString & "')"
+                            dtp.Value.ToShortDateString & "')"
                             cotizacion = Val(DGRes.Rows(i).Cells(1).Value)
 
                             Dim comando As New SqlCommand
                             comando = conexionLIMS.CreateCommand
                             comando.CommandText = R
                             comando.ExecuteNonQuery()
+                            cotizacion = Val(DGRes.Rows(i).Cells(1).Value)
                             cu = Val(DGRes.Rows(i).Cells(2).Value)
                             ca = DGRes.Rows(i).Cells(13).Value
                             cusAcount.Text = ca
@@ -151,6 +152,10 @@ Public Class FrmAutorizarSolicitudes
                             OV.Text = numOV
                             coma.ExecuteNonQuery()
                             conexionMetasCotizador.Close()
+
+                            FrmCompletarOV.var.Text = DGRes.Rows(i).Cells(13).Value
+                            FrmCompletarOV.txtRefCot.Text = Me.cotizacion.ToString
+                            FrmCompletarOV.NumOV.Text = Me.OV.Text
                             '----------------------------------
                         Else
                             bancorreo = 1
@@ -190,7 +195,7 @@ Public Class FrmAutorizarSolicitudes
                             coma.ExecuteNonQuery()
                             conexionMetasCotizador.Close()
                             MetodoMetasCotizador()
-                            bancorreo = 2
+                            bancorreo = 1
                             FrmCompletarOV.var.Text = Me.cusAcount.Text
                             FrmCompletarOV.NumOV.Text = Me.OV.Text
                             FrmCompletarOV.txtRefCot.Text = Me.cotizacion.ToString

@@ -14,7 +14,7 @@ Public Class FrmCompletarOV
         MetodoLIMS()
         'Dim R As String
         If bancorreo = 1 Then
-            MsgBox("Entra opcion1")
+            'MsgBox("Entra opcion1")
             R = "Select [SetupCustomerAddressDtls].[CustomerId], [CustAccountNo], [FirstName] +' '+[MiddleName] +' '+ [LastName] as Nombre ,[Phone],[Email],[CompanyName],[PaymentTerms], [ContAddress1], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]
                 FROM [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails] x1 INNER JOIN [SetupCustomerAddressDtls] ON x1.[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
 		        where x1.[CustomerId] =" & empresa
@@ -24,7 +24,7 @@ Public Class FrmCompletarOV
             txtRefCot.Visible = False
             'bancorreo = 3
         ElseIf bancorreo = 2 Then
-            MsgBox("Entra opcion2")
+            'MsgBox("Entra opcion2")
             R = "SELECT [SetupCustomerAddressDtls].[CustomerId],[CustAccountNo],[FirstName] +' '+[MiddleName] +' '+ [LastName] as Nombre ,[Phone],[Email],[CompanyName],[PaymentTerms], [ContAddress1], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]
             FROM [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails] 
 	        INNER JOIN [SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
