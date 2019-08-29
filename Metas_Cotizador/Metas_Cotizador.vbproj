@@ -160,10 +160,22 @@
     <Compile Include="Presentacion\FrmContactos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion\FrmCotizacion.Designer.vb">
+      <DependentUpon>FrmCotizacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmCotizacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion\FrmCotizadorLIMS.Designer.vb">
       <DependentUpon>FrmCotizadorLIMS.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\FrmCotizadorLIMS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmEdicionCot.Designer.vb">
+      <DependentUpon>FrmEdicionCot.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmEdicionCot.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\frmEdicionCot2018-2019.Designer.vb">
@@ -262,8 +274,14 @@
     <EmbeddedResource Include="Presentacion\FrmContactos.resx">
       <DependentUpon>FrmContactos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmCotizacion.resx">
+      <DependentUpon>FrmCotizacion.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\FrmCotizadorLIMS.resx">
       <DependentUpon>FrmCotizadorLIMS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmEdicionCot.resx">
+      <DependentUpon>FrmEdicionCot.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\frmEdicionCot2018-2019.resx">
       <DependentUpon>frmEdicionCot2018-2019.vb</DependentUpon>

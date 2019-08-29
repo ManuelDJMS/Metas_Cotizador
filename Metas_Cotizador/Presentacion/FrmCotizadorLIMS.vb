@@ -693,6 +693,7 @@ Public Class FrmCotizadorLIMS
             DGEmpresas.Rows.Add(lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5), lectorLIMS(6))
         End While
         lectorLIMS.Close()
+        conexionLIMS.Close()
     End Sub
 
     Private Sub BtCargarArticulos_Click(sender As Object, e As EventArgs) Handles btCargarArticulos.Click
@@ -999,6 +1000,7 @@ Public Class FrmCotizadorLIMS
         End If
 
     End Sub
+
 
     'Private Sub DGCotizaciones_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGCotizaciones.CellClick
     '    If e.ColumnIndex = 0 Then
