@@ -25,7 +25,6 @@ Public Class FrmCompletarOV
             'bancorreo = 3
         ElseIf bancorreo = 2 Then
             MsgBox("Entra opcion2")
-            MsgBox(var.Text)
             R = "SELECT [SetupCustomerAddressDtls].[CustomerId],[CustAccountNo],[FirstName] +' '+[MiddleName] +' '+ [LastName] as Nombre ,[Phone],[Email],[CompanyName],[PaymentTerms], [ContAddress1], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]
             FROM [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails] 
 	        INNER JOIN [SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]

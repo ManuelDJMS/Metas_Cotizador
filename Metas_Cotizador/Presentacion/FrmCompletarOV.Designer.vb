@@ -25,6 +25,10 @@ Partial Class FrmCompletarOV
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.btCotizacion = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.txtNumGuia = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.cboPrioridad = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.NumOV = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.domEnvio = New System.Windows.Forms.CheckBox()
@@ -64,10 +68,6 @@ Partial Class FrmCompletarOV
         Me.txtVolumen = New System.Windows.Forms.TextBox()
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.cboPrioridad = New System.Windows.Forms.ComboBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.txtNumGuia = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -140,6 +140,47 @@ Partial Class FrmCompletarOV
         Me.GroupBox2.TabIndex = 191
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Información del Cliente"
+        '
+        'txtNumGuia
+        '
+        Me.txtNumGuia.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNumGuia.Location = New System.Drawing.Point(149, 138)
+        Me.txtNumGuia.Name = "txtNumGuia"
+        Me.txtNumGuia.Size = New System.Drawing.Size(200, 20)
+        Me.txtNumGuia.TabIndex = 200
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.Black
+        Me.Label3.Location = New System.Drawing.Point(16, 135)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(79, 16)
+        Me.Label3.TabIndex = 199
+        Me.Label3.Text = "No. de guía:"
+        '
+        'cboPrioridad
+        '
+        Me.cboPrioridad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboPrioridad.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboPrioridad.FormattingEnabled = True
+        Me.cboPrioridad.Items.AddRange(New Object() {"1.- Normal", "2.-Alto", "3.-Bajo", "4.-Urgente"})
+        Me.cboPrioridad.Location = New System.Drawing.Point(149, 107)
+        Me.cboPrioridad.Name = "cboPrioridad"
+        Me.cboPrioridad.Size = New System.Drawing.Size(200, 21)
+        Me.cboPrioridad.TabIndex = 198
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Black
+        Me.Label1.Location = New System.Drawing.Point(16, 107)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(64, 16)
+        Me.Label1.TabIndex = 197
+        Me.Label1.Text = "Prioridad:"
         '
         'NumOV
         '
@@ -561,47 +602,6 @@ Partial Class FrmCompletarOV
         Me.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.btnCerrar.TabIndex = 189
         Me.btnCerrar.TabStop = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Black
-        Me.Label1.Location = New System.Drawing.Point(16, 107)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(64, 16)
-        Me.Label1.TabIndex = 197
-        Me.Label1.Text = "Prioridad:"
-        '
-        'cboPrioridad
-        '
-        Me.cboPrioridad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboPrioridad.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboPrioridad.FormattingEnabled = True
-        Me.cboPrioridad.Items.AddRange(New Object() {"1.- Normal", "2.-Alto", "3.-Bajo", "4.-Urgente"})
-        Me.cboPrioridad.Location = New System.Drawing.Point(149, 107)
-        Me.cboPrioridad.Name = "cboPrioridad"
-        Me.cboPrioridad.Size = New System.Drawing.Size(200, 21)
-        Me.cboPrioridad.TabIndex = 198
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(16, 135)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(79, 16)
-        Me.Label3.TabIndex = 199
-        Me.Label3.Text = "No. de guía:"
-        '
-        'txtNumGuia
-        '
-        Me.txtNumGuia.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNumGuia.Location = New System.Drawing.Point(149, 138)
-        Me.txtNumGuia.Name = "txtNumGuia"
-        Me.txtNumGuia.Size = New System.Drawing.Size(200, 20)
-        Me.txtNumGuia.TabIndex = 200
         '
         'FrmCompletarOV
         '
