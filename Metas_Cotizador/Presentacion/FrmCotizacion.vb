@@ -100,6 +100,7 @@ Public Class FrmCotizacion
         End Try
     End Sub
     Sub consultarEdicion()
+        '=============================================== METODO PARA GENERAR BUSQUEDAS MEDIANTE LOS TEXBOX EN LA OPCION DE EDICION ===================================================
         Try
             MetodoMetasCotizador()
             comandoMetasCotizador = conexionMetasCotizador.CreateCommand
@@ -127,6 +128,7 @@ Public Class FrmCotizacion
         End Try
     End Sub
     Sub consultarEdicionCots()
+        '===============================================METODO PARA CONSULTAR ARTICULOS MEDIANTE LOS DIFERENTES PARAMETROS EN LA PARTE DE EDICION===================================================
         Try
             MetodoMetasCotizador()
             comandoMetasCotizador = conexionMetasCotizador.CreateCommand
@@ -204,12 +206,15 @@ Public Class FrmCotizacion
     End Sub
 
     Private Sub BtCotizacion_Click(sender As Object, e As EventArgs) Handles btCotizacion.Click
+        '=============================================== CODIGO PARA MANDAR LOS ARTICULOS CON PRECIO A LA COTIZACION ===================================================
         origen = "LIMS"
         If DgAgregar.Rows.Count < 2 Then
             MsgBox("No hay articulos para Cotizar", MsgBoxStyle.Critical, "Error del sistema.")
         Else
             For i As Integer = DgAgregar.Rows.Count() - 2 To 0 Step -1
                 MetodoLIMS()
+                Dim equipo As Integer
+                '===============================================SELECCION DEL ARTICULO SELECCIONADO===================================================
                 comandoLIMS = conexionLIMS.CreateCommand
                 R = "SELECT SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price from 
                             SetUpEquipment inner join SetupEquipmentServiceMapping on  
@@ -217,13 +222,27 @@ Public Class FrmCotizacion
                 comandoLIMS.CommandText = R
                 lectorLIMS = comandoLIMS.ExecuteReader
                 lectorLIMS.Read()
-                frmEdicionCot2018_2019.DGCotizaciones.Rows.Add(i + 1, lectorLIMS(1), lectorLIMS(6), 1, lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5), lectorLIMS(7), 0, lectorLIMS(0))
+                equipo = lectorLIMS(0)
+                FrmEdicionCot.DGCopia.Rows.Add(lectorLIMS(0), i + 1, lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), 1, False, " ")
+                lectorLIMS.Close()
+                '===================== SELECCION DEL SERVICIO POR DEFAUL (CALIBRACION DEL EQUIPO SELECCIONADO) ======================================
+                comandoLIMS = conexionLIMS.CreateCommand
+                R = "SELECT EquipId, ServicesId, Price from SetupEquipmentServiceMapping where EquipId=" & equipo
+
+                comandoLIMS.CommandText = R
+                lectorLIMS = comandoLIMS.ExecuteReader
+                lectorLIMS.Read()
+                FrmEdicionCot.DGServicios.Rows.Add(lectorLIMS(0), lectorLIMS(1), lectorLIMS(2))
+                lectorLIMS.Close()
+                conexionLIMS.Close()
+
             Next
-            frmEdicionCot2018_2019.ShowDialog()
+            FrmEdicionCot.ShowDialog()
         End If
     End Sub
 
     Private Sub TabConsulta_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabConsulta.SelectedIndexChanged
+        '===============================================METODO PARA LLENAR EL DATAGRID CON EMPRESAS QUE TENGAN COTIZACIONES (EDITAR)===================================================
         If TabConsulta.SelectedTab Is TabPage1 Then
             MetodoMetasCotizador()
             comandoMetasCotizador = conexionMetasCotizador.CreateCommand
@@ -261,6 +280,7 @@ Public Class FrmCotizacion
     End Sub
 
     Private Sub DgEmpresa_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgEmpresa.RowHeaderMouseClick
+        '===============================================METODO PARA CONSULTAR LAS COTIZACIONES QUE HA TENIDO LA EMPRESA SELECCIONADA ===================================================
         If dgCot.Rows.Count < 2 Then
         Else
             dgCot.Rows.Clear()
@@ -297,13 +317,10 @@ Public Class FrmCotizacion
     End Sub
 
     Private Sub DgCot_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgCot.RowHeaderMouseClick
-        ''Try
-        'Dim COT As Integer
-        'COT = 
         imprimircot(Val(dgCot.Rows(e.RowIndex).Cells(0).Value))
-
     End Sub
     Sub imprimircot(ByVal COT As Integer)
+        '=============================================== METODO PARA GENERAR EL PDF DE LA COTIZACION ===================================================
         Try
             MetodoMetasCotizador()
             comandoMetasCotizador = conexionMetasCotizador.CreateCommand

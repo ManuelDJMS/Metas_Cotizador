@@ -18,6 +18,12 @@ Module Conexiones
     Public banderaform As Boolean
     Public numcotfrm, Total As Integer
     Public empresafrm, Contacto, Referencia, corrreofrm As String
+    '================================================VARIABLE PARA UTILIZAR LA TRANSACCION DEL LIMS=========================================================================
+    Public conexionLIMStransac As String = ("Data Source=DATABASESERVER\COMPAC;Initial Catalog=MetAs_Live-pruebas; User Id=sa; Password=Contpaq1;Integrated Security=False")
+    '=======================================================================================================================================================================
+    '================================================VARIABLE PARA UTILIZAR LA TRANSACCION DEL LIMS=========================================================================
+    Public conexionCotizadortransac As String = ("Data Source=SERVER3\COMPAC2;Initial Catalog=MetasCotizador; User Id=sa; Password=Met99011578a;Integrated Security=False")
+    '=======================================================================================================================================================================
     '------------------------------------------------------------------------CONEXIONES A BASES DE DATOS-------------------------------------------------------------------------------------------
     Sub MetodoLIMS()
         Try
