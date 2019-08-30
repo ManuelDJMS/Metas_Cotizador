@@ -165,6 +165,16 @@ Public Class FrmEdicionCot
         combo.Text = lectorMetasCotizador(1)
         lectorMetasCotizador.Close()
     End Sub
+    Sub seleccioncombo(ByVal tabla As String, ByVal combo As ComboBox)
+        MetodoMetasCotizador()
+        comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+        '-----------------Combo moneda ------------------------
+        comandoMetasCotizador.CommandText = "select * from " & tabla & " where Descripcion='" & combo.Text & "'"
+        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+        lectorMetasCotizador.Read()
+        combo.Tag = lectorMetasCotizador(0)
+        lectorMetasCotizador.Close()
+    End Sub
 
     Private Sub BtnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
         Me.Dispose()
@@ -224,6 +234,10 @@ Public Class FrmEdicionCot
             cadena = cadena.Replace("'", "")
             Bitacora("frmEdicionCot2018-2019", "Error al Eliminar partidad", Err.Number, cadena)
         End Try
+    End Sub
+
+    Private Sub CboValidez_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboValidez.SelectedIndexChanged
+        seleccioncombo("ValidezCondicion", CboValidez)
     End Sub
 
     Private Sub BtnAgregarArticulos_Click(sender As Object, e As EventArgs) Handles btnAgregarArticulos.Click
