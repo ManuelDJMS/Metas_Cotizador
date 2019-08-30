@@ -84,7 +84,7 @@ Public Class Cotizaciones
                 For i As Integer = DGRes.Rows.Count() - 1 To 0 Step -1
                     seleccionado = DGRes.Rows(i).Cells(4).Value
                     If seleccionado = True Then
-                        frmEdicionCot2018_2019.DGServicios.Rows.Add(txtIDListaDetalle.Text, txtEquipID.Text, DGRes.Rows(i).Cells(0).Value, DGRes.Rows(i).Cells(1).Value)
+                        FrmEdicionCot.DGServicios.Rows.Add(txtEquipID.Text, DGRes.Rows(i).Cells(0).Value, DGRes.Rows(i).Cells(2).Value)
                     End If
                 Next
                 'accion post
