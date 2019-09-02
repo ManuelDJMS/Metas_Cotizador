@@ -66,6 +66,7 @@ Public Class Cotizaciones
     Private Sub btCotizacion_Click(sender As Object, e As EventArgs) Handles btCotizacion.Click
         Dim seleccionado As Boolean
         Dim b As Boolean
+        Dim subtotal As Decimal
         If DGRes.Rows.Count < 2 Then
             MsgBox("No hay servicios seleccionados.", MsgBoxStyle.Critical, "Error del sistema.")
         Else
@@ -87,6 +88,14 @@ Public Class Cotizaciones
                         FrmEdicionCot.DGServicios.Rows.Add(txtEquipID.Text, DGRes.Rows(i).Cells(0).Value, DGRes.Rows(i).Cells(2).Value)
                     End If
                 Next
+                subtotal = 0
+                For Each fila In FrmEdicionCot.DGServicios.Rows
+                    subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
+                Next
+                iva = (subtotal * 0.16)
+                Total = subtotal + iva
+                FrmEdicionCot.TextSubtotal.Text = subtotal
+                FrmEdicionCot.TextTotal.Text = Total
                 'accion post
                 Me.Dispose()
             Else

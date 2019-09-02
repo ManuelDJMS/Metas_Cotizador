@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Runtime.InteropServices
 Public Class FrmEdicionCot
     Dim subtotal As Decimal
     Dim maximo As Integer
@@ -240,19 +241,100 @@ Public Class FrmEdicionCot
         seleccioncombo("ValidezCondicion", CboValidez)
     End Sub
 
+    Private Sub CboTiempo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboTiempo.SelectedIndexChanged
+        seleccioncombo("TiempoEntregaCondicion", CboTiempo)
+    End Sub
+
+    Private Sub CboServicio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboServicio.SelectedIndexChanged
+        seleccioncombo("LugarCondicion", cboServicio)
+    End Sub
+
+    Private Sub CboMoneda_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboMoneda.SelectedIndexChanged
+        seleccioncombo("MonedaCondicion", CboMoneda)
+    End Sub
+
+    Private Sub CbModalidad_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbModalidad.SelectedIndexChanged
+        seleccioncombo("ModalidadCondicion", CbModalidad)
+    End Sub
+
+    Private Sub CboLeyenda_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboLeyenda.SelectedIndexChanged
+        seleccioncombo("LeyendaCondicion", CboLeyenda)
+    End Sub
+
+    Private Sub CboContabilizar_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboContabilizar.SelectedIndexChanged
+        seleccioncombo("Modo_de_Contabilizar", CboContabilizar)
+    End Sub
+
+    Private Sub Cbcuando_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cbcuando.SelectedIndexChanged
+        seleccioncombo("CuandoCondicion", Cbcuando)
+    End Sub
+
+    Private Sub ComboDocCond_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboDocCond.SelectedIndexChanged
+        seleccioncombo("DocumentosCondicion", ComboDocCond)
+    End Sub
+
+    Private Sub CCondPago_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CCondPago.SelectedIndexChanged
+        seleccioncombo("PagoCondicion", CCondPago)
+    End Sub
+
+    Private Sub DGCopia_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DGCopia.CellEndEdit
+        '================================================================== CODIGO PARA CAMBIAR LA CANTIDAD Y SACAR PRECIOS NUEVOS ===============================================================
+        Try
+            If e.ColumnIndex = DGCopia.Columns.Item("Column8").Index Then
+                Dim r As Integer
+                Dim f As Integer
+                Dim cantidad As Integer
+                Dim total As Decimal
+                r = DGCopia.CurrentCell.RowIndex
+                f = DGCopia.Item(0, r).Value
+                cantidad = DGCopia.Item(5, r).Value
+                For i = 0 To DGServicios.Rows.Count - 1
+                    If f = DGServicios.Rows(i).Cells(0).Value Then
+                        DGServicios.Rows(i).Cells(2).Value = cantidad * DGServicios.Rows(i).Cells(2).Value
+                        Exit For
+                    End If
+                Next
+                subtotal = 0
+                For Each fila In DGServicios.Rows
+                    subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
+                Next
+                iva = (subtotal * 0.16)
+                total = subtotal + iva
+                TextSubtotal.Text = subtotal
+                TextTotal.Text = total
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del Sistema")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("Ventas", "Error al realizar un descuento en el DataGrid", Err.Number, cadena)
+        End Try
+    End Sub
+    'ARRASTRAR EL FORMULARIO
+    <DllImport("user32.DLL", EntryPoint:="ReleaseCapture")>
+    Private Shared Sub ReleaseCapture()
+    End Sub
+
+    <DllImport("user32.DLL", EntryPoint:="SendMessage")>
+    Private Shared Sub SendMessage(ByVal hWnd As System.IntPtr, ByVal wMsg As Integer, ByVal wParam As Integer, ByVal lParam As Integer)
+    End Sub
+    Private Sub Panel2_MouseMove(sender As Object, e As MouseEventArgs) Handles Panel2.MouseMove
+        ReleaseCapture()
+        SendMessage(Me.Handle, &H112&, &HF012&, 0)
+    End Sub
+
+    Private Sub BtnMinimizar_Click(sender As Object, e As EventArgs) Handles btnMinimizar.Click
+        Me.WindowState = FormWindowState.Minimized
+    End Sub
+
     Private Sub BtnAgregarArticulos_Click(sender As Object, e As EventArgs) Handles btnAgregarArticulos.Click
         FrmArticulos.Show()
     End Sub
 
     Private Sub DGCopia_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGCopia.CellContentClick
         If e.ColumnIndex = DGCopia.Columns.Item("Column4").Index Then
-            ' DGServicios.Rows.Add(DGCopia.Rows(e.RowIndex).Cells(0).Value)
-            'MostrarServicios
             Dim Admin As New Cotizaciones
-            'Admin.txtEquipID.Text = DGCopia.Rows(e.RowIndex).Cells(0).Value
-            'Admin.txtIDListaDetalle.Text = Val(DGCopia.Rows(e.RowIndex).Cells(0).Value)
             Admin.consultaServicios(DGCopia.Rows(e.RowIndex).Cells(0).Value)
-            'Admin.txtIDListaDetalle.Text = DGAdicionales
             Admin.ShowDialog()
         End If
         If e.ColumnIndex = DGCopia.Columns.Item("Eliminar").Index Then
@@ -324,7 +406,8 @@ Public Class FrmEdicionCot
                 Try
                     If MessageBox.Show("¿Desea Guardar la información?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
                         transaction.Commit()
-                        MsgBox("El Cotización se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
+                        MsgBox("La Cotización se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
+                        Me.Dispose()
                     Else
                         transaction.Rollback()
                         Me.Dispose()
