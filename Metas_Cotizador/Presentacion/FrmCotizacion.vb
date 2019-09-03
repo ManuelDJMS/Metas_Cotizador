@@ -213,7 +213,7 @@ Public Class FrmCotizacion
         Else
             For i As Integer = DgAgregar.Rows.Count() - 2 To 0 Step -1
                 MetodoLIMS()
-                Dim equipo As Integer
+
                 '===============================================SELECCION DEL ARTICULO SELECCIONADO===================================================
                 comandoLIMS = conexionLIMS.CreateCommand
                 R = "SELECT SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price from 
@@ -558,20 +558,20 @@ Public Class FrmCotizacion
     End Sub
 
     Private Sub BtnEditarCot_Click(sender As Object, e As EventArgs) Handles btnEditarCot.Click
-        'COT2 = InputBox("Ingrese el número de Cotización", "Folios")
-        'MetodoMetasCotizador()
-        'comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-        'R = "SELECT NumCot, Creado FROM [Cotizaciones] WHERE NumCot= " & COT2
-        'comandoMetasCotizador.CommandText = R
-        'lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        'lectorMetasCotizador.Read()
-        'If lectorMetasCotizador(1) = 0 Then
-        '    editar = True
-        '    frmEdicionCot2018_2019.ShowDialog()
-        'Else
-        '    MsgBox("La cotización ya fue convertida en ORDEN DE VENTA NUM " & lectorMetasCotizador(1))
-        '    lectorMetasCotizador.Close()
-        '    conexionMetasCotizador.Close()
-        'End If
+        COT2 = InputBox("Ingrese el número de Cotización", "Folios")
+        MetodoMetasCotizador()
+        comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+        R = "SELECT NumCot, Creado FROM [Cotizaciones] WHERE NumCot= " & COT2
+        comandoMetasCotizador.CommandText = R
+        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+        lectorMetasCotizador.Read()
+        If lectorMetasCotizador(1) = 0 Then
+            editar = True
+            FrmEdicionCot.ShowDialog()
+        Else
+            MsgBox("La cotización ya fue convertida en ORDEN DE VENTA NUM " & lectorMetasCotizador(1))
+            lectorMetasCotizador.Close()
+            conexionMetasCotizador.Close()
+        End If
     End Sub
 End Class
