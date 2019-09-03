@@ -78,12 +78,25 @@
                 comandoLIMS.CommandText = R
                 lectorLIMS = comandoLIMS.ExecuteReader
                 lectorLIMS.Read()
+                equipo = lectorLIMS(3)
                 precio = precio + lectorLIMS(4)
-                frmEdicionCot2018_2019.DGCopia.Rows.Add(numPartida, lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), False, "-")
+                FrmEdicionCot.DGCopia.Rows.Add(lectorLIMS(3), numPartida, lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), "1", False)
                 iva = (precio * 0.16)
                 totalEdiCot = precio + iva
-                frmEdicionCot2018_2019.TextSubtotal.Text = precio
-                frmEdicionCot2018_2019.TextTotal.Text = totalEdiCot
+                FrmEdicionCot.TextSubtotal.Text = precio
+                FrmEdicionCot.TextTotal.Text = totalEdiCot
+                lectorLIMS.Close()
+
+                MetodoLIMS()
+                comandoLIMS = conexionLIMS.CreateCommand
+                R = "SELECT EquipId, ServicesId, Price from SetupEquipmentServiceMapping where EquipId=" & equipo
+
+                comandoLIMS.CommandText = R
+                lectorLIMS = comandoLIMS.ExecuteReader
+                lectorLIMS.Read()
+                FrmEdicionCot.DGServicios.Rows.Add(lectorLIMS(0), lectorLIMS(1), lectorLIMS(2))
+                lectorLIMS.Close()
+                conexionLIMS.Close()
             Next
             'frmEdicionCot2018_2019.ShowDialog()
 

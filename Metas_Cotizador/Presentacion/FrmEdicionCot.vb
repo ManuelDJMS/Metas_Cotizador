@@ -9,102 +9,101 @@ Public Class FrmEdicionCot
     Dim eliminar1, eliminar2 As Integer
     Private Sub FrmEdicionCot_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Try
-        '        If editar = True Then
-        '            DGCopia.Rows.Clear()
-        '            DGServicios.Rows.Clear()
-        '            DGCopia.Columns(1).Width = 200
-        '            DGCopia.Columns(2).Width = 100
-        '            DGCopia.Columns(3).Width = 100
-        '            DGCopia.Columns(7).Visible = True
-        '            btGuardarInf.Text = "ACTUALIZAR COT"
-        '            numCot.Visible = True
-        '            btGuardarInf.Visible = True
-        '            btActualizarCliente.Visible = True
-        '            btnEliminar.Visible = True
-        '            Button1.Visible = False
-        '            btnAgregarArticulos.Visible = True
-        '            Label79.Text = "Actualizar COTIZACIÓN NUM. "
-        '            MetodoMetasCotizador()
-        '            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-        '            comandoMetasCotizador.CommandText = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre,[SetupCustomerDetails].[CustomerId],[CompanyName],[TaxIDNo],
-        '[ContAddress1] AS DomCont,[ContCity], [ContState],[Phone],[SetupCustomerDetails].[Email],
-        'PartidaNo,[SetUpEquipment].[EquipmentName] AS Articulo, [Mfr],[Model],[SetUpEquipment].[EquipId], [DetalleCotizaciones].[Observaciones], [SetupServices].[ServicesId],
-        '[SetupServices].[ServiceName],[idUsuarioCotizacion],[Referencia], [DetalleCotizaciones].[idListaCotizacion],[Subtotal],[Total]
-        'from [MetasCotizador].[dbo].[Cotizaciones]
-        'INNER JOIN [Usuarios] ON [Cotizaciones].[idUsuarioCotizacion] = [Usuarios].[idUsuarioAdministrador]
-        'INNER JOIN " & servidor & "[SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
-        'INNER JOIN " & servidor & "[SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
-        '            INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
-        'INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
-        'INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
-        'INNER JOIN [ModalidadCondicion] ON [Cotizaciones].[idModalidadCondicion] = [ModalidadCondicion].[idModalidadCondicion]
-        'INNER JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
-        'WHERE [Cotizaciones].NumCot = " & COT2
-        '            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        '            While lectorMetasCotizador.Read()
-        '                numCot.Text = lectorMetasCotizador(0)
-        '                txtNombreC.Text = lectorMetasCotizador(3)
-        '                txtCveContacto.Text = lectorMetasCotizador(4)
-        '                txtNombreEmpresa.Text = lectorMetasCotizador(5)
-        '                txtNumCond.Text = lectorMetasCotizador(6)
-        '                txtDomicilio.Text = lectorMetasCotizador(7)
-        '                txtCiudad.Text = lectorMetasCotizador(8)
-        '                txtEstado.Text = lectorMetasCotizador(9)
-        '                txtTelefono.Text = lectorMetasCotizador(10)
-        '                TextCorreo.Text = lectorMetasCotizador(11)
-        '                txtCotizo2019.Text = lectorMetasCotizador(20)
-        '                DTPDesde.Value = lectorMetasCotizador(1)
-        '                DTPHasta.Value = lectorMetasCotizador(2)
-        '                txtReferencia.Text = lectorMetasCotizador(21)
-        '                TextSubtotal.Text = lectorMetasCotizador(23)
-        '                precio = lectorMetasCotizador(23)
-        '                TextTotal.Text = lectorMetasCotizador(24)
-        '                DGCopia.Rows.Add(lectorMetasCotizador(12), lectorMetasCotizador(13), lectorMetasCotizador(14), lectorMetasCotizador(15), lectorMetasCotizador(16), True, lectorMetasCotizador(17))
-        '                DGServicios.Rows.Add(lectorMetasCotizador(22), lectorMetasCotizador(16), lectorMetasCotizador(18), lectorMetasCotizador(19))
-        '            End While
-        '            lectorMetasCotizador.Close()
-        '            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-        '            comandoMetasCotizador.CommandText = "Select MAX(idListaCotizacion) from [DetalleCotizaciones]"
-        '            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        '            lectorMetasCotizador.Read()
-        '            numPartida = lectorMetasCotizador(0)
-        '        Else
+        If editar = True Then
+            DGCopia.Rows.Clear()
+            DGServicios.Rows.Clear()
+            DGCopia.Columns(9).Width = 80
+            DGCopia.Columns(10).Width = 80
+            DGCopia.Columns(8).Visible = True
+            btGuardarInf.Text = "ACTUALIZAR COT"
+            numCot.Visible = True
+            btGuardarInf.Visible = True
+            btActualizarCliente.Visible = True
+            btnEliminar.Visible = True
+            Button1.Visible = False
+            btnAgregarArticulos.Visible = True
+            Label79.Text = "Actualizar COTIZACIÓN NUM. "
+            MetodoMetasCotizador()
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            comandoMetasCotizador.CommandText = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre,[SetupCustomerDetails].[CustomerId],[CompanyName],[TaxIDNo],
+        [ContAddress1] AS DomCont,[ContCity], [ContState],[Phone],[SetupCustomerDetails].[Email],
+        PartidaNo,[SetUpEquipment].[EquipmentName] AS Articulo, [Mfr],[Model],[SetUpEquipment].[EquipId], [DetalleCotizaciones].[Observaciones], [SetupServices].[ServicesId],
+        [SetupServices].[ServiceName],[idUsuarioCotizacion],[Referencia], [DetalleCotizaciones].[idListaCotizacion],[Subtotal],[Total], [Cantidad]
+        from [MetasCotizador].[dbo].[Cotizaciones]
+        INNER JOIN [Usuarios] ON [Cotizaciones].[idUsuarioCotizacion] = [Usuarios].[idUsuarioAdministrador]
+        INNER JOIN " & servidor & "[SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
+        INNER JOIN " & servidor & "[SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
+                    INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
+        INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
+        INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
+        INNER JOIN [ModalidadCondicion] ON [Cotizaciones].[idModalidadCondicion] = [ModalidadCondicion].[idModalidadCondicion]
+        INNER JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
+        WHERE [Cotizaciones].NumCot = " & COT2
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                numCot.Text = lectorMetasCotizador(0)
+                txtNombreC.Text = lectorMetasCotizador(3)
+                txtCveContacto.Text = lectorMetasCotizador(4)
+                txtNombreEmpresa.Text = lectorMetasCotizador(5)
+                txtNumCond.Text = lectorMetasCotizador(6)
+                txtDomicilio.Text = lectorMetasCotizador(7)
+                txtCiudad.Text = lectorMetasCotizador(8)
+                txtEstado.Text = lectorMetasCotizador(9)
+                txtTelefono.Text = lectorMetasCotizador(10)
+                TextCorreo.Text = lectorMetasCotizador(11)
+                txtCotizo2019.Text = lectorMetasCotizador(20)
+                DTPDesde.Value = lectorMetasCotizador(1)
+                DTPHasta.Value = lectorMetasCotizador(2)
+                txtReferencia.Text = lectorMetasCotizador(21)
+                TextSubtotal.Text = lectorMetasCotizador(23)
+                precio = lectorMetasCotizador(23)
+                TextTotal.Text = lectorMetasCotizador(24)
+                DGCopia.Rows.Add(lectorMetasCotizador(16), lectorMetasCotizador(12), lectorMetasCotizador(13), lectorMetasCotizador(14), lectorMetasCotizador(15), lectorMetasCotizador(25), True, lectorMetasCotizador(17))
+                DGServicios.Rows.Add(lectorMetasCotizador(16), lectorMetasCotizador(18), lectorMetasCotizador(23))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            comandoMetasCotizador.CommandText = "Select MAX(idListaCotizacion) from [DetalleCotizaciones]"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            numPartida = lectorMetasCotizador(0)
+        Else
 
 
 
 
-        btGuardarInf.Text = "Guardar cotización"
-        Label79.Text = "Guardar cotización"
-        numCot.Visible = False
-        DTPHasta.Value.AddDays(30)
-        MetodoLIMS()
-        comandoLIMS = conexionLIMS.CreateCommand
-        R = "select [SetupCustomerDetails].CustomerId, isnull(Organization,'-'), isnull(concat(FirstName, ' ' , MiddleName, ' ', LastName),'-') as Nombre, 
+            btGuardarInf.Text = "Guardar cotización"
+            Label79.Text = "Guardar cotización"
+            numCot.Visible = False
+            DTPHasta.Value.AddDays(30)
+            MetodoLIMS()
+            comandoLIMS = conexionLIMS.CreateCommand
+            R = "select [SetupCustomerDetails].CustomerId, isnull(Organization,'-'), isnull(concat(FirstName, ' ' , MiddleName, ' ', LastName),'-') as Nombre, 
                 isnull(ContAddress1,'-'), isnull(ContCity,'-'), isnull(ContState,'-'), isnull(Phone,'-'), isnull(Email,'-') 
                 from " & servidor & "[SetupCustomerDetails] inner join  
                 SetupCustomerAddressDtls on [SetupCustomerDetails].CustomerId=[SetupCustomerAddressDtls].CustomerId
                 where [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails].CustomerId=" & empresa
-        comandoLIMS.CommandText = R
-        lectorLIMS = comandoLIMS.ExecuteReader
-        lectorLIMS.Read()
-        txtCveContacto.Text = lectorLIMS(0)
-        txtNombreEmpresa.Text = lectorLIMS(1)
-        txtNombreC.Text = lectorLIMS(2)
-        txtDomicilio.Text = lectorLIMS(3)
-        txtCiudad.Text = lectorLIMS(4)
-        txtEstado.Text = lectorLIMS(5)
-        txtTelefono.Text = lectorLIMS(6)
-        TextCorreo.Text = lectorLIMS(7)
-        lectorLIMS.Close()
-        conexionLIMS.Close()
-        For Each fila In DGServicios.Rows
-            subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
-        Next
-        iva = (subtotal * 0.16)
-        Total = subtotal + iva
-        TextSubtotal.Text = subtotal
-        TextTotal.Text = Total
-        'End If
+            comandoLIMS.CommandText = R
+            lectorLIMS = comandoLIMS.ExecuteReader
+            lectorLIMS.Read()
+            txtCveContacto.Text = lectorLIMS(0)
+            txtNombreEmpresa.Text = lectorLIMS(1)
+            txtNombreC.Text = lectorLIMS(2)
+            txtDomicilio.Text = lectorLIMS(3)
+            txtCiudad.Text = lectorLIMS(4)
+            txtEstado.Text = lectorLIMS(5)
+            txtTelefono.Text = lectorLIMS(6)
+            TextCorreo.Text = lectorLIMS(7)
+            lectorLIMS.Close()
+            conexionLIMS.Close()
+            For Each fila In DGServicios.Rows
+                subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
+            Next
+            iva = (subtotal * 0.16)
+            Total = subtotal + iva
+            TextSubtotal.Text = subtotal
+            TextTotal.Text = Total
+        End If
         '-----------------Combo cuando ------------------------
         llenarcombo("select * from CuandoCondicion", Cbcuando)
         ''-----------------Combo documentps ------------------------
@@ -183,8 +182,8 @@ Public Class FrmEdicionCot
     End Sub
 
     Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
-        Try
-            Dim numDetCot As Integer
+        'Try
+        Dim numDetCot As Integer
             For i = 0 To dgEliminar.Rows.Count - 2
                 comandoMetasCotizador = conexionMetasCotizador.CreateCommand
                 comandoMetasCotizador.CommandText = "SELECT COUNT (idListaCotizacion) FROM [DetalleCotizaciones]"
@@ -193,24 +192,24 @@ Public Class FrmEdicionCot
                 eliminar1 = lectorMetasCotizador(0)
                 'MsgBox(eliminar1)
                 lectorMetasCotizador.Close()
-                comandoMetasCotizador.CommandText = "SELECT * FROM [DetalleCotizaciones] where NumCot = " & Val(numCot.Text) & "  and [EquipId] = " & Val(DGCopia.Item(4, i).Value) & ""
-                lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            comandoMetasCotizador.CommandText = "SELECT * FROM [DetalleCotizaciones] where NumCot = " & Val(numCot.Text) & "  and [EquipId] = " & Val(DGCopia.Item(0, i).Value) & ""
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
                 lectorMetasCotizador.Read()
                 numDetCot = lectorMetasCotizador(0)
                 'MsgBox(numDetCot)
                 lectorMetasCotizador.Close()
                 MetodoMetasCotizador()
                 comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-                R = "if exists (Select [Cotizaciones].NumCot,[SetUpEquipment].[EquipId],[SetupServices].[ServicesId]
+            R = "if exists (Select [Cotizaciones].NumCot,[SetUpEquipment].[EquipId],[SetupServices].[ServicesId]
                             from [MetasCotizador].[dbo].[Cotizaciones]
                             INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
 				            INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
 				            INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
 				            INNER JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
-				            where [Cotizaciones].NumCot = " & Val(numCot.Text) & " and [SetUpEquipment].[EquipId] =" & Val(DGCopia.Item(4, i).Value) & ")
-				            begin DELETE FROM [DetalleCotizaciones] where NumCot = " & Val(numCot.Text) & " and [EquipId] =" & Val(DGCopia.Item(4, i).Value) & "
+				            where [Cotizaciones].NumCot = " & Val(numCot.Text) & " and [SetUpEquipment].[EquipId] =" & Val(DGCopia.Item(0, i).Value) & ")
+				            begin DELETE FROM [DetalleCotizaciones] where NumCot = " & Val(numCot.Text) & " and [EquipId] =" & Val(DGCopia.Item(0, i).Value) & "
                             end else begin print 'articulo eliminado de la cot' end"
-                Dim c As New SqlCommand(R, conexionMetasCotizador)
+            Dim c As New SqlCommand(R, conexionMetasCotizador)
                 c.ExecuteNonQuery()
                 lectorMetasCotizador.Close()
                 MetodoMetasCotizador()
@@ -229,12 +228,12 @@ Public Class FrmEdicionCot
                 DGCopia.Rows.RemoveAt(DGCopia.CurrentRow.Index)
                 DGServicios.Rows.RemoveAt(DGServicios.CurrentRow.Index)
             Next i
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("frmEdicionCot2018-2019", "Error al Eliminar partidad", Err.Number, cadena)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
+        '    cadena = Err.Description
+        '    cadena = cadena.Replace("'", "")
+        '    Bitacora("frmEdicionCot2018-2019", "Error al Eliminar partidad", Err.Number, cadena)
+        'End Try
     End Sub
 
     Private Sub CboValidez_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboValidez.SelectedIndexChanged
