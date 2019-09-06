@@ -340,16 +340,19 @@ Partial Class FrmEquipamiento
         '
         Me.Column6.HeaderText = "Fecha"
         Me.Column6.Name = "Column6"
+        Me.Column6.Width = 80
         '
         'Column7
         '
         Me.Column7.HeaderText = "Sitio"
         Me.Column7.Name = "Column7"
+        Me.Column7.Width = 40
         '
         'Column8
         '
         Me.Column8.HeaderText = "Notas"
         Me.Column8.Name = "Column8"
+        Me.Column8.Width = 180
         '
         'Column9
         '
