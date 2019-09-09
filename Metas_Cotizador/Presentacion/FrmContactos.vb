@@ -42,15 +42,15 @@ Public Class FrmContactos
                 idContacto.Text = clave
                 txtClaveRecopilada.Text = clave
                 consultaDatosContactos(clave)
-                frmEdicionCot2018_2019.txtNombreC.Text = Me.txtNombreDeContacto.Text
-                frmEdicionCot2018_2019.txtCveContacto.Text = Me.idContacto.Text
-                frmEdicionCot2018_2019.txtNombreEmpresa.Text = Me.txtNombreCompania.Text
-                frmEdicionCot2018_2019.txtNumCond.Text = Me.txtKeyFiscal.Text
-                frmEdicionCot2018_2019.txtDomicilio.Text = Me.txtDireccion.Text
-                frmEdicionCot2018_2019.txtCiudad.Text = Me.txtCiudad.Text
-                frmEdicionCot2018_2019.txtEstado.Text = Me.txtEdo.Text
-                frmEdicionCot2018_2019.txtTelefono.Text = Me.txtTelefono.Text
-                frmEdicionCot2018_2019.TextCorreo.Text = Me.txtCorreo1.Text
+                FrmEdicionCot.txtNombreC.Text = Me.txtNombreDeContacto.Text
+                FrmEdicionCot.txtCveContacto.Text = Me.idContacto.Text
+                FrmEdicionCot.txtNombreEmpresa.Text = Me.txtNombreCompania.Text
+                FrmEdicionCot.txtNumCond.Text = Me.txtKeyFiscal.Text
+                FrmEdicionCot.txtDomicilio.Text = Me.txtDireccion.Text
+                FrmEdicionCot.txtCiudad.Text = Me.txtCiudad.Text
+                FrmEdicionCot.txtEstado.Text = Me.txtEdo.Text
+                FrmEdicionCot.txtTelefono.Text = Me.txtTelefono.Text
+                FrmEdicionCot.TextCorreo.Text = Me.txtCorreo1.Text
                 Me.Close()
             Else
 
