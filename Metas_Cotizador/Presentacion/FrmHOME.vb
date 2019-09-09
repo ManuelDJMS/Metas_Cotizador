@@ -135,7 +135,7 @@ Public Class FrmHOME
 
     Private Sub BtnCotizacion_Click(sender As Object, e As EventArgs) Handles btnCotizacion.Click
         colorearpanel(PanelMenu, PL_Cotizacion)
-        AbrirFormEnPanel(Of FrmCotizadorLIMS)()
+        AbrirFormEnPanel(Of FrmCotizacion)()
     End Sub
 
     Private Sub BtnPreFact_Click(sender As Object, e As EventArgs) Handles btnPreFact.Click
