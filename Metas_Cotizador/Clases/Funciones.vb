@@ -26,6 +26,7 @@ Module Funciones
     Public totalEdiCot As Double
     Public subtotalEdiCot As Double
     Public equipo As Integer
+    Public numcot As Integer
     '--------------------------------------Llenar la WORK ORDER
     Public arreglosales()
     Public Sub consultasLIMS(ByVal script As String, ByVal dgrid As DataGridView)

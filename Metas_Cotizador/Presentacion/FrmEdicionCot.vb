@@ -331,6 +331,25 @@ Public Class FrmEdicionCot
 
     End Sub
 
+    Private Sub DGServicios_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DGServicios.CellEndEdit
+        '================================================================== CODIGO PARA CAMBIAR LA CANTIDAD Y SACAR PRECIOS NUEVOS ===============================================================
+        Try
+            subtotal = 0
+            For Each fila In DGServicios.Rows
+                subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
+            Next
+            iva = (subtotal * 0.16)
+            Total = subtotal + iva
+            TextSubtotal.Text = subtotal
+            TextTotal.Text = Total
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del Sistema")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("Ventas", "Error al realizar un descuento en el DataGrid", Err.Number, cadena)
+        End Try
+    End Sub
+
     Private Sub BtnMinimizar_Click(sender As Object, e As EventArgs) Handles btnMinimizar.Click
         Me.WindowState = FormWindowState.Minimized
     End Sub
