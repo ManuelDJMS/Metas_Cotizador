@@ -44,6 +44,8 @@ Partial Class FrmEquipamiento
         Me.lbSubtitylo = New System.Windows.Forms.Label()
         Me.lbTitulo = New System.Windows.Forms.Label()
         Me.DGArticulos = New System.Windows.Forms.DataGridView()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -66,7 +68,7 @@ Partial Class FrmEquipamiento
         Me.btnMinimizar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnMinimizar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnMinimizar.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_minimize_window_50
-        Me.btnMinimizar.Location = New System.Drawing.Point(1040, 7)
+        Me.btnMinimizar.Location = New System.Drawing.Point(940, 7)
         Me.btnMinimizar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnMinimizar.Name = "btnMinimizar"
         Me.btnMinimizar.Size = New System.Drawing.Size(25, 25)
@@ -79,7 +81,7 @@ Partial Class FrmEquipamiento
         Me.btnCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnCerrar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnCerrar.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_close_window_50
-        Me.btnCerrar.Location = New System.Drawing.Point(1068, 7)
+        Me.btnCerrar.Location = New System.Drawing.Point(968, 7)
         Me.btnCerrar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCerrar.Name = "btnCerrar"
         Me.btnCerrar.Size = New System.Drawing.Size(25, 25)
@@ -97,7 +99,7 @@ Partial Class FrmEquipamiento
         Me.Panel1.Controls.Add(Me.lbTitulo)
         Me.Panel1.Location = New System.Drawing.Point(5, 34)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1089, 422)
+        Me.Panel1.Size = New System.Drawing.Size(989, 422)
         Me.Panel1.TabIndex = 191
         '
         'btCotizacion
@@ -107,7 +109,7 @@ Partial Class FrmEquipamiento
         Me.btCotizacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btCotizacion.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btCotizacion.ForeColor = System.Drawing.Color.White
-        Me.btCotizacion.Location = New System.Drawing.Point(965, 12)
+        Me.btCotizacion.Location = New System.Drawing.Point(874, 10)
         Me.btCotizacion.Name = "btCotizacion"
         Me.btCotizacion.Size = New System.Drawing.Size(111, 33)
         Me.btCotizacion.TabIndex = 179
@@ -120,7 +122,7 @@ Partial Class FrmEquipamiento
         Me.GroupBox2.ForeColor = System.Drawing.Color.SteelBlue
         Me.GroupBox2.Location = New System.Drawing.Point(18, 148)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(1058, 266)
+        Me.GroupBox2.Size = New System.Drawing.Size(967, 266)
         Me.GroupBox2.TabIndex = 191
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Información del Cliente"
@@ -141,7 +143,7 @@ Partial Class FrmEquipamiento
         Me.GroupBox1.ForeColor = System.Drawing.Color.SteelBlue
         Me.GroupBox1.Location = New System.Drawing.Point(18, 58)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1058, 84)
+        Me.GroupBox1.Size = New System.Drawing.Size(967, 84)
         Me.GroupBox1.TabIndex = 190
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Información del Cliente"
@@ -293,7 +295,7 @@ Partial Class FrmEquipamiento
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DGArticulos.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DGArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGArticulos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10})
+        Me.DGArticulos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column11, Me.Column12, Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10})
         Me.DGArticulos.EnableHeadersVisualStyles = False
         Me.DGArticulos.Location = New System.Drawing.Point(34, 207)
         Me.DGArticulos.Name = "DGArticulos"
@@ -308,13 +310,26 @@ Partial Class FrmEquipamiento
         Me.DGArticulos.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
         Me.DGArticulos.RowsDefaultCellStyle = DataGridViewCellStyle3
-        Me.DGArticulos.Size = New System.Drawing.Size(1041, 229)
+        Me.DGArticulos.Size = New System.Drawing.Size(949, 229)
         Me.DGArticulos.TabIndex = 263
+        '
+        'Column11
+        '
+        Me.Column11.HeaderText = "CustomerID"
+        Me.Column11.Name = "Column11"
+        Me.Column11.Visible = False
+        '
+        'Column12
+        '
+        Me.Column12.HeaderText = "EquipId"
+        Me.Column12.Name = "Column12"
+        Me.Column12.Visible = False
         '
         'Column1
         '
         Me.Column1.HeaderText = "Metas ID"
         Me.Column1.Name = "Column1"
+        Me.Column1.Visible = False
         '
         'Column2
         '
@@ -369,7 +384,7 @@ Partial Class FrmEquipamiento
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1098, 460)
+        Me.ClientSize = New System.Drawing.Size(998, 460)
         Me.Controls.Add(Me.DGArticulos)
         Me.Controls.Add(Me.btnMinimizar)
         Me.Controls.Add(Me.btnCerrar)
@@ -408,6 +423,8 @@ Partial Class FrmEquipamiento
     Friend WithEvents lbSubtitylo As Label
     Friend WithEvents lbTitulo As Label
     Friend WithEvents DGArticulos As DataGridView
+    Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents Column12 As DataGridViewTextBoxColumn
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn

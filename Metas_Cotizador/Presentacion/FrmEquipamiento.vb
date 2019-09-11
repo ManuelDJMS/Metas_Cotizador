@@ -8,7 +8,7 @@ Public Class FrmEquipamiento
         'Dim lector As SqlDataReader
         lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
         While lectorMetasCotizador.Read()
-            DGArticulos.Rows.Add()
+            DGArticulos.Rows.Add(lectorMetasCotizador(1), lectorMetasCotizador(2), "", lectorMetasCotizador(3), lectorMetasCotizador(4), "", "", "", False, lectorMetasCotizador(5))
         End While
         conexionMetasCotizador.Close()
     End Sub
