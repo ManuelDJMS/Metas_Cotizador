@@ -541,7 +541,7 @@ Public Class FrmCotizacion
             Dim Reportes As New ReportDataSource("DataSet1", Data.Tables(0))
             FrmReportes.ReportViewer1.LocalReport.DataSources.Clear()
             FrmReportes.ReportViewer1.LocalReport.DataSources.Add(Datasource)
-            FrmReportes.ReportViewer1.LocalReport.ReportPath = "C:\Users\Software TI\Documents\GitHub\MetasCRM\Reportes\CotizacionModelo.rdlc"
+            FrmReportes.ReportViewer1.LocalReport.ReportPath = "C:\Users\Software TI\Documents\GitHub\Metas_Cotizador\Metas_Cotizador\Reportes\CotizacionModelo.rdlc"
             FrmReportes.ReportViewer1.LocalReport.SetParameters(New ReportParameter() {p1, p2, p3, p4, p5, p6, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17,
                                                                      p19, p20, p21, p22, p23, p24})
             FrmReportes.ReportViewer1.RefreshReport()
@@ -562,20 +562,27 @@ Public Class FrmCotizacion
     End Sub
 
     Private Sub BtnEditarCot_Click(sender As Object, e As EventArgs) Handles btnEditarCot.Click
-        COT2 = InputBox("Ingrese el número de Cotización", "Folios")
-        MetodoMetasCotizador()
-        comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-        R = "SELECT NumCot, Creado FROM [Cotizaciones] WHERE NumCot= " & COT2
-        comandoMetasCotizador.CommandText = R
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        If lectorMetasCotizador(1) = 0 Then
-            editar = True
-            FrmEdicionCot.ShowDialog()
-        Else
-            MsgBox("La cotización ya fue convertida en ORDEN DE VENTA NUM " & lectorMetasCotizador(1))
-            lectorMetasCotizador.Close()
-            conexionMetasCotizador.Close()
-        End If
+        Try
+            COT2 = InputBox("Ingrese el número de Cotización", "Folios")
+            MetodoMetasCotizador()
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            R = "SELECT NumCot, Creado FROM [Cotizaciones] WHERE NumCot= " & COT2
+            comandoMetasCotizador.CommandText = R
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            If lectorMetasCotizador(1) = 0 Then
+                editar = True
+                FrmEdicionCot.ShowDialog()
+            Else
+                MsgBox("La cotización ya fue convertida en ORDEN DE VENTA NUM " & lectorMetasCotizador(1))
+                lectorMetasCotizador.Close()
+                conexionMetasCotizador.Close()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+        cadena = Err.Description
+        cadena = cadena.Replace("'", "")
+            Bitacora("FrmCotizadorLIMS", "Error al seleccionar cot para editar", Err.Number, cadena)
+        End Try
     End Sub
 End Class
