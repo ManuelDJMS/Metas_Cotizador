@@ -3,7 +3,8 @@ Imports System.Runtime.InteropServices
 Public Class FrmEdicionCot
     Dim subtotal As Decimal
     Dim maximo As Integer
-    Dim inventarioCliente, observacion As String
+    Dim inventarioCliente As String
+    Dim observacion As String = ""
     Dim idlista As Integer
     Dim agregar1, agregar2 As Integer
     Dim eliminar1, eliminar2 As Integer
@@ -69,10 +70,6 @@ Public Class FrmEdicionCot
                 lectorMetasCotizador.Read()
                 numPartida = lectorMetasCotizador(0)
             Else
-
-
-
-
                 btGuardarInf.Text = "Guardar cotización"
                 Label79.Text = "Guardar cotización"
                 numCot.Visible = False
@@ -370,160 +367,178 @@ Public Class FrmEdicionCot
     End Sub
 
     Private Sub BtGuardarInf_Click(sender As Object, e As EventArgs) Handles btGuardarInf.Click
+        ' Try
+        fechaActual = Convert.ToDateTime(DTPDesde.Text).ToShortDateString
+        fecharecepcion = Convert.ToDateTime(DTPHasta.Text).ToShortDateString
+        Using conexion As New SqlConnection(conexionCotizadortransac)
+            conexion.Open()
+            Dim transaction As SqlTransaction
+            transaction = conexion.BeginTransaction("Sample")
+            Dim comando As SqlCommand = conexion.CreateCommand()
+            Dim lector As SqlDataReader
+            comando.Connection = conexion
+            comando.Transaction = transaction
 
-        Try
-            fechaActual = Convert.ToDateTime(DTPDesde.Text).ToShortDateString
-            fecharecepcion = Convert.ToDateTime(DTPHasta.Text).ToShortDateString
-            Using conexion As New SqlConnection(conexionCotizadortransac)
-                conexion.Open()
-                Dim transaction As SqlTransaction
-                transaction = conexion.BeginTransaction("Sample")
-                Dim comando As SqlCommand = conexion.CreateCommand()
-                Dim lector As SqlDataReader
-                comando.Connection = conexion
-                comando.Transaction = transaction
-
-                If txtCotizo2019.Text.Equals("") Or txtCotizo2019.Text = "" Or DGServicios.Rows.Count = 0 Then
-                    MsgBox("Falta agregar el usuario que realizo la cotización¡", MsgBoxStyle.Critical)
-                Else
-                    observacion = ""
-                    'Actualizar Los datos de la cotizacion
-                    'Consultar la ultima cotizacion y asignarla a un LABEL para poder hacer el update conforme al LABEL
-                    If btGuardarInf.Text = "ACTUALIZAR COT" Then
-                        MetodoMetasCotizador()
-                        Dim R As String
-                        R = "update Cotizaciones set FechaDesde='" & DTPDesde.Value & "', FechaHasta='" & DTPHasta.Value & "', idContacto='" & txtCveContacto.Text & "', 
-                         idUsuarioCotizacion= " & Val(txtCotizo2019.Text) & ",  Referencia='" & txtReferencia.Text & "', Subtotal='" & TextSubtotal.Text & "',
-                         Total='" & TextTotal.Text & "',IVA ='" & TextTotal.Text - TextSubtotal.Text & "'
+            If txtCotizo2019.Text.Equals("") Or txtCotizo2019.Text = "" Or DGServicios.Rows.Count = 0 Then
+                MsgBox("Falta agregar el usuario que realizo la cotización¡", MsgBoxStyle.Critical)
+            Else
+                observacion = ""
+                'Actualizar Los datos de la cotizacion
+                'Consultar la ultima cotizacion y asignarla a un LABEL para poder hacer el update conforme al LABEL
+                If btGuardarInf.Text = "ACTUALIZAR COT" Then
+                    MetodoMetasCotizador()
+                    Dim R As String
+                    R = "update Cotizaciones set FechaDesde='" & DTPDesde.Value & "', FechaHasta='" & DTPHasta.Value & "', idContacto='" & txtCveContacto.Text & "', 
+                         idUsuarioCotizacion= " & Val(txtCotizo2019.Text) & ",  Referencia='" & txtReferencia.Text & "', Subtotal=" & TextSubtotal.Text & ",
+                         Total=" & TextTotal.Text & ",IVA =" & TextTotal.Text - TextSubtotal.Text & "
                          where NumCot = " & Val(numCot.Text) & ""
-                        Dim com As New SqlCommand(R, conexionMetasCotizador)
-                        com.ExecuteNonQuery()
-
-                        '-----INSERTA EN DETALLECOTIZACIONES-------
-                        For i = 0 To DGCopia.Rows.Count - 2
-                            R = "if exists (Select [Cotizaciones].NumCot,[SetUpEquipment].[EquipId],[SetupServices].[ServicesId]
+                    Dim com As New SqlCommand(R, conexionMetasCotizador)
+                    com.ExecuteNonQuery()
+                    '-----INSERTA EN DETALLECOTIZACIONES-------
+                    For i = 0 To DGCopia.Rows.Count - 2
+                        comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+                        comandoMetasCotizador.CommandText = "select top 1 [idListaCotizacion] from [MetasCotizador].[dbo].[DetalleCotizaciones] order by  [idListaCotizacion] desc"
+                        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+                        lectorMetasCotizador.Read()
+                        agregar1 = lectorMetasCotizador(0)
+                        lectorMetasCotizador.Close()
+                        R = "if exists (Select [Cotizaciones].NumCot,[SetUpEquipment].[EquipId],[SetupServices].[ServicesId]
                             from [MetasCotizador].[dbo].[Cotizaciones]
                             INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
 				            INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
 				            INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
 				            INNER JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
 				            where [Cotizaciones].NumCot = " & Val(numCot.Text) & " and [SetUpEquipment].[EquipId] =" & Val(DGCopia.Item(0, i).Value) & ")
-				            begin print 'El artículo ya esta registrado en la COT' end else begin insert into [MetasCotizador].[dbo].[DetalleCotizaciones]([NumCot],[EquipId],[PartidaNo],[Cantidad],[CantidadReal],[identificadorInventarioCliente])
-				            values(" & Val(numCot.Text) & ", " & Val(DGCopia.Item(0, i).Value) & ",(select top 1 PartidaNo + 1 as partida from [MetasCotizador].[dbo].[DetalleCotizaciones] where NumCot =" & Val(numCot.Text) & " order by PartidaNo), " & Val(DGCopia.Item(5, i).Value) & ", '0'," & Val(DGCopia.Item(9, i).Value) & "); end"
-                            Dim c As New SqlCommand(R, conexionMetasCotizador)
-                            c.ExecuteNonQuery()
+				            begin print 'El artículo ya esta registrado en la COT' end else begin insert into [MetasCotizador].[dbo].[DetalleCotizaciones]([NumCot],[EquipId],[PartidaNo],[Cantidad],[CantidadReal],[identificadorInventarioCliente],[Serie])
+				            values(" & Val(numCot.Text) & ", " & Val(DGCopia.Item(0, i).Value) & ",(select top 1 PartidaNo + 1 as partida from [MetasCotizador].[dbo].[DetalleCotizaciones] where NumCot =" & Val(numCot.Text) & " order by PartidaNo)," & Val(DGCopia.Item(5, i).Value) & ", '0','" & DGCopia.Item(8, i).Value & "','" & DGCopia.Item(9, i).Value & "'); end"
+                        Dim c As New SqlCommand(R, conexionMetasCotizador)
+                        c.ExecuteNonQuery()
+                        comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+                        comandoMetasCotizador.CommandText = "select top 1 [idListaCotizacion] from [MetasCotizador].[dbo].[DetalleCotizaciones] order by [idListaCotizacion] desc"
+                        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+                        lectorMetasCotizador.Read()
+                        agregar2 = lectorMetasCotizador(0)
+                        lectorMetasCotizador.Close()
+                        If agregar1.ToString <> agregar2.ToString Then
+                            observacion = DGCopia.Item(6, i).Value + ".  "
                             If DGCopia.Item(2, i).Value.ToString = "GENERICO" Then
-                                observacion = DGCopia.Item(6, i).Value
-                                'MsgBox(observacion)
-                                marcaGen = InputBox("¿Deseas agregar la marca del articulo: """ & DGCopia.Item(1, i).Value.ToString & """?", "Marca")
-                                modGen = InputBox("¿Deseas agregar el modelo del articulo: """ & DGCopia.Item(1, i).Value.ToString & """?", "Modelo")
+                                observacion = DGCopia.Item(7, i).Value
+                                marcaGen = InputBox("¿Deseas agregar la marca del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Marca")
+                                modGen = InputBox("¿Deseas agregar el modelo del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Modelo")
                                 observacion = observacion + "MARCA: " + marcaGen + "  MODELO:" + modGen
-                            Else
-                                'MsgBox("no se agrega se actualiza observaciones")
-                                R = "update DetalleCotizaciones set Observaciones='" & DGCopia.Item(6, i).Value & "'
-                        where idListaCotizacion =" & Val(DGCopia.Item(0, i).Value) & ""
-                                Dim u As New SqlCommand(R, conexionMetasCotizador)
-                                u.ExecuteNonQuery()
+                                MsgBox(observacion)
+                                Dim cad As String = "update DetalleCotizaciones set  Observaciones='" & observacion & "'where idListaCotizacion =" & Val(DGServicios.Item(3, i).Value) & ""
+                                Dim v As New SqlCommand(cad, conexionMetasCotizador)
+                                v.ExecuteNonQuery()
                             End If
-                            lectorMetasCotizador.Close()
-                        Next i
-                        '----------------INSERTA EN SERVICIOSENCOTIZACIONES
-                        For i = 0 To DGCopia.Rows.Count - 2
-                            For a = 0 To DGServicios.Rows.Count - 2
-                                MetodoMetasCotizador()
-                                R = "if exists (Select [Cotizaciones].NumCot,[SetUpEquipment].[EquipId],[SetupServices].[ServicesId]
+                        Else
+                        End If
+                    Next i
+                    '----------------INSERTA EN SERVICIOSENCOTIZACIONES
+                    MsgBox("servicios")
+                    For i = 0 To DGCopia.Rows.Count - 2
+                        For a = 0 To DGServicios.Rows.Count - 2
+                            MetodoMetasCotizador()
+                            R = "if exists (Select [Cotizaciones].NumCot,[SetUpEquipment].[EquipId],[SetupServices].[ServicesId]
                         from [MetasCotizador].[dbo].[Cotizaciones]
                         INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
 				        INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
 				        INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
 				        INNER JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
-				        where [Cotizaciones].NumCot = " & Val(numCot.Text) & " and [ServiciosEnCotizaciones].idListaCotizacion=" & Val(DGServicios.Item(0, i).Value) & ")
+				        where [Cotizaciones].NumCot = " & Val(numCot.Text) & " and [ServiciosEnCotizaciones].idListaCotizacion=" & Val(DGServicios.Item(3, i).Value) & ")
 				        begin print 'El servicio ya esta' end else 
-                        begin insert into [MetasCotizador].[dbo].[ServiciosEnCotizaciones]([idListaCotizacion],[idServicio])VALUES((select idListaCotizacion from DetalleCotizaciones where NumCot=" & Val(numCot.Text) & " and EquipId=" & Val(DGCopia.Item(0, i).Value) & ")," & Val(DGServicios.Item(a, i).Value) & "); end"
-                                'MsgBox(R)
-                                Dim x As New SqlCommand(R, conexionMetasCotizador)
-                                x.ExecuteNonQuery()
-                                conexionMetasCotizador.Close()
-                            Next a
-                        Next i
-                        conexionMetasCotizador.Close()
-                        MsgBox("Cotización " & numCot.Text & " Actualizada correctamente")
-                        DGCopia.Rows.Clear()
-                    Else
-                        '================================================================== GUARDAR EN COTIZACIONES ==================================================================================================
-                        R = "insert into Cotizaciones (idContacto, Origen, idLugarCondicion, idCuandoCondicion, idModalidadCondicion, idTiempoEntregaCondicion, idPagoCondicion, idLeyendaCondicion,
+                        begin insert into [MetasCotizador].[dbo].[ServiciosEnCotizaciones]([idListaCotizacion],[idServicio])VALUES((select idListaCotizacion from DetalleCotizaciones where NumCot=" & Val(numCot.Text) & " and EquipId=" & Val(DGCopia.Item(0, i).Value) & ")," & Val(DGServicios.Item(1, a).Value) & "); end"
+                            Dim x As New SqlCommand(R, conexionMetasCotizador)
+                            x.ExecuteNonQuery()
+                            conexionMetasCotizador.Close()
+                        Next a
+                    Next i
+                    conexionMetasCotizador.Close()
+                    MsgBox("Cotización " & numCot.Text & " Actualizada correctamente")
+                    DGCopia.Rows.Clear()
+                Else
+                    '================================================================== GUARDAR EN COTIZACIONES ==================================================================================================
+                    R = "insert into Cotizaciones (idContacto, Origen, idLugarCondicion, idCuandoCondicion, idModalidadCondicion, idTiempoEntregaCondicion, idPagoCondicion, idLeyendaCondicion,
                     idValidezCondicion,idMonedaCondicion,idDocumentoCondicion,idModoCont,Referencia,FechaDesde,FechaHasta,Observaciones,idUsuarioCotizacion,Subtotal,IVA,Total,Creado)
                     values (" & Val(txtCveContacto.Text) & ",'" & origen & "'," & Val(cboServicio.Tag) & "," & Val(Cbcuando.Tag) & "," & Val(CbModalidad.Tag) & "," & Val(CboTiempo.Tag) & "," &
                             Val(CCondPago.Tag) & "," & Val(CboLeyenda.Tag) & "," & Val(CboValidez.Tag) & "," & Val(CboMoneda.Tag) & "," & Val(ComboDocCond.Tag) & "," & Val(CboContabilizar.Tag) & ",'" &
                             txtReferencia.Text & "','" & fechaActual & "','" & fecharecepcion & "','" & txtObservaciones.Text & "'," & Val(txtCotizo2019.Text) & "," & subtotal & "," & iva & "," & Total & ",0)"
+                    comando.CommandText = R
+                    'MsgBox(R)
+                    comando.ExecuteNonQuery()
+                    '============================================================================================================================================================================================
+                    '========================================================== SACAR EL ULTIMO REGISTRO DE COTIZACION PARA EL DETALLE DE COTIZACION=============================================================
+                    R = "select MAX(Numcot) from [Cotizaciones]"
+                    comando.CommandText = R
+                    lector = comando.ExecuteReader
+                    lector.Read()
+                    If ((lector(0) Is DBNull.Value) OrElse (lector(0) Is Nothing)) Then
+                        maximo = 1
+                    Else
+                        maximo = lector(0)
+                    End If
+                    lector.Close()
+                    '============================================================================================================================================================================================
+                    '===================================================================== INSERTAR EN DETALLE DE COTIZACIONES===================================================================================
+                    For i = 0 To DGCopia.Rows.Count - 2
+                        If DGCopia.Item(3, i).Value.ToString = "GENERICO" Then
+                            marcaGen = InputBox("¿Deseas agregar la marca del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Marca")
+                            modGen = InputBox("¿Deseas agregar el modelo del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Modelo")
+                            observacion = observacion + " MARCA: " + marcaGen + "  MODELO:" + modGen
+                        End If
+                        R = "insert into DetalleCotizaciones (NumCot,EquipId, PartidaNo,Cantidad, CantidadReal, identificadorInventarioCliente, Serie, Observaciones) values (" &
+                                 maximo & "," & DGCopia.Item(0, i).Value & "," & Val(DGCopia.Item(1, i).Value) & ",
+                         " & Val(DGCopia.Item(5, i).Value) & "," & Val(DGCopia.Item(5, i).Value) & ",'" & (DGCopia.Item(8, i).Value) & "','" & (DGCopia.Item(9, i).Value) & "','" & (DGCopia.Item(7, i).Value) + observacion & "')"
+                        'MsgBox(R)
                         comando.CommandText = R
-                        MsgBox(R)
                         comando.ExecuteNonQuery()
-                        '============================================================================================================================================================================================
-                        '========================================================== SACAR EL ULTIMO REGISTRO DE COTIZACION PARA EL DETALLE DE COTIZACION=============================================================
-                        R = "select MAX(Numcot) from [Cotizaciones]"
+                        marcaGen = ""
+                        modGen = ""
+                        observacion = ""
+                    Next i
+                    '============================================================================================================================================================================================
+                    '============================================================= INSERTAR EN DETALLE DE SERVICIOS DE DETALLE DE COTIZACIONE ===================================================================
+                    '////////////////////////////////////// CODIGO PARA SACAR EL IDDETALLE PARA LA TABLA DE SERVICIOS //////////////////////////////////
+                    For i = 0 To DGServicios.Rows.Count - 2
+                        R = "select idListaCotizacion from DetalleCotizaciones where NumCot=" & maximo & " and EquipId=" & DGServicios.Item(0, i).Value
                         comando.CommandText = R
                         lector = comando.ExecuteReader
                         lector.Read()
-                        If ((lector(0) Is DBNull.Value) OrElse (lector(0) Is Nothing)) Then
-                            maximo = 1
-                        Else
-                            maximo = lector(0)
-                        End If
+                        idlista = lector(0)
                         lector.Close()
-                        '============================================================================================================================================================================================
-                        '===================================================================== INSERTAR EN DETALLE DE COTIZACIONES===================================================================================
-                        For i = 0 To DGCopia.Rows.Count - 2
-
-                            R = "insert into DetalleCotizaciones (NumCot,EquipId, PartidaNo,Cantidad, CantidadReal, identificadorInventarioCliente, Serie, Observaciones) values (" &
-                                 maximo & "," & DGCopia.Item(0, i).Value & "," & Val(DGCopia.Item(1, i).Value) & ",
-                         " & Val(DGCopia.Item(5, i).Value) & "," & Val(DGCopia.Item(5, i).Value) & ",'" & (DGCopia.Item(8, i).Value) & "','" & (DGCopia.Item(9, i).Value) & "','" & (DGCopia.Item(7, i).Value) & "')"
-                            'MsgBox(R)
-                            comando.CommandText = R
-                            comando.ExecuteNonQuery()
-                        Next i
-                        '============================================================================================================================================================================================
-                        '============================================================= INSERTAR EN DETALLE DE SERVICIOS DE DETALLE DE COTIZACIONE ===================================================================
-                        '////////////////////////////////////// CODIGO PARA SACAR EL IDDETALLE PARA LA TABLA DE SERVICIOS //////////////////////////////////
-                        For i = 0 To DGServicios.Rows.Count - 2
-                            R = "select idListaCotizacion from DetalleCotizaciones where NumCot=" & maximo & " and EquipId=" & DGServicios.Item(0, i).Value
-                            comando.CommandText = R
-                            lector = comando.ExecuteReader
-                            lector.Read()
-                            idlista = lector(0)
-                            lector.Close()
-                            '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                            '/////////////////////////////////////// INSERTAR EN SERVICIOS DE DETALLE DE COTIZACION ///////////////////////////////////////////
-                            MsgBox("insert")
-                            R = "insert into ServiciosEnCotizaciones (idListaCotizacion, idServicio) values (" & idlista & "," & Val(DGServicios.Item(1, i).Value) & ")"
-                            comando.CommandText = R
-                            comando.ExecuteNonQuery()
-                            '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        Next
-                    End If
+                        '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        '/////////////////////////////////////// INSERTAR EN SERVICIOS DE DETALLE DE COTIZACION ///////////////////////////////////////////
+                        'MsgBox("insert")
+                        R = "insert into ServiciosEnCotizaciones (idListaCotizacion, idServicio) values (" & idlista & "," & Val(DGServicios.Item(1, i).Value) & ")"
+                        comando.CommandText = R
+                        comando.ExecuteNonQuery()
+                        '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    Next
+                    'Try
                 End If
-                '============================================================================================================================================================================================
-                Try
-                    If MessageBox.Show("¿Desea Guardar la información?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
-                        transaction.Commit()
-                        MsgBox("La Cotización se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
-                        Me.Dispose()
-                    Else
-                        transaction.Rollback()
-                        Me.Dispose()
-                    End If
-                Catch ex As Exception
-                    MsgBox("Commit Exception type: {0} no se pudo insertar por error", MsgBoxStyle.Critical, "Error externo al Sistema")
-                    Try
-                        transaction.Rollback()
-                    Catch ex1 As Exception
-                        MsgBox("Error RollBack", MsgBoxStyle.Critical, "Error interno del Sistema")
-                    End Try
-                End Try
+                If MessageBox.Show("¿Desea Guardar la información?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+                    transaction.Commit()
+                    MsgBox("La Cotización se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
+                    Me.Dispose()
+                Else
+                    transaction.Rollback()
+                    Me.Dispose()
+                End If
+                'Catch ex As Exception
+                '    MsgBox("Commit Exception type: {0} no se pudo insertar por error", MsgBoxStyle.Critical, "Error externo al Sistema")
+                '    Try
+                '        transaction.Rollback()
+                '    Catch ex1 As Exception
+                '        MsgBox("Error RollBack", MsgBoxStyle.Critical, "Error interno del Sistema")
+                '    End Try
+                'End Try
                 conexion.Close()
-            End Using
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del Sistema")
-        End Try
+            End If
+        End Using
+        '============================================================================================================================================================================================
+
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del Sistema")
+        'End Try
     End Sub
 End Class

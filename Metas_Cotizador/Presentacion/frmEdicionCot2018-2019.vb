@@ -330,7 +330,6 @@ Public Class frmEdicionCot2018_2019
                         where idListaCotizacion =" & Val(DGCopia.Item(0, i).Value) & ""
                             Dim t As New SqlCommand(cad, conexionMetasCotizador)
                             t.ExecuteNonQuery()
-
                             If DGCopia.Item(2, i).Value.ToString = "GENERICO" Then
                                 observacion = DGCopia.Item(6, i).Value
                                 'MsgBox(observacion)
