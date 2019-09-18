@@ -153,6 +153,7 @@ Partial Class FrmCotizacion
         '
         'btCerrar
         '
+        Me.btCerrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btCerrar.BackColor = System.Drawing.Color.Transparent
         Me.btCerrar.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btCerrar.Image = CType(resources.GetObject("btCerrar.Image"), System.Drawing.Image)
@@ -166,6 +167,9 @@ Partial Class FrmCotizacion
         'TabConsulta
         '
         Me.TabConsulta.AllowDrop = True
+        Me.TabConsulta.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabConsulta.Controls.Add(Me.Tab2018)
         Me.TabConsulta.Controls.Add(Me.TabPage1)
         Me.TabConsulta.Font = New System.Drawing.Font("Calibri Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -248,6 +252,10 @@ Partial Class FrmCotizacion
         'DGCotizaciones
         '
         Me.DGCotizaciones.AllowUserToDeleteRows = False
+        Me.DGCotizaciones.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DGCotizaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DGCotizaciones.BackgroundColor = System.Drawing.SystemColors.Window
         Me.DGCotizaciones.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DGCotizaciones.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -284,7 +292,6 @@ Partial Class FrmCotizacion
         Me.s.Name = "s"
         Me.s.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.s.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.s.Width = 80
         '
         'ID
         '
@@ -296,29 +303,28 @@ Partial Class FrmCotizacion
         '
         Me.Column5.HeaderText = "N° de Artículo (SKU)"
         Me.Column5.Name = "Column5"
-        Me.Column5.Width = 160
         '
         'Column6
         '
         Me.Column6.HeaderText = "Descripción"
         Me.Column6.Name = "Column6"
-        Me.Column6.Width = 400
         '
         'Column7
         '
         Me.Column7.HeaderText = "Marca/Fabricante"
         Me.Column7.Name = "Column7"
-        Me.Column7.Width = 200
         '
         'Column8
         '
         Me.Column8.HeaderText = "Modelo"
         Me.Column8.Name = "Column8"
-        Me.Column8.Width = 200
         '
         'DGEmpresas
         '
         Me.DGEmpresas.AllowUserToDeleteRows = False
+        Me.DGEmpresas.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DGEmpresas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DGEmpresas.BackgroundColor = System.Drawing.SystemColors.Window
         Me.DGEmpresas.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DGEmpresas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -386,6 +392,8 @@ Partial Class FrmCotizacion
         '
         'PanelNormal
         '
+        Me.PanelNormal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PanelNormal.BackColor = System.Drawing.Color.Transparent
         Me.PanelNormal.Controls.Add(Me.Label2)
         Me.PanelNormal.Controls.Add(Me.TextEmpresa)
@@ -425,6 +433,7 @@ Partial Class FrmCotizacion
         '
         'btCargarClientes
         '
+        Me.btCargarClientes.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btCargarClientes.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btCargarClientes.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_update_left_rotation_64
         Me.btCargarClientes.Location = New System.Drawing.Point(688, 29)
@@ -643,6 +652,7 @@ Partial Class FrmCotizacion
         '
         'btCotizacion
         '
+        Me.btCotizacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btCotizacion.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
         Me.btCotizacion.FlatAppearance.BorderSize = 0
         Me.btCotizacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -1188,6 +1198,7 @@ Partial Class FrmCotizacion
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Location = New System.Drawing.Point(203, 47)
+        Me.MinimumSize = New System.Drawing.Size(1157, 673)
         Me.Name = "FrmCotizacion"
         Me.Text = "FrmCotizacion"
         CType(Me.btCerrar, System.ComponentModel.ISupportInitialize).EndInit()
