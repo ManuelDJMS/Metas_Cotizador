@@ -228,7 +228,6 @@ Public Class FrmCotizacion
                 '===================== SELECCION DEL SERVICIO POR DEFAUL (CALIBRACION DEL EQUIPO SELECCIONADO) ======================================
                 comandoLIMS = conexionLIMS.CreateCommand
                 R = "SELECT EquipId, ServicesId, Price from SetupEquipmentServiceMapping where EquipId=" & equipo
-
                 comandoLIMS.CommandText = R
                 lectorLIMS = comandoLIMS.ExecuteReader
                 lectorLIMS.Read()
@@ -237,7 +236,12 @@ Public Class FrmCotizacion
                 conexionLIMS.Close()
 
             Next
+            '=============== LIMPIAR LOS DATAGRID POR ENVIADOS ================
+            DgAgregar.Rows.Clear()
             FrmEdicionCot.ShowDialog()
+            For i = 0 To DGCotizaciones.Rows.Count - 2
+                DGCotizaciones.Rows(i).Cells(0).Value = False
+            Next
         End If
     End Sub
 

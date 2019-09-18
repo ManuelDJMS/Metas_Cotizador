@@ -167,7 +167,7 @@ Public Class FrmHOME
     End Sub
     Private Sub CerrarFormulario(ByVal sender As Object, ByVal e As FormClosedEventArgs)
         'CONDICION SI FORMS ESTA ABIERTO
-        If (Application.OpenForms("FormPacientes") Is Nothing) Then
+        If (Application.OpenForms("FormPacient") Is Nothing) Then
             'Button1.BackColor = Color.FromArgb(4, 41, 68)
         End If
         If (Application.OpenForms("FormAgenda") Is Nothing) Then

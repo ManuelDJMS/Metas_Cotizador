@@ -178,8 +178,9 @@ Public Class FrmEdicionCot
     End Sub
 
     Private Sub BtnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
-        Me.Dispose()
         editar = False
+        Me.Dispose()
+
     End Sub
 
     Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
@@ -370,22 +371,23 @@ Public Class FrmEdicionCot
     End Sub
 
     Private Sub BtGuardarInf_Click(sender As Object, e As EventArgs) Handles btGuardarInf.Click
+        If txtCotizo2019.Text.Equals("") Or txtCotizo2019.Text = "" Or DGServicios.Rows.Count = 0 Then
+            MsgBox("Falta agregar el usuario que realizo la cotización¡", MsgBoxStyle.Critical)
+        Else
+            Try
 
-        Try
-            fechaActual = Convert.ToDateTime(DTPDesde.Text).ToShortDateString
-            fecharecepcion = Convert.ToDateTime(DTPHasta.Text).ToShortDateString
-            Using conexion As New SqlConnection(conexionCotizadortransac)
-                conexion.Open()
-                Dim transaction As SqlTransaction
-                transaction = conexion.BeginTransaction("Sample")
-                Dim comando As SqlCommand = conexion.CreateCommand()
-                Dim lector As SqlDataReader
-                comando.Connection = conexion
-                comando.Transaction = transaction
+                fechaActual = Convert.ToDateTime(DTPDesde.Text).ToShortDateString
+                fecharecepcion = Convert.ToDateTime(DTPHasta.Text).ToShortDateString
+                Using conexion As New SqlConnection(conexionCotizadortransac)
+                    conexion.Open()
+                    Dim transaction As SqlTransaction
+                    transaction = conexion.BeginTransaction("Sample")
+                    Dim comando As SqlCommand = conexion.CreateCommand()
+                    Dim lector As SqlDataReader
+                    comando.Connection = conexion
+                    comando.Transaction = transaction
 
-                If txtCotizo2019.Text.Equals("") Or txtCotizo2019.Text = "" Or DGServicios.Rows.Count = 0 Then
-                    MsgBox("Falta agregar el usuario que realizo la cotización¡", MsgBoxStyle.Critical)
-                Else
+
                     observacion = ""
                     'Actualizar Los datos de la cotizacion
                     'Consultar la ultima cotizacion y asignarla a un LABEL para poder hacer el update conforme al LABEL
@@ -476,9 +478,9 @@ Public Class FrmEdicionCot
                         For i = 0 To DGCopia.Rows.Count - 2
 
                             R = "insert into DetalleCotizaciones (NumCot,EquipId, PartidaNo,Cantidad, CantidadReal, identificadorInventarioCliente, Serie, Observaciones) values (" &
-                                 maximo & "," & DGCopia.Item(0, i).Value & "," & Val(DGCopia.Item(1, i).Value) & ",
-                         " & Val(DGCopia.Item(5, i).Value) & "," & Val(DGCopia.Item(5, i).Value) & ",'" & (DGCopia.Item(8, i).Value) & "','" & (DGCopia.Item(9, i).Value) & "','" & (DGCopia.Item(7, i).Value) & "')"
-                            'MsgBox(R)
+                                 maximo & "," & DGCopia.Item(0, i).Value & "," & Val(DGCopia.Item(1, i).Value) & "," & Val(DGCopia.Item(5, i).Value) & "," & Val(DGCopia.Item(5, i).Value) & ",'" &
+                                 DGCopia.Item(9, i).Value & "','" & (DGCopia.Item(10, i).Value) & "','" & (DGCopia.Item(7, i).Value) & "')"
+                            MsgBox(R)
                             comando.CommandText = R
                             comando.ExecuteNonQuery()
                         Next i
@@ -501,29 +503,31 @@ Public Class FrmEdicionCot
                             '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         Next
                     End If
-                End If
-                '============================================================================================================================================================================================
-                Try
-                    If MessageBox.Show("¿Desea Guardar la información?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
-                        transaction.Commit()
-                        MsgBox("La Cotización se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
-                        Me.Dispose()
-                    Else
-                        transaction.Rollback()
-                        Me.Dispose()
-                    End If
-                Catch ex As Exception
-                    MsgBox("Commit Exception type: {0} no se pudo insertar por error", MsgBoxStyle.Critical, "Error externo al Sistema")
+
+                    '============================================================================================================================================================================================
                     Try
-                        transaction.Rollback()
-                    Catch ex1 As Exception
-                        MsgBox("Error RollBack", MsgBoxStyle.Critical, "Error interno del Sistema")
+                        If MessageBox.Show("¿Desea Guardar la información?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+                            transaction.Commit()
+                            MsgBox("La Cotización se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
+                            FrmCotizacion.DgAgregar.Rows.Clear()
+                            Me.Dispose()
+                        Else
+                            transaction.Rollback()
+                            Me.Dispose()
+                        End If
+                    Catch ex As Exception
+                        MsgBox("Commit Exception type: {0} no se pudo insertar por error", MsgBoxStyle.Critical, "Error externo al Sistema")
+                        Try
+                            transaction.Rollback()
+                        Catch ex1 As Exception
+                            MsgBox("Error RollBack", MsgBoxStyle.Critical, "Error interno del Sistema")
+                        End Try
                     End Try
-                End Try
-                conexion.Close()
-            End Using
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del Sistema")
-        End Try
+                    conexion.Close()
+                End Using
+            Catch ex As Exception
+                MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del Sistema")
+            End Try
+        End If
     End Sub
 End Class

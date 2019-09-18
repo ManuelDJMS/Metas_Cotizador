@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Public Class FrmCompletarOT
     Dim seleccionado, b As Boolean
-    Dim salesorderId, customerid, numcot As Integer
+    Dim salesorderId, customerid As Integer
     Dim totalcot As Decimal
 
     Private Sub FrmCompletarOT_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -39,6 +39,15 @@ Public Class FrmCompletarOT
         busquedasOT(DGRes, TextEmail, txtCot, txtNombreE)
     End Sub
 
+    Private Sub DGRes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGRes.CellContentClick
+        '=====================================CODIGO PARA SELECCIONAR SOLO UN CHECKBOX==========================
+        If e.ColumnIndex = 0 Then
+            For Each row As DataGridViewRow In CType(sender, DataGridView).Rows
+                row.Cells(e.ColumnIndex).Value = False
+            Next
+        End If
+    End Sub
+
     Private Sub TxtCot_TextChanged(sender As Object, e As EventArgs) Handles txtCot.TextChanged
         busquedasOT(DGRes, TextEmail, txtCot, txtNombreE)
     End Sub
@@ -65,6 +74,7 @@ Public Class FrmCompletarOT
                     'R = "select Cotizaciones.NumCot, idContacto, x1.EquipId, isnull(Serie,'-') as Serie, isnull(IdentificadorInventarioCliente, '-') as ID, isnull(DetalleCotizaciones.Observaciones,'-') from Cotizaciones inner join DetalleCotizaciones
                     'on Cotizaciones.NumCot=DetalleCotizaciones.NumCot inner join " & servidor & "[SetupEquipment] x1 on DetalleCotizaciones.EquipId=x1.EquipId where Cotizaciones.NumCot=" & DGRes.Rows(i).Cells(2).Value
                     numcot = DGRes.Rows(i).Cells(2).Value
+                    MsgBox(numcot)
                     FrmEquipamiento.Show()
                     '////////////////////////////////////////////////////////////////////////////////////////////////////
 
