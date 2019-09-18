@@ -375,14 +375,14 @@ Public Class FrmEdicionCot
 
                 fechaActual = Convert.ToDateTime(DTPDesde.Text).ToShortDateString
                 fecharecepcion = Convert.ToDateTime(DTPHasta.Text).ToShortDateString
-                        Using conexion As New SqlConnection(conexionCotizadortransac)
-                            conexion.Open()
-                            Dim transaction As SqlTransaction
-                            transaction = conexion.BeginTransaction("Sample")
-                            Dim comando As SqlCommand = conexion.CreateCommand()
-                            Dim lector As SqlDataReader
-                            comando.Connection = conexion
-                            comando.Transaction = transaction
+                Using conexion As New SqlConnection(conexionCotizadortransac)
+                    conexion.Open()
+                    Dim transaction As SqlTransaction
+                    transaction = conexion.BeginTransaction("Sample")
+                    Dim comando As SqlCommand = conexion.CreateCommand()
+                    Dim lector As SqlDataReader
+                    comando.Connection = conexion
+                    comando.Transaction = transaction
 
                     'Actualizar Los datos de la cotizacion
                     'Consultar la ultima cotizacion y asignarla a un LABEL para poder hacer el update conforme al LABEL
@@ -520,24 +520,24 @@ Public Class FrmEdicionCot
 
                     '============================================================================================================================================================================================
                     Try
-                                    If MessageBox.Show("¿Desea Guardar la información?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
-                                        transaction.Commit()
-                                        MsgBox("La Cotización se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
-                                        FrmCotizacion.DgAgregar.Rows.Clear()
-                                        Me.Dispose()
-                                    Else
-                                        transaction.Rollback()
-                                        Me.Dispose()
-                                    End If
-                                Catch ex As Exception
-                                    MsgBox("Commit Exception type: {0} no se pudo insertar por error", MsgBoxStyle.Critical, "Error externo al Sistema")
-                                    Try
-                                        transaction.Rollback()
-                                    Catch ex1 As Exception
-                                        MsgBox("Error RollBack", MsgBoxStyle.Critical, "Error interno del Sistema")
-                                    End Try
-                                End Try
-                                conexion.Close()
+                        If MessageBox.Show("¿Desea Guardar la información?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+                            transaction.Commit()
+                            MsgBox("La Cotización se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
+                            FrmCotizacion.DgAgregar.Rows.Clear()
+                            Me.Dispose()
+                        Else
+                            transaction.Rollback()
+                            Me.Dispose()
+                        End If
+                    Catch ex As Exception
+                        MsgBox("Commit Exception type: {0} no se pudo insertar por error", MsgBoxStyle.Critical, "Error externo al Sistema")
+                        Try
+                            transaction.Rollback()
+                        Catch ex1 As Exception
+                            MsgBox("Error RollBack", MsgBoxStyle.Critical, "Error interno del Sistema")
+                        End Try
+                    End Try
+                    conexion.Close()
                 End Using
             Catch ex As Exception
                 MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del Sistema")
