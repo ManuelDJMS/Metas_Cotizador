@@ -10,8 +10,8 @@ Public Class FrmEdicionCot
     Dim eliminar1, eliminar2 As Integer
     Dim marcaGen, modGen As String
     Private Sub FrmEdicionCot_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-            If editar = True Then
+        'Try
+        If editar = True Then
                 DGCopia.Rows.Clear()
                 DGServicios.Rows.Clear()
                 DGCopia.Columns(9).Width = 80
@@ -29,7 +29,7 @@ Public Class FrmEdicionCot
                 comandoMetasCotizador.CommandText = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre,[SetupCustomerDetails].[CustomerId],[CompanyName],[TaxIDNo],
         [ContAddress1] AS DomCont,[ContCity], [ContState],[Phone],[SetupCustomerDetails].[Email],
         PartidaNo,[SetUpEquipment].[EquipmentName] AS Articulo, [Mfr],[Model],[SetUpEquipment].[EquipId], [DetalleCotizaciones].[Observaciones], [SetupServices].[ServicesId],
-        [SetupServices].[ServiceName],[idUsuarioCotizacion],[Referencia], [DetalleCotizaciones].[idListaCotizacion],[Subtotal],[Total], [Cantidad], [SetupEquipmentServiceMapping].Price
+        [SetupServices].[ServiceName],[idUsuarioCotizacion],[Referencia], [DetalleCotizaciones].[idListaCotizacion],[Subtotal],[Total], [Cantidad], [SetupEquipmentServiceMapping].Price,[Serie],[identificadorInventarioCliente],[ObservacionesServicios] 
         from [MetasCotizador].[dbo].[Cotizaciones]
         INNER JOIN [Usuarios] ON [Cotizaciones].[idUsuarioCotizacion] = [Usuarios].[idUsuarioAdministrador]
         INNER JOIN " & servidor & "[SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
@@ -59,9 +59,10 @@ Public Class FrmEdicionCot
                     txtReferencia.Text = lectorMetasCotizador(21)
                     TextSubtotal.Text = lectorMetasCotizador(23)
                     precio = lectorMetasCotizador(23)
-                    TextTotal.Text = lectorMetasCotizador(24)
-                    DGCopia.Rows.Add(lectorMetasCotizador(16), lectorMetasCotizador(12), lectorMetasCotizador(13), lectorMetasCotizador(14), lectorMetasCotizador(15), lectorMetasCotizador(25), True, lectorMetasCotizador(17))
-                    DGServicios.Rows.Add(lectorMetasCotizador(16), lectorMetasCotizador(18), lectorMetasCotizador(26), lectorMetasCotizador(22))
+                TextTotal.Text = lectorMetasCotizador(24)
+                MsgBox(lectorMetasCotizador(29))
+                DGCopia.Rows.Add(lectorMetasCotizador(16), lectorMetasCotizador(12), lectorMetasCotizador(13), lectorMetasCotizador(14), lectorMetasCotizador(15), lectorMetasCotizador(25), True, lectorMetasCotizador(17), False, lectorMetasCotizador(27), lectorMetasCotizador(28), lectorMetasCotizador(29))
+                DGServicios.Rows.Add(lectorMetasCotizador(16), lectorMetasCotizador(18), lectorMetasCotizador(26), lectorMetasCotizador(22))
                 End While
                 lectorMetasCotizador.Close()
                 comandoMetasCotizador = conexionMetasCotizador.CreateCommand
@@ -122,12 +123,12 @@ Public Class FrmEdicionCot
             llenarcombo2("select * from TiempoEntregaCondicion", CboTiempo)
             ''-----------------Combo validez ------------------------
             llenarcombo("select * from ValidezCondicion", CboValidez)
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("frmEdicionCot2018-2019", "Error al cargar el formulario", Err.Number, cadena)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
+        '    cadena = Err.Description
+        '    cadena = cadena.Replace("'", "")
+        '    Bitacora("frmEdicionCot2018-2019", "Error al cargar el formulario", Err.Number, cadena)
+        'End Try
     End Sub
     Sub llenarcombo(ByVal query As String, ByVal combo As ComboBox)
         '=============================================== METODO PARA LLENAR LOS COMBOS ===================================================
@@ -490,7 +491,7 @@ Public Class FrmEdicionCot
                             End If
                             R = "insert into DetalleCotizaciones (NumCot,EquipId, PartidaNo,Cantidad, CantidadReal, identificadorInventarioCliente, Serie, Observaciones, ObservacionesServicios) values (" &
                                  maximo & "," & DGCopia.Item(0, i).Value & "," & Val(DGCopia.Item(1, i).Value) & ",
-                         " & Val(DGCopia.Item(5, i).Value) & "," & Val(DGCopia.Item(5, i).Value) & ",'" & (DGCopia.Item(8, i).Value) & "','" & (DGCopia.Item(9, i).Value) & "','" & (DGCopia.Item(7, i).Value) + observacion & "','" & (DGCopia.Item(11, i).Value) & "')"
+                         " & Val(DGCopia.Item(5, i).Value) & "," & Val(DGCopia.Item(5, i).Value) & ",'" & (DGCopia.Item(9, i).Value) & "','" & (DGCopia.Item(10, i).Value) & "','" & (DGCopia.Item(7, i).Value) + observacion & "','" & (DGCopia.Item(11, i).Value) & "')"
                             'MsgBox(R)
                             comando.CommandText = R
                             comando.ExecuteNonQuery()
