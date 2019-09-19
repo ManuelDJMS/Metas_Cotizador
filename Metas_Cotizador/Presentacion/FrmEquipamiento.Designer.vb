@@ -353,7 +353,7 @@ Partial Class FrmEquipamiento
         '
         'Column6
         '
-        Me.Column6.HeaderText = "Fecha"
+        Me.Column6.HeaderText = "Fecha Proxima "
         Me.Column6.Name = "Column6"
         Me.Column6.Width = 80
         '
