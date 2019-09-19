@@ -87,7 +87,6 @@ Partial Class FrmCompletarOT
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.txtClaveRecopilada = New System.Windows.Forms.TextBox()
-        Me.btGuardar = New System.Windows.Forms.Button()
         Me.Label69 = New System.Windows.Forms.Label()
         Me.txtIVA = New System.Windows.Forms.Label()
         Me.txtTotal = New System.Windows.Forms.Label()
@@ -116,6 +115,7 @@ Partial Class FrmCompletarOT
         '
         'PictureBox5
         '
+        Me.PictureBox5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox5.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox5.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
@@ -128,6 +128,9 @@ Partial Class FrmCompletarOT
         '
         'TabConsulta
         '
+        Me.TabConsulta.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabConsulta.Controls.Add(Me.TabPage2)
         Me.TabConsulta.Controls.Add(Me.TabPage1)
         Me.TabConsulta.Location = New System.Drawing.Point(4, 23)
@@ -167,10 +170,15 @@ Partial Class FrmCompletarOT
         Me.dgEquipamiento.Name = "dgEquipamiento"
         Me.dgEquipamiento.Size = New System.Drawing.Size(675, 86)
         Me.dgEquipamiento.TabIndex = 259
+        Me.dgEquipamiento.Visible = False
         '
         'DGRes
         '
         Me.DGRes.AllowUserToDeleteRows = False
+        Me.DGRes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DGRes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DGRes.BackgroundColor = System.Drawing.SystemColors.Window
         Me.DGRes.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DGRes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -205,7 +213,6 @@ Partial Class FrmCompletarOT
         '
         Me.Column1.HeaderText = "Seleccionar"
         Me.Column1.Name = "Column1"
-        Me.Column1.Width = 80
         '
         'Column2
         '
@@ -218,25 +225,21 @@ Partial Class FrmCompletarOT
         '
         Me.Column3.HeaderText = "Num Cot"
         Me.Column3.Name = "Column3"
-        Me.Column3.Width = 90
         '
         'Column5
         '
         Me.Column5.HeaderText = "Contacto"
         Me.Column5.Name = "Column5"
-        Me.Column5.Width = 200
         '
         'Column4
         '
         Me.Column4.HeaderText = "Empresa"
         Me.Column4.Name = "Column4"
-        Me.Column4.Width = 200
         '
         'Column6
         '
         Me.Column6.HeaderText = "Email"
         Me.Column6.Name = "Column6"
-        Me.Column6.Width = 200
         '
         'Column7
         '
@@ -245,6 +248,7 @@ Partial Class FrmCompletarOT
         '
         'Label8
         '
+        Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(11, 586)
@@ -255,6 +259,7 @@ Partial Class FrmCompletarOT
         '
         'Label9
         '
+        Me.Label9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.Location = New System.Drawing.Point(55, 587)
@@ -350,6 +355,7 @@ Partial Class FrmCompletarOT
         '
         'btGenerarOT
         '
+        Me.btGenerarOT.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btGenerarOT.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
         Me.btGenerarOT.FlatAppearance.BorderSize = 0
         Me.btGenerarOT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -371,7 +377,6 @@ Partial Class FrmCompletarOT
         Me.TabPage1.Controls.Add(Me.Label11)
         Me.TabPage1.Controls.Add(Me.Label12)
         Me.TabPage1.Controls.Add(Me.txtClaveRecopilada)
-        Me.TabPage1.Controls.Add(Me.btGuardar)
         Me.TabPage1.Controls.Add(Me.Label69)
         Me.TabPage1.Controls.Add(Me.txtIVA)
         Me.TabPage1.Controls.Add(Me.txtTotal)
@@ -396,6 +401,10 @@ Partial Class FrmCompletarOT
         'dgCot
         '
         Me.dgCot.AllowUserToDeleteRows = False
+        Me.dgCot.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgCot.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgCot.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgCot.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgCot.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -432,7 +441,6 @@ Partial Class FrmCompletarOT
         Me.Column8.HeaderText = "#Instrumento"
         Me.Column8.Name = "Column8"
         Me.Column8.ReadOnly = True
-        Me.Column8.Width = 80
         '
         'Column20
         '
@@ -445,7 +453,6 @@ Partial Class FrmCompletarOT
         Me.Column21.HeaderText = "Tipo"
         Me.Column21.Name = "Column21"
         Me.Column21.ReadOnly = True
-        Me.Column21.Width = 190
         '
         'Column22
         '
@@ -470,24 +477,23 @@ Partial Class FrmCompletarOT
         Me.Column25.HeaderText = "Alcance"
         Me.Column25.Name = "Column25"
         Me.Column25.ReadOnly = True
-        Me.Column25.Width = 160
         '
         'Column26
         '
         Me.Column26.HeaderText = "Precio"
         Me.Column26.Name = "Column26"
         Me.Column26.ReadOnly = True
-        Me.Column26.Width = 80
         '
         'Column27
         '
         Me.Column27.HeaderText = "Cantidad Real"
         Me.Column27.Name = "Column27"
         Me.Column27.ReadOnly = True
-        Me.Column27.Width = 80
         '
         'GroupBox2
         '
+        Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.Controls.Add(Me.txtFechaHasta)
         Me.GroupBox2.Controls.Add(Me.txtFechaDesde)
         Me.GroupBox2.Controls.Add(Me.Label63)
@@ -755,23 +761,9 @@ Partial Class FrmCompletarOT
         Me.txtClaveRecopilada.TabIndex = 165
         Me.txtClaveRecopilada.Visible = False
         '
-        'btGuardar
-        '
-        Me.btGuardar.BackColor = System.Drawing.Color.SteelBlue
-        Me.btGuardar.FlatAppearance.BorderSize = 0
-        Me.btGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btGuardar.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btGuardar.ForeColor = System.Drawing.Color.White
-        Me.btGuardar.Location = New System.Drawing.Point(946, 19)
-        Me.btGuardar.Name = "btGuardar"
-        Me.btGuardar.Size = New System.Drawing.Size(167, 33)
-        Me.btGuardar.TabIndex = 162
-        Me.btGuardar.Text = "Generar OV"
-        Me.btGuardar.UseVisualStyleBackColor = False
-        Me.btGuardar.Visible = False
-        '
         'Label69
         '
+        Me.Label69.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label69.AutoSize = True
         Me.Label69.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label69.Location = New System.Drawing.Point(963, 571)
@@ -782,6 +774,7 @@ Partial Class FrmCompletarOT
         '
         'txtIVA
         '
+        Me.txtIVA.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtIVA.AutoSize = True
         Me.txtIVA.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtIVA.ForeColor = System.Drawing.Color.OliveDrab
@@ -793,6 +786,7 @@ Partial Class FrmCompletarOT
         '
         'txtTotal
         '
+        Me.txtTotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtTotal.AutoSize = True
         Me.txtTotal.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTotal.ForeColor = System.Drawing.Color.OliveDrab
@@ -804,6 +798,7 @@ Partial Class FrmCompletarOT
         '
         'Label51
         '
+        Me.Label51.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label51.AutoSize = True
         Me.Label51.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label51.Location = New System.Drawing.Point(963, 547)
@@ -836,6 +831,7 @@ Partial Class FrmCompletarOT
         '
         'txtReferencia
         '
+        Me.txtReferencia.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtReferencia.AutoSize = True
         Me.txtReferencia.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtReferencia.Location = New System.Drawing.Point(116, 565)
@@ -846,6 +842,7 @@ Partial Class FrmCompletarOT
         '
         'Label53
         '
+        Me.Label53.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label53.AutoSize = True
         Me.Label53.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label53.Location = New System.Drawing.Point(21, 563)
@@ -856,6 +853,7 @@ Partial Class FrmCompletarOT
         '
         'Label65
         '
+        Me.Label65.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label65.Location = New System.Drawing.Point(21, 545)
@@ -866,6 +864,7 @@ Partial Class FrmCompletarOT
         '
         'txtObservaciones
         '
+        Me.txtObservaciones.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtObservaciones.AutoSize = True
         Me.txtObservaciones.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtObservaciones.Location = New System.Drawing.Point(148, 545)
@@ -876,6 +875,7 @@ Partial Class FrmCompletarOT
         '
         'txtSubtotal
         '
+        Me.txtSubtotal.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtSubtotal.AutoSize = True
         Me.txtSubtotal.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSubtotal.ForeColor = System.Drawing.Color.OliveDrab
@@ -887,6 +887,7 @@ Partial Class FrmCompletarOT
         '
         'Label7
         '
+        Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(1035, 571)
@@ -897,6 +898,7 @@ Partial Class FrmCompletarOT
         '
         'Label4
         '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(1035, 546)
@@ -907,6 +909,7 @@ Partial Class FrmCompletarOT
         '
         'Label2
         '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(1035, 522)
@@ -917,6 +920,7 @@ Partial Class FrmCompletarOT
         '
         'Label59
         '
+        Me.Label59.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label59.AutoSize = True
         Me.Label59.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label59.Location = New System.Drawing.Point(963, 522)
@@ -1004,7 +1008,6 @@ Partial Class FrmCompletarOT
     Friend WithEvents Label11 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents txtClaveRecopilada As TextBox
-    Friend WithEvents btGuardar As Button
     Friend WithEvents Label69 As Label
     Friend WithEvents txtIVA As Label
     Friend WithEvents txtTotal As Label

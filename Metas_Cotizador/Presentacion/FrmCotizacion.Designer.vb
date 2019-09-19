@@ -778,6 +778,7 @@ Partial Class FrmCotizacion
         '
         'btnEditarCot
         '
+        Me.btnEditarCot.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEditarCot.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
         Me.btnEditarCot.FlatAppearance.BorderSize = 0
         Me.btnEditarCot.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -793,6 +794,9 @@ Partial Class FrmCotizacion
         'dgCot
         '
         Me.dgCot.AllowUserToDeleteRows = False
+        Me.dgCot.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgCot.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgCot.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgCot.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -886,6 +890,9 @@ Partial Class FrmCotizacion
         'dgEmpresa
         '
         Me.dgEmpresa.AllowUserToDeleteRows = False
+        Me.dgEmpresa.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.dgEmpresa.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.dgEmpresa.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgEmpresa.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgEmpresa.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -925,40 +932,35 @@ Partial Class FrmCotizacion
         '
         Me.DataGridViewTextBoxColumn6.HeaderText = "Cliente"
         Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        Me.DataGridViewTextBoxColumn6.Width = 220
         '
         'DataGridViewTextBoxColumn7
         '
         Me.DataGridViewTextBoxColumn7.HeaderText = "Empresa"
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        Me.DataGridViewTextBoxColumn7.Width = 225
         '
         'Column12
         '
         Me.Column12.HeaderText = "Domicilio"
         Me.Column12.Name = "Column12"
-        Me.Column12.Width = 220
         '
         'Column13
         '
         Me.Column13.HeaderText = "Código Postal"
         Me.Column13.Name = "Column13"
-        Me.Column13.Width = 70
         '
         'Column14
         '
         Me.Column14.HeaderText = "Teléfono"
         Me.Column14.Name = "Column14"
-        Me.Column14.Width = 80
         '
         'Column15
         '
         Me.Column15.HeaderText = "Correo"
         Me.Column15.Name = "Column15"
-        Me.Column15.Width = 150
         '
         'btnReImpresion
         '
+        Me.btnReImpresion.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnReImpresion.BackColor = System.Drawing.Color.MediumSeaGreen
         Me.btnReImpresion.Cursor = System.Windows.Forms.Cursors.Default
         Me.btnReImpresion.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray
@@ -1105,7 +1107,7 @@ Partial Class FrmCotizacion
         '
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.Location = New System.Drawing.Point(11, 318)
+        Me.Label17.Location = New System.Drawing.Point(11, 323)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(90, 18)
         Me.Label17.TabIndex = 190
