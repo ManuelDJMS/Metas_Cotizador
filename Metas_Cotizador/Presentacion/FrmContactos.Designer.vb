@@ -22,12 +22,12 @@ Partial Class FrmContactos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -51,6 +51,7 @@ Partial Class FrmContactos
         Me.cbNombre = New System.Windows.Forms.CheckBox()
         Me.cbCorreo = New System.Windows.Forms.CheckBox()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.idContacto = New System.Windows.Forms.Label()
         Me.txtClaveRecopilada = New System.Windows.Forms.TextBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabInformacionPersonal = New System.Windows.Forms.TabPage()
@@ -125,9 +126,9 @@ Partial Class FrmContactos
         Me.Label5 = New System.Windows.Forms.Label()
         Me.txtDepartamento = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
+        Me.txtNombreCompania = New System.Windows.Forms.Label()
         Me.txtCelular = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
-        Me.txtNombreCompania = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtCorreo1 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -202,9 +203,7 @@ Partial Class FrmContactos
         Me.btGuardar = New System.Windows.Forms.Button()
         Me.txtNombreDeContacto = New System.Windows.Forms.Label()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.Label49 = New System.Windows.Forms.Label()
         Me.txtNombreEmpleado = New System.Windows.Forms.Label()
-        Me.idContacto = New System.Windows.Forms.Label()
         Me.TabConsulta.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.DGConsulta, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -226,6 +225,9 @@ Partial Class FrmContactos
         '
         'TabConsulta
         '
+        Me.TabConsulta.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabConsulta.Controls.Add(Me.TabPage2)
         Me.TabConsulta.Controls.Add(Me.TabPage1)
         Me.TabConsulta.Location = New System.Drawing.Point(2, 30)
@@ -262,6 +264,7 @@ Partial Class FrmContactos
         '
         'Button2
         '
+        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -339,33 +342,37 @@ Partial Class FrmContactos
         'DGConsulta
         '
         Me.DGConsulta.AllowUserToDeleteRows = False
+        Me.DGConsulta.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DGConsulta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DGConsulta.BackgroundColor = System.Drawing.SystemColors.Window
         Me.DGConsulta.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DGConsulta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(170, Byte), Integer))
-        DataGridViewCellStyle22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle22.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGConsulta.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle22
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(170, Byte), Integer))
+        DataGridViewCellStyle19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle19.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGConsulta.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle19
         Me.DGConsulta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DGConsulta.EnableHeadersVisualStyles = False
         Me.DGConsulta.Location = New System.Drawing.Point(81, 111)
         Me.DGConsulta.Name = "DGConsulta"
         Me.DGConsulta.ReadOnly = True
         Me.DGConsulta.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle23.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGConsulta.RowHeadersDefaultCellStyle = DataGridViewCellStyle23
-        DataGridViewCellStyle24.BackColor = System.Drawing.Color.White
-        Me.DGConsulta.RowsDefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle20.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGConsulta.RowHeadersDefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle21.BackColor = System.Drawing.Color.White
+        Me.DGConsulta.RowsDefaultCellStyle = DataGridViewCellStyle21
         Me.DGConsulta.Size = New System.Drawing.Size(943, 459)
         Me.DGConsulta.TabIndex = 153
         '
@@ -406,48 +413,52 @@ Partial Class FrmContactos
         Me.cbClave.AutoSize = True
         Me.cbClave.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
         Me.cbClave.ForeColor = System.Drawing.Color.SteelBlue
-        Me.cbClave.Location = New System.Drawing.Point(989, 585)
+        Me.cbClave.Location = New System.Drawing.Point(976, 585)
         Me.cbClave.Name = "cbClave"
         Me.cbClave.Size = New System.Drawing.Size(136, 22)
         Me.cbClave.TabIndex = 63
         Me.cbClave.Text = "Clave de contacto"
         Me.cbClave.UseVisualStyleBackColor = True
+        Me.cbClave.Visible = False
         '
         'cbTelefono
         '
         Me.cbTelefono.AutoSize = True
         Me.cbTelefono.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
         Me.cbTelefono.ForeColor = System.Drawing.Color.SteelBlue
-        Me.cbTelefono.Location = New System.Drawing.Point(1043, 586)
+        Me.cbTelefono.Location = New System.Drawing.Point(994, 585)
         Me.cbTelefono.Name = "cbTelefono"
         Me.cbTelefono.Size = New System.Drawing.Size(82, 22)
         Me.cbTelefono.TabIndex = 62
         Me.cbTelefono.Text = "Teléfono"
         Me.cbTelefono.UseVisualStyleBackColor = True
+        Me.cbTelefono.Visible = False
         '
         'cbNombre
         '
         Me.cbNombre.AutoSize = True
         Me.cbNombre.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
         Me.cbNombre.ForeColor = System.Drawing.Color.SteelBlue
-        Me.cbNombre.Location = New System.Drawing.Point(982, 585)
+        Me.cbNombre.Location = New System.Drawing.Point(974, 585)
         Me.cbNombre.Name = "cbNombre"
         Me.cbNombre.Size = New System.Drawing.Size(153, 22)
         Me.cbNombre.TabIndex = 61
         Me.cbNombre.Text = "Nombre de contacto"
         Me.cbNombre.UseVisualStyleBackColor = True
+        Me.cbNombre.Visible = False
         '
         'cbCorreo
         '
         Me.cbCorreo.AutoSize = True
         Me.cbCorreo.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold)
         Me.cbCorreo.ForeColor = System.Drawing.Color.SteelBlue
-        Me.cbCorreo.Location = New System.Drawing.Point(989, 588)
+        Me.cbCorreo.Location = New System.Drawing.Point(976, 585)
         Me.cbCorreo.Name = "cbCorreo"
         Me.cbCorreo.Size = New System.Drawing.Size(69, 22)
         Me.cbCorreo.TabIndex = 60
         Me.cbCorreo.Text = "Correo"
         Me.cbCorreo.UseVisualStyleBackColor = True
+        Me.cbCorreo.Visible = False
         '
         'TabPage1
         '
@@ -464,6 +475,18 @@ Partial Class FrmContactos
         Me.TabPage1.TabIndex = 8
         Me.TabPage1.Text = "Detalles de Contactos"
         '
+        'idContacto
+        '
+        Me.idContacto.AutoSize = True
+        Me.idContacto.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.idContacto.ForeColor = System.Drawing.Color.Black
+        Me.idContacto.Location = New System.Drawing.Point(189, 33)
+        Me.idContacto.Name = "idContacto"
+        Me.idContacto.Size = New System.Drawing.Size(73, 16)
+        Me.idContacto.TabIndex = 200
+        Me.idContacto.Text = "Compañia:"
+        Me.idContacto.Visible = False
+        '
         'txtClaveRecopilada
         '
         Me.txtClaveRecopilada.Location = New System.Drawing.Point(541, 14)
@@ -474,6 +497,9 @@ Partial Class FrmContactos
         '
         'TabControl1
         '
+        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabInformacionPersonal)
         Me.TabControl1.Controls.Add(Me.TabEquipo)
         Me.TabControl1.Controls.Add(Me.TabAdministrativo)
@@ -502,17 +528,20 @@ Partial Class FrmContactos
         'DGAdicionales
         '
         Me.DGAdicionales.AllowUserToDeleteRows = False
+        Me.DGAdicionales.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DGAdicionales.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DGAdicionales.BackgroundColor = System.Drawing.SystemColors.Window
         Me.DGAdicionales.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DGAdicionales.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(170, Byte), Integer))
-        DataGridViewCellStyle19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle19.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGAdicionales.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(170, Byte), Integer))
+        DataGridViewCellStyle22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle22.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGAdicionales.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle22
         Me.DGAdicionales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DGAdicionales.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5})
         Me.DGAdicionales.EnableHeadersVisualStyles = False
@@ -520,16 +549,16 @@ Partial Class FrmContactos
         Me.DGAdicionales.Name = "DGAdicionales"
         Me.DGAdicionales.ReadOnly = True
         Me.DGAdicionales.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle20.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle20.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGAdicionales.RowHeadersDefaultCellStyle = DataGridViewCellStyle20
-        DataGridViewCellStyle21.BackColor = System.Drawing.Color.White
-        Me.DGAdicionales.RowsDefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle23.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGAdicionales.RowHeadersDefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle24.BackColor = System.Drawing.Color.White
+        Me.DGAdicionales.RowsDefaultCellStyle = DataGridViewCellStyle24
         Me.DGAdicionales.Size = New System.Drawing.Size(599, 73)
         Me.DGAdicionales.TabIndex = 251
         '
@@ -562,10 +591,11 @@ Partial Class FrmContactos
         Me.Column5.HeaderText = "Correo"
         Me.Column5.Name = "Column5"
         Me.Column5.ReadOnly = True
-        Me.Column5.Width = 150
         '
         'GroupBox7
         '
+        Me.GroupBox7.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox7.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox7.ForeColor = System.Drawing.Color.SteelBlue
         Me.GroupBox7.Location = New System.Drawing.Point(248, 349)
@@ -577,6 +607,7 @@ Partial Class FrmContactos
         '
         'GroupBox5
         '
+        Me.GroupBox5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox5.Controls.Add(Me.Label86)
         Me.GroupBox5.Controls.Add(Me.Label90)
         Me.GroupBox5.Controls.Add(Me.txtNumeroExteriorDeEntrega)
@@ -808,6 +839,8 @@ Partial Class FrmContactos
         '
         'GroupBox4
         '
+        Me.GroupBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox4.Controls.Add(Me.Label16)
         Me.GroupBox4.Controls.Add(Me.Label41)
         Me.GroupBox4.Controls.Add(Me.Label33)
@@ -848,6 +881,7 @@ Partial Class FrmContactos
         '
         'Label41
         '
+        Me.Label41.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label41.AutoSize = True
         Me.Label41.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label41.ForeColor = System.Drawing.Color.Black
@@ -859,6 +893,7 @@ Partial Class FrmContactos
         '
         'Label33
         '
+        Me.Label33.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label33.AutoSize = True
         Me.Label33.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label33.ForeColor = System.Drawing.Color.Black
@@ -870,6 +905,7 @@ Partial Class FrmContactos
         '
         'txtColonia
         '
+        Me.txtColonia.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtColonia.AutoSize = True
         Me.txtColonia.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtColonia.ForeColor = System.Drawing.Color.Black
@@ -893,6 +929,7 @@ Partial Class FrmContactos
         '
         'Label18
         '
+        Me.Label18.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label18.ForeColor = System.Drawing.Color.Black
@@ -905,6 +942,7 @@ Partial Class FrmContactos
         '
         'txtDireccion2
         '
+        Me.txtDireccion2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtDireccion2.AutoSize = True
         Me.txtDireccion2.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDireccion2.ForeColor = System.Drawing.Color.Black
@@ -916,6 +954,7 @@ Partial Class FrmContactos
         '
         'txtNumExt
         '
+        Me.txtNumExt.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtNumExt.AutoSize = True
         Me.txtNumExt.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNumExt.ForeColor = System.Drawing.Color.Black
@@ -928,6 +967,7 @@ Partial Class FrmContactos
         '
         'txtDireccion3
         '
+        Me.txtDireccion3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtDireccion3.AutoSize = True
         Me.txtDireccion3.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDireccion3.ForeColor = System.Drawing.Color.Black
@@ -939,6 +979,7 @@ Partial Class FrmContactos
         '
         'Label25
         '
+        Me.Label25.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label25.ForeColor = System.Drawing.Color.Black
@@ -1039,6 +1080,7 @@ Partial Class FrmContactos
         '
         'GroupBox6
         '
+        Me.GroupBox6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox6.Controls.Add(Me.Label65)
         Me.GroupBox6.Controls.Add(Me.Label59)
         Me.GroupBox6.Controls.Add(Me.txtDireccion3DeFacturacion)
@@ -1270,6 +1312,8 @@ Partial Class FrmContactos
         '
         'GroupBox2
         '
+        Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.Controls.Add(Me.txtKeyFiscal)
         Me.GroupBox2.Controls.Add(Me.txtNumeroDeCuenta)
         Me.GroupBox2.Controls.Add(Me.Label30)
@@ -1314,6 +1358,7 @@ Partial Class FrmContactos
         '
         'txtNumeroDeCuenta
         '
+        Me.txtNumeroDeCuenta.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtNumeroDeCuenta.AutoSize = True
         Me.txtNumeroDeCuenta.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNumeroDeCuenta.ForeColor = System.Drawing.Color.Black
@@ -1336,6 +1381,7 @@ Partial Class FrmContactos
         '
         'Label5
         '
+        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
@@ -1367,8 +1413,20 @@ Partial Class FrmContactos
         Me.Label15.TabIndex = 166
         Me.Label15.Text = "Compañia:"
         '
+        'txtNombreCompania
+        '
+        Me.txtNombreCompania.AutoSize = True
+        Me.txtNombreCompania.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNombreCompania.ForeColor = System.Drawing.Color.Black
+        Me.txtNombreCompania.Location = New System.Drawing.Point(114, 36)
+        Me.txtNombreCompania.Name = "txtNombreCompania"
+        Me.txtNombreCompania.Size = New System.Drawing.Size(13, 17)
+        Me.txtNombreCompania.TabIndex = 167
+        Me.txtNombreCompania.Text = "t"
+        '
         'txtCelular
         '
+        Me.txtCelular.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCelular.AutoSize = True
         Me.txtCelular.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCelular.ForeColor = System.Drawing.Color.Black
@@ -1389,19 +1447,9 @@ Partial Class FrmContactos
         Me.Label28.TabIndex = 196
         Me.Label28.Text = "Departamento:"
         '
-        'txtNombreCompania
-        '
-        Me.txtNombreCompania.AutoSize = True
-        Me.txtNombreCompania.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNombreCompania.ForeColor = System.Drawing.Color.Black
-        Me.txtNombreCompania.Location = New System.Drawing.Point(114, 36)
-        Me.txtNombreCompania.Name = "txtNombreCompania"
-        Me.txtNombreCompania.Size = New System.Drawing.Size(13, 17)
-        Me.txtNombreCompania.TabIndex = 167
-        Me.txtNombreCompania.Text = "t"
-        '
         'Label14
         '
+        Me.Label14.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.Color.Black
@@ -1413,6 +1461,7 @@ Partial Class FrmContactos
         '
         'txtCorreo1
         '
+        Me.txtCorreo1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCorreo1.AutoSize = True
         Me.txtCorreo1.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCorreo1.ForeColor = System.Drawing.Color.Black
@@ -1435,6 +1484,7 @@ Partial Class FrmContactos
         '
         'txtCorreo2
         '
+        Me.txtCorreo2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCorreo2.AutoSize = True
         Me.txtCorreo2.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCorreo2.ForeColor = System.Drawing.Color.Black
@@ -1468,6 +1518,7 @@ Partial Class FrmContactos
         '
         'Label38
         '
+        Me.Label38.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label38.AutoSize = True
         Me.Label38.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label38.ForeColor = System.Drawing.Color.Black
@@ -1479,6 +1530,7 @@ Partial Class FrmContactos
         '
         'Label11
         '
+        Me.Label11.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.Black
@@ -1491,6 +1543,7 @@ Partial Class FrmContactos
         '
         'Label50
         '
+        Me.Label50.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label50.AutoSize = True
         Me.Label50.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label50.ForeColor = System.Drawing.Color.Black
@@ -1513,6 +1566,7 @@ Partial Class FrmContactos
         '
         'txtExtension
         '
+        Me.txtExtension.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtExtension.AutoSize = True
         Me.txtExtension.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtExtension.ForeColor = System.Drawing.Color.Black
@@ -1560,6 +1614,10 @@ Partial Class FrmContactos
         'DGInstrumentos
         '
         Me.DGInstrumentos.AllowUserToDeleteRows = False
+        Me.DGInstrumentos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DGInstrumentos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DGInstrumentos.BackgroundColor = System.Drawing.SystemColors.Window
         Me.DGInstrumentos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DGInstrumentos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -1596,7 +1654,6 @@ Partial Class FrmContactos
         Me.Column6.HeaderText = "Descripción"
         Me.Column6.Name = "Column6"
         Me.Column6.ReadOnly = True
-        Me.Column6.Width = 170
         '
         'Column7
         '
@@ -1615,7 +1672,6 @@ Partial Class FrmContactos
         Me.Column9.HeaderText = "Modelo"
         Me.Column9.Name = "Column9"
         Me.Column9.ReadOnly = True
-        Me.Column9.Width = 150
         '
         'Column10
         '
@@ -1646,10 +1702,10 @@ Partial Class FrmContactos
         Me.Column14.HeaderText = "Activo"
         Me.Column14.Name = "Column14"
         Me.Column14.ReadOnly = True
-        Me.Column14.Width = 80
         '
         'GroupBox8
         '
+        Me.GroupBox8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox8.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox8.ForeColor = System.Drawing.Color.SteelBlue
         Me.GroupBox8.Location = New System.Drawing.Point(19, 6)
@@ -1672,6 +1728,9 @@ Partial Class FrmContactos
         '
         'GroupBox10
         '
+        Me.GroupBox10.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox10.Controls.Add(Me.txtNotasLab)
         Me.GroupBox10.Controls.Add(Me.CBCalibrationDataRequiered)
         Me.GroupBox10.Controls.Add(Me.txtCalDueDate)
@@ -1807,6 +1866,9 @@ Partial Class FrmContactos
         '
         'GroupBox9
         '
+        Me.GroupBox9.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox9.Controls.Add(Me.txtTaxEx)
         Me.GroupBox9.Controls.Add(Me.Label77)
         Me.GroupBox9.Controls.Add(Me.txtModoDeEnvio)
@@ -1850,6 +1912,7 @@ Partial Class FrmContactos
         '
         'txtTaxEx
         '
+        Me.txtTaxEx.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtTaxEx.AutoSize = True
         Me.txtTaxEx.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTaxEx.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -1872,6 +1935,7 @@ Partial Class FrmContactos
         '
         'txtModoDeEnvio
         '
+        Me.txtModoDeEnvio.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtModoDeEnvio.AutoSize = True
         Me.txtModoDeEnvio.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtModoDeEnvio.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -1883,6 +1947,7 @@ Partial Class FrmContactos
         '
         'Label109
         '
+        Me.Label109.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label109.AutoSize = True
         Me.Label109.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label109.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -1894,6 +1959,7 @@ Partial Class FrmContactos
         '
         'txtAvisoDeRecupeacion
         '
+        Me.txtAvisoDeRecupeacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtAvisoDeRecupeacion.AutoSize = True
         Me.txtAvisoDeRecupeacion.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAvisoDeRecupeacion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -1905,6 +1971,7 @@ Partial Class FrmContactos
         '
         'Label108
         '
+        Me.Label108.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label108.AutoSize = True
         Me.Label108.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label108.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -1916,6 +1983,7 @@ Partial Class FrmContactos
         '
         'txtDescuentoDeCal
         '
+        Me.txtDescuentoDeCal.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtDescuentoDeCal.AutoSize = True
         Me.txtDescuentoDeCal.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDescuentoDeCal.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -1960,6 +2028,7 @@ Partial Class FrmContactos
         '
         'txtDefaultPO
         '
+        Me.txtDefaultPO.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtDefaultPO.AutoSize = True
         Me.txtDefaultPO.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDefaultPO.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -1971,6 +2040,7 @@ Partial Class FrmContactos
         '
         'Label87
         '
+        Me.Label87.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label87.AutoSize = True
         Me.Label87.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label87.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -1982,6 +2052,7 @@ Partial Class FrmContactos
         '
         'txtHorarioDeTrabajo
         '
+        Me.txtHorarioDeTrabajo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtHorarioDeTrabajo.AutoSize = True
         Me.txtHorarioDeTrabajo.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtHorarioDeTrabajo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -2015,6 +2086,7 @@ Partial Class FrmContactos
         '
         'Label82
         '
+        Me.Label82.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label82.AutoSize = True
         Me.Label82.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label82.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -2026,6 +2098,7 @@ Partial Class FrmContactos
         '
         'txtCuentaDeEnvio
         '
+        Me.txtCuentaDeEnvio.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCuentaDeEnvio.AutoSize = True
         Me.txtCuentaDeEnvio.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCuentaDeEnvio.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -2037,6 +2110,7 @@ Partial Class FrmContactos
         '
         'Label81
         '
+        Me.Label81.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label81.AutoSize = True
         Me.Label81.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label81.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -2081,6 +2155,7 @@ Partial Class FrmContactos
         '
         'Label68
         '
+        Me.Label68.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label68.AutoSize = True
         Me.Label68.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label68.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -2103,6 +2178,7 @@ Partial Class FrmContactos
         '
         'Label66
         '
+        Me.Label66.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label66.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -2158,6 +2234,7 @@ Partial Class FrmContactos
         '
         'cbActivo2
         '
+        Me.cbActivo2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbActivo2.AutoSize = True
         Me.cbActivo2.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbActivo2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -2182,6 +2259,7 @@ Partial Class FrmContactos
         '
         'cbActivo1
         '
+        Me.cbActivo1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cbActivo1.AutoSize = True
         Me.cbActivo1.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbActivo1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
@@ -2217,6 +2295,7 @@ Partial Class FrmContactos
         '
         'btGuardar
         '
+        Me.btGuardar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btGuardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
         Me.btGuardar.FlatAppearance.BorderSize = 0
         Me.btGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -2242,6 +2321,7 @@ Partial Class FrmContactos
         '
         'PictureBox5
         '
+        Me.PictureBox5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox5.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox5.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
@@ -2251,17 +2331,6 @@ Partial Class FrmContactos
         Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox5.TabIndex = 36
         Me.PictureBox5.TabStop = False
-        '
-        'Label49
-        '
-        Me.Label49.AutoSize = True
-        Me.Label49.Cursor = System.Windows.Forms.Cursors.No
-        Me.Label49.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label49.Location = New System.Drawing.Point(1026, 14)
-        Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(92, 14)
-        Me.Label49.TabIndex = 138
-        Me.Label49.Text = "Cerrar formulario"
         '
         'txtNombreEmpleado
         '
@@ -2273,18 +2342,6 @@ Partial Class FrmContactos
         Me.txtNombreEmpleado.TabIndex = 139
         Me.txtNombreEmpleado.Text = "Nombre Empleado"
         '
-        'idContacto
-        '
-        Me.idContacto.AutoSize = True
-        Me.idContacto.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.idContacto.ForeColor = System.Drawing.Color.Black
-        Me.idContacto.Location = New System.Drawing.Point(189, 33)
-        Me.idContacto.Name = "idContacto"
-        Me.idContacto.Size = New System.Drawing.Size(73, 16)
-        Me.idContacto.TabIndex = 200
-        Me.idContacto.Text = "Compañia:"
-        Me.idContacto.Visible = False
-        '
         'FrmContactos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2293,7 +2350,6 @@ Partial Class FrmContactos
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1157, 673)
         Me.Controls.Add(Me.txtNombreEmpleado)
-        Me.Controls.Add(Me.Label49)
         Me.Controls.Add(Me.PictureBox5)
         Me.Controls.Add(Me.TabConsulta)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -2337,7 +2393,6 @@ Partial Class FrmContactos
     Friend WithEvents cbCorreo As CheckBox
     Friend WithEvents txtNombreB As TextBox
     Friend WithEvents txtCorreoB As TextBox
-    Friend WithEvents Label49 As Label
     Friend WithEvents txtNombreEmpleado As Label
     Friend WithEvents Button2 As Button
     Friend WithEvents Label26 As Label
