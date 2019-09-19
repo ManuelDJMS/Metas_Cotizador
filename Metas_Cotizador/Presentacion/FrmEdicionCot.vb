@@ -488,9 +488,9 @@ Public Class FrmEdicionCot
                                 modGen = InputBox("¿Deseas agregar el modelo del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Modelo")
                                 observacion = observacion + " MARCA: " + marcaGen + "  MODELO:" + modGen
                             End If
-                            R = "insert into DetalleCotizaciones (NumCot,EquipId, PartidaNo,Cantidad, CantidadReal, identificadorInventarioCliente, Serie, Observaciones) values (" &
+                            R = "insert into DetalleCotizaciones (NumCot,EquipId, PartidaNo,Cantidad, CantidadReal, identificadorInventarioCliente, Serie, Observaciones, ObservacionesServicios) values (" &
                                  maximo & "," & DGCopia.Item(0, i).Value & "," & Val(DGCopia.Item(1, i).Value) & ",
-                         " & Val(DGCopia.Item(5, i).Value) & "," & Val(DGCopia.Item(5, i).Value) & ",'" & (DGCopia.Item(8, i).Value) & "','" & (DGCopia.Item(9, i).Value) & "','" & (DGCopia.Item(7, i).Value) + observacion & "')"
+                         " & Val(DGCopia.Item(5, i).Value) & "," & Val(DGCopia.Item(5, i).Value) & ",'" & (DGCopia.Item(8, i).Value) & "','" & (DGCopia.Item(9, i).Value) & "','" & (DGCopia.Item(7, i).Value) + observacion & "','" & (DGCopia.Item(11, i).Value) & "')"
                             'MsgBox(R)
                             comando.CommandText = R
                             comando.ExecuteNonQuery()

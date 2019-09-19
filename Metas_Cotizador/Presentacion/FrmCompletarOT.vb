@@ -48,6 +48,7 @@ Public Class FrmCompletarOT
         End If
     End Sub
 
+
     Private Sub TxtCot_TextChanged(sender As Object, e As EventArgs) Handles txtCot.TextChanged
         busquedasOT(DGRes, TextEmail, txtCot, txtNombreE)
     End Sub
