@@ -12,21 +12,21 @@ Public Class FrmEdicionCot
     Private Sub FrmEdicionCot_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Try
         If editar = True Then
-                DGCopia.Rows.Clear()
-                DGServicios.Rows.Clear()
-                DGCopia.Columns(9).Width = 80
-                DGCopia.Columns(10).Width = 80
-                DGCopia.Columns(8).Visible = True
-                btGuardarInf.Text = "ACTUALIZAR COT"
-                numCot.Visible = True
-                btGuardarInf.Visible = True
-                btActualizarCliente.Visible = True
-                btnEliminar.Visible = True
-                btnAgregarArticulos.Visible = True
-                Label79.Text = "Actualizar COTIZACIÓN NUM. "
-                MetodoMetasCotizador()
-                comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-                comandoMetasCotizador.CommandText = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre,[SetupCustomerDetails].[CustomerId],[CompanyName],[TaxIDNo],
+            DGCopia.Rows.Clear()
+            DGServicios.Rows.Clear()
+            DGCopia.Columns(9).Width = 80
+            DGCopia.Columns(10).Width = 80
+            DGCopia.Columns(8).Visible = True
+            btGuardarInf.Text = "ACTUALIZAR COT"
+            numCot.Visible = True
+            btGuardarInf.Visible = True
+            btActualizarCliente.Visible = True
+            btnEliminar.Visible = True
+            btnAgregarArticulos.Visible = True
+            Label79.Text = "Actualizar COTIZACIÓN NUM. "
+            MetodoMetasCotizador()
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            comandoMetasCotizador.CommandText = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre,[SetupCustomerDetails].[CustomerId],[CompanyName],[TaxIDNo],
         [ContAddress1] AS DomCont,[ContCity], [ContState],[Phone],[SetupCustomerDetails].[Email],
         PartidaNo,[SetUpEquipment].[EquipmentName] AS Articulo, [Mfr],[Model],[SetUpEquipment].[EquipId], [DetalleCotizaciones].[Observaciones], [SetupServices].[ServicesId],
         [SetupServices].[ServiceName],[idUsuarioCotizacion],[Referencia], [DetalleCotizaciones].[idListaCotizacion],[Subtotal],[Total], [Cantidad], [SetupEquipmentServiceMapping].Price,[Serie],[identificadorInventarioCliente],[ObservacionesServicios] 
@@ -41,88 +41,88 @@ Public Class FrmEdicionCot
         INNER JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
         INNER JOIN " & servidor & "[SetupEquipmentServiceMapping] ON [SetUpEquipment].[EquipId] =[SetupEquipmentServiceMapping].[EquipId] 	
         WHERE [Cotizaciones].NumCot = " & COT2
-                lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-                While lectorMetasCotizador.Read()
-                    numCot.Text = lectorMetasCotizador(0)
-                    txtNombreC.Text = lectorMetasCotizador(3)
-                    txtCveContacto.Text = lectorMetasCotizador(4)
-                    txtNombreEmpresa.Text = lectorMetasCotizador(5)
-                    txtNumCond.Text = lectorMetasCotizador(6)
-                    txtDomicilio.Text = lectorMetasCotizador(7)
-                    txtCiudad.Text = lectorMetasCotizador(8)
-                    txtEstado.Text = lectorMetasCotizador(9)
-                    txtTelefono.Text = lectorMetasCotizador(10)
-                    TextCorreo.Text = lectorMetasCotizador(11)
-                    txtCotizo2019.Text = lectorMetasCotizador(20)
-                    DTPDesde.Value = lectorMetasCotizador(1)
-                    DTPHasta.Value = lectorMetasCotizador(2)
-                    txtReferencia.Text = lectorMetasCotizador(21)
-                    TextSubtotal.Text = lectorMetasCotizador(23)
-                    precio = lectorMetasCotizador(23)
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                numCot.Text = lectorMetasCotizador(0)
+                txtNombreC.Text = lectorMetasCotizador(3)
+                txtCveContacto.Text = lectorMetasCotizador(4)
+                txtNombreEmpresa.Text = lectorMetasCotizador(5)
+                txtNumCond.Text = lectorMetasCotizador(6)
+                txtDomicilio.Text = lectorMetasCotizador(7)
+                txtCiudad.Text = lectorMetasCotizador(8)
+                txtEstado.Text = lectorMetasCotizador(9)
+                txtTelefono.Text = lectorMetasCotizador(10)
+                TextCorreo.Text = lectorMetasCotizador(11)
+                txtCotizo2019.Text = lectorMetasCotizador(20)
+                DTPDesde.Value = lectorMetasCotizador(1)
+                DTPHasta.Value = lectorMetasCotizador(2)
+                txtReferencia.Text = lectorMetasCotizador(21)
+                TextSubtotal.Text = lectorMetasCotizador(23)
+                precio = lectorMetasCotizador(23)
                 TextTotal.Text = lectorMetasCotizador(24)
                 MsgBox(lectorMetasCotizador(29))
                 DGCopia.Rows.Add(lectorMetasCotizador(16), lectorMetasCotizador(12), lectorMetasCotizador(13), lectorMetasCotizador(14), lectorMetasCotizador(15), lectorMetasCotizador(25), True, lectorMetasCotizador(17), False, lectorMetasCotizador(27), lectorMetasCotizador(28), lectorMetasCotizador(29))
                 DGServicios.Rows.Add(lectorMetasCotizador(16), lectorMetasCotizador(18), lectorMetasCotizador(26), lectorMetasCotizador(22))
-                End While
-                lectorMetasCotizador.Close()
-                comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-                comandoMetasCotizador.CommandText = "Select MAX(idListaCotizacion) from [DetalleCotizaciones]"
-                lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-                lectorMetasCotizador.Read()
-                numPartida = lectorMetasCotizador(0)
-            Else
-                btGuardarInf.Text = "Guardar cotización"
-                Label79.Text = "Guardar cotización"
-                numCot.Visible = False
-                DTPHasta.Value.AddDays(30)
-                MetodoLIMS()
-                comandoLIMS = conexionLIMS.CreateCommand
-                R = "select [SetupCustomerDetails].CustomerId, isnull(Organization,'-'), isnull(concat(FirstName, ' ' , MiddleName, ' ', LastName),'-') as Nombre, 
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            comandoMetasCotizador.CommandText = "Select MAX(idListaCotizacion) from [DetalleCotizaciones]"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            numPartida = lectorMetasCotizador(0)
+        Else
+            btGuardarInf.Text = "Guardar cotización"
+            Label79.Text = "Guardar cotización"
+            numCot.Visible = False
+            DTPHasta.Value.AddDays(30)
+            MetodoLIMS()
+            comandoLIMS = conexionLIMS.CreateCommand
+            R = "select [SetupCustomerDetails].CustomerId, isnull(Organization,'-'), isnull(concat(FirstName, ' ' , MiddleName, ' ', LastName),'-') as Nombre, 
                 isnull(ContAddress1,'-'), isnull(ContCity,'-'), isnull(ContState,'-'), isnull(Phone,'-'), isnull(Email,'-') 
                 from " & servidor & "[SetupCustomerDetails] inner join  
                 SetupCustomerAddressDtls on [SetupCustomerDetails].CustomerId=[SetupCustomerAddressDtls].CustomerId
                 where [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails].CustomerId=" & empresa
-                comandoLIMS.CommandText = R
-                lectorLIMS = comandoLIMS.ExecuteReader
-                lectorLIMS.Read()
-                txtCveContacto.Text = lectorLIMS(0)
-                txtNombreEmpresa.Text = lectorLIMS(1)
-                txtNombreC.Text = lectorLIMS(2)
-                txtDomicilio.Text = lectorLIMS(3)
-                txtCiudad.Text = lectorLIMS(4)
-                txtEstado.Text = lectorLIMS(5)
-                txtTelefono.Text = lectorLIMS(6)
-                TextCorreo.Text = lectorLIMS(7)
-                lectorLIMS.Close()
-                conexionLIMS.Close()
-                For Each fila In DGServicios.Rows
-                    subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
-                Next
-                iva = (subtotal * 0.16)
-                Total = subtotal + iva
-                TextSubtotal.Text = subtotal
-                TextTotal.Text = Total
-            End If
-            '-----------------Combo cuando ------------------------
-            llenarcombo("select * from CuandoCondicion", Cbcuando)
-            ''-----------------Combo documentps ------------------------
-            llenarcombo("select * from DocumentosCondicion", ComboDocCond)
-            ''-----------------Combo Leyenda ------------------------
-            llenarcombo("select * from LeyendaCondicion", CboLeyenda)
-            ''-----------------Combo Lugar ------------------------
-            llenarcombo("select * from LugarCondicion", cboServicio)
-            ''-----------------Combo modalidad ------------------------
-            llenarcombo("select * from ModalidadCondicion", CbModalidad)
-            ''-----------------Combo modo de contabilizar ------------------------
-            llenarcombo("select * from Modo_de_Contabilizar", CboContabilizar)
-            ''-----------------Combo moneda ------------------------
-            llenarcombo("select * from MonedaCondicion", CboMoneda)
-            ''-----------------Combo Pago------------------------
-            llenarcombo2("select * from PagoCondicion", CCondPago)
-            ''-----------------Combo tiempo ------------------------
-            llenarcombo2("select * from TiempoEntregaCondicion", CboTiempo)
-            ''-----------------Combo validez ------------------------
-            llenarcombo("select * from ValidezCondicion", CboValidez)
+            comandoLIMS.CommandText = R
+            lectorLIMS = comandoLIMS.ExecuteReader
+            lectorLIMS.Read()
+            txtCveContacto.Text = lectorLIMS(0)
+            txtNombreEmpresa.Text = lectorLIMS(1)
+            txtNombreC.Text = lectorLIMS(2)
+            txtDomicilio.Text = lectorLIMS(3)
+            txtCiudad.Text = lectorLIMS(4)
+            txtEstado.Text = lectorLIMS(5)
+            txtTelefono.Text = lectorLIMS(6)
+            TextCorreo.Text = lectorLIMS(7)
+            lectorLIMS.Close()
+            conexionLIMS.Close()
+            For Each fila In DGServicios.Rows
+                subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
+            Next
+            iva = (subtotal * 0.16)
+            Total = subtotal + iva
+            TextSubtotal.Text = subtotal
+            TextTotal.Text = Total
+        End If
+        '-----------------Combo cuando ------------------------
+        llenarcombo("select * from CuandoCondicion", Cbcuando)
+        ''-----------------Combo documentps ------------------------
+        llenarcombo("select * from DocumentosCondicion", ComboDocCond)
+        ''-----------------Combo Leyenda ------------------------
+        llenarcombo("select * from LeyendaCondicion", CboLeyenda)
+        ''-----------------Combo Lugar ------------------------
+        llenarcombo("select * from LugarCondicion", cboServicio)
+        ''-----------------Combo modalidad ------------------------
+        llenarcombo("select * from ModalidadCondicion", CbModalidad)
+        ''-----------------Combo modo de contabilizar ------------------------
+        llenarcombo("select * from Modo_de_Contabilizar", CboContabilizar)
+        ''-----------------Combo moneda ------------------------
+        llenarcombo("select * from MonedaCondicion", CboMoneda)
+        ''-----------------Combo Pago------------------------
+        llenarcombo2("select * from PagoCondicion", CCondPago)
+        ''-----------------Combo tiempo ------------------------
+        llenarcombo2("select * from TiempoEntregaCondicion", CboTiempo)
+        ''-----------------Combo validez ------------------------
+        llenarcombo("select * from ValidezCondicion", CboValidez)
         'Catch ex As Exception
         '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
         '    cadena = Err.Description
