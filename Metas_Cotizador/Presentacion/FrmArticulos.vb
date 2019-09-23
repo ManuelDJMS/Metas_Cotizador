@@ -66,15 +66,12 @@
             MsgBox("No hay articulos para Cotizar", MsgBoxStyle.Critical, "Error del sistema.")
         Else
             For i As Integer = DgAgregar.Rows.Count() - 2 To 0 Step -1
-                'MsgBox(numPartida)
                 numPartida = numPartida + 1
-                'MsgBox(numPartida)
                 MetodoLIMS()
                 comandoLIMS = conexionLIMS.CreateCommand
                 R = "SELECT EquipmentName, Mfr, Model,SetUpEquipment.EquipId,Price from 
                             SetUpEquipment inner join SetupEquipmentServiceMapping on  
                             SetupEquipment.EquipId=SetupEquipmentServiceMapping.EquipId where SetUpEquipment.EquipId =" & DgAgregar.Rows(i).Cells(0).Value
-                'MsgBox(R)
                 comandoLIMS.CommandText = R
                 lectorLIMS = comandoLIMS.ExecuteReader
                 lectorLIMS.Read()
