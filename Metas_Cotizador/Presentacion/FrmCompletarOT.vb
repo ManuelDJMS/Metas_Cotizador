@@ -8,14 +8,14 @@ Public Class FrmCompletarOT
         Try
             alternarColorColumnas(DGRes)
             MetodoMetasCotizador()
-            R = "select SOid, NumCot, (FirstName + ' ' + MiddleName + ' ' + LastName) as Nombre, CompanyName, Email, Total from Cotizaciones x1
+            R = "select SOid, NumCot, (FirstName + ' ' + MiddleName + ' ' + LastName) as Nombre, CompanyName, Email, Total, x2.CustomerId from Cotizaciones x1
 				INNER JOIN " & servidor & "[SetupCustomerDetails] x2 ON x1.idContacto = x2.[CustomerId]
                 INNER JOIN " & servidor & "[SalesOrderDetails] x3 ON x1.NumCot = x3.RefNo"
             Dim comando As New SqlCommand(R, conexionMetasCotizador)
             Dim lector As SqlDataReader
             lector = comando.ExecuteReader
             While lector.Read()
-                DGRes.Rows.Add(False, lector(0), lector(1), lector(2), lector(3), lector(4), lector(5))
+                DGRes.Rows.Add(False, lector(0), lector(1), lector(2), lector(3), lector(4), lector(5), lector(6))
             End While
             conexionMetasCotizador.Close()
         Catch ex As Exception
@@ -44,6 +44,9 @@ Public Class FrmCompletarOT
         If e.ColumnIndex = 0 Then
             For Each row As DataGridViewRow In CType(sender, DataGridView).Rows
                 row.Cells(e.ColumnIndex).Value = False
+                '================================ CÓDIGO PARA LLENAR EL DATAGRID OCULTO QUE TIENE LOS ARTICULOS DE LA COT ==============================================
+                'R = "select "
+                'consultasCotizador(R, dgEquipamiento)
             Next
         End If
     End Sub
@@ -75,7 +78,11 @@ Public Class FrmCompletarOT
                     'R = "select Cotizaciones.NumCot, idContacto, x1.EquipId, isnull(Serie,'-') as Serie, isnull(IdentificadorInventarioCliente, '-') as ID, isnull(DetalleCotizaciones.Observaciones,'-') from Cotizaciones inner join DetalleCotizaciones
                     'on Cotizaciones.NumCot=DetalleCotizaciones.NumCot inner join " & servidor & "[SetupEquipment] x1 on DetalleCotizaciones.EquipId=x1.EquipId where Cotizaciones.NumCot=" & DGRes.Rows(i).Cells(2).Value
                     numcot = DGRes.Rows(i).Cells(2).Value
-                    MsgBox(numcot)
+                    empresa = DGRes.Rows(i).Cells(6).Value
+
+                    'MsgBox(numcot)
+                    'R = "select CustomerId, EquipId, SrlNo from [MetAs_Live-pruebas].[dbo].[SetupCustomerEquipmentMapping] where CustomerId"
+                    'consultasLIMS()
                     FrmEquipamiento.Show()
                     '////////////////////////////////////////////////////////////////////////////////////////////////////
 

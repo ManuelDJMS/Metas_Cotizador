@@ -170,7 +170,6 @@ Partial Class FrmCompletarOT
         Me.dgEquipamiento.Name = "dgEquipamiento"
         Me.dgEquipamiento.Size = New System.Drawing.Size(675, 86)
         Me.dgEquipamiento.TabIndex = 259
-        Me.dgEquipamiento.Visible = False
         '
         'DGRes
         '
