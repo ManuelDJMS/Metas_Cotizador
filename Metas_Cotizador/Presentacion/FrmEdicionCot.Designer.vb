@@ -37,11 +37,19 @@ Partial Class FrmEdicionCot
         Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.DGServicios = New System.Windows.Forms.DataGridView()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.precioUnitario = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.idListaCotizacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGCopia = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.g = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Eliminar = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.equipocliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column67 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.numCot = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.btnEliminar = New System.Windows.Forms.Button()
@@ -112,18 +120,10 @@ Partial Class FrmEdicionCot
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.g = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Eliminar = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.equipocliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column67 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.precioUnitario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.idListaCotizacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1.SuspendLayout()
         CType(Me.DGServicios, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGCopia, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -187,29 +187,6 @@ Partial Class FrmEdicionCot
         Me.DGServicios.Size = New System.Drawing.Size(145, 213)
         Me.DGServicios.TabIndex = 262
         '
-        'Column5
-        '
-        Me.Column5.HeaderText = "EquipID"
-        Me.Column5.Name = "Column5"
-        Me.Column5.Visible = False
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "idServicio"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.Visible = False
-        '
-        'precioUnitario
-        '
-        Me.precioUnitario.HeaderText = "Precio"
-        Me.precioUnitario.Name = "precioUnitario"
-        '
-        'idListaCotizacion
-        '
-        Me.idListaCotizacion.HeaderText = "Column6"
-        Me.idListaCotizacion.Name = "idListaCotizacion"
-        Me.idListaCotizacion.Visible = False
-        '
         'DGCopia
         '
         Me.DGCopia.AllowUserToDeleteRows = False
@@ -252,6 +229,78 @@ Partial Class FrmEdicionCot
         Me.DGCopia.RowsDefaultCellStyle = DataGridViewCellStyle9
         Me.DGCopia.Size = New System.Drawing.Size(1146, 213)
         Me.DGCopia.TabIndex = 261
+        '
+        'DataGridViewTextBoxColumn13
+        '
+        Me.DataGridViewTextBoxColumn13.HeaderText = "IdArticulo"
+        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
+        Me.DataGridViewTextBoxColumn13.Width = 70
+        '
+        'g
+        '
+        Me.g.HeaderText = "Partida"
+        Me.g.Name = "g"
+        Me.g.Width = 50
+        '
+        'DataGridViewTextBoxColumn7
+        '
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Descripción"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        Me.DataGridViewTextBoxColumn7.Width = 240
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Marca"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        Me.DataGridViewTextBoxColumn8.Width = 120
+        '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.HeaderText = "Modelo"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        Me.DataGridViewTextBoxColumn9.Width = 120
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Cantidad"
+        Me.Column8.Name = "Column8"
+        Me.Column8.Width = 55
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Servicio"
+        Me.Column4.Name = "Column4"
+        Me.Column4.Width = 50
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "Observaciones"
+        Me.Column7.Name = "Column7"
+        Me.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Column7.Width = 190
+        '
+        'Eliminar
+        '
+        Me.Eliminar.HeaderText = "Eliminar"
+        Me.Eliminar.Name = "Eliminar"
+        Me.Eliminar.Visible = False
+        Me.Eliminar.Width = 50
+        '
+        'equipocliente
+        '
+        Me.equipocliente.HeaderText = "N° Inventario"
+        Me.equipocliente.Name = "equipocliente"
+        '
+        'Column67
+        '
+        Me.Column67.HeaderText = "N° Serie"
+        Me.Column67.Name = "Column67"
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Observaciones del Servicio"
+        Me.Column1.Name = "Column1"
         '
         'numCot
         '
@@ -1096,77 +1145,27 @@ Partial Class FrmEdicionCot
         Me.Panel2.Size = New System.Drawing.Size(1341, 30)
         Me.Panel2.TabIndex = 192
         '
-        'DataGridViewTextBoxColumn13
+        'Column5
         '
-        Me.DataGridViewTextBoxColumn13.HeaderText = "IdArticulo"
-        Me.DataGridViewTextBoxColumn13.Name = "DataGridViewTextBoxColumn13"
-        Me.DataGridViewTextBoxColumn13.Width = 70
+        Me.Column5.HeaderText = "EquipID"
+        Me.Column5.Name = "Column5"
+        Me.Column5.Visible = False
         '
-        'g
+        'DataGridViewTextBoxColumn3
         '
-        Me.g.HeaderText = "Partida"
-        Me.g.Name = "g"
-        Me.g.Width = 50
+        Me.DataGridViewTextBoxColumn3.HeaderText = "idServicio"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.Visible = False
         '
-        'DataGridViewTextBoxColumn7
+        'precioUnitario
         '
-        Me.DataGridViewTextBoxColumn7.HeaderText = "Descripción"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        Me.DataGridViewTextBoxColumn7.Width = 240
+        Me.precioUnitario.HeaderText = "Precio"
+        Me.precioUnitario.Name = "precioUnitario"
         '
-        'DataGridViewTextBoxColumn8
+        'idListaCotizacion
         '
-        Me.DataGridViewTextBoxColumn8.HeaderText = "Marca"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        Me.DataGridViewTextBoxColumn8.Width = 120
-        '
-        'DataGridViewTextBoxColumn9
-        '
-        Me.DataGridViewTextBoxColumn9.HeaderText = "Modelo"
-        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
-        Me.DataGridViewTextBoxColumn9.Width = 120
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "Cantidad"
-        Me.Column8.Name = "Column8"
-        Me.Column8.Width = 55
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "Servicio"
-        Me.Column4.Name = "Column4"
-        Me.Column4.Width = 50
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "Observaciones"
-        Me.Column7.Name = "Column7"
-        Me.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column7.Width = 190
-        '
-        'Eliminar
-        '
-        Me.Eliminar.HeaderText = "Eliminar"
-        Me.Eliminar.Name = "Eliminar"
-        Me.Eliminar.Visible = False
-        Me.Eliminar.Width = 50
-        '
-        'equipocliente
-        '
-        Me.equipocliente.HeaderText = "N° Inventario"
-        Me.equipocliente.Name = "equipocliente"
-        '
-        'Column67
-        '
-        Me.Column67.HeaderText = "N° Serie"
-        Me.Column67.Name = "Column67"
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Observaciones del Servicio"
-        Me.Column1.Name = "Column1"
+        Me.idListaCotizacion.HeaderText = "Column6"
+        Me.idListaCotizacion.Name = "idListaCotizacion"
         '
         'FrmEdicionCot
         '
@@ -1274,10 +1273,6 @@ Partial Class FrmEdicionCot
     Friend WithEvents btGuardarInf As Button
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Column5 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
-    Friend WithEvents precioUnitario As DataGridViewTextBoxColumn
-    Friend WithEvents idListaCotizacion As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn13 As DataGridViewTextBoxColumn
     Friend WithEvents g As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
@@ -1290,4 +1285,8 @@ Partial Class FrmEdicionCot
     Friend WithEvents equipocliente As DataGridViewTextBoxColumn
     Friend WithEvents Column67 As DataGridViewTextBoxColumn
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents precioUnitario As DataGridViewTextBoxColumn
+    Friend WithEvents idListaCotizacion As DataGridViewTextBoxColumn
 End Class
