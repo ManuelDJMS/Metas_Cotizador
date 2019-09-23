@@ -78,11 +78,12 @@ Public Class FrmCompletarOT
                     'R = "select Cotizaciones.NumCot, idContacto, x1.EquipId, isnull(Serie,'-') as Serie, isnull(IdentificadorInventarioCliente, '-') as ID, isnull(DetalleCotizaciones.Observaciones,'-') from Cotizaciones inner join DetalleCotizaciones
                     'on Cotizaciones.NumCot=DetalleCotizaciones.NumCot inner join " & servidor & "[SetupEquipment] x1 on DetalleCotizaciones.EquipId=x1.EquipId where Cotizaciones.NumCot=" & DGRes.Rows(i).Cells(2).Value
                     numcot = DGRes.Rows(i).Cells(2).Value
-                    empresa = DGRes.Rows(i).Cells(6).Value
+                    empresa = DGRes.Rows(i).Cells(7).Value
 
-                    'MsgBox(numcot)
-                    'R = "select CustomerId, EquipId, SrlNo from [MetAs_Live-pruebas].[dbo].[SetupCustomerEquipmentMapping] where CustomerId"
-                    'consultasLIMS()
+
+                    R = "select CustomerId, EquipId, SrlNo from [MetAs_Live-pruebas].[dbo].[SetupCustomerEquipmentMapping] where CustomerId=" & empresa
+                    MsgBox(R)
+                    consultasLIMS(R, dgEquipamiento)
                     FrmEquipamiento.Show()
                     '////////////////////////////////////////////////////////////////////////////////////////////////////
 
