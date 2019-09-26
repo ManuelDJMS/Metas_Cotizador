@@ -140,7 +140,7 @@ Public Class FrmHOME
 
     Private Sub BtnPreFact_Click(sender As Object, e As EventArgs) Handles btnPreFact.Click
 
-        colorearpanel(PanelMenu, PL_Cotizacion)
+        colorearpanel(PanelMenu, PL_PreFact)
         AbrirFormEnPanel(Of FrmCompletarOT)()
     End Sub
 #End Region

@@ -30,6 +30,7 @@ Public Class FrmContactos
     End Sub
 
     Private Sub PictureBox5_Click(sender As Object, e As EventArgs) Handles PictureBox5.Click
+        FrmHOME.PL_Contactos.BackColor = Color.White
         Me.Dispose()
     End Sub
 

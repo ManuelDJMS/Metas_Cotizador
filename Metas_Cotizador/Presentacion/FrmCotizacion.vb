@@ -16,6 +16,7 @@ Public Class FrmCotizacion
     End Sub
 
     Private Sub BtCerrar_Click(sender As Object, e As EventArgs) Handles btCerrar.Click
+        FrmHOME.PL_Cotizacion.BackColor = Color.White
         Me.Close()
     End Sub
 
@@ -292,13 +293,15 @@ Public Class FrmCotizacion
         empresa = Val(dgEmpresa.Rows(e.RowIndex).Cells(0).Value)
         MetodoMetasCotizador()
         comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-        R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[DetalleCotizaciones] x1
-              inner join " & servidor & "[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join " & servidor & "[SetupEquipmentServiceMapping] x3
-			  on x1.EquipId=x3.EquipId inner join [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa
+        R = "SELECT idContacto, x1.NumCot, PartidaNo,  ItemNumber, EquipmentName, Mfr, Model, x1.identificadorInventarioCliente, ServiceDescription, Uncertainity, Cantidad, Precio
+             , Creado, x1.EquipId from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[DetalleCotizaciones] x1 inner join ServiciosEnCotizaciones s on x1.idListaCotizacion=s.idListaCotizacion
+             inner join " & servidor & "[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join " & servidor & "[SetupEquipmentServiceMapping] x3
+			 on x1.EquipId=x3.EquipId inner join [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa
         comandoMetasCotizador.CommandText = R
         lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
         While lectorMetasCotizador.Read()
-            dgCot.Rows.Add(lectorMetasCotizador(1), lectorMetasCotizador(2), lectorMetasCotizador(4), lectorMetasCotizador(8), lectorMetasCotizador(11), lectorMetasCotizador(5), lectorMetasCotizador(6), lectorMetasCotizador(7), lectorMetasCotizador(8), lectorMetasCotizador(10), lectorMetasCotizador(12), lectorMetasCotizador(14))
+            dgCot.Rows.Add(lectorMetasCotizador(1), lectorMetasCotizador(2), lectorMetasCotizador(3), lectorMetasCotizador(4), lectorMetasCotizador(5), lectorMetasCotizador(6),
+                           lectorMetasCotizador(7), lectorMetasCotizador(8), lectorMetasCotizador(9), lectorMetasCotizador(10), lectorMetasCotizador(11), lectorMetasCotizador(12))
         End While
         lectorMetasCotizador.Close()
         conexionMetasCotizador.Close()

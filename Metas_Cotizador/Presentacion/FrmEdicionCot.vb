@@ -492,7 +492,7 @@ Public Class FrmEdicionCot
                             lector.Close()
                             '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                             '/////////////////////////////////////// INSERTAR EN SERVICIOS DE DETALLE DE COTIZACION ///////////////////////////////////////////
-                            R = "insert into ServiciosEnCotizaciones (idListaCotizacion, idServicio) values (" & idlista & "," & Val(DGServicios.Item(1, i).Value) & ")"
+                            R = "insert into ServiciosEnCotizaciones (idListaCotizacion, idServicio, Precio) values (" & idlista & "," & Val(DGServicios.Item(1, i).Value) & "," & CDbl(DGServicios.Item(2, i).Value) & ")"
                             comando.CommandText = R
                             comando.ExecuteNonQuery()
                             '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

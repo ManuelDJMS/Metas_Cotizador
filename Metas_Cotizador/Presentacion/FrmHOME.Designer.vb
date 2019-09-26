@@ -373,7 +373,7 @@ Partial Class FrmHOME
         Me.MinimumSize = New System.Drawing.Size(1366, 730)
         Me.Name = "FrmHOME"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FrmHOME2"
+        Me.Text = "Menú Principal"
         Me.PanelContenedor.ResumeLayout(False)
         Me.PanelMenu.ResumeLayout(False)
         Me.PanelMenu.PerformLayout()

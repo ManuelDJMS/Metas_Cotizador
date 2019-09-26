@@ -92,18 +92,6 @@ Partial Class FrmCotizacion
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.btnEditarCot = New System.Windows.Forms.Button()
         Me.dgCot = New System.Windows.Forms.DataGridView()
-        Me.NumCot = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.partida = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.codigoServicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.equipoDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.marca = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.modelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.intervalo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.precioUnitario = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dgEmpresa = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -136,6 +124,18 @@ Partial Class FrmCotizacion
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
+        Me.NumCot = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.partida = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.equipoDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.marca = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.modelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Servicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.intervalo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.precioUnitario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.btCerrar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabConsulta.SuspendLayout()
         Me.Tab2018.SuspendLayout()
@@ -810,7 +810,7 @@ Partial Class FrmCotizacion
         DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dgCot.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.dgCot.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgCot.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NumCot, Me.partida, Me.DataGridViewTextBoxColumn1, Me.codigoServicio, Me.cantidad, Me.equipoDescripcion, Me.marca, Me.modelo, Me.intervalo, Me.precioUnitario, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3})
+        Me.dgCot.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.NumCot, Me.partida, Me.DataGridViewTextBoxColumn1, Me.equipoDescripcion, Me.marca, Me.modelo, Me.DataGridViewTextBoxColumn2, Me.Servicio, Me.intervalo, Me.cantidad, Me.precioUnitario, Me.DataGridViewTextBoxColumn3})
         Me.dgCot.EnableHeadersVisualStyles = False
         Me.dgCot.Location = New System.Drawing.Point(14, 373)
         Me.dgCot.Name = "dgCot"
@@ -827,66 +827,6 @@ Partial Class FrmCotizacion
         Me.dgCot.RowsDefaultCellStyle = DataGridViewCellStyle10
         Me.dgCot.Size = New System.Drawing.Size(1109, 224)
         Me.dgCot.TabIndex = 260
-        '
-        'NumCot
-        '
-        Me.NumCot.HeaderText = "NumCot"
-        Me.NumCot.Name = "NumCot"
-        '
-        'partida
-        '
-        Me.partida.HeaderText = "Partida"
-        Me.partida.Name = "partida"
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Número de Artículo (SKU)"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        '
-        'codigoServicio
-        '
-        Me.codigoServicio.HeaderText = "Código Servicio"
-        Me.codigoServicio.Name = "codigoServicio"
-        '
-        'cantidad
-        '
-        Me.cantidad.HeaderText = "Cantidad"
-        Me.cantidad.Name = "cantidad"
-        '
-        'equipoDescripcion
-        '
-        Me.equipoDescripcion.HeaderText = "Descripción "
-        Me.equipoDescripcion.Name = "equipoDescripcion"
-        '
-        'marca
-        '
-        Me.marca.HeaderText = "Marca/Fabricante"
-        Me.marca.Name = "marca"
-        '
-        'modelo
-        '
-        Me.modelo.HeaderText = "Modelo"
-        Me.modelo.Name = "modelo"
-        '
-        'intervalo
-        '
-        Me.intervalo.HeaderText = "Intervalo"
-        Me.intervalo.Name = "intervalo"
-        '
-        'precioUnitario
-        '
-        Me.precioUnitario.HeaderText = "Precio"
-        Me.precioUnitario.Name = "precioUnitario"
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "ID"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Orden de Venta"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         '
         'dgEmpresa
         '
@@ -1191,6 +1131,66 @@ Partial Class FrmCotizacion
         Me.Label28.TabIndex = 191
         Me.Label28.Text = "CP:"
         '
+        'NumCot
+        '
+        Me.NumCot.HeaderText = "NumCot"
+        Me.NumCot.Name = "NumCot"
+        '
+        'partida
+        '
+        Me.partida.HeaderText = "Partida"
+        Me.partida.Name = "partida"
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Número de Artículo (SKU)"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        '
+        'equipoDescripcion
+        '
+        Me.equipoDescripcion.HeaderText = "Descripción "
+        Me.equipoDescripcion.Name = "equipoDescripcion"
+        '
+        'marca
+        '
+        Me.marca.HeaderText = "Marca"
+        Me.marca.Name = "marca"
+        '
+        'modelo
+        '
+        Me.modelo.HeaderText = "Modelo"
+        Me.modelo.Name = "modelo"
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "ID"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        '
+        'Servicio
+        '
+        Me.Servicio.HeaderText = "Servicio"
+        Me.Servicio.Name = "Servicio"
+        '
+        'intervalo
+        '
+        Me.intervalo.HeaderText = "Intervalo"
+        Me.intervalo.Name = "intervalo"
+        '
+        'cantidad
+        '
+        Me.cantidad.HeaderText = "Cantidad"
+        Me.cantidad.Name = "cantidad"
+        '
+        'precioUnitario
+        '
+        Me.precioUnitario.HeaderText = "Precio"
+        Me.precioUnitario.Name = "precioUnitario"
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Orden de Venta"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        '
         'FrmCotizacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1273,18 +1273,6 @@ Partial Class FrmCotizacion
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents btnEditarCot As Button
     Friend WithEvents dgCot As DataGridView
-    Friend WithEvents NumCot As DataGridViewTextBoxColumn
-    Friend WithEvents partida As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
-    Friend WithEvents codigoServicio As DataGridViewTextBoxColumn
-    Friend WithEvents cantidad As DataGridViewTextBoxColumn
-    Friend WithEvents equipoDescripcion As DataGridViewTextBoxColumn
-    Friend WithEvents marca As DataGridViewTextBoxColumn
-    Friend WithEvents modelo As DataGridViewTextBoxColumn
-    Friend WithEvents intervalo As DataGridViewTextBoxColumn
-    Friend WithEvents precioUnitario As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents dgEmpresa As DataGridView
     Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
@@ -1325,4 +1313,16 @@ Partial Class FrmCotizacion
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
     Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents NumCot As DataGridViewTextBoxColumn
+    Friend WithEvents partida As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents equipoDescripcion As DataGridViewTextBoxColumn
+    Friend WithEvents marca As DataGridViewTextBoxColumn
+    Friend WithEvents modelo As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents Servicio As DataGridViewTextBoxColumn
+    Friend WithEvents intervalo As DataGridViewTextBoxColumn
+    Friend WithEvents cantidad As DataGridViewTextBoxColumn
+    Friend WithEvents precioUnitario As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
 End Class
