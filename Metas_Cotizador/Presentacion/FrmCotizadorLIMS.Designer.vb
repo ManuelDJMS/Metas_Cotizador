@@ -39,6 +39,7 @@ Partial Class FrmCotizadorLIMS
         Me.TabConsulta = New System.Windows.Forms.TabControl()
         Me.Tab2018 = New System.Windows.Forms.TabPage()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.btCargarArticulos = New System.Windows.Forms.PictureBox()
         Me.DgAgregar = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGCotizaciones = New System.Windows.Forms.DataGridView()
@@ -57,6 +58,7 @@ Partial Class FrmCotizadorLIMS
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PanelNormal = New System.Windows.Forms.GroupBox()
+        Me.btCargarClientes = New System.Windows.Forms.PictureBox()
         Me.txtClave = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
@@ -135,21 +137,19 @@ Partial Class FrmCotizadorLIMS
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.btCargarArticulos = New System.Windows.Forms.PictureBox()
-        Me.btCargarClientes = New System.Windows.Forms.PictureBox()
         Me.TabConsulta.SuspendLayout()
         Me.Tab2018.SuspendLayout()
+        CType(Me.btCargarArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DgAgregar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGCotizaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGEmpresas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNormal.SuspendLayout()
+        CType(Me.btCargarClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgCot, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgEmpresa, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.btCargarArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.btCargarClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabConsulta
@@ -208,6 +208,17 @@ Partial Class FrmCotizadorLIMS
         Me.Label6.Text = "Nueva Cotización"
         Me.Label6.Visible = False
         '
+        'btCargarArticulos
+        '
+        Me.btCargarArticulos.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btCargarArticulos.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_update_left_rotation_64
+        Me.btCargarArticulos.Location = New System.Drawing.Point(10, 356)
+        Me.btCargarArticulos.Name = "btCargarArticulos"
+        Me.btCargarArticulos.Size = New System.Drawing.Size(30, 30)
+        Me.btCargarArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.btCargarArticulos.TabIndex = 262
+        Me.btCargarArticulos.TabStop = False
+        '
         'DgAgregar
         '
         Me.DgAgregar.AllowUserToDeleteRows = False
@@ -229,6 +240,7 @@ Partial Class FrmCotizadorLIMS
         Me.DgAgregar.Name = "DgAgregar"
         Me.DgAgregar.Size = New System.Drawing.Size(261, 77)
         Me.DgAgregar.TabIndex = 182
+        Me.DgAgregar.Visible = False
         '
         'DataGridViewTextBoxColumn4
         '
@@ -392,6 +404,17 @@ Partial Class FrmCotizadorLIMS
         Me.PanelNormal.TabIndex = 249
         Me.PanelNormal.TabStop = False
         Me.PanelNormal.Text = "Datos de cotización"
+        '
+        'btCargarClientes
+        '
+        Me.btCargarClientes.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btCargarClientes.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_update_left_rotation_64
+        Me.btCargarClientes.Location = New System.Drawing.Point(688, 29)
+        Me.btCargarClientes.Name = "btCargarClientes"
+        Me.btCargarClientes.Size = New System.Drawing.Size(30, 30)
+        Me.btCargarClientes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.btCargarClientes.TabIndex = 164
+        Me.btCargarClientes.TabStop = False
         '
         'txtClave
         '
@@ -765,6 +788,7 @@ Partial Class FrmCotizadorLIMS
         'dgCot
         '
         Me.dgCot.AllowUserToDeleteRows = False
+        Me.dgCot.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgCot.BackgroundColor = System.Drawing.SystemColors.Window
         Me.dgCot.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgCot.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -799,61 +823,73 @@ Partial Class FrmCotizadorLIMS
         '
         Me.NumCot.HeaderText = "NumCot"
         Me.NumCot.Name = "NumCot"
+        Me.NumCot.Width = 89
         '
         'partida
         '
         Me.partida.HeaderText = "Partida"
         Me.partida.Name = "partida"
+        Me.partida.Width = 89
         '
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.HeaderText = "Número de Artículo (SKU)"
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        Me.DataGridViewTextBoxColumn1.Width = 89
         '
         'codigoServicio
         '
         Me.codigoServicio.HeaderText = "Código Servicio"
         Me.codigoServicio.Name = "codigoServicio"
+        Me.codigoServicio.Width = 89
         '
         'cantidad
         '
         Me.cantidad.HeaderText = "Cantidad"
         Me.cantidad.Name = "cantidad"
+        Me.cantidad.Width = 89
         '
         'equipoDescripcion
         '
         Me.equipoDescripcion.HeaderText = "Descripción "
         Me.equipoDescripcion.Name = "equipoDescripcion"
+        Me.equipoDescripcion.Width = 89
         '
         'marca
         '
         Me.marca.HeaderText = "Marca/Fabricante"
         Me.marca.Name = "marca"
+        Me.marca.Width = 89
         '
         'modelo
         '
         Me.modelo.HeaderText = "Modelo"
         Me.modelo.Name = "modelo"
+        Me.modelo.Width = 89
         '
         'intervalo
         '
         Me.intervalo.HeaderText = "Intervalo"
         Me.intervalo.Name = "intervalo"
+        Me.intervalo.Width = 89
         '
         'precioUnitario
         '
         Me.precioUnitario.HeaderText = "Precio"
         Me.precioUnitario.Name = "precioUnitario"
+        Me.precioUnitario.Width = 89
         '
         'DataGridViewTextBoxColumn2
         '
         Me.DataGridViewTextBoxColumn2.HeaderText = "ID"
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        Me.DataGridViewTextBoxColumn2.Width = 89
         '
         'DataGridViewTextBoxColumn3
         '
         Me.DataGridViewTextBoxColumn3.HeaderText = "Orden de Venta"
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        Me.DataGridViewTextBoxColumn3.Width = 89
         '
         'dgEmpresa
         '
@@ -1173,28 +1209,6 @@ Partial Class FrmCotizadorLIMS
         Me.PictureBox5.TabIndex = 143
         Me.PictureBox5.TabStop = False
         '
-        'btCargarArticulos
-        '
-        Me.btCargarArticulos.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btCargarArticulos.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_update_left_rotation_64
-        Me.btCargarArticulos.Location = New System.Drawing.Point(10, 356)
-        Me.btCargarArticulos.Name = "btCargarArticulos"
-        Me.btCargarArticulos.Size = New System.Drawing.Size(30, 30)
-        Me.btCargarArticulos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.btCargarArticulos.TabIndex = 262
-        Me.btCargarArticulos.TabStop = False
-        '
-        'btCargarClientes
-        '
-        Me.btCargarClientes.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btCargarClientes.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_update_left_rotation_64
-        Me.btCargarClientes.Location = New System.Drawing.Point(688, 29)
-        Me.btCargarClientes.Name = "btCargarClientes"
-        Me.btCargarClientes.Size = New System.Drawing.Size(30, 30)
-        Me.btCargarClientes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.btCargarClientes.TabIndex = 164
-        Me.btCargarClientes.TabStop = False
-        '
         'FrmCotizadorLIMS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1212,11 +1226,13 @@ Partial Class FrmCotizadorLIMS
         Me.TabConsulta.ResumeLayout(False)
         Me.Tab2018.ResumeLayout(False)
         Me.Tab2018.PerformLayout()
+        CType(Me.btCargarArticulos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DgAgregar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DGCotizaciones, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DGEmpresas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNormal.ResumeLayout(False)
         Me.PanelNormal.PerformLayout()
+        CType(Me.btCargarClientes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.TabPage1.ResumeLayout(False)
@@ -1224,8 +1240,6 @@ Partial Class FrmCotizadorLIMS
         CType(Me.dgCot, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgEmpresa, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.btCargarArticulos, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.btCargarClientes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

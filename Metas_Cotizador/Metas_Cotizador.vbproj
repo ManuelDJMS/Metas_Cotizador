@@ -52,6 +52,9 @@
     <ApplicationIcon>cotizador.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Guna.UI">
+      <HintPath>..\..\..\..\Downloads\Guna.UI-LoginForm-UI1-master\Login01\Login01\bin\Debug\Guna.UI.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\MetasCRM\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.900.148\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
@@ -128,6 +131,12 @@
       <DependentUpon>Cotizaciones.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\Cotizaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FrmLogin.Designer.vb">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FrmLogin.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\FrmArticulos.Designer.vb">
@@ -264,6 +273,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Presentacion\Cotizaciones.resx">
       <DependentUpon>Cotizaciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FrmLogin.resx">
+      <DependentUpon>FrmLogin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\FrmArticulos.resx">
       <DependentUpon>FrmArticulos.vb</DependentUpon>
@@ -402,6 +414,7 @@
     <None Include="Resources\icons8-update-left-rotation-64.png" />
     <None Include="Resources\icons8-bill-48 %281%29.png" />
     <None Include="Resources\icons8-purchase-order-48.png" />
+    <None Include="Resources\ccc.png" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

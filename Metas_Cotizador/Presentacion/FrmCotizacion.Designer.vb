@@ -241,6 +241,7 @@ Partial Class FrmCotizacion
         Me.DgAgregar.Name = "DgAgregar"
         Me.DgAgregar.Size = New System.Drawing.Size(261, 77)
         Me.DgAgregar.TabIndex = 182
+        Me.DgAgregar.Visible = False
         '
         'DataGridViewTextBoxColumn4
         '
