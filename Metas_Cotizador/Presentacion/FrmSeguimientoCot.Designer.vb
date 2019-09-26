@@ -66,6 +66,7 @@ Partial Class FrmSeguimientoCot
         '
         'PictureBox5
         '
+        Me.PictureBox5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PictureBox5.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox5.Cursor = System.Windows.Forms.Cursors.Hand
         Me.PictureBox5.Image = CType(resources.GetObject("PictureBox5.Image"), System.Drawing.Image)
@@ -97,6 +98,10 @@ Partial Class FrmSeguimientoCot
         'DGRes
         '
         Me.DGRes.AllowUserToDeleteRows = False
+        Me.DGRes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DGRes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DGRes.BackgroundColor = System.Drawing.SystemColors.Window
         Me.DGRes.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DGRes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -131,7 +136,6 @@ Partial Class FrmSeguimientoCot
         '
         Me.Column1.HeaderText = "Generar"
         Me.Column1.Name = "Column1"
-        Me.Column1.Width = 50
         '
         'Column2
         '
@@ -139,19 +143,16 @@ Partial Class FrmSeguimientoCot
         Me.Column2.Name = "Column2"
         Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column2.Width = 50
         '
         'Column3
         '
         Me.Column3.HeaderText = "Contacto"
         Me.Column3.Name = "Column3"
-        Me.Column3.Width = 150
         '
         'Column4
         '
         Me.Column4.HeaderText = "Empresa"
         Me.Column4.Name = "Column4"
-        Me.Column4.Width = 180
         '
         'Column5
         '
@@ -162,37 +163,31 @@ Partial Class FrmSeguimientoCot
         '
         Me.Column6.HeaderText = "Domicilio"
         Me.Column6.Name = "Column6"
-        Me.Column6.Width = 130
         '
         'Column7
         '
         Me.Column7.HeaderText = "CP"
         Me.Column7.Name = "Column7"
-        Me.Column7.Width = 40
         '
         'Column15
         '
         Me.Column15.HeaderText = "Teléfono"
         Me.Column15.Name = "Column15"
-        Me.Column15.Width = 80
         '
         'Column19
         '
         Me.Column19.HeaderText = "Referencia"
         Me.Column19.Name = "Column19"
-        Me.Column19.Width = 80
         '
         'Column30
         '
         Me.Column30.HeaderText = "Fecha Desde"
         Me.Column30.Name = "Column30"
-        Me.Column30.Width = 70
         '
         'Column31
         '
         Me.Column31.HeaderText = "Fecha Hasta"
         Me.Column31.Name = "Column31"
-        Me.Column31.Width = 70
         '
         'Column32
         '
@@ -275,6 +270,7 @@ Partial Class FrmSeguimientoCot
         '
         'Label1
         '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(626, 35)
@@ -285,6 +281,7 @@ Partial Class FrmSeguimientoCot
         '
         'DtpHasta
         '
+        Me.DtpHasta.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.DtpHasta.Location = New System.Drawing.Point(646, 35)
         Me.DtpHasta.Name = "DtpHasta"
         Me.DtpHasta.Size = New System.Drawing.Size(230, 20)
@@ -292,6 +289,7 @@ Partial Class FrmSeguimientoCot
         '
         'Button1
         '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -306,6 +304,7 @@ Partial Class FrmSeguimientoCot
         '
         'Label3
         '
+        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(565, 14)
@@ -316,6 +315,7 @@ Partial Class FrmSeguimientoCot
         '
         'DtpDesde
         '
+        Me.DtpDesde.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.DtpDesde.Location = New System.Drawing.Point(391, 35)
         Me.DtpDesde.Name = "DtpDesde"
         Me.DtpDesde.Size = New System.Drawing.Size(230, 20)
@@ -323,6 +323,9 @@ Partial Class FrmSeguimientoCot
         '
         'TabConsulta
         '
+        Me.TabConsulta.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabConsulta.Controls.Add(Me.TabPage2)
         Me.TabConsulta.Location = New System.Drawing.Point(4, 28)
         Me.TabConsulta.Name = "TabConsulta"
