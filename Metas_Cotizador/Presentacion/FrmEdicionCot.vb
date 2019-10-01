@@ -412,13 +412,15 @@ Public Class FrmEdicionCot
                             observacion = DGCopia.Item(7, i).Value
                             observacion2 = DGCopia.Item(11, i).Value
                             If agregar1.ToString <> agregar2.ToString Then
-                                If DGCopia.Item(2, i).Value.ToString = "GENERICO" Then
+                                If DGCopia.Item(2, i).Value.ToString = "GENERICO" Or DGCopia.Item(2, i).Value.ToString = "Generico" Then
                                     observacion = DGCopia.Item(7, i).Value
                                     marcaGen = InputBox("¿Deseas agregar la marca del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Marca")
                                     modGen = InputBox("¿Deseas agregar el modelo del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Modelo")
-                                    observacion = observacion + "MARCA: " + marcaGen + "  MODELO:" + modGen
+
+                                    observacion = observacion + "Marca: " + marcaGen + "  Modelo:" + modGen
                                     Dim cad As String = "update DetalleCotizaciones set  Observaciones='" & observacion & "'where idListaCotizacion =" & Val(DGServicios.Item(3, i).Value) & ""
                                     Dim v As New SqlCommand(cad, conexionMetasCotizador)
+                                    MsgBox("adshaskjdkjahdskjads")
                                     v.ExecuteNonQuery()
                                 Else
                                     R = "update DetalleCotizaciones set  Observaciones='" & observacion & "'where idListaCotizacion =" & agregar2 & ""
@@ -466,10 +468,20 @@ Public Class FrmEdicionCot
                         '============================================================================================================================================================================================
                         '===================================================================== INSERTAR EN DETALLE DE COTIZACIONES===================================================================================
                         For i = 0 To DGCopia.Rows.Count - 2
-                            If DGCopia.Item(3, i).Value.ToString = "GENERICO" Then
+                            If DGCopia.Item(3, i).Value.ToString = "GENERICO" Or DGCopia.Item(3, i).Value.ToString = "Generico" Or DGCopia.Item(3, i).Value.ToString = "Genérico" Then
                                 marcaGen = InputBox("¿Deseas agregar la marca del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Marca")
                                 modGen = InputBox("¿Deseas agregar el modelo del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Modelo")
-                                observacion = observacion + " MARCA: " + marcaGen + "  MODELO:" + modGen
+                                If marcaGen = "" Or marcaGen = "-" Then
+                                    marcaGen = ""
+                                Else
+                                    marcaGen = " Marca: " & marcaGen
+                                End If
+                                If modGen = "" Or modGen = "-" Then
+                                    modGen = ""
+                                Else
+                                    modGen = " Modelo: " & modGen
+                                End If
+                                observacion = observacion + marcaGen + modGen
                             End If
                             R = "insert into DetalleCotizaciones (NumCot,EquipId, PartidaNo,Cantidad, CantidadReal, identificadorInventarioCliente, Serie, Observaciones, ObservacionesServicios) values (" &
                                  maximo & "," & DGCopia.Item(0, i).Value & "," & Val(DGCopia.Item(1, i).Value) & ",

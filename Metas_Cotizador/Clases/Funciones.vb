@@ -27,6 +27,7 @@ Module Funciones
     Public subtotalEdiCot As Double
     Public equipo As Integer
     Public numcot As Integer
+    Public tipo As String = "Generico" 'Esta variable sirve para saber si es generico o no
     '--------------------------------------Llenar la WORK ORDER
     Public arreglosales()
     Public Sub consultasLIMS(ByVal script As String, ByVal dgrid As DataGridView)

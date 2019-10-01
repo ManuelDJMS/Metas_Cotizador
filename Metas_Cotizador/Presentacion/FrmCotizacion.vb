@@ -438,6 +438,7 @@ Public Class FrmCotizacion
             Dim param22 = New SqlParameter("@serDescripcion", SqlDbType.VarChar)
             Dim param23 = New SqlParameter("@domFactura", SqlDbType.VarChar)
             Dim param24 = New SqlParameter("@rfc", SqlDbType.VarChar)
+            Dim param25 = New SqlParameter("@tipo", SqlDbType.VarChar)
             param1.Direction = ParameterDirection.Input
             param2.Direction = ParameterDirection.Input
             param3.Direction = ParameterDirection.Input
@@ -462,6 +463,7 @@ Public Class FrmCotizacion
             param22.Direction = ParameterDirection.Input
             param23.Direction = ParameterDirection.Input
             param24.Direction = ParameterDirection.Input
+            param25.Direction = ParameterDirection.Input
             param1.Value = COT
             param2.Value = desde
             param3.Value = hasta
@@ -486,6 +488,7 @@ Public Class FrmCotizacion
             param22.Value = services
             param23.Value = domFac
             param24.Value = rfc
+            param25.Value = tipo
             Adaptador.SelectCommand.Parameters.Add(param1)
             Adaptador.SelectCommand.Parameters.Add(param2)
             Adaptador.SelectCommand.Parameters.Add(param3)
@@ -510,6 +513,7 @@ Public Class FrmCotizacion
             Adaptador.SelectCommand.Parameters.Add(param22)
             Adaptador.SelectCommand.Parameters.Add(param23)
             Adaptador.SelectCommand.Parameters.Add(param24)
+            Adaptador.SelectCommand.Parameters.Add(param25)
             Dim Data As New DataSet
             Adaptador.Fill(Data)
             Data.DataSetName = "Data1"
@@ -540,21 +544,21 @@ Public Class FrmCotizacion
             Dim p22 As New ReportParameter("serDescription", services)
             Dim p23 As New ReportParameter("domFac", domFac)
             Dim p24 As New ReportParameter("rfc", rfc)
-
+            Dim p25 As New ReportParameter("tipo", tipo)
             Dim Reportes As New ReportDataSource("DataSet1", Data.Tables(0))
             FrmReportes.ReportViewer1.LocalReport.DataSources.Clear()
             FrmReportes.ReportViewer1.LocalReport.DataSources.Add(Datasource)
             FrmReportes.ReportViewer1.LocalReport.ReportPath = "C:\Users\Software TI\Documents\GitHub\Metas_Cotizador\Metas_Cotizador\Reportes\CotizacionModelo.rdlc"
             FrmReportes.ReportViewer1.LocalReport.SetParameters(New ReportParameter() {p1, p2, p3, p4, p5, p6, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17,
-                                                                     p19, p20, p21, p22, p23, p24})
+                                                                     p19, p20, p21, p22, p23, p24, p25})
             FrmReportes.ReportViewer1.RefreshReport()
             FrmReportes.Show()
             conexionMetasCotizador.Close()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
-        cadena = Err.Description
-        cadena = cadena.Replace("'", "")
-        Bitacora("FrmCotizadorLIMS", "Error al reimprimir cotización", Err.Number, cadena)
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmCotizadorLIMS", "Error al reimprimir cotización", Err.Number, cadena)
         End Try
     End Sub
 
