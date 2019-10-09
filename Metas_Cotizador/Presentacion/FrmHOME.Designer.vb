@@ -22,6 +22,7 @@ Partial Class FrmHOME
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmHOME))
         Me.PanelContenedor = New System.Windows.Forms.Panel()
         Me.PanelFormularios = New System.Windows.Forms.Panel()
@@ -45,6 +46,7 @@ Partial Class FrmHOME
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnMaximizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
+        Me.GunaAnimateWindow1 = New Guna.UI.WinForms.GunaAnimateWindow(Me.components)
         Me.PanelContenedor.SuspendLayout()
         Me.PanelMenu.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -361,6 +363,12 @@ Partial Class FrmHOME
         Me.btnCerrar.TabIndex = 4
         Me.btnCerrar.TabStop = False
         '
+        'GunaAnimateWindow1
+        '
+        Me.GunaAnimateWindow1.AnimationType = Guna.UI.WinForms.GunaAnimateWindow.AnimateWindowType.AW_BLEND
+        Me.GunaAnimateWindow1.Interval = 800
+        Me.GunaAnimateWindow1.TargetControl = Me
+        '
         'FrmHOME
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -409,4 +417,5 @@ Partial Class FrmHOME
     Friend WithEvents PL_Cotizacion As Panel
     Friend WithEvents btnContactos As Button
     Friend WithEvents PL_Contactos As Panel
+    Friend WithEvents GunaAnimateWindow1 As Guna.UI.WinForms.GunaAnimateWindow
 End Class

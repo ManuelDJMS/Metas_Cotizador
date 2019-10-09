@@ -35,6 +35,7 @@ Partial Class FrmLogin
         Me.GunaLabel1 = New Guna.UI.WinForms.GunaLabel()
         Me.GunaLinkLabel1 = New Guna.UI.WinForms.GunaLinkLabel()
         Me.GunaLinkLabel3 = New Guna.UI.WinForms.GunaLinkLabel()
+        Me.GunaAnimateWindow1 = New Guna.UI.WinForms.GunaAnimateWindow(Me.components)
         Me.GunaPanel1.SuspendLayout()
         CType(Me.GunaPictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -98,7 +99,7 @@ Partial Class FrmLogin
         Me.GunaButton1.ForeColor = System.Drawing.Color.White
         Me.GunaButton1.Image = Nothing
         Me.GunaButton1.ImageSize = New System.Drawing.Size(20, 20)
-        Me.GunaButton1.Location = New System.Drawing.Point(148, 239)
+        Me.GunaButton1.Location = New System.Drawing.Point(148, 227)
         Me.GunaButton1.Name = "GunaButton1"
         Me.GunaButton1.OnHoverBaseColor = System.Drawing.Color.White
         Me.GunaButton1.OnHoverBorderColor = System.Drawing.Color.White
@@ -207,6 +208,12 @@ Partial Class FrmLogin
         Me.GunaLinkLabel3.TabStop = True
         Me.GunaLinkLabel3.Text = "|"
         '
+        'GunaAnimateWindow1
+        '
+        Me.GunaAnimateWindow1.AnimationType = Guna.UI.WinForms.GunaAnimateWindow.AnimateWindowType.AW_BLEND
+        Me.GunaAnimateWindow1.Interval = 800
+        Me.GunaAnimateWindow1.TargetControl = Me
+        '
         'FrmLogin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -242,4 +249,5 @@ Partial Class FrmLogin
     Friend WithEvents GunaDragControl1 As Guna.UI.WinForms.GunaDragControl
     Friend WithEvents GunaLinkLabel3 As Guna.UI.WinForms.GunaLinkLabel
     Friend WithEvents GunaLinkLabel1 As Guna.UI.WinForms.GunaLinkLabel
+    Friend WithEvents GunaAnimateWindow1 As Guna.UI.WinForms.GunaAnimateWindow
 End Class

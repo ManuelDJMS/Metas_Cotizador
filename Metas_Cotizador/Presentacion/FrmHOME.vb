@@ -143,6 +143,12 @@ Public Class FrmHOME
         colorearpanel(PanelMenu, PL_PreFact)
         AbrirFormEnPanel(Of FrmCompletarOT)()
     End Sub
+
+    Private Sub FrmHOME_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        GunaAnimateWindow1.AnimationType = Guna.UI.WinForms.GunaAnimateWindow.AnimateWindowType.AW_BLEND
+        GunaAnimateWindow1.Start()
+        Guna.UI.Lib.GraphicsHelper.ShadowForm(Me)
+    End Sub
 #End Region
     'METODO DE ABRIR FORMULARIO
     Private Sub AbrirFormEnPanel(Of Miform As {Form, New})()
