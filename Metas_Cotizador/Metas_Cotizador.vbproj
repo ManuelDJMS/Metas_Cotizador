@@ -133,6 +133,12 @@
     <Compile Include="Presentacion\Cotizaciones.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Presentacion\frmAlert.Designer.vb">
+      <DependentUpon>frmAlert.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\frmAlert.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentacion\FrmLogin.Designer.vb">
       <DependentUpon>FrmLogin.vb</DependentUpon>
     </Compile>
@@ -273,6 +279,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Presentacion\Cotizaciones.resx">
       <DependentUpon>Cotizaciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\frmAlert.resx">
+      <DependentUpon>frmAlert.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\FrmLogin.resx">
       <DependentUpon>FrmLogin.vb</DependentUpon>
@@ -415,8 +424,12 @@
     <None Include="Resources\icons8-bill-48 %281%29.png" />
     <None Include="Resources\icons8-purchase-order-48.png" />
     <None Include="Resources\ccc.png" />
-    <None Include="Resources\icons8-name-64.png" />
     <None Include="Resources\icons8-verified-account-48.png" />
+    <None Include="Resources\Checkmark_28px.png" />
+    <None Include="Resources\Error_28px.png" />
+    <None Include="Resources\Info_28px.png" />
+    <None Include="Resources\Multiply_18px.png" />
+    <None Include="Resources\Warning_28px.png" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

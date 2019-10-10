@@ -328,40 +328,40 @@ Public Class FrmCotizacion
     End Sub
     Sub imprimircot(ByVal COT As Integer)
         '=============================================== METODO PARA GENERAR EL PDF DE LA COTIZACION ===================================================
-        Try
-            MetodoMetasCotizador()
+        'Try
+        MetodoMetasCotizador()
             comandoMetasCotizador = conexionMetasCotizador.CreateCommand
             ' Dim n As Integer = 0
             Dim desde, hasta As Date
             Dim nombre, puesto, tel, ext, correo, emp, dom, lugar, moneda, cotizo, correoEla, depto,
                 pago, entrega, modalidad, obser, calmetho, services, domFac, rfc As String
-            Dim cve As Integer
-            Dim R As String
+        Dim cve As String
+        Dim R As String
             Dim fir As Image
             'Dim name, mfr, model, service, price, subt As String
-            R = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, isnull([Department], '-') AS Departament, isnull([Phone], '-') as Phone, isnull([SetupCustomerDetails].[Email], '-') as Email,
-                    isnull([CompanyName],'-') as CompanyName, [ContAddress1] + ' '+  [ContCity] +', '+ [ContState]+'. ' + [ContCountry] +'. CP '+ [ContZip] AS DomCont, ROW_NUMBER() OVER(ORDER BY PartidaNo ASC) AS Partidad, Cantidad,[DetalleCotizaciones].[EquipId],
+            R = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, isnull([SetupCustomerDetails].[Department], '-') AS Departament, isnull([SetupCustomerDetails].[Phone], '-') as Phone, isnull([SetupCustomerDetails].[Email], '-') as Email,
+                    isnull([SetupCustomerDetails].[CompanyName],'-') as CompanyName, [ContAddress1] + ' '+  [ContCity] +', '+ [ContState]+'. ' + [ContCountry] +'. CP '+ [ContZip] AS DomCont, ROW_NUMBER() OVER(ORDER BY PartidaNo ASC) AS Partidad, Cantidad,[DetalleCotizaciones].[EquipId],
                     [SetUpEquipment].[EquipmentName]+', MARCA: '+[Mfr] +', MODELO: '+[Model] +'. ' + (CASE WHEN  [identificadorInventarioCliente] = '-' COLLATE SQL_Latin1_General_CP1_CI_AS  THEN [identificadorInventarioCliente]  COLLATE SQL_Latin1_General_CP1_CI_AS 
                     ELSE [identificadorInventarioCliente] COLLATE SQL_Latin1_General_CP1_CI_AS  END) AS Comparacion,[SetupServices].[ServiceName],[ServiceDescription] +', ' + [TurnAroundTime]+' dias para calibración' as Descrip, [SetupEquipmentServiceMapping].[Price], [SetupEquipmentServiceMapping].[Price] * Cantidad AS sub,
-                    [idUsuarioAdministrador], [Usuarios].[Nombre], [LugarCondicion].[Descripcion] AS lugar, [MonedaCondicion].[Descripcion] AS moneda, 
+                    [UserId], [UserMaster].[UserName], [LugarCondicion].[Descripcion] AS lugar, [MonedaCondicion].[Descripcion] AS moneda, 
                     [PagoCondicion].[Descripcion] AS pago, [ModalidadCondicion].[Descripcion] AS modalidad,
                     [Cotizaciones].[Observaciones],[CalibrationMethod], [ServiceDescription], [BillAddress1] +' '+ [BillCity] +', '+ [BillState]+'. '+[BillCountry]+' CP '+[BillZip] AS domFac, [TaxIDNo],
-                    [Usuarios].[Email], [Usuarios].[Depto]
+                    [UserMaster].[Email], isnull([UserMaster].[Department], '-') as depto
                     from [MetasCotizador].[dbo].[Cotizaciones]
-                    INNER JOIN [Usuarios] ON [Cotizaciones].[idUsuarioCotizacion] = [Usuarios].[idUsuarioAdministrador]
-                    INNER JOIN " & servidor & " [SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
-                    INNER JOIN " & servidor & " [SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
+                    INNER JOIN " & servidor & "[UserMaster] ON [Cotizaciones].[idUsuarioCotizacion] COLLATE SQL_Latin1_General_CP1_CI_AS = [UserMaster].[UserID]
+                    INNER JOIN " & servidor & "[SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
+                    INNER JOIN " & servidor & "[SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
                                 INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
                     INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].[idListaCotizacion] = [ServiciosEnCotizaciones].[idListaCotizacion]
-                    INNER JOIN " & servidor & " [SetupServices] ON [ServiciosEnCotizaciones].[idServicio] = [SetupServices].[ServicesId]
+                    INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].[idServicio] = [SetupServices].[ServicesId]
                     INNER JOIN [LugarCondicion] ON [Cotizaciones].[idLugarCondicion] = [LugarCondicion].[idLugarCondicion]
                     INNER JOIN [MonedaCondicion] ON [Cotizaciones].[idMonedaCondicion] = [MonedaCondicion].[idMonedaCondicion]
                     INNER JOIN [PagoCondicion] ON [Cotizaciones].[idPagoCondicion] = [PagoCondicion].[idPagoCondicion]
                     INNER JOIN [TiempoEntregaCondicion] ON [Cotizaciones].[idTiempoEntregaCondicion] = [TiempoEntregaCondicion].[idTiempoEntregaCondicion]
                     INNER JOIN [ModalidadCondicion] ON [Cotizaciones].[idModalidadCondicion] = [ModalidadCondicion].[idModalidadCondicion]
-                    INNER JOIN " & servidor & " [SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
-                    INNER JOIN " & servidor & " [SetupEquipmentServiceMapping] ON [SetUpEquipment].[EquipId] =[SetupEquipmentServiceMapping].[EquipId]
-                                    WHERE [Cotizaciones].NumCot = '" & COT & "'"
+                    INNER JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
+                    INNER JOIN " & servidor & "[SetupEquipmentServiceMapping] ON [SetUpEquipment].[EquipId] =[SetupEquipmentServiceMapping].[EquipId]
+                                    WHERE [Cotizaciones].NumCot= '" & COT & "'"
             comandoMetasCotizador.CommandText = R
             lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
 
@@ -424,9 +424,9 @@ Public Class FrmCotizacion
             Dim param8 = New SqlParameter("@correo", SqlDbType.VarChar)
             Dim param9 = New SqlParameter("@com", SqlDbType.VarChar)
             Dim param10 = New SqlParameter("@dom", SqlDbType.VarChar)
-            Dim param11 = New SqlParameter("@cveElaboro", SqlDbType.Int)
-            Dim param12 = New SqlParameter("@elaborocot", SqlDbType.VarChar)
-            Dim param13 = New SqlParameter("@correoElaboro", SqlDbType.VarChar)
+        Dim param11 = New SqlParameter("@cveElaboro", SqlDbType.VarChar)
+        Dim param12 = New SqlParameter("@elaborocot", SqlDbType.VarChar)
+        Dim param13 = New SqlParameter("@correoElaboro", SqlDbType.VarChar)
             Dim param14 = New SqlParameter("@depto", SqlDbType.VarChar)
             Dim param15 = New SqlParameter("@lugar", SqlDbType.VarChar)
             Dim param16 = New SqlParameter("@moneda", SqlDbType.VarChar)
@@ -554,12 +554,12 @@ Public Class FrmCotizacion
             FrmReportes.ReportViewer1.RefreshReport()
             FrmReportes.Show()
             conexionMetasCotizador.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizadorLIMS", "Error al reimprimir cotización", Err.Number, cadena)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+        '    cadena = Err.Description
+        '    cadena = cadena.Replace("'", "")
+        '    Bitacora("FrmCotizadorLIMS", "Error al reimprimir cotización", Err.Number, cadena)
+        'End Try
     End Sub
 
     Private Sub BtnReImpresion_Click(sender As Object, e As EventArgs) Handles btnReImpresion.Click

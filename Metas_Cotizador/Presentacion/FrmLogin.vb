@@ -24,17 +24,15 @@ Public Class FrmLogin
                     lector.Read()
                     usuario = lector(0)
                     If txtUser.Text = lector(1) And txtpass.Text = lector(2) Then
-                        'cveOperador = lector(3)
+                        Alert("Usuario Correcto, BIENVENIDO", frmAlert.alertTypeEnum.Success)
+                        FrmHOME.lbInicio.Text = lector(1)
+                        FrmHOME.Show()
                         lector.Close()
-                        MsgBox("Usuario Correcto, BIENVENIDO", MsgBoxStyle.Information)
-                        Dim f As FrmHOME = New FrmHOME
-                        f.Show()
                         Me.Dispose()
                         conexion1.Close()
-                        Me.Dispose()
                     Else
-                        MsgBox("Contraseña incorrecta", MsgBoxStyle.Information)
-                        txtUser.Text = ""
+                        Alert("Contraseña Incorrecta", frmAlert.alertTypeEnum.Error)
+                        txtpass.Text = ""
                     End If
                 End Using
             Else
@@ -96,17 +94,15 @@ Public Class FrmLogin
                             lector.Read()
                             usuario = lector(0)
                             If txtUser.Text = lector(1) And txtpass.Text = lector(2) Then
-                                'cveOperador = lector(3)
+                                Alert("Usuario Correcto, BIENVENIDO", frmAlert.alertTypeEnum.Success)
+                                FrmHOME.lbInicio.Text = lector(1)
+                                FrmHOME.Show()
                                 lector.Close()
-                                MsgBox("Usuario Correcto, BIENVENIDO", MsgBoxStyle.Information)
-                                Dim f As FrmHOME = New FrmHOME
-                                f.Show()
                                 Me.Dispose()
                                 conexion1.Close()
-                                Me.Dispose()
                             Else
-                                MsgBox("Contraseña incorrecta", MsgBoxStyle.Information)
-                                txtUser.Text = ""
+                                Alert("Contraseña Incorrecta", frmAlert.alertTypeEnum.Error)
+                                txtpass.Text = ""
                             End If
                         End Using
                     Else

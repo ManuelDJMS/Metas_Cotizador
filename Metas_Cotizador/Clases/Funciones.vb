@@ -160,4 +160,9 @@ Module Funciones
             Bitacora("FrmAutorizarSolicitudes", "Error al buscar cot", Err.Number, cadena)
         End Try
     End Sub
+    '-------------------------CODIGO PARA LAS ALERTAS ---------------------------
+    Public Sub Alert(msg As String, type As frmAlert.alertTypeEnum)
+        Dim f As frmAlert = New frmAlert
+        f.setAlert(msg, type)
+    End Sub
 End Module

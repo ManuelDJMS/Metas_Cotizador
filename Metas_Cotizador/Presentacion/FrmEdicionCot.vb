@@ -360,7 +360,7 @@ Public Class FrmEdicionCot
     End Sub
 
     Private Sub BtGuardarInf_Click(sender As Object, e As EventArgs) Handles btGuardarInf.Click
-        If txtCotizo2019.Text.Equals("") Or txtCotizo2019.Text = "" Or DGServicios.Rows.Count = 0 Then
+        If DGServicios.Rows.Count = 0 Then
             MsgBox("Falta agregar el usuario que realizo la cotización¡", MsgBoxStyle.Critical)
         Else
             Try
@@ -450,7 +450,7 @@ Public Class FrmEdicionCot
                     idValidezCondicion,idMonedaCondicion,idDocumentoCondicion,idModoCont,Referencia,FechaDesde,FechaHasta,Observaciones,idUsuarioCotizacion,Subtotal,IVA,Total,Creado)
                     values (" & Val(txtCveContacto.Text) & ",'" & origen & "'," & Val(cboServicio.Tag) & "," & Val(Cbcuando.Tag) & "," & Val(CbModalidad.Tag) & "," & Val(CboTiempo.Tag) & "," &
                             Val(CCondPago.Tag) & "," & Val(CboLeyenda.Tag) & "," & Val(CboValidez.Tag) & "," & Val(CboMoneda.Tag) & "," & Val(ComboDocCond.Tag) & "," & Val(CboContabilizar.Tag) & ",'" &
-                            txtReferencia.Text & "','" & fechaActual & "','" & fecharecepcion & "','" & txtObservaciones.Text & "'," & Val(txtCotizo2019.Text) & "," & subtotal & "," & iva & "," & Total & ",0)"
+                            txtReferencia.Text & "','" & fechaActual & "','" & fecharecepcion & "','" & txtObservaciones.Text & "','" & usuario & "'," & subtotal & "," & iva & "," & Total & ",0)"
                         comando.CommandText = R
                         comando.ExecuteNonQuery()
                         '============================================================================================================================================================================================
