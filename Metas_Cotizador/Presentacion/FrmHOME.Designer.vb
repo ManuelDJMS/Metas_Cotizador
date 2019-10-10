@@ -27,30 +27,33 @@ Partial Class FrmHOME
         Me.PanelContenedor = New System.Windows.Forms.Panel()
         Me.PanelFormularios = New System.Windows.Forms.Panel()
         Me.PanelMenu = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label23 = New System.Windows.Forms.Label()
-        Me.btnConfirmacion = New System.Windows.Forms.Button()
         Me.PL_Confirmacion = New System.Windows.Forms.Panel()
-        Me.btnRecordatorios = New System.Windows.Forms.Button()
         Me.PL_Recordatorio = New System.Windows.Forms.Panel()
-        Me.btnPreFact = New System.Windows.Forms.Button()
         Me.PL_PreFact = New System.Windows.Forms.Panel()
-        Me.btnOrdenVenta = New System.Windows.Forms.Button()
         Me.PL_OrdenVenta = New System.Windows.Forms.Panel()
-        Me.btnCotizacion = New System.Windows.Forms.Button()
         Me.PL_Cotizacion = New System.Windows.Forms.Panel()
-        Me.btnContactos = New System.Windows.Forms.Button()
         Me.PL_Contactos = New System.Windows.Forms.Panel()
         Me.PanelBarraTitulo = New System.Windows.Forms.Panel()
+        Me.GunaAnimateWindow1 = New Guna.UI.WinForms.GunaAnimateWindow(Me.components)
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.btnConfirmacion = New System.Windows.Forms.Button()
+        Me.btnRecordatorios = New System.Windows.Forms.Button()
+        Me.btnPreFact = New System.Windows.Forms.Button()
+        Me.btnOrdenVenta = New System.Windows.Forms.Button()
+        Me.btnCotizacion = New System.Windows.Forms.Button()
+        Me.btnContactos = New System.Windows.Forms.Button()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.btnRestaurar = New System.Windows.Forms.PictureBox()
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnMaximizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
-        Me.GunaAnimateWindow1 = New Guna.UI.WinForms.GunaAnimateWindow(Me.components)
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelContenedor.SuspendLayout()
         Me.PanelMenu.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelBarraTitulo.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnRestaurar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnMinimizar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnMaximizar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,16 +103,6 @@ Partial Class FrmHOME
         Me.PanelMenu.Size = New System.Drawing.Size(200, 689)
         Me.PanelMenu.TabIndex = 5
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.Metas_Cotizador.My.Resources.Resources.metas_esta
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 7)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(200, 95)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 42
-        Me.PictureBox1.TabStop = False
-        '
         'Label23
         '
         Me.Label23.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -121,6 +114,86 @@ Partial Class FrmHOME
         Me.Label23.Size = New System.Drawing.Size(191, 15)
         Me.Label23.TabIndex = 55
         Me.Label23.Text = "Metrólogos Asociados S.A. de C.V."
+        '
+        'PL_Confirmacion
+        '
+        Me.PL_Confirmacion.BackColor = System.Drawing.Color.White
+        Me.PL_Confirmacion.Location = New System.Drawing.Point(190, 373)
+        Me.PL_Confirmacion.Name = "PL_Confirmacion"
+        Me.PL_Confirmacion.Size = New System.Drawing.Size(10, 53)
+        Me.PL_Confirmacion.TabIndex = 53
+        '
+        'PL_Recordatorio
+        '
+        Me.PL_Recordatorio.BackColor = System.Drawing.Color.White
+        Me.PL_Recordatorio.Location = New System.Drawing.Point(190, 319)
+        Me.PL_Recordatorio.Name = "PL_Recordatorio"
+        Me.PL_Recordatorio.Size = New System.Drawing.Size(10, 53)
+        Me.PL_Recordatorio.TabIndex = 51
+        '
+        'PL_PreFact
+        '
+        Me.PL_PreFact.BackColor = System.Drawing.Color.White
+        Me.PL_PreFact.Location = New System.Drawing.Point(190, 265)
+        Me.PL_PreFact.Name = "PL_PreFact"
+        Me.PL_PreFact.Size = New System.Drawing.Size(10, 53)
+        Me.PL_PreFact.TabIndex = 49
+        '
+        'PL_OrdenVenta
+        '
+        Me.PL_OrdenVenta.BackColor = System.Drawing.Color.White
+        Me.PL_OrdenVenta.Location = New System.Drawing.Point(190, 211)
+        Me.PL_OrdenVenta.Name = "PL_OrdenVenta"
+        Me.PL_OrdenVenta.Size = New System.Drawing.Size(10, 53)
+        Me.PL_OrdenVenta.TabIndex = 47
+        '
+        'PL_Cotizacion
+        '
+        Me.PL_Cotizacion.BackColor = System.Drawing.Color.White
+        Me.PL_Cotizacion.Location = New System.Drawing.Point(190, 157)
+        Me.PL_Cotizacion.Name = "PL_Cotizacion"
+        Me.PL_Cotizacion.Size = New System.Drawing.Size(10, 53)
+        Me.PL_Cotizacion.TabIndex = 45
+        '
+        'PL_Contactos
+        '
+        Me.PL_Contactos.BackColor = System.Drawing.Color.White
+        Me.PL_Contactos.Location = New System.Drawing.Point(190, 103)
+        Me.PL_Contactos.Name = "PL_Contactos"
+        Me.PL_Contactos.Size = New System.Drawing.Size(10, 53)
+        Me.PL_Contactos.TabIndex = 43
+        '
+        'PanelBarraTitulo
+        '
+        Me.PanelBarraTitulo.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
+        Me.PanelBarraTitulo.Controls.Add(Me.Label1)
+        Me.PanelBarraTitulo.Controls.Add(Me.PictureBox2)
+        Me.PanelBarraTitulo.Controls.Add(Me.btnRestaurar)
+        Me.PanelBarraTitulo.Controls.Add(Me.btnMinimizar)
+        Me.PanelBarraTitulo.Controls.Add(Me.btnMaximizar)
+        Me.PanelBarraTitulo.Controls.Add(Me.btnCerrar)
+        Me.PanelBarraTitulo.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelBarraTitulo.Location = New System.Drawing.Point(0, 0)
+        Me.PanelBarraTitulo.Margin = New System.Windows.Forms.Padding(2)
+        Me.PanelBarraTitulo.Name = "PanelBarraTitulo"
+        Me.PanelBarraTitulo.Size = New System.Drawing.Size(1366, 41)
+        Me.PanelBarraTitulo.TabIndex = 4
+        '
+        'GunaAnimateWindow1
+        '
+        Me.GunaAnimateWindow1.AnimationType = Guna.UI.WinForms.GunaAnimateWindow.AnimateWindowType.AW_BLEND
+        Me.GunaAnimateWindow1.Interval = 800
+        Me.GunaAnimateWindow1.TargetControl = Me
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Metas_Cotizador.My.Resources.Resources.metas_esta
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 7)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(200, 95)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 42
+        Me.PictureBox1.TabStop = False
         '
         'btnConfirmacion
         '
@@ -143,14 +216,6 @@ Partial Class FrmHOME
         Me.btnConfirmacion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnConfirmacion.UseVisualStyleBackColor = True
         '
-        'PL_Confirmacion
-        '
-        Me.PL_Confirmacion.BackColor = System.Drawing.Color.White
-        Me.PL_Confirmacion.Location = New System.Drawing.Point(190, 373)
-        Me.PL_Confirmacion.Name = "PL_Confirmacion"
-        Me.PL_Confirmacion.Size = New System.Drawing.Size(10, 53)
-        Me.PL_Confirmacion.TabIndex = 53
-        '
         'btnRecordatorios
         '
         Me.btnRecordatorios.Cursor = System.Windows.Forms.Cursors.Hand
@@ -171,14 +236,6 @@ Partial Class FrmHOME
         Me.btnRecordatorios.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnRecordatorios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnRecordatorios.UseVisualStyleBackColor = True
-        '
-        'PL_Recordatorio
-        '
-        Me.PL_Recordatorio.BackColor = System.Drawing.Color.White
-        Me.PL_Recordatorio.Location = New System.Drawing.Point(190, 319)
-        Me.PL_Recordatorio.Name = "PL_Recordatorio"
-        Me.PL_Recordatorio.Size = New System.Drawing.Size(10, 53)
-        Me.PL_Recordatorio.TabIndex = 51
         '
         'btnPreFact
         '
@@ -201,14 +258,6 @@ Partial Class FrmHOME
         Me.btnPreFact.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnPreFact.UseVisualStyleBackColor = True
         '
-        'PL_PreFact
-        '
-        Me.PL_PreFact.BackColor = System.Drawing.Color.White
-        Me.PL_PreFact.Location = New System.Drawing.Point(190, 265)
-        Me.PL_PreFact.Name = "PL_PreFact"
-        Me.PL_PreFact.Size = New System.Drawing.Size(10, 53)
-        Me.PL_PreFact.TabIndex = 49
-        '
         'btnOrdenVenta
         '
         Me.btnOrdenVenta.Cursor = System.Windows.Forms.Cursors.Hand
@@ -229,14 +278,6 @@ Partial Class FrmHOME
         Me.btnOrdenVenta.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnOrdenVenta.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnOrdenVenta.UseVisualStyleBackColor = True
-        '
-        'PL_OrdenVenta
-        '
-        Me.PL_OrdenVenta.BackColor = System.Drawing.Color.White
-        Me.PL_OrdenVenta.Location = New System.Drawing.Point(190, 211)
-        Me.PL_OrdenVenta.Name = "PL_OrdenVenta"
-        Me.PL_OrdenVenta.Size = New System.Drawing.Size(10, 53)
-        Me.PL_OrdenVenta.TabIndex = 47
         '
         'btnCotizacion
         '
@@ -259,14 +300,6 @@ Partial Class FrmHOME
         Me.btnCotizacion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnCotizacion.UseVisualStyleBackColor = True
         '
-        'PL_Cotizacion
-        '
-        Me.PL_Cotizacion.BackColor = System.Drawing.Color.White
-        Me.PL_Cotizacion.Location = New System.Drawing.Point(190, 157)
-        Me.PL_Cotizacion.Name = "PL_Cotizacion"
-        Me.PL_Cotizacion.Size = New System.Drawing.Size(10, 53)
-        Me.PL_Cotizacion.TabIndex = 45
-        '
         'btnContactos
         '
         Me.btnContactos.Cursor = System.Windows.Forms.Cursors.Hand
@@ -288,27 +321,15 @@ Partial Class FrmHOME
         Me.btnContactos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnContactos.UseVisualStyleBackColor = True
         '
-        'PL_Contactos
+        'PictureBox2
         '
-        Me.PL_Contactos.BackColor = System.Drawing.Color.White
-        Me.PL_Contactos.Location = New System.Drawing.Point(190, 103)
-        Me.PL_Contactos.Name = "PL_Contactos"
-        Me.PL_Contactos.Size = New System.Drawing.Size(10, 53)
-        Me.PL_Contactos.TabIndex = 43
-        '
-        'PanelBarraTitulo
-        '
-        Me.PanelBarraTitulo.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
-        Me.PanelBarraTitulo.Controls.Add(Me.btnRestaurar)
-        Me.PanelBarraTitulo.Controls.Add(Me.btnMinimizar)
-        Me.PanelBarraTitulo.Controls.Add(Me.btnMaximizar)
-        Me.PanelBarraTitulo.Controls.Add(Me.btnCerrar)
-        Me.PanelBarraTitulo.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelBarraTitulo.Location = New System.Drawing.Point(0, 0)
-        Me.PanelBarraTitulo.Margin = New System.Windows.Forms.Padding(2)
-        Me.PanelBarraTitulo.Name = "PanelBarraTitulo"
-        Me.PanelBarraTitulo.Size = New System.Drawing.Size(1366, 41)
-        Me.PanelBarraTitulo.TabIndex = 4
+        Me.PictureBox2.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_verified_account_48
+        Me.PictureBox2.Location = New System.Drawing.Point(1133, 3)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(34, 32)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 8
+        Me.PictureBox2.TabStop = False
         '
         'btnRestaurar
         '
@@ -363,11 +384,16 @@ Partial Class FrmHOME
         Me.btnCerrar.TabIndex = 4
         Me.btnCerrar.TabStop = False
         '
-        'GunaAnimateWindow1
+        'Label1
         '
-        Me.GunaAnimateWindow1.AnimationType = Guna.UI.WinForms.GunaAnimateWindow.AnimateWindowType.AW_BLEND
-        Me.GunaAnimateWindow1.Interval = 800
-        Me.GunaAnimateWindow1.TargetControl = Me
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.White
+        Me.Label1.Location = New System.Drawing.Point(1173, 9)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(69, 21)
+        Me.Label1.TabIndex = 9
+        Me.Label1.Text = "Manuel"
         '
         'FrmHOME
         '
@@ -385,8 +411,10 @@ Partial Class FrmHOME
         Me.PanelContenedor.ResumeLayout(False)
         Me.PanelMenu.ResumeLayout(False)
         Me.PanelMenu.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelBarraTitulo.ResumeLayout(False)
+        Me.PanelBarraTitulo.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnRestaurar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnMinimizar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnMaximizar, System.ComponentModel.ISupportInitialize).EndInit()
@@ -418,4 +446,6 @@ Partial Class FrmHOME
     Friend WithEvents btnContactos As Button
     Friend WithEvents PL_Contactos As Panel
     Friend WithEvents GunaAnimateWindow1 As Guna.UI.WinForms.GunaAnimateWindow
+    Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents Label1 As Label
 End Class

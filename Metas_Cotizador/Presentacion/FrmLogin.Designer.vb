@@ -28,9 +28,11 @@ Partial Class FrmLogin
         Me.GunaLinkLabel2 = New Guna.UI.WinForms.GunaLinkLabel()
         Me.GunaDragControl1 = New Guna.UI.WinForms.GunaDragControl(Me.components)
         Me.GunaPanel1 = New Guna.UI.WinForms.GunaPanel()
+        Me.txtpass = New System.Windows.Forms.TextBox()
+        Me.txtUser = New System.Windows.Forms.TextBox()
         Me.GunaButton1 = New Guna.UI.WinForms.GunaButton()
-        Me.txtPass = New Guna.UI.WinForms.GunaTextBox()
-        Me.txtUser = New Guna.UI.WinForms.GunaTextBox()
+        Me.f = New Guna.UI.WinForms.GunaTextBox()
+        Me.h = New Guna.UI.WinForms.GunaTextBox()
         Me.GunaPictureBox1 = New Guna.UI.WinForms.GunaPictureBox()
         Me.GunaLabel1 = New Guna.UI.WinForms.GunaLabel()
         Me.GunaLinkLabel1 = New Guna.UI.WinForms.GunaLinkLabel()
@@ -75,9 +77,11 @@ Partial Class FrmLogin
         Me.GunaPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(207, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.GunaPanel1.BackgroundImage = Global.Metas_Cotizador.My.Resources.Resources.ccc
         Me.GunaPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.GunaPanel1.Controls.Add(Me.GunaButton1)
-        Me.GunaPanel1.Controls.Add(Me.txtPass)
+        Me.GunaPanel1.Controls.Add(Me.txtpass)
         Me.GunaPanel1.Controls.Add(Me.txtUser)
+        Me.GunaPanel1.Controls.Add(Me.GunaButton1)
+        Me.GunaPanel1.Controls.Add(Me.f)
+        Me.GunaPanel1.Controls.Add(Me.h)
         Me.GunaPanel1.Controls.Add(Me.GunaPictureBox1)
         Me.GunaPanel1.Controls.Add(Me.GunaLabel1)
         Me.GunaPanel1.Dock = System.Windows.Forms.DockStyle.Top
@@ -85,6 +89,33 @@ Partial Class FrmLogin
         Me.GunaPanel1.Name = "GunaPanel1"
         Me.GunaPanel1.Size = New System.Drawing.Size(390, 320)
         Me.GunaPanel1.TabIndex = 0
+        '
+        'txtpass
+        '
+        Me.txtpass.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.txtpass.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtpass.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtpass.ForeColor = System.Drawing.SystemColors.ScrollBar
+        Me.txtpass.Location = New System.Drawing.Point(78, 178)
+        Me.txtpass.Name = "txtpass"
+        Me.txtpass.Size = New System.Drawing.Size(241, 24)
+        Me.txtpass.TabIndex = 7
+        Me.txtpass.Text = "Contraseña"
+        Me.txtpass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.txtpass.UseSystemPasswordChar = True
+        '
+        'txtUser
+        '
+        Me.txtUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtUser.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUser.ForeColor = System.Drawing.SystemColors.ScrollBar
+        Me.txtUser.Location = New System.Drawing.Point(79, 130)
+        Me.txtUser.Name = "txtUser"
+        Me.txtUser.Size = New System.Drawing.Size(241, 24)
+        Me.txtUser.TabIndex = 6
+        Me.txtUser.Text = "Nombre de Usuario"
+        Me.txtUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'GunaButton1
         '
@@ -94,6 +125,7 @@ Partial Class FrmLogin
         Me.GunaButton1.BaseColor = System.Drawing.Color.Transparent
         Me.GunaButton1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.GunaButton1.BorderSize = 1
+        Me.GunaButton1.Cursor = System.Windows.Forms.Cursors.Hand
         Me.GunaButton1.FocusedColor = System.Drawing.Color.Empty
         Me.GunaButton1.Font = New System.Drawing.Font("Segoe UI", 14.0!)
         Me.GunaButton1.ForeColor = System.Drawing.Color.White
@@ -113,48 +145,47 @@ Partial Class FrmLogin
         Me.GunaButton1.Text = "Ingresar"
         Me.GunaButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'txtPass
+        'f
         '
-        Me.txtPass.BackColor = System.Drawing.Color.Transparent
-        Me.txtPass.BaseColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.txtPass.BorderColor = System.Drawing.Color.Silver
-        Me.txtPass.BorderSize = 0
-        Me.txtPass.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPass.FocusedBaseColor = System.Drawing.Color.White
-        Me.txtPass.FocusedBorderColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtPass.FocusedForeColor = System.Drawing.SystemColors.ControlText
-        Me.txtPass.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPass.ForeColor = System.Drawing.Color.Silver
-        Me.txtPass.Location = New System.Drawing.Point(72, 172)
-        Me.txtPass.Name = "txtPass"
-        Me.txtPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(9679)
-        Me.txtPass.Radius = 6
-        Me.txtPass.Size = New System.Drawing.Size(255, 37)
-        Me.txtPass.TabIndex = 4
-        Me.txtPass.Text = "password"
-        Me.txtPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.txtPass.UseSystemPasswordChar = True
+        Me.f.BackColor = System.Drawing.Color.Transparent
+        Me.f.BaseColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.f.BorderColor = System.Drawing.Color.Silver
+        Me.f.BorderSize = 0
+        Me.f.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.f.Enabled = False
+        Me.f.FocusedBaseColor = System.Drawing.Color.White
+        Me.f.FocusedBorderColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.f.FocusedForeColor = System.Drawing.SystemColors.ControlText
+        Me.f.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.f.ForeColor = System.Drawing.Color.Silver
+        Me.f.Location = New System.Drawing.Point(72, 172)
+        Me.f.Name = "f"
+        Me.f.PasswordChar = Global.Microsoft.VisualBasic.ChrW(9679)
+        Me.f.Radius = 6
+        Me.f.Size = New System.Drawing.Size(255, 37)
+        Me.f.TabIndex = 4
+        Me.f.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'txtUser
+        'h
         '
-        Me.txtUser.BackColor = System.Drawing.Color.Transparent
-        Me.txtUser.BaseColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
-        Me.txtUser.BorderColor = System.Drawing.Color.Silver
-        Me.txtUser.BorderSize = 0
-        Me.txtUser.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtUser.FocusedBaseColor = System.Drawing.Color.White
-        Me.txtUser.FocusedBorderColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtUser.FocusedForeColor = System.Drawing.SystemColors.ControlText
-        Me.txtUser.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUser.ForeColor = System.Drawing.Color.Silver
-        Me.txtUser.Location = New System.Drawing.Point(72, 124)
-        Me.txtUser.Name = "txtUser"
-        Me.txtUser.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.txtUser.Radius = 6
-        Me.txtUser.Size = New System.Drawing.Size(255, 37)
-        Me.txtUser.TabIndex = 3
-        Me.txtUser.Text = "Nombre de Usuario"
-        Me.txtUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.h.BackColor = System.Drawing.Color.Transparent
+        Me.h.BaseColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(248, Byte), Integer), CType(CType(244, Byte), Integer))
+        Me.h.BorderColor = System.Drawing.Color.Silver
+        Me.h.BorderSize = 0
+        Me.h.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.h.Enabled = False
+        Me.h.FocusedBaseColor = System.Drawing.Color.White
+        Me.h.FocusedBorderColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.h.FocusedForeColor = System.Drawing.SystemColors.ControlText
+        Me.h.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.h.ForeColor = System.Drawing.Color.Silver
+        Me.h.Location = New System.Drawing.Point(72, 124)
+        Me.h.Name = "h"
+        Me.h.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.h.Radius = 6
+        Me.h.Size = New System.Drawing.Size(255, 37)
+        Me.h.TabIndex = 3
+        Me.h.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'GunaPictureBox1
         '
@@ -242,12 +273,14 @@ Partial Class FrmLogin
     Friend WithEvents GunaPictureBox1 As Guna.UI.WinForms.GunaPictureBox
     Friend WithEvents GunaLabel1 As Guna.UI.WinForms.GunaLabel
     Friend WithEvents GunaButton1 As Guna.UI.WinForms.GunaButton
-    Friend WithEvents txtPass As Guna.UI.WinForms.GunaTextBox
-    Friend WithEvents txtUser As Guna.UI.WinForms.GunaTextBox
+    Friend WithEvents f As Guna.UI.WinForms.GunaTextBox
+    Friend WithEvents h As Guna.UI.WinForms.GunaTextBox
     Friend WithEvents GunaLinkLabel2 As Guna.UI.WinForms.GunaLinkLabel
     Friend WithEvents GunaSeparator1 As Guna.UI.WinForms.GunaSeparator
     Friend WithEvents GunaDragControl1 As Guna.UI.WinForms.GunaDragControl
     Friend WithEvents GunaLinkLabel3 As Guna.UI.WinForms.GunaLinkLabel
     Friend WithEvents GunaLinkLabel1 As Guna.UI.WinForms.GunaLinkLabel
     Friend WithEvents GunaAnimateWindow1 As Guna.UI.WinForms.GunaAnimateWindow
+    Friend WithEvents txtUser As TextBox
+    Friend WithEvents txtpass As TextBox
 End Class

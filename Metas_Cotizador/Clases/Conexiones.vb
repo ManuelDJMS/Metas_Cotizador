@@ -18,6 +18,7 @@ Module Conexiones
     Public banderaform As Boolean
     Public numcotfrm, Total As Integer
     Public empresafrm, Contacto, Referencia, corrreofrm As String
+    Public usuario As String 'Variable para almacenar el user id del login
     '================================================VARIABLE PARA UTILIZAR LA TRANSACCION DEL LIMS=========================================================================
     Public conexionLIMStransac As String = ("Data Source=DATABASESERVER\COMPAC;Initial Catalog=MetAs_Live-pruebas; User Id=sa; Password=Contpaq1;Integrated Security=False")
     '=======================================================================================================================================================================
