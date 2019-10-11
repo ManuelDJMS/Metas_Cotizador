@@ -517,9 +517,9 @@ Public Class FrmCotizacion
             Dim Data As New DataSet
             Adaptador.Fill(Data)
             Data.DataSetName = "Data1"
-            Dim Datasource As New ReportDataSource("DataSet1", Data.Tables(0))
-            Datasource.Name = "DataSet1"
-            Datasource.Value = Data.Tables(0)
+        Dim Datasource As New ReportDataSource("DataSet1", Data.Tables(0))
+        Datasource.Name = "DataSet1"
+        Datasource.Value = Data.Tables(0)
             Dim p1 As New ReportParameter("numCot", COT)
             Dim p2 As New ReportParameter("fechaDesde", desde)
             Dim p3 As New ReportParameter("fechaHasta", hasta)

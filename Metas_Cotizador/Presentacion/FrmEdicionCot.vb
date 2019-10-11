@@ -19,6 +19,8 @@ Public Class FrmEdicionCot
                 DGCopia.Columns(10).Width = 80
                 DGCopia.Columns(8).Visible = True
                 btGuardarInf.Text = "ACTUALIZAR COT"
+                lbCotizo.Visible = False
+                txtCotizo2019.Visible = False
                 numCot.Visible = True
                 btGuardarInf.Visible = True
                 btActualizarCliente.Visible = True
@@ -315,10 +317,6 @@ Public Class FrmEdicionCot
 
     Private Sub btActualizarCliente_Click(sender As Object, e As EventArgs) Handles btActualizarCliente.Click
         FrmContactos.Show()
-    End Sub
-
-    Private Sub TextSubtotal_TextChanged(sender As Object, e As EventArgs) Handles TextSubtotal.TextChanged
-
     End Sub
 
     Private Sub DGServicios_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles DGServicios.CellEndEdit

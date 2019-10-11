@@ -106,7 +106,9 @@ Partial Class FrmEdicionCot
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextCorreo = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtCotizo2019 = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.lbCotizo = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.txtTelefono = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -122,8 +124,6 @@ Partial Class FrmEdicionCot
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.txtCotizo2019 = New System.Windows.Forms.TextBox()
-        Me.Label21 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.DGServicios, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGCopia, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -805,7 +805,7 @@ Partial Class FrmEdicionCot
         Me.GroupBox6.Controls.Add(Me.Label6)
         Me.GroupBox6.Controls.Add(Me.txtCotizo2019)
         Me.GroupBox6.Controls.Add(Me.Label7)
-        Me.GroupBox6.Controls.Add(Me.Label21)
+        Me.GroupBox6.Controls.Add(Me.lbCotizo)
         Me.GroupBox6.Controls.Add(Me.Label22)
         Me.GroupBox6.Controls.Add(Me.txtTelefono)
         Me.GroupBox6.Controls.Add(Me.Label8)
@@ -969,6 +969,15 @@ Partial Class FrmEdicionCot
         Me.Label6.TabIndex = 138
         Me.Label6.Text = "Telefono:"
         '
+        'txtCotizo2019
+        '
+        Me.txtCotizo2019.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCotizo2019.Location = New System.Drawing.Point(104, 219)
+        Me.txtCotizo2019.Name = "txtCotizo2019"
+        Me.txtCotizo2019.Size = New System.Drawing.Size(170, 21)
+        Me.txtCotizo2019.TabIndex = 147
+        Me.txtCotizo2019.Visible = False
+        '
         'Label7
         '
         Me.Label7.AutoSize = True
@@ -979,6 +988,18 @@ Partial Class FrmEdicionCot
         Me.Label7.Size = New System.Drawing.Size(52, 16)
         Me.Label7.TabIndex = 140
         Me.Label7.Text = "Correo:"
+        '
+        'lbCotizo
+        '
+        Me.lbCotizo.AutoSize = True
+        Me.lbCotizo.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbCotizo.ForeColor = System.Drawing.Color.Black
+        Me.lbCotizo.Location = New System.Drawing.Point(22, 221)
+        Me.lbCotizo.Name = "lbCotizo"
+        Me.lbCotizo.Size = New System.Drawing.Size(48, 16)
+        Me.lbCotizo.TabIndex = 150
+        Me.lbCotizo.Text = "Cotizó:"
+        Me.lbCotizo.Visible = False
         '
         'Label22
         '
@@ -1148,25 +1169,6 @@ Partial Class FrmEdicionCot
         Me.Panel2.Size = New System.Drawing.Size(1341, 30)
         Me.Panel2.TabIndex = 192
         '
-        'txtCotizo2019
-        '
-        Me.txtCotizo2019.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCotizo2019.Location = New System.Drawing.Point(104, 219)
-        Me.txtCotizo2019.Name = "txtCotizo2019"
-        Me.txtCotizo2019.Size = New System.Drawing.Size(170, 21)
-        Me.txtCotizo2019.TabIndex = 147
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.ForeColor = System.Drawing.Color.Black
-        Me.Label21.Location = New System.Drawing.Point(22, 221)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(48, 16)
-        Me.Label21.TabIndex = 150
-        Me.Label21.Text = "Cotizó:"
-        '
         'FrmEdicionCot
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1288,5 +1290,5 @@ Partial Class FrmEdicionCot
     Friend WithEvents precioUnitario As DataGridViewTextBoxColumn
     Friend WithEvents idListaCotizacion As DataGridViewTextBoxColumn
     Friend WithEvents txtCotizo2019 As TextBox
-    Friend WithEvents Label21 As Label
+    Friend WithEvents lbCotizo As Label
 End Class
