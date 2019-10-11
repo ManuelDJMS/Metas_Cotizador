@@ -120,7 +120,7 @@ Public Class FrmAutorizarSolicitudes
                                 MetodoLIMS()
                                 R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RefNo,RecDate, DataRequested, OnSite, ShipAddress1, ShipAddress2, ShipAddress3, [CreatedBy],[CreatedOn]) 
                             values(" & Val(DGRes.Rows(i).Cells(12).Value) & ",'" & DGRes.Rows(i).Cells(13).Value & "','" & DGRes.Rows(i).Cells(1).Value & "','" & dtp.Value.ToShortDateString & "', '" & True & "','" &
-                            False & "','" & DGRes.Rows(i).Cells(5).Value & "','-','-','USR00000008', '" &
+                            False & "','" & DGRes.Rows(i).Cells(5).Value & "','-','-','" & usuario & "', '" &
                             dtp.Value.ToShortDateString & "')"
                                 cotizacion = Val(DGRes.Rows(i).Cells(1).Value)
 
@@ -164,7 +164,7 @@ Public Class FrmAutorizarSolicitudes
                                 MetodoLIMS()
                                 R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RefNo,RecDate, DataRequested, OnSite, ShipAddress1, ShipAddress2, ShipAddress3, [CreatedBy],[CreatedOn]) 
                             values(" & Val(DGRes.Rows(i).Cells(12).Value) & ",'" & DGRes.Rows(i).Cells(13).Value & "','" & DGRes.Rows(i).Cells(1).Value & "','" & dtp.Value.ToShortDateString & "', '" & True & "','" &
-                            False & "','" & DGRes.Rows(i).Cells(5).Value & "','-','-','USR00000008', '" &
+                            False & "','" & DGRes.Rows(i).Cells(5).Value & "','-','-','" & usuario & "', '" &
                         dtp.Value.ToShortDateString & "')"
                                 cotizacion = Val(DGRes.Rows(i).Cells(1).Value)
 
