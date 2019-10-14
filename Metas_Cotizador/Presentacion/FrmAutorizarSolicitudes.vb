@@ -77,8 +77,8 @@ Public Class FrmAutorizarSolicitudes
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim cu, ca As Int64
         Dim correos As String
-        'Try
-        Dim seleccionado As Boolean
+        Try
+            Dim seleccionado As Boolean
             Dim R As String
             Dim b, RecDate, OnSite As Boolean
             RecDate = True
@@ -162,11 +162,11 @@ Public Class FrmAutorizarSolicitudes
                                 bancorreo = 1
                                 correos2 = False
                                 MetodoLIMS()
-                            R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RefNo,RecDate, DataRequested, OnSite, ShipAddress1, ShipAddress2, ShipAddress3, [CreatedBy],[CreatedOn]) 
+                                R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RefNo,RecDate, DataRequested, OnSite, ShipAddress1, ShipAddress2, ShipAddress3, [CreatedBy],[CreatedOn]) 
                             values(" & Val(DGRes.Rows(i).Cells(12).Value) & ",'" & DGRes.Rows(i).Cells(13).Value & "','" & DGRes.Rows(i).Cells(1).Value & "'," & dtp.Value.ToShortDateString & ", '" & True & "','" &
-                            False & "','" & DGRes.Rows(i).Cells(5).Value & "','-','-','USR00000008', " & dtp.Value.ToShortDateString & ")"
-                            cotizacion = Val(DGRes.Rows(i).Cells(1).Value)
-                            Dim comando As New SqlCommand
+                                False & "','" & DGRes.Rows(i).Cells(5).Value & "','-','-','" & usuario & "', " & dtp.Value.ToShortDateString & ")"
+                                cotizacion = Val(DGRes.Rows(i).Cells(1).Value)
+                                Dim comando As New SqlCommand
                                 comando = conexionLIMS.CreateCommand
                                 comando.CommandText = R
                                 comando.ExecuteNonQuery()
@@ -216,12 +216,12 @@ Public Class FrmAutorizarSolicitudes
                     MsgBox("No ha seleccionado ningúna cotización", MsgBoxStyle.Critical, "Error del sistema.")
                 End If
             End If
-        'Catch ex As Exception
-        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
-        'cadena = Err.Description
-        'cadena = cadena.Replace("'", "")
-        'Bitacora("FrmAutorizarSolicitudes", "Error al guardar la OV", Err.Number, cadena)
-        'End Try
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmAutorizarSolicitudes", "Error al guardar la OV", Err.Number, cadena)
+        End Try
     End Sub
 
     Private Sub txtNumeroDeCuentaB_TextChanged(sender As Object, e As EventArgs) Handles txtNumeroDeCuentaB.TextChanged
