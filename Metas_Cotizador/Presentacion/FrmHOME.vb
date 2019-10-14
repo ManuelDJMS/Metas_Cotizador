@@ -149,6 +149,12 @@ Public Class FrmHOME
         GunaAnimateWindow1.Start()
         Guna.UI.Lib.GraphicsHelper.ShadowForm(Me)
     End Sub
+
+    Private Sub btnCotInformal_Click(sender As Object, e As EventArgs) Handles btnCotInformal.Click
+        colorearpanel(PanelMenu, Pl_CotInformal)
+        AbrirFormEnPanel(Of FrmCotInformal)()
+    End Sub
+
 #End Region
     'METODO DE ABRIR FORMULARIO
     Private Sub AbrirFormEnPanel(Of Miform As {Form, New})()

@@ -36,6 +36,7 @@ Partial Class FrmArticulos
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DgAgregar = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -50,7 +51,6 @@ Partial Class FrmArticulos
         Me.lblModelo = New System.Windows.Forms.Label()
         Me.lblMarca = New System.Windows.Forms.Label()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
-        Me.Label4 = New System.Windows.Forms.Label()
         CType(Me.DGArticulos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.DgAgregar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -152,7 +152,7 @@ Partial Class FrmArticulos
         '
         'Panel1
         '
-        Me.Panel1.BackColor = System.Drawing.Color.Gainsboro
+        Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.Controls.Add(Me.Label4)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.DgAgregar)
@@ -173,6 +173,16 @@ Partial Class FrmArticulos
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1094, 478)
         Me.Panel1.TabIndex = 263
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(517, 14)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(69, 17)
+        Me.Label4.TabIndex = 276
+        Me.Label4.Text = "MetAs_id:"
         '
         'Label2
         '
@@ -322,16 +332,6 @@ Partial Class FrmArticulos
         Me.btnCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.btnCerrar.TabIndex = 264
         Me.btnCerrar.TabStop = False
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(517, 14)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(69, 17)
-        Me.Label4.TabIndex = 276
-        Me.Label4.Text = "MetAs_id:"
         '
         'FrmArticulos
         '
