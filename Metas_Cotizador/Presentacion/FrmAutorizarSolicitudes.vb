@@ -166,7 +166,6 @@ Public Class FrmAutorizarSolicitudes
                             values(" & Val(DGRes.Rows(i).Cells(12).Value) & ",'" & DGRes.Rows(i).Cells(13).Value & "','" & DGRes.Rows(i).Cells(1).Value & "'," & dtp.Value.ToShortDateString & ", '" & True & "','" &
                             False & "','" & DGRes.Rows(i).Cells(5).Value & "','-','-','USR00000008', " & dtp.Value.ToShortDateString & ")"
                             cotizacion = Val(DGRes.Rows(i).Cells(1).Value)
-                            MsgBox(R)
                             Dim comando As New SqlCommand
                                 comando = conexionLIMS.CreateCommand
                                 comando.CommandText = R
