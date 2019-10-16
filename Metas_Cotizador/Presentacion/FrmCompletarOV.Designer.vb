@@ -156,9 +156,9 @@ Partial Class FrmCompletarOV
         Me.Label3.ForeColor = System.Drawing.Color.Black
         Me.Label3.Location = New System.Drawing.Point(16, 135)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(79, 16)
+        Me.Label3.Size = New System.Drawing.Size(49, 16)
         Me.Label3.TabIndex = 199
-        Me.Label3.Text = "No. de guía:"
+        Me.Label3.Text = "# Guía:"
         '
         'cboPrioridad
         '
@@ -199,16 +199,16 @@ Partial Class FrmCompletarOV
         Me.Label15.ForeColor = System.Drawing.Color.Black
         Me.Label15.Location = New System.Drawing.Point(16, 163)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(119, 16)
+        Me.Label15.Size = New System.Drawing.Size(120, 16)
         Me.Label15.TabIndex = 184
-        Me.Label15.Text = "Cantidad de cajas:"
+        Me.Label15.Text = "Cantidad de Cajas:"
         '
         'domEnvio
         '
         Me.domEnvio.AutoSize = True
         Me.domEnvio.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.domEnvio.ForeColor = System.Drawing.Color.Black
-        Me.domEnvio.Location = New System.Drawing.Point(353, 250)
+        Me.domEnvio.Location = New System.Drawing.Point(399, 250)
         Me.domEnvio.Name = "domEnvio"
         Me.domEnvio.Size = New System.Drawing.Size(137, 20)
         Me.domEnvio.TabIndex = 196
@@ -241,9 +241,9 @@ Partial Class FrmCompletarOV
         Me.Label11.ForeColor = System.Drawing.Color.Black
         Me.Label11.Location = New System.Drawing.Point(16, 52)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(113, 16)
+        Me.Label11.Size = New System.Drawing.Size(116, 16)
         Me.Label11.TabIndex = 179
-        Me.Label11.Text = "Fecha recepción:"
+        Me.Label11.Text = "Fecha Recepción:"
         '
         'Label22
         '
@@ -281,9 +281,9 @@ Partial Class FrmCompletarOV
         Me.Label13.ForeColor = System.Drawing.Color.Black
         Me.Label13.Location = New System.Drawing.Point(399, 27)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(74, 16)
+        Me.Label13.Size = New System.Drawing.Size(62, 16)
         Me.Label13.TabIndex = 179
-        Me.Label13.Text = "Cotización:"
+        Me.Label13.Text = "#Ref/Cot:"
         '
         'txtObservaciones
         '
@@ -301,9 +301,9 @@ Partial Class FrmCompletarOV
         Me.Label14.ForeColor = System.Drawing.Color.Black
         Me.Label14.Location = New System.Drawing.Point(16, 79)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(87, 16)
+        Me.Label14.Size = New System.Drawing.Size(86, 16)
         Me.Label14.TabIndex = 182
-        Me.Label14.Text = "Recibido por:"
+        Me.Label14.Text = "Recibido Por:"
         '
         'Label7
         '
@@ -312,9 +312,9 @@ Partial Class FrmCompletarOV
         Me.Label7.ForeColor = System.Drawing.Color.Black
         Me.Label7.Location = New System.Drawing.Point(16, 25)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(117, 16)
+        Me.Label7.Size = New System.Drawing.Size(40, 16)
         Me.Label7.TabIndex = 168
-        Me.Label7.Text = "Orden de compra:"
+        Me.Label7.Text = "# OC:"
         '
         'cboRecibidoPor
         '
@@ -374,9 +374,9 @@ Partial Class FrmCompletarOV
         Me.Label19.ForeColor = System.Drawing.Color.Black
         Me.Label19.Location = New System.Drawing.Point(16, 244)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(91, 16)
+        Me.Label19.Size = New System.Drawing.Size(65, 16)
         Me.Label19.TabIndex = 192
-        Me.Label19.Text = "Embarcar por:"
+        Me.Label19.Text = "Enviar Vía"
         '
         'txtPeso
         '
@@ -403,9 +403,9 @@ Partial Class FrmCompletarOV
         Me.Label18.ForeColor = System.Drawing.Color.Black
         Me.Label18.Location = New System.Drawing.Point(16, 217)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(133, 16)
+        Me.Label18.Size = New System.Drawing.Size(86, 16)
         Me.Label18.TabIndex = 190
-        Me.Label18.Text = "Medio de recepción:"
+        Me.Label18.Text = "Recibido Vía:"
         '
         'GroupBox1
         '
@@ -457,9 +457,9 @@ Partial Class FrmCompletarOV
         Me.Label5.ForeColor = System.Drawing.Color.Black
         Me.Label5.Location = New System.Drawing.Point(308, 51)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(120, 16)
+        Me.Label5.Size = New System.Drawing.Size(119, 16)
         Me.Label5.TabIndex = 167
-        Me.Label5.Text = "Términos de pago :"
+        Me.Label5.Text = "Términos de Pago :"
         '
         'txtNombreCompania
         '
@@ -499,11 +499,11 @@ Partial Class FrmCompletarOV
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(323, 28)
+        Me.Label2.Location = New System.Drawing.Point(308, 28)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(105, 16)
+        Me.Label2.Size = New System.Drawing.Size(63, 16)
         Me.Label2.TabIndex = 164
-        Me.Label2.Text = "Núm. de Cuenta:"
+        Me.Label2.Text = "# Cuenta:"
         '
         'txtDireccion
         '

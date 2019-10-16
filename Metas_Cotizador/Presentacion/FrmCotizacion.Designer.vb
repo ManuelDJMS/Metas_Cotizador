@@ -43,12 +43,6 @@ Partial Class FrmCotizacion
         Me.DgAgregar = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGCotizaciones = New System.Windows.Forms.DataGridView()
-        Me.s = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGEmpresas = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -92,18 +86,6 @@ Partial Class FrmCotizacion
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.btnEditarCot = New System.Windows.Forms.Button()
         Me.dgCot = New System.Windows.Forms.DataGridView()
-        Me.NumCot = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.partida = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.equipoDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.marca = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.modelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Servicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.intervalo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.precioUnitario = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.dgEmpresa = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -136,6 +118,24 @@ Partial Class FrmCotizacion
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
+        Me.s = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.precioUnitario = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.intervalo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Servicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.modelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.marca = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.equipoDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.partida = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NumCot = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.btCerrar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabConsulta.SuspendLayout()
         Me.Tab2018.SuspendLayout()
@@ -286,39 +286,6 @@ Partial Class FrmCotizacion
         Me.DGCotizaciones.Size = New System.Drawing.Size(1128, 240)
         Me.DGCotizaciones.TabIndex = 261
         '
-        's
-        '
-        Me.s.HeaderText = "Seleccionar"
-        Me.s.Name = "s"
-        Me.s.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.s.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'ID
-        '
-        Me.ID.HeaderText = "ID"
-        Me.ID.Name = "ID"
-        Me.ID.Visible = False
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "N° de Artículo (SKU)"
-        Me.Column5.Name = "Column5"
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "Descripción"
-        Me.Column6.Name = "Column6"
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "Marca/Fabricante"
-        Me.Column7.Name = "Column7"
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "Modelo"
-        Me.Column8.Name = "Column8"
-        '
         'DGEmpresas
         '
         Me.DGEmpresas.AllowUserToDeleteRows = False
@@ -410,7 +377,7 @@ Partial Class FrmCotizacion
         Me.PanelNormal.Size = New System.Drawing.Size(727, 298)
         Me.PanelNormal.TabIndex = 249
         Me.PanelNormal.TabStop = False
-        Me.PanelNormal.Text = "Datos de cotización"
+        Me.PanelNormal.Text = "Datos de Cotización"
         '
         'Label2
         '
@@ -540,9 +507,9 @@ Partial Class FrmCotizacion
         Me.Label11.ForeColor = System.Drawing.Color.Black
         Me.Label11.Location = New System.Drawing.Point(21, 29)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(308, 16)
+        Me.Label11.Size = New System.Drawing.Size(314, 16)
         Me.Label11.TabIndex = 157
-        Me.Label11.Text = "Esta cotización será realizada para el cliente:"
+        Me.Label11.Text = "Esta Cotización Será Realizada Para el Cliente:"
         '
         'txtNombreCompania
         '
@@ -635,7 +602,7 @@ Partial Class FrmCotizacion
         'TextArticulo
         '
         Me.TextArticulo.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextArticulo.Location = New System.Drawing.Point(468, 345)
+        Me.TextArticulo.Location = New System.Drawing.Point(416, 346)
         Me.TextArticulo.Name = "TextArticulo"
         Me.TextArticulo.Size = New System.Drawing.Size(139, 21)
         Me.TextArticulo.TabIndex = 182
@@ -644,7 +611,7 @@ Partial Class FrmCotizacion
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(376, 347)
+        Me.Label7.Location = New System.Drawing.Point(326, 347)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(87, 17)
         Me.Label7.TabIndex = 183
@@ -672,14 +639,14 @@ Partial Class FrmCotizacion
         Me.Label3.ForeColor = System.Drawing.Color.SteelBlue
         Me.Label3.Location = New System.Drawing.Point(46, 346)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(75, 16)
+        Me.Label3.Size = New System.Drawing.Size(73, 16)
         Me.Label3.TabIndex = 163
-        Me.Label3.Text = "Filtrar por:"
+        Me.Label3.Text = "Filtrar Por:"
         '
         'txtMarca
         '
         Me.txtMarca.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtMarca.Location = New System.Drawing.Point(681, 345)
+        Me.txtMarca.Location = New System.Drawing.Point(702, 345)
         Me.txtMarca.Name = "txtMarca"
         Me.txtMarca.Size = New System.Drawing.Size(116, 21)
         Me.txtMarca.TabIndex = 129
@@ -690,26 +657,26 @@ Partial Class FrmCotizacion
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(126, 347)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(136, 17)
+        Me.Label1.Size = New System.Drawing.Size(109, 17)
         Me.Label1.TabIndex = 166
-        Me.Label1.Text = "N° de Artículo (SKU):"
+        Me.Label1.Text = "# Artículo (SKU):"
         '
         'lblMarca
         '
         Me.lblMarca.AutoSize = True
         Me.lblMarca.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMarca.Location = New System.Drawing.Point(622, 347)
+        Me.lblMarca.Location = New System.Drawing.Point(568, 347)
         Me.lblMarca.Name = "lblMarca"
-        Me.lblMarca.Size = New System.Drawing.Size(53, 17)
+        Me.lblMarca.Size = New System.Drawing.Size(128, 17)
         Me.lblMarca.TabIndex = 132
-        Me.lblMarca.Text = "Marca:"
+        Me.lblMarca.Text = "Marca/Fabricante:"
         '
         'TextID
         '
         Me.TextID.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextID.Location = New System.Drawing.Point(263, 345)
+        Me.TextID.Location = New System.Drawing.Point(241, 345)
         Me.TextID.Name = "TextID"
-        Me.TextID.Size = New System.Drawing.Size(112, 21)
+        Me.TextID.Size = New System.Drawing.Size(79, 21)
         Me.TextID.TabIndex = 165
         '
         'lblCot
@@ -726,7 +693,7 @@ Partial Class FrmCotizacion
         '
         Me.lblModelo.AutoSize = True
         Me.lblModelo.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModelo.Location = New System.Drawing.Point(809, 349)
+        Me.lblModelo.Location = New System.Drawing.Point(824, 347)
         Me.lblModelo.Name = "lblModelo"
         Me.lblModelo.Size = New System.Drawing.Size(61, 17)
         Me.lblModelo.TabIndex = 153
@@ -735,7 +702,7 @@ Partial Class FrmCotizacion
         'txtModelo
         '
         Me.txtModelo.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtModelo.Location = New System.Drawing.Point(876, 343)
+        Me.txtModelo.Location = New System.Drawing.Point(891, 345)
         Me.txtModelo.Name = "txtModelo"
         Me.txtModelo.Size = New System.Drawing.Size(117, 21)
         Me.txtModelo.TabIndex = 152
@@ -827,66 +794,6 @@ Partial Class FrmCotizacion
         Me.dgCot.RowsDefaultCellStyle = DataGridViewCellStyle10
         Me.dgCot.Size = New System.Drawing.Size(1109, 224)
         Me.dgCot.TabIndex = 260
-        '
-        'NumCot
-        '
-        Me.NumCot.HeaderText = "NumCot"
-        Me.NumCot.Name = "NumCot"
-        '
-        'partida
-        '
-        Me.partida.HeaderText = "Partida"
-        Me.partida.Name = "partida"
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Número de Artículo (SKU)"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        '
-        'equipoDescripcion
-        '
-        Me.equipoDescripcion.HeaderText = "Descripción "
-        Me.equipoDescripcion.Name = "equipoDescripcion"
-        '
-        'marca
-        '
-        Me.marca.HeaderText = "Marca"
-        Me.marca.Name = "marca"
-        '
-        'modelo
-        '
-        Me.modelo.HeaderText = "Modelo"
-        Me.modelo.Name = "modelo"
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "ID"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        '
-        'Servicio
-        '
-        Me.Servicio.HeaderText = "Servicio"
-        Me.Servicio.Name = "Servicio"
-        '
-        'intervalo
-        '
-        Me.intervalo.HeaderText = "Intervalo"
-        Me.intervalo.Name = "intervalo"
-        '
-        'cantidad
-        '
-        Me.cantidad.HeaderText = "Cantidad"
-        Me.cantidad.Name = "cantidad"
-        '
-        'precioUnitario
-        '
-        Me.precioUnitario.HeaderText = "Precio"
-        Me.precioUnitario.Name = "precioUnitario"
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Orden de Venta"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         '
         'dgEmpresa
         '
@@ -1048,9 +955,9 @@ Partial Class FrmCotizacion
         Me.Label14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
         Me.Label14.Location = New System.Drawing.Point(11, 345)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(75, 16)
+        Me.Label14.Size = New System.Drawing.Size(73, 16)
         Me.Label14.TabIndex = 195
-        Me.Label14.Text = "Filtrar por:"
+        Me.Label14.Text = "Filtrar Por:"
         '
         'TextEmail
         '
@@ -1063,7 +970,7 @@ Partial Class FrmCotizacion
         'TextMarca
         '
         Me.TextMarca.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextMarca.Location = New System.Drawing.Point(630, 345)
+        Me.TextMarca.Location = New System.Drawing.Point(718, 343)
         Me.TextMarca.Name = "TextMarca"
         Me.TextMarca.Size = New System.Drawing.Size(139, 21)
         Me.TextMarca.TabIndex = 183
@@ -1082,11 +989,11 @@ Partial Class FrmCotizacion
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.Location = New System.Drawing.Point(568, 346)
+        Me.Label16.Location = New System.Drawing.Point(593, 346)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(53, 17)
+        Me.Label16.Size = New System.Drawing.Size(128, 17)
         Me.Label16.TabIndex = 184
-        Me.Label16.Text = "Marca:"
+        Me.Label16.Text = "Marca/Fabricante:"
         '
         'txtNombreE
         '
@@ -1118,7 +1025,7 @@ Partial Class FrmCotizacion
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(775, 348)
+        Me.Label18.Location = New System.Drawing.Point(899, 347)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(61, 17)
         Me.Label18.TabIndex = 188
@@ -1135,7 +1042,7 @@ Partial Class FrmCotizacion
         'TextModelo
         '
         Me.TextModelo.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextModelo.Location = New System.Drawing.Point(842, 346)
+        Me.TextModelo.Location = New System.Drawing.Point(966, 342)
         Me.TextModelo.Name = "TextModelo"
         Me.TextModelo.Size = New System.Drawing.Size(140, 21)
         Me.TextModelo.TabIndex = 187
@@ -1190,6 +1097,99 @@ Partial Class FrmCotizacion
         Me.Label28.Size = New System.Drawing.Size(31, 17)
         Me.Label28.TabIndex = 191
         Me.Label28.Text = "CP:"
+        '
+        's
+        '
+        Me.s.HeaderText = "Seleccionar"
+        Me.s.Name = "s"
+        Me.s.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.s.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'ID
+        '
+        Me.ID.HeaderText = "ID"
+        Me.ID.Name = "ID"
+        Me.ID.Visible = False
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "# Artículo (SKU)"
+        Me.Column5.Name = "Column5"
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Descripción"
+        Me.Column6.Name = "Column6"
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "Marca/Fabricante"
+        Me.Column7.Name = "Column7"
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "Modelo"
+        Me.Column8.Name = "Column8"
+        '
+        'DataGridViewTextBoxColumn3
+        '
+        Me.DataGridViewTextBoxColumn3.HeaderText = "Orden de Venta"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
+        '
+        'precioUnitario
+        '
+        Me.precioUnitario.HeaderText = "Precio"
+        Me.precioUnitario.Name = "precioUnitario"
+        '
+        'cantidad
+        '
+        Me.cantidad.HeaderText = "Cantidad"
+        Me.cantidad.Name = "cantidad"
+        '
+        'intervalo
+        '
+        Me.intervalo.HeaderText = "Intervalo"
+        Me.intervalo.Name = "intervalo"
+        '
+        'Servicio
+        '
+        Me.Servicio.HeaderText = "Servicio"
+        Me.Servicio.Name = "Servicio"
+        '
+        'DataGridViewTextBoxColumn2
+        '
+        Me.DataGridViewTextBoxColumn2.HeaderText = "ID"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
+        '
+        'modelo
+        '
+        Me.modelo.HeaderText = "Modelo"
+        Me.modelo.Name = "modelo"
+        '
+        'marca
+        '
+        Me.marca.HeaderText = "Marca/Fabricante"
+        Me.marca.Name = "marca"
+        '
+        'equipoDescripcion
+        '
+        Me.equipoDescripcion.HeaderText = "Descripción "
+        Me.equipoDescripcion.Name = "equipoDescripcion"
+        '
+        'DataGridViewTextBoxColumn1
+        '
+        Me.DataGridViewTextBoxColumn1.HeaderText = "Número de Artículo (SKU)"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
+        '
+        'partida
+        '
+        Me.partida.HeaderText = "Partida"
+        Me.partida.Name = "partida"
+        '
+        'NumCot
+        '
+        Me.NumCot.HeaderText = "NumCot"
+        Me.NumCot.Name = "NumCot"
         '
         'FrmCotizacion
         '

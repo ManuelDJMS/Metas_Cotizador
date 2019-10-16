@@ -177,7 +177,7 @@ Partial Class FrmAutorizarSolicitudes
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(1140, 613)
         Me.TabPage2.TabIndex = 5
-        Me.TabPage2.Text = "Cotizaciones"
+        Me.TabPage2.Text = " "
         '
         'DGRes
         '
@@ -448,9 +448,9 @@ Partial Class FrmAutorizarSolicitudes
         Me.Label26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
         Me.Label26.Location = New System.Drawing.Point(10, 40)
         Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(233, 19)
+        Me.Label26.Size = New System.Drawing.Size(235, 19)
         Me.Label26.TabIndex = 165
-        Me.Label26.Text = "Cotizaciones generadas LIMS"
+        Me.Label26.Text = "Cotizaciones Generadas LIMS"
         '
         'Label25
         '

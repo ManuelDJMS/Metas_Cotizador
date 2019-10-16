@@ -75,9 +75,9 @@ Partial Class FrmArticulos
         Me.txtNombreDeContacto.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
         Me.txtNombreDeContacto.Location = New System.Drawing.Point(13, 31)
         Me.txtNombreDeContacto.Name = "txtNombreDeContacto"
-        Me.txtNombreDeContacto.Size = New System.Drawing.Size(197, 18)
+        Me.txtNombreDeContacto.Size = New System.Drawing.Size(200, 18)
         Me.txtNombreDeContacto.TabIndex = 186
-        Me.txtNombreDeContacto.Text = "Lista de todos los artículos"
+        Me.txtNombreDeContacto.Text = "Lista de Todos los Artículos"
         '
         'DGArticulos
         '
@@ -226,7 +226,7 @@ Partial Class FrmArticulos
         'TextArticulo
         '
         Me.TextArticulo.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextArticulo.Location = New System.Drawing.Point(375, 62)
+        Me.TextArticulo.Location = New System.Drawing.Point(339, 62)
         Me.TextArticulo.Name = "TextArticulo"
         Me.TextArticulo.Size = New System.Drawing.Size(139, 21)
         Me.TextArticulo.TabIndex = 272
@@ -235,7 +235,7 @@ Partial Class FrmArticulos
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(317, 64)
+        Me.Label7.Location = New System.Drawing.Point(272, 62)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(61, 17)
         Me.Label7.TabIndex = 273
@@ -269,23 +269,23 @@ Partial Class FrmArticulos
         'TextID
         '
         Me.TextID.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextID.Location = New System.Drawing.Point(188, 63)
+        Me.TextID.Location = New System.Drawing.Point(171, 62)
         Me.TextID.Name = "TextID"
-        Me.TextID.Size = New System.Drawing.Size(112, 21)
+        Me.TextID.Size = New System.Drawing.Size(95, 21)
         Me.TextID.TabIndex = 269
         '
         'txtMarca
         '
         Me.txtMarca.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtMarca.Location = New System.Drawing.Point(576, 61)
+        Me.txtMarca.Location = New System.Drawing.Point(608, 60)
         Me.txtMarca.Name = "txtMarca"
-        Me.txtMarca.Size = New System.Drawing.Size(139, 21)
+        Me.txtMarca.Size = New System.Drawing.Size(116, 21)
         Me.txtMarca.TabIndex = 264
         '
         'txtModelo
         '
         Me.txtModelo.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtModelo.Location = New System.Drawing.Point(791, 63)
+        Me.txtModelo.Location = New System.Drawing.Point(791, 62)
         Me.txtModelo.Name = "txtModelo"
         Me.txtModelo.Size = New System.Drawing.Size(140, 21)
         Me.txtModelo.TabIndex = 266
@@ -294,7 +294,7 @@ Partial Class FrmArticulos
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(119, 64)
+        Me.Label1.Location = New System.Drawing.Point(96, 62)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(69, 17)
         Me.Label1.TabIndex = 270
@@ -304,7 +304,7 @@ Partial Class FrmArticulos
         '
         Me.lblModelo.AutoSize = True
         Me.lblModelo.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblModelo.Location = New System.Drawing.Point(724, 66)
+        Me.lblModelo.Location = New System.Drawing.Point(730, 64)
         Me.lblModelo.Name = "lblModelo"
         Me.lblModelo.Size = New System.Drawing.Size(61, 17)
         Me.lblModelo.TabIndex = 267
@@ -314,11 +314,11 @@ Partial Class FrmArticulos
         '
         Me.lblMarca.AutoSize = True
         Me.lblMarca.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblMarca.Location = New System.Drawing.Point(517, 64)
+        Me.lblMarca.Location = New System.Drawing.Point(484, 63)
         Me.lblMarca.Name = "lblMarca"
-        Me.lblMarca.Size = New System.Drawing.Size(53, 17)
+        Me.lblMarca.Size = New System.Drawing.Size(128, 17)
         Me.lblMarca.TabIndex = 265
-        Me.lblMarca.Text = "Marca:"
+        Me.lblMarca.Text = "Marca/Fabricante:"
         '
         'btnCerrar
         '
