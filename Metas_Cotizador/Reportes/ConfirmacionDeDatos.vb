@@ -16,9 +16,9 @@ Public Class ConfirmacionDeDatos
                envio, domEnvio, cdEnvio, estEvi, CpEnvio, customerId, cusAccount, cpFac, Email As String
         'Dim customerId, cusAccount, cpFac As Integer
         Dim R As String
-        R = "SELECT  [SalesOrderDetails].[SOId],[SetupCustomerAddressDtls].[CustomerId],[SetupCustomerDetails].[CustAccountNo], [Organization] AS RZ,[TaxIDNo], [BillAddress1]+' '+[BillAddress2] +' '+[BillAddress3] AS DomFacturacion, [BillCity],[BillState],[BillZip],[BillCountry],
-                [CompanyName],[ContAddress1] + ' '+ [ContAddress2] +' '+[ContAddress3] AS domContacto,[ContCity],[ContState],[ContZip],[ContCountry],[SalesOrderDetails].[ShipVia],
-              [SalesOrderDetails].[ShipAddress1] +' '+[SalesOrderDetails].[ShipAddress2] +' '+[SalesOrderDetails].[ShipAddress3]AS domEnvio,[SalesOrderDetails].[ShipCity],[SalesOrderDetails].[ShipState],[SalesOrderDetails].[ShipZip], Email, [WOId]
+        R = "  SELECT  [SalesOrderDetails].[SOId],[SetupCustomerAddressDtls].[CustomerId],[SetupCustomerDetails].[CustAccountNo], [Organization] AS RZ,[TaxIDNo], [BillAddress1]+' '+[BillAddress2] +' '+[BillAddress3] AS DomFacturacion, [BillCity],[BillState],[BillZip],[BillCountry],
+                [CompanyName],[ContAddress1] + ' '+ [ContAddress2] +' '+[ContAddress3] AS domContacto,[ContCity],[ContState],[ContZip],[ContCountry], isnull([SalesOrderDetails].[ShipVia],''),
+              [SalesOrderDetails].[ShipAddress1] +' '+[SalesOrderDetails].[ShipAddress2] +' '+[SalesOrderDetails].[ShipAddress3] AS domEnvio,isnull([SalesOrderDetails].[ShipCity],''),isnull([SalesOrderDetails].[ShipState],''),isnull([SalesOrderDetails].[ShipZip],''), Email, [WOId]
               FROM [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails]
               INNER JOIN [SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
               INNER JOIN [SalesOrderDetails] ON [SetupCustomerDetails].[CustomerId] =  [SalesOrderDetails].[CustomerId] 
@@ -60,7 +60,7 @@ Public Class ConfirmacionDeDatos
         If envio = "En espera" Then
             envio = "FAVOR DE CONFIRMAR"
         End If
-        'MsgBox(envio)
+        MsgBox(envio)
         Email = lectorLIMS(21)
         If (lectorLIMS(16) = "" Or lectorLIMS(16) = " " Or lectorLIMS(17) = "" Or lectorLIMS(17) = " " Or lectorLIMS(18) = "" Or lectorLIMS(18) = " " Or lectorLIMS(19) = "" Or lectorLIMS(19) = " " Or lectorLIMS(20) = "" Or lectorLIMS(20) = " ") Then
             MessageBox.Show("Los datos de envío de la orden de venta " & OV & " aun no estan registrados en LIMS.  " & vbNewLine & "Favor de completarlos. ", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Warning)

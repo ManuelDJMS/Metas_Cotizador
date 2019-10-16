@@ -133,16 +133,16 @@
     <Compile Include="Presentacion\Cotizaciones.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentacion\frmAlert.Designer.vb">
-      <DependentUpon>frmAlert.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Presentacion\frmAlert.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Presentacion\FrmCotInformal.Designer.vb">
       <DependentUpon>FrmCotInformal.vb</DependentUpon>
     </Compile>
     <Compile Include="Presentacion\FrmCotInformal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\frmAlert.Designer.vb">
+      <DependentUpon>frmAlert.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\frmAlert.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Presentacion\FrmLogin.Designer.vb">
@@ -286,11 +286,11 @@
     <EmbeddedResource Include="Presentacion\Cotizaciones.resx">
       <DependentUpon>Cotizaciones.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentacion\frmAlert.resx">
-      <DependentUpon>frmAlert.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\FrmCotInformal.resx">
       <DependentUpon>FrmCotInformal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\frmAlert.resx">
+      <DependentUpon>frmAlert.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentacion\FrmLogin.resx">
       <DependentUpon>FrmLogin.vb</DependentUpon>
