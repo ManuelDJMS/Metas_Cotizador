@@ -42,6 +42,7 @@ Partial Class ConfirmacionDeDatos
         Me.txtOV.Name = "txtOV"
         Me.txtOV.Size = New System.Drawing.Size(100, 20)
         Me.txtOV.TabIndex = 6
+        Me.txtOV.Text = "c"
         '
         'Label26
         '
@@ -81,7 +82,7 @@ Partial Class ConfirmacionDeDatos
         Me.cmdBuscar.Name = "cmdBuscar"
         Me.cmdBuscar.Size = New System.Drawing.Size(100, 25)
         Me.cmdBuscar.TabIndex = 169
-        Me.cmdBuscar.Text = "Buscar"
+        Me.cmdBuscar.Text = "c"
         Me.cmdBuscar.UseVisualStyleBackColor = False
         '
         'Panel2
