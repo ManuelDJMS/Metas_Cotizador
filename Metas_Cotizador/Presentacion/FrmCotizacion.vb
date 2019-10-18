@@ -209,6 +209,7 @@ Public Class FrmCotizacion
     Private Sub BtCotizacion_Click(sender As Object, e As EventArgs) Handles btCotizacion.Click
         '=============================================== CODIGO PARA MANDAR LOS ARTICULOS CON PRECIO A LA COTIZACION ===================================================
         origen = "LIMS"
+        editar = 2
         If DgAgregar.Rows.Count < 2 Then
             MsgBox("No hay articulos para Cotizar", MsgBoxStyle.Critical, "Error del sistema.")
         Else
@@ -578,7 +579,7 @@ Public Class FrmCotizacion
             lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
             lectorMetasCotizador.Read()
             If lectorMetasCotizador(1) = 0 Then
-                editar = True
+                editar = 1
                 FrmEdicionCot.ShowDialog()
             Else
                 MsgBox("La cotización ya fue convertida en ORDEN DE VENTA NUM " & lectorMetasCotizador(1))
@@ -587,8 +588,8 @@ Public Class FrmCotizacion
             End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
-        cadena = Err.Description
-        cadena = cadena.Replace("'", "")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
             Bitacora("FrmCotizadorLIMS", "Error al seleccionar cot para editar", Err.Number, cadena)
         End Try
     End Sub

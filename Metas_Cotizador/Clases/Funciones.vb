@@ -18,7 +18,8 @@ Module Funciones
     Public formcorreos2 As Integer
 
     '--------------------------------------EDITAR COTIZACION
-    Public editar As Boolean = False
+    Public editar As Int16
+    Public editar2 As Boolean
     Public COT2 As Integer
     Public numPartida As Integer
     Public precio As Double
@@ -28,6 +29,7 @@ Module Funciones
     Public equipo As Integer
     Public numcot As Integer
     Public tipo As String = "Generico" 'Esta variable sirve para saber si es generico o no
+    Public agregarArt As Boolean = False 'Esta variable es para poder usar el formulario de articulos en diferente situacion
     '--------------------------------------Llenar la WORK ORDER
     Public arreglosales()
     Public Sub consultasLIMS(ByVal script As String, ByVal dgrid As DataGridView)

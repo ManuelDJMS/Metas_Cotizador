@@ -441,6 +441,7 @@
     <None Include="Resources\Warning_28px.png" />
     <None Include="Resources\icons8-feed-paper-50.png" />
     <None Include="Resources\icons8-file-48.png" />
+    <None Include="Resources\icons8-add-48.png" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
