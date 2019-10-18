@@ -153,6 +153,7 @@ Public Class FrmHOME
     Private Sub btnCotInformal_Click(sender As Object, e As EventArgs) Handles btnCotInformal.Click
         colorearpanel(PanelMenu, Pl_CotInformal)
         AbrirFormEnPanel(Of FrmCotInformal)()
+        'FrmCotInformal.Show()
     End Sub
 
 #End Region

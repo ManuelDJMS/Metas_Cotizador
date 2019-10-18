@@ -12,7 +12,7 @@ Public Class FrmEdicionCot
     Dim marcaGen, modGen As String
     Private Sub FrmEdicionCot_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            If editar = True Then
+            If editar = 1 Then
                 DGCopia.Rows.Clear()
                 DGServicios.Rows.Clear()
                 DGCopia.Columns(9).Width = 80
@@ -30,20 +30,20 @@ Public Class FrmEdicionCot
                 MetodoMetasCotizador()
                 comandoMetasCotizador = conexionMetasCotizador.CreateCommand
                 comandoMetasCotizador.CommandText = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre,[SetupCustomerDetails].[CustomerId],[CompanyName],[TaxIDNo],
-        [ContAddress1] AS DomCont,[ContCity], [ContState],[Phone],[SetupCustomerDetails].[Email],
-        PartidaNo,[SetUpEquipment].[EquipmentName] AS Articulo, [Mfr],[Model],[SetUpEquipment].[EquipId], [DetalleCotizaciones].[Observaciones], [SetupServices].[ServicesId],
-        [SetupServices].[ServiceName],[idUsuarioCotizacion],[Referencia], [DetalleCotizaciones].[idListaCotizacion],[Subtotal],[Total], [Cantidad], [SetupEquipmentServiceMapping].Price,[Serie],[identificadorInventarioCliente],[ObservacionesServicios] 
-        from [MetasCotizador].[dbo].[Cotizaciones]
-        INNER JOIN [Usuarios] ON [Cotizaciones].[idUsuarioCotizacion] = [Usuarios].[idUsuarioAdministrador]
-        INNER JOIN " & servidor & "[SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
-        INNER JOIN " & servidor & "[SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
-                    INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
-        INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
-        INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
-        INNER JOIN [ModalidadCondicion] ON [Cotizaciones].[idModalidadCondicion] = [ModalidadCondicion].[idModalidadCondicion]
-        INNER JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
-        INNER JOIN " & servidor & "[SetupEquipmentServiceMapping] ON [SetUpEquipment].[EquipId] =[SetupEquipmentServiceMapping].[EquipId] 	
-        WHERE [Cotizaciones].NumCot = " & COT2 & " order by PartidaNo"
+                [ContAddress1] AS DomCont,[ContCity], [ContState],[Phone],[SetupCustomerDetails].[Email],
+                PartidaNo,[SetUpEquipment].[EquipmentName] AS Articulo, [Mfr],[Model],[SetUpEquipment].[EquipId], [DetalleCotizaciones].[Observaciones], [SetupServices].[ServicesId],
+                [SetupServices].[ServiceName],[idUsuarioCotizacion],[Referencia], [DetalleCotizaciones].[idListaCotizacion],[Subtotal],[Total], [Cantidad], [SetupEquipmentServiceMapping].Price,[Serie],[identificadorInventarioCliente],[ObservacionesServicios] 
+                from [MetasCotizador].[dbo].[Cotizaciones]
+                INNER JOIN [Usuarios] ON [Cotizaciones].[idUsuarioCotizacion] = [Usuarios].[idUsuarioAdministrador]
+                INNER JOIN " & servidor & "[SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
+                INNER JOIN " & servidor & "[SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
+                            INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
+                INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
+                INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
+                INNER JOIN [ModalidadCondicion] ON [Cotizaciones].[idModalidadCondicion] = [ModalidadCondicion].[idModalidadCondicion]
+                INNER JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
+                INNER JOIN " & servidor & "[SetupEquipmentServiceMapping] ON [SetUpEquipment].[EquipId] =[SetupEquipmentServiceMapping].[EquipId] 	
+                WHERE [Cotizaciones].NumCot = " & COT2 & " order by PartidaNo"
                 lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
                 While lectorMetasCotizador.Read()
                     numCot.Text = lectorMetasCotizador(0)
@@ -67,7 +67,7 @@ Public Class FrmEdicionCot
                     DGServicios.Rows.Add(lectorMetasCotizador(16), lectorMetasCotizador(18), lectorMetasCotizador(26), lectorMetasCotizador(22))
                     numPartida = lectorMetasCotizador(12)
                 End While
-            Else
+            ElseIf editar = 2 Then
                 btGuardarInf.Text = "Guardar cotización"
                 Label79.Text = "Guardar cotización"
                 numCot.Visible = False
@@ -92,6 +92,17 @@ Public Class FrmEdicionCot
                 TextCorreo.Text = lectorLIMS(7)
                 lectorLIMS.Close()
                 conexionLIMS.Close()
+                For Each fila In DGServicios.Rows
+                    subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
+                Next
+                iva = (subtotal * 0.16)
+                Total = subtotal + iva
+                TextSubtotal.Text = subtotal
+                TextTotal.Text = Total
+            Else
+                lbTiituloClave.Visible = False
+                txtCveContacto.Visible = False
+                Label22.Visible = False
                 For Each fila In DGServicios.Rows
                     subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
                 Next
@@ -341,7 +352,6 @@ Public Class FrmEdicionCot
     Private Sub BtnMinimizar_Click(sender As Object, e As EventArgs) Handles btnMinimizar.Click
         Me.WindowState = FormWindowState.Minimized
     End Sub
-
     Private Sub BtnAgregarArticulos_Click(sender As Object, e As EventArgs) Handles btnAgregarArticulos.Click
         FrmArticulos.Show()
     End Sub
@@ -443,72 +453,143 @@ Public Class FrmEdicionCot
                         conexionMetasCotizador.Close()
                         DGCopia.Rows.Clear()
                     Else
-                        '================================================================== GUARDAR EN COTIZACIONES ==================================================================================================
-                        R = "insert into Cotizaciones (idContacto, Origen, idLugarCondicion, idCuandoCondicion, idModalidadCondicion, idTiempoEntregaCondicion, idPagoCondicion, idLeyendaCondicion,
-                    idValidezCondicion,idMonedaCondicion,idDocumentoCondicion,idModoCont,Referencia,FechaDesde,FechaHasta,Observaciones,idUsuarioCotizacion,Subtotal,IVA,Total,Creado)
-                    values (" & Val(txtCveContacto.Text) & ",'" & origen & "'," & Val(cboServicio.Tag) & "," & Val(Cbcuando.Tag) & "," & Val(CbModalidad.Tag) & "," & Val(CboTiempo.Tag) & "," &
-                            Val(CCondPago.Tag) & "," & Val(CboLeyenda.Tag) & "," & Val(CboValidez.Tag) & "," & Val(CboMoneda.Tag) & "," & Val(ComboDocCond.Tag) & "," & Val(CboContabilizar.Tag) & ",'" &
-                            txtReferencia.Text & "','" & fechaActual & "','" & fecharecepcion & "','" & txtObservaciones.Text & "','" & usuario & "'," & subtotal & "," & iva & "," & Total & ",0)"
-                        comando.CommandText = R
-                        comando.ExecuteNonQuery()
-                        '============================================================================================================================================================================================
-                        '========================================================== SACAR EL ULTIMO REGISTRO DE COTIZACION PARA EL DETALLE DE COTIZACION=============================================================
-                        R = "select MAX(Numcot) from [Cotizaciones]"
-                        comando.CommandText = R
-                        lector = comando.ExecuteReader
-                        lector.Read()
-                        If ((lector(0) Is DBNull.Value) OrElse (lector(0) Is Nothing)) Then
-                            maximo = 1
-                        Else
-                            maximo = lector(0)
-                        End If
-                        lector.Close()
-                        '============================================================================================================================================================================================
-                        '===================================================================== INSERTAR EN DETALLE DE COTIZACIONES===================================================================================
-                        For i = 0 To DGCopia.Rows.Count - 2
-                            If DGCopia.Item(3, i).Value.ToString = "GENERICO" Or DGCopia.Item(3, i).Value.ToString = "Generico" Or DGCopia.Item(3, i).Value.ToString = "Genérico" Then
-                                marcaGen = InputBox("¿Deseas agregar la marca del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Marca")
-                                modGen = InputBox("¿Deseas agregar el modelo del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Modelo")
-                                If marcaGen = "" Or marcaGen = "-" Then
-                                    marcaGen = ""
-                                Else
-                                    marcaGen = " Marca: " & marcaGen
-                                End If
-                                If modGen = "" Or modGen = "-" Then
-                                    modGen = ""
-                                Else
-                                    modGen = " Modelo: " & modGen
-                                End If
-                                observacion = observacion + marcaGen + modGen
-                            End If
-                            R = "insert into DetalleCotizaciones (NumCot,EquipId, PartidaNo,Cantidad, CantidadReal, identificadorInventarioCliente, Serie, Observaciones, ObservacionesServicios) values (" &
-                                 maximo & "," & DGCopia.Item(0, i).Value & "," & Val(DGCopia.Item(1, i).Value) & ",
-                         " & Val(DGCopia.Item(5, i).Value) & "," & Val(DGCopia.Item(5, i).Value) & ",'" & (DGCopia.Item(9, i).Value) & "','" & (DGCopia.Item(10, i).Value) & "','" & (DGCopia.Item(7, i).Value) + observacion & "','" & (DGCopia.Item(11, i).Value) & "')"
+                        '***************************************************************** DECISION PARA SABER DONDE GUARDAR, SI EN INFORMALES O COT NORMALES **************************************************************
+                        If editar2 = True Then
+                            '================================================================== GUARDAR EN COTIZACIONES ==================================================================================================
+                            R = "insert into Cotizacion_Informal(idLugarCondicion, idCuandoCondicion, idModalidadCondicion, idTiempoEntregaCondicion, idPagoCondicion, idLeyendaCondicion,
+                                idValidezCondicion,idMonedaCondicion,idDocumentoCondicion,idModoCont,Referencia,FechaDesde,FechaHasta,Observaciones,idUsuarioCotizacion,Subtotal,IVA,Total,Creado,
+                                Contacto, Empresa, RFC, Domicilio, Ciudad, Estado, Telefono, Correo)
+                                 values (" & Val(cboServicio.Tag) & "," & Val(Cbcuando.Tag) & "," & Val(CbModalidad.Tag) & "," & Val(CboTiempo.Tag) & "," &
+                                Val(CCondPago.Tag) & "," & Val(CboLeyenda.Tag) & "," & Val(CboValidez.Tag) & "," & Val(CboMoneda.Tag) & "," & Val(ComboDocCond.Tag) & "," & Val(CboContabilizar.Tag) & ",'" &
+                                txtReferencia.Text & "','" & fechaActual & "','" & fecharecepcion & "','" & txtObservaciones.Text & "','" & usuario & "'," & subtotal & "," & iva & "," & Total &
+                                ",0,'" & txtNombreC.Text & "','" & txtNombreEmpresa.Text & "','" & txtNumCond.Text & "','" & txtDomicilio.Text & "','" & txtCiudad.Text & "','" & txtEstado.Text &
+                                "','" & txtTelefono.Text & "','" & TextCorreo.Text & "')"
                             comando.CommandText = R
                             comando.ExecuteNonQuery()
-                            marcaGen = ""
-                            modGen = ""
-                            observacion = ""
-                        Next i
-                        '============================================================================================================================================================================================
-                        '============================================================= INSERTAR EN DETALLE DE SERVICIOS DE DETALLE DE COTIZACIONE ===================================================================
-                        '////////////////////////////////////// CODIGO PARA SACAR EL IDDETALLE PARA LA TABLA DE SERVICIOS //////////////////////////////////
-                        For i = 0 To DGServicios.Rows.Count - 2
-                            R = "select idListaCotizacion from DetalleCotizaciones where NumCot=" & maximo & " and EquipId=" & DGServicios.Item(0, i).Value
+                            '============================================================================================================================================================================================
+                            '========================================================== SACAR EL ULTIMO REGISTRO DE COTIZACION PARA EL DETALLE DE COTIZACION=============================================================
+                            R = "select MAX(Numcot) from [Cotizacion_Informal]"
                             comando.CommandText = R
                             lector = comando.ExecuteReader
                             lector.Read()
-                            idlista = lector(0)
+                            If ((lector(0) Is DBNull.Value) OrElse (lector(0) Is Nothing)) Then
+                                maximo = 1
+                            Else
+                                maximo = lector(0)
+                            End If
                             lector.Close()
-                            '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                            '/////////////////////////////////////// INSERTAR EN SERVICIOS DE DETALLE DE COTIZACION ///////////////////////////////////////////
-                            R = "insert into ServiciosEnCotizaciones (idListaCotizacion, idServicio, Precio) values (" & idlista & "," & Val(DGServicios.Item(1, i).Value) & "," & CDbl(DGServicios.Item(2, i).Value) & ")"
+                            '============================================================================================================================================================================================
+                            '===================================================================== INSERTAR EN DETALLE DE COTIZACIONES===================================================================================
+                            For i = 0 To DGCopia.Rows.Count - 2
+                                If DGCopia.Item(3, i).Value.ToString = "GENERICO" Or DGCopia.Item(3, i).Value.ToString = "Generico" Or DGCopia.Item(3, i).Value.ToString = "Genérico" Then
+                                    marcaGen = InputBox("¿Deseas agregar la marca del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Marca")
+                                    modGen = InputBox("¿Deseas agregar el modelo del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Modelo")
+                                    If marcaGen = "" Or marcaGen = "-" Then
+                                        marcaGen = ""
+                                    Else
+                                        marcaGen = " Marca: " & marcaGen
+                                    End If
+                                    If modGen = "" Or modGen = "-" Then
+                                        modGen = ""
+                                    Else
+                                        modGen = " Modelo: " & modGen
+                                    End If
+                                    observacion = observacion + marcaGen + modGen
+                                End If
+                                R = "insert into Detalle_Informales (NumCot,EquipId, PartidaNo,Cantidad, CantidadReal, identificadorInventarioCliente, Serie, Observaciones, ObservacionesServicios) values (" &
+                                     maximo & "," & DGCopia.Item(0, i).Value & "," & Val(DGCopia.Item(1, i).Value) & "," & Val(DGCopia.Item(5, i).Value) & "," & Val(DGCopia.Item(5, i).Value) &
+                                     ",'" & (DGCopia.Item(9, i).Value) & "','" & (DGCopia.Item(10, i).Value) & "','" & (DGCopia.Item(7, i).Value) + observacion & "','" & (DGCopia.Item(11, i).Value) & "')"
+                                comando.CommandText = R
+                                comando.ExecuteNonQuery()
+                                marcaGen = ""
+                                modGen = ""
+                                observacion = ""
+                            Next i
+                            '============================================================================================================================================================================================
+                            '============================================================= INSERTAR EN DETALLE DE SERVICIOS DE DETALLE DE COTIZACIONE ===================================================================
+                            '////////////////////////////////////// CODIGO PARA SACAR EL IDDETALLE PARA LA TABLA DE SERVICIOS //////////////////////////////////
+                            For i = 0 To DGServicios.Rows.Count - 2
+                                R = "select idListaCotizacion from Detalle_Informales where NumCot=" & maximo & " and EquipId=" & DGServicios.Item(0, i).Value
+                                comando.CommandText = R
+                                lector = comando.ExecuteReader
+                                lector.Read()
+                                idlista = lector(0)
+                                lector.Close()
+                                '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                '/////////////////////////////////////// INSERTAR EN SERVICIOS DE DETALLE DE COTIZACION ///////////////////////////////////////////
+                                R = "insert into Servicios_Informales (idListaCotizacion, idServicio, Precio) values (" & idlista & "," & Val(DGServicios.Item(1, i).Value) & "," & CDbl(DGServicios.Item(2, i).Value) & ")"
+                                comando.CommandText = R
+                                comando.ExecuteNonQuery()
+                                '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            Next
+                            '****************************************************************************************************************************************************************************************************************
+                        Else
+                            '================================================================== GUARDAR EN COTIZACIONES ==================================================================================================
+                            R = "insert into Cotizaciones (idContacto, Origen, idLugarCondicion, idCuandoCondicion, idModalidadCondicion, idTiempoEntregaCondicion, idPagoCondicion, idLeyendaCondicion,
+                    idValidezCondicion,idMonedaCondicion,idDocumentoCondicion,idModoCont,Referencia,FechaDesde,FechaHasta,Observaciones,idUsuarioCotizacion,Subtotal,IVA,Total,Creado)
+                    values (" & Val(txtCveContacto.Text) & ",'" & origen & "'," & Val(cboServicio.Tag) & "," & Val(Cbcuando.Tag) & "," & Val(CbModalidad.Tag) & "," & Val(CboTiempo.Tag) & "," &
+                                Val(CCondPago.Tag) & "," & Val(CboLeyenda.Tag) & "," & Val(CboValidez.Tag) & "," & Val(CboMoneda.Tag) & "," & Val(ComboDocCond.Tag) & "," & Val(CboContabilizar.Tag) & ",'" &
+                                txtReferencia.Text & "','" & fechaActual & "','" & fecharecepcion & "','" & txtObservaciones.Text & "','" & usuario & "'," & subtotal & "," & iva & "," & Total & ",0)"
                             comando.CommandText = R
                             comando.ExecuteNonQuery()
-                            '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        Next
+                            '============================================================================================================================================================================================
+                            '========================================================== SACAR EL ULTIMO REGISTRO DE COTIZACION PARA EL DETALLE DE COTIZACION=============================================================
+                            R = "select MAX(Numcot) from [Cotizaciones]"
+                            comando.CommandText = R
+                            lector = comando.ExecuteReader
+                            lector.Read()
+                            If ((lector(0) Is DBNull.Value) OrElse (lector(0) Is Nothing)) Then
+                                maximo = 1
+                            Else
+                                maximo = lector(0)
+                            End If
+                            lector.Close()
+                            '============================================================================================================================================================================================
+                            '===================================================================== INSERTAR EN DETALLE DE COTIZACIONES===================================================================================
+                            For i = 0 To DGCopia.Rows.Count - 2
+                                If DGCopia.Item(3, i).Value.ToString = "GENERICO" Or DGCopia.Item(3, i).Value.ToString = "Generico" Or DGCopia.Item(3, i).Value.ToString = "Genérico" Then
+                                    marcaGen = InputBox("¿Deseas agregar la marca del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Marca")
+                                    modGen = InputBox("¿Deseas agregar el modelo del articulo: """ & DGCopia.Item(2, i).Value.ToString & """?", "Modelo")
+                                    If marcaGen = "" Or marcaGen = "-" Then
+                                        marcaGen = ""
+                                    Else
+                                        marcaGen = " Marca: " & marcaGen
+                                    End If
+                                    If modGen = "" Or modGen = "-" Then
+                                        modGen = ""
+                                    Else
+                                        modGen = " Modelo: " & modGen
+                                    End If
+                                    observacion = observacion + marcaGen + modGen
+                                End If
+                                R = "insert into DetalleCotizaciones (NumCot,EquipId, PartidaNo,Cantidad, CantidadReal, identificadorInventarioCliente, Serie, Observaciones, ObservacionesServicios) values (" &
+                                     maximo & "," & DGCopia.Item(0, i).Value & "," & Val(DGCopia.Item(1, i).Value) & ",
+                         " & Val(DGCopia.Item(5, i).Value) & "," & Val(DGCopia.Item(5, i).Value) & ",'" & (DGCopia.Item(9, i).Value) & "','" & (DGCopia.Item(10, i).Value) & "','" & (DGCopia.Item(7, i).Value) + observacion & "','" & (DGCopia.Item(11, i).Value) & "')"
+                                comando.CommandText = R
+                                comando.ExecuteNonQuery()
+                                marcaGen = ""
+                                modGen = ""
+                                observacion = ""
+                            Next i
+                            '============================================================================================================================================================================================
+                            '============================================================= INSERTAR EN DETALLE DE SERVICIOS DE DETALLE DE COTIZACIONE ===================================================================
+                            '////////////////////////////////////// CODIGO PARA SACAR EL IDDETALLE PARA LA TABLA DE SERVICIOS //////////////////////////////////
+                            For i = 0 To DGServicios.Rows.Count - 2
+                                R = "select idListaCotizacion from DetalleCotizaciones where NumCot=" & maximo & " and EquipId=" & DGServicios.Item(0, i).Value
+                                comando.CommandText = R
+                                lector = comando.ExecuteReader
+                                lector.Read()
+                                idlista = lector(0)
+                                lector.Close()
+                                '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                '/////////////////////////////////////// INSERTAR EN SERVICIOS DE DETALLE DE COTIZACION ///////////////////////////////////////////
+                                R = "insert into ServiciosEnCotizaciones (idListaCotizacion, idServicio, Precio) values (" & idlista & "," & Val(DGServicios.Item(1, i).Value) & "," & CDbl(DGServicios.Item(2, i).Value) & ")"
+                                comando.CommandText = R
+                                comando.ExecuteNonQuery()
+                                '//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            Next
+                        End If
                     End If
-
                     '============================================================================================================================================================================================
                     Try
                         If MessageBox.Show("¿Desea Guardar la información?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then

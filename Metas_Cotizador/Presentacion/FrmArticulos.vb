@@ -51,6 +51,7 @@
     End Sub
 
     Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
+        agregarArt = False
         Me.Close()
     End Sub
 
@@ -77,12 +78,16 @@
                 lectorLIMS.Read()
                 equipo = lectorLIMS(3)
                 precio = precio + lectorLIMS(4)
+
+
                 FrmEdicionCot.DGCopia.Rows.Add(lectorLIMS(3), numPartida, lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), "1", False)
                 iva = (precio * 0.16)
                 totalEdiCot = precio + iva
                 FrmEdicionCot.TextSubtotal.Text = precio
                 FrmEdicionCot.TextTotal.Text = totalEdiCot
+
                 lectorLIMS.Close()
+
 
                 MetodoLIMS()
                 comandoLIMS = conexionLIMS.CreateCommand
