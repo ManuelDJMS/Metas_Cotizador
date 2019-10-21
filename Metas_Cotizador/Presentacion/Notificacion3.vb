@@ -35,8 +35,8 @@ Public Class Notificacion3
         cliente = lectorLIMS(3)
         Dim objOutlook As Object
         Dim objOutlookMsg As Object
-
-        R = "<html xmlns:v='urn:schemas-microsoft-com:vml'
+        While lectorLIMS.Read()
+            R = "<html xmlns:v='urn:schemas-microsoft-com:vml'
                                         xmlns:o='urn:schemas-microsoft-com:office:office'
                                         xmlns:w='urn:schemas-microsoft-com:office:word'
                                         xmlns:m='http://schemas.microsoft.com/office/2004/12/omml'
@@ -53,7 +53,6 @@ Public Class Notificacion3
                                             {
                                                 font-family: arial, sans-serif;
                                                 border-collapse: collapse;
-
                                             }
                                             td
                                             {
@@ -121,9 +120,10 @@ Public Class Notificacion3
                                                 <TD>" & status & "</TD>
                                                 <TD>" & notas & "</TD>
                                                 <TD>" & creacion & "</TD>
-	                                        </TR>
-                                            
-                                        </TABLE>
+	                                        </TR>                                        
+                                        </TABLE>"
+        End While
+        R = R & "
                                        <p><span style=font-size:11.0pt;font-family:Helvetica><b>Saludos Cordiales,</b></span></p>
                                         <p><span style=font-size:11.0pt;font-family:Helvetica><b>Atentamente,</b></span></p>
                                         <div Class=WordSection1>
@@ -134,7 +134,7 @@ Public Class Notificacion3
                                         </span><span style='font-family:' Bahnschrift Light',sans-serif'><a href='mailto:logistica@metas.mx'>logistica<span style='font-size:12.0pt'>@metas.mx</span></a></span><span style='font-size:12.0pt;font-family:' Bahnschrift Light',sans-serif'><br>
                                         Teléfono: 01 (341) 413 61 23<o:p></o:p></span></p>
                                         <p class=MsoNormal>
-                                        <span style='mso-ignore:vglayout;position:
+                                        <span style='mso-ignore:vglayou/t;position:
                                             absolute;z-index:-1895824384;margin-left:4px;margin-top:12px;width:696px;
                                             height:193px'><img border='0' src='file:///C:\Users\Software TI\Documents\GitHub\image002.png' width='xxxx' height='xxxx'></span>
                                         <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
@@ -157,7 +157,7 @@ Public Class Notificacion3
                                             style='font-size:8.0pt;color:#222222;mso-ansi-language:ES-TRAD'><o:p></o:p></span></p>
                                         <p class=MsoAutoSig><o:p>&nbsp;</o:p></p>"
         R = R & "</body></html>"
-            objOutlook = CreateObject("Outlook.Application")
+        objOutlook = CreateObject("Outlook.Application")
             objOutlookMsg = objOutlook.CreateItem(0)
             With objOutlookMsg
             '.CC = ccalj
