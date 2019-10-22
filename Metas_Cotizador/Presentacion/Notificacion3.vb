@@ -6,7 +6,6 @@ Public Class Notificacion3
     Dim OV, cant As Integer
     Dim filas As Boolean = False
     Dim OT, MetasId, Marca, Modelo, Serie, compañia, cuenta, servicio, equipo, creacion, status, Email, notas, cliente, instrucciones As String
-    Dim nfilas(14) As String
     Private Sub cmdBuscar_Click(sender As Object, e As EventArgs) Handles cmdBuscar.Click
         OV = Val(txtOT.Text)
         MetodoLIMS()
@@ -53,7 +52,7 @@ Public Class Notificacion3
                                                     border: 1px solid #010d03;
                                                     text-align: center;
                                                     padding: 10px;
-                                                    background-color: #3ABD59;
+                                                    background-color: 8#3ABD59;
                                                 }
                                                 table.MsoNormalTable
                                 	            {
@@ -98,7 +97,6 @@ Public Class Notificacion3
             Email = lectorLIMS(20)
             cliente = lectorLIMS(3)
             instrucciones = lectorLIMS(21)
-            Dim nfila = New String() {"Colombia", "Perú", "Ecuador", "USA", "Brasil"}
             Dim objOutlook As Object
             Dim objOutlookMsg As Object
             If cant = 0 Then
@@ -185,7 +183,7 @@ Public Class Notificacion3
                     End Select
                 End If
             End If
-                cant = cant + 1
+            cant = cant + 1
         End While
         R = R & "           </TABLE>
                                            <p><span style=font-size:11.0pt;font-family:Helvetica><b>Saludos Cordiales</b></span></p>
