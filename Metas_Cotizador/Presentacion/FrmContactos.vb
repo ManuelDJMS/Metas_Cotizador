@@ -496,6 +496,10 @@ Public Class FrmContactos
         End Try
     End Sub
 
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        ban = False
+        FrmNuevoContacto.Show()
+    End Sub
 
     Private Sub btGuardar_Click(sender As Object, e As EventArgs) Handles btGuardar.Click
         'MsgBox(txtNumeroDeCuenta.Text)
@@ -532,16 +536,6 @@ Public Class FrmContactos
         End If
         'CONTACTO
         con.txtDireccion1.Text = Me.txtDireccion.Text
-        If Me.txtDireccion2.Text <> "t" Then
-            con.txtDireccion2.Text = Me.txtDireccion2.Text
-        Else
-            con.txtDireccion2.Text = " "
-        End If
-        If Me.txtDireccion3.Text <> "t" Then
-            con.txtDireccion3.Text = Me.txtDireccion2.Text
-        Else
-            con.txtDireccion3.Text = " "
-        End If
         If Me.txtEdo.Text <> "t" Then
             con.txtEstado.Text = Me.txtEdo.Text
         Else
@@ -557,21 +551,11 @@ Public Class FrmContactos
         Else
             con.txtCodigoPostal.Text = " "
         End If
-        If Me.txtPais.Text <> "t" Then
-            con.cboPais.Text = Me.txtPais.Text
-        Else
-            con.cboPais.Text = " "
-        End If
-        If Me.txtNumExt.Text <> "t" Then
-            con.txtNumeroExterior.Text = Me.txtNumExt.Text
-        Else
-            con.txtNumeroExterior.Text = " "
-        End If
-        If Me.txtColonia.Text <> "t" Then
-            con.txtColonia.Text = Me.txtColonia.Text
-        Else
-            con.txtColonia.Text = " "
-        End If
+        'If Me.txtPais.Text <> "t" Then
+        '    con.cboPais.Text = Me.txtPais.Text
+        'Else
+        '    con.cboPais.Text = " "
+        'End If
         'con.txtEstado.Text = Me.txtEdo.Text
         'con.txtCiudad.Text = Me.txtCiudad.Text
         'con.txtCodigoPostal.Text = Me.txtCodigoPostal.Text
@@ -583,16 +567,6 @@ Public Class FrmContactos
             con.txtDireccion1Facturacion.Text = Me.txtDireccion1DeFacturacion.Text
         Else
             con.txtDireccion1Facturacion.Text = " "
-        End If
-        If Me.txtDireccion2DeFacturacion.Text <> "t" Then
-            con.txtDireccion2Facturacion.Text = Me.txtDireccion2DeFacturacion.Text
-        Else
-            con.txtDireccion2Facturacion.Text = " "
-        End If
-        If Me.txtDireccion3DeFacturacion.Text <> "t" Then
-            con.txtDireccion3Facturacion.Text = Me.txtDireccion3DeFacturacion.Text
-        Else
-            con.txtDireccion3Facturacion.Text = " "
         End If
         If Me.txtEstadoDeFacturacion.Text <> "t" Then
             con.txtEstadoFacturacion.Text = Me.txtEstadoDeFacturacion.Text
@@ -609,21 +583,11 @@ Public Class FrmContactos
         Else
             con.txtCodigoPostalFacturacion.Text = " "
         End If
-        If Me.txtPaisDeFacturacion.Text <> "t" Then
-            con.cboPaisFacturacion.Text = Me.txtPaisDeFacturacion.Text
-        Else
-            con.cboPaisFacturacion.Text = " "
-        End If
-        If Me.txtNumeroExteriorDeFacturacion.Text <> "t" Then
-            con.txtNumExteriorFacturacion.Text = Me.txtNumeroExteriorDeFacturacion.Text
-        Else
-            con.txtNumExteriorFacturacion.Text = " "
-        End If
-        If Me.txtColoniaDeFacturacion.Text <> "t" Then
-            con.txtColoniaFacturacion.Text = Me.txtColoniaDeFacturacion.Text
-        Else
-            con.txtColoniaFacturacion.Text = " "
-        End If
+        'If Me.txtPaisDeFacturacion.Text <> "t" Then
+        '    con.cboPaisFacturacion.Text = Me.txtPaisDeFacturacion.Text
+        'Else
+        '    con.cboPaisFacturacion.Text = " "
+        'End If
         'con.txtCiudadFacturacion.Text = Me.txtCiudadDeFacturacion.Text
         'con.txtCodigoPostalFacturacion.Text = Me.txtCPDeFacturacion.Text
         'con.cboPaisFacturacion.Text = Me.txtPaisDeFacturacion.Text
@@ -634,18 +598,6 @@ Public Class FrmContactos
             con.txtDireccion1Entrega.Text = Me.txtDireccion1DeEntrega.Text
         Else
             con.txtDireccion1Entrega.Text = " "
-        End If
-
-        If Me.txtDireccion2DeEntrega.Text <> "t" Then
-            con.txtDireccion2Entrega.Text = Me.txtDireccion2DeEntrega.Text
-        Else
-            con.txtDireccion2Entrega.Text = " "
-        End If
-
-        If Me.txtDireccion3DeEntrega.Text <> "t" Then
-            con.txtDireccion3Entrega.Text = Me.txtDireccion3DeEntrega.Text
-        Else
-            con.txtDireccion3Entrega.Text = " "
         End If
 
         If Me.txtEstadoDeEntrega.Text <> "t" Then
@@ -666,23 +618,11 @@ Public Class FrmContactos
             con.txtCodigoPostalEntrega.Text = " "
         End If
 
-        If Me.txtPaisDeEntrega.Text <> "t" Then
-            con.cboPaisEntrega.Text = Me.txtPaisDeEntrega.Text
-        Else
-            con.cboPaisEntrega.Text = " "
-        End If
-
-        If Me.txtNumeroExteriorDeEntrega.Text <> "t" Then
-            con.txtNumExteriorEntrega.Text = Me.txtNumeroExteriorDeEntrega.Text
-        Else
-            con.txtNumExteriorEntrega.Text = " "
-        End If
-
-        If Me.txtColoniaDeEntrega.Text <> "t" Then
-            con.txtColoniaEntrega.Text = Me.txtColoniaDeEntrega.Text
-        Else
-            con.txtColoniaEntrega.Text = " "
-        End If
+        'If Me.txtPaisDeEntrega.Text <> "t" Then
+        '    con.cboPaisEntrega.Text = Me.txtPaisDeEntrega.Text
+        'Else
+        '    con.cboPaisEntrega.Text = " "
+        'End If
         'con.txtDireccion1Entrega.Text = Me.txtDireccion1DeEntrega.Text
         'con.txtDireccion2Entrega.Text = Me.txtDireccion2DeEntrega.Text
         'con.txtDireccion3Entrega.Text = Me.txtDireccion3DeFacturacion.Text

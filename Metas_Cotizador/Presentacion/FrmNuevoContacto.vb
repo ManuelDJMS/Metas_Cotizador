@@ -5,78 +5,39 @@ Public Class FrmNuevoContacto
                 RecallNotice, MonedaSeleccionada, AccActive As String
     Dim contador, valorFinal As Integer
     Dim bandera, bandera2 As Integer
-
-    Private Sub btCancelar_Click(sender As Object, e As EventArgs) Handles btCancelar.Click
-        Me.Dispose()
-    End Sub
     Private Sub FrmNuevoContacto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         MetodoLIMS()
+        llenarcombo("Select *from SetupCustomerSource", cboOrigen, "id")
+        llenarcombo("Select *from SetupQualityRequirement", cboRequerimientosDeCalidad, "id")
+        llenarcombo("Select *from MasterCustomerType", cboTipoIndustria, "id")
+        llenarcombo("Select *from [MasterPoPickList]", cboDefaultPO, "id")
+        llenarcombo("Select *from [SetupShippingMode]", cboModoDeEnvio, "id")
+        llenarEstado("Select *from [StateMaster]", txtEstado, "StateId")
+        llenarEstado("Select *from [StateMaster]", txtEstadoEntrega, "StateId")
+        llenarEstado("Select *from [StateMaster]", txtEstadoFacturacion, "StateId")
         If ban = False Then
             btGuardar.Text = "ACTUALIZAR"
             Me.Text = "Actualizar datos de contacto"
+
         Else
-            '' cargar datos de las tablas SetupCustomerSource
-            '' cargar datos de las tablas SetupQualityRequierement
-            Dim R As String
-            R = "Select CustomerSource from SetupCustomerSource"
-            Dim comando As New SqlCommand(R, conexionLIMS)
-            Dim lector As SqlDataReader
-            lector = comando.ExecuteReader
-            While lector.Read()
-                cboOrigen.Items.Add(lector(0))
-            End While
-            lector.Close()
 
-            'cadena = "Select QualityRqment from SetupQualityRequirement"
-            comando.CommandText = "Select QualityRqment from SetupQualityRequirement"
-            lector = comando.ExecuteReader
-            While lector.Read()
-                cboRequerimientosDeCalidad.Items.Add(lector(0))
-            End While
-            lector.Close()
+            'comando.CommandText = "Select [StateName], [StateId] from [StateMaster]"
+            'lector = comando.ExecuteReader
+            'While lector.Read()
+            '    txtEstado.Items.Add(lector(0) & " - " & lector(1))
+            '    txtEstadoFacturacion.Items.Add(lector(0) & " - " & lector(1))
+            '    txtEstadoEntrega.Items.Add(lector(0) & " - " & lector(1))
+            'End While
+            'lector.Close()
 
-            ''Reacomodar el nombre de los registros que se cambiarona español en las tablas del sistema 
-
-            comando.CommandText = "Select [CustomerType] from MasterCustomerType"
-            lector = comando.ExecuteReader
-            While lector.Read()
-                cboTipoIndustria.Items.Add(lector(0))
-            End While
-            lector.Close()
-
-            comando.CommandText = "Select [POPickList] from [MasterPoPickList]"
-            lector = comando.ExecuteReader
-            While lector.Read()
-                cboDefaultPO.Items.Add(lector(0))
-                cboDefaultPO.Text = ""
-            End While
-            lector.Close()
-
-
-            comando.CommandText = "Select [ShipVia] from [SetupShippingMode]"
-            lector = comando.ExecuteReader
-            While lector.Read()
-                cboModoDeEnvio.Items.Add(lector(0))
-            End While
-            lector.Close()
-
-            comando.CommandText = "Select [StateName], [StateId] from [StateMaster]"
-            lector = comando.ExecuteReader
-            While lector.Read()
-                txtEstado.Items.Add(lector(0) & " - " & lector(1))
-                txtEstadoFacturacion.Items.Add(lector(0) & " - " & lector(1))
-                txtEstadoEntrega.Items.Add(lector(0) & " - " & lector(1))
-            End While
-            lector.Close()
-
-            comando.CommandText = "Select [StateName], [StateId] from [MasterStateCountry]"
-            lector = comando.ExecuteReader
-            While lector.Read()
-                cboPais.Items.Add(lector(0) & " - " & lector(1))
-                cboPaisEntrega.Items.Add(lector(0) & " - " & lector(1))
-                cboPaisFacturacion.Items.Add(lector(0) & " - " & lector(1))
-            End While
-            lector.Close()
+            'comando.CommandText = "Select [StateName], [StateId] from [MasterStateCountry]"
+            'lector = comando.ExecuteReader
+            'While lector.Read()
+            '    cboPais.Items.Add(lector(0) & " - " & lector(1))
+            '    cboPaisEntrega.Items.Add(lector(0) & " - " & lector(1))
+            '    cboPaisFacturacion.Items.Add(lector(0) & " - " & lector(1))
+            'End While
+            'lector.Close()
 
             cboMoneda.Items.Add("Mexican Peso")
             cboMoneda.Items.Add("U.S. Dollar")
@@ -100,7 +61,42 @@ Public Class FrmNuevoContacto
             conexionLIMS.Close()
         End If
     End Sub
+    Sub llenarcombo(ByVal query As String, ByVal combo As ComboBox, ByVal id As String)
+        '=============================================== METODO PARA LLENAR LOS COMBOS ===================================================
+        MetodoLIMS()
+        comandoLIMS = conexionLIMS.CreateCommand
+        comandoLIMS.CommandText = query
+        lectorLIMS = comandoLIMS.ExecuteReader
+        While lectorLIMS.Read()
+            combo.Items.Add(lectorLIMS(1))
+        End While
+        lectorLIMS.Close()
+        comandoLIMS.CommandText = query & " where " & id & "=1"
 
+        lectorLIMS = comandoLIMS.ExecuteReader
+        lectorLIMS.Read()
+        combo.Tag = lectorLIMS(0)
+        combo.Text = lectorLIMS(1)
+        lectorLIMS.Close()
+    End Sub
+    Sub llenarEstado(ByVal query As String, ByVal combo As ComboBox, ByVal id As String)
+        '=============================================== METODO PARA LLENAR LOS COMBOS ===================================================
+        MetodoLIMS()
+        comandoLIMS = conexionLIMS.CreateCommand
+        comandoLIMS.CommandText = query
+        lectorLIMS = comandoLIMS.ExecuteReader
+        While lectorLIMS.Read()
+            combo.Items.Add(lectorLIMS(1))
+        End While
+        lectorLIMS.Close()
+        comandoLIMS.CommandText = query & " where " & id & "='AGS'"
+
+        lectorLIMS = comandoLIMS.ExecuteReader
+        lectorLIMS.Read()
+        combo.Tag = lectorLIMS(0)
+        combo.Text = lectorLIMS(1)
+        lectorLIMS.Close()
+    End Sub
     Private Sub cboAvisoDeRecuperacion_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboAvisoDeRecuperacion.SelectedIndexChanged
         aviso()
         'MsgBox(RecallNotice)
@@ -210,9 +206,6 @@ Public Class FrmNuevoContacto
             CalDueDateAdj = "0"
         End If
     End Sub
-    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
-        'FrmBusquedaCuentas.ShowDialog()
-    End Sub
     Private Sub txtNumeroDeCuenta_KeyUp(sender As Object, e As KeyEventArgs) Handles txtNumeroDeCuenta.KeyUp
         If e.KeyCode = Keys.Enter Then
             Try
@@ -291,32 +284,20 @@ Public Class FrmNuevoContacto
         txtCorreo2.Text = ""
         txtFax.Text = ""
         txtDireccion1.Text = ""
-        txtDireccion2.Text = ""
-        txtDireccion3.Text = ""
         txtEstado.Text = ""
-        cboPais.Text = ""
-        txtColonia.Text = ""
+        'cboPais.Text = ""
         txtCiudad.Text = ""
         txtCodigoPostal.Text = ""
-        txtNumeroExterior.Text = ""
         txtDireccion1Facturacion.Text = ""
-        txtDireccion2Facturacion.Text = ""
-        txtDireccion3Facturacion.Text = ""
         txtEstadoFacturacion.Text = ""
-        cboPaisFacturacion.Text = ""
-        txtColoniaFacturacion.Text = ""
+        'cboPaisFacturacion.Text = ""
         txtCiudadFacturacion.Text = ""
         txtCodigoPostalFacturacion.Text = ""
-        txtNumExteriorFacturacion.Text = ""
         txtDireccion1Entrega.Text = ""
-        txtDireccion2Entrega.Text = ""
-        txtDireccion3Entrega.Text = ""
         txtEstadoEntrega.Text = ""
-        cboPaisEntrega.Text = ""
-        txtColoniaEntrega.Text = ""
+        'cboPaisEntrega.Text = ""
         txtCiudadEntrega.Text = ""
         txtCodigoPostalEntrega.Text = ""
-        txtNumExteriorEntrega.Text = ""
         'adiministrative Information
         cboOrigen.Text = ""
         cboTipoIndustria.Text = ""
@@ -355,32 +336,20 @@ Public Class FrmNuevoContacto
         txtCorreo2.Enabled = True
         txtFax.Enabled = True
         txtDireccion1.Enabled = True
-        txtDireccion2.Enabled = True
-        txtDireccion3.Enabled = True
         txtEstado.Enabled = True
-        cboPais.Enabled = True
-        txtColonia.Enabled = True
+        'cboPais.Enabled = True
         txtCiudad.Enabled = True
         txtCodigoPostal.Enabled = True
-        txtNumeroExterior.Enabled = True
         txtDireccion1Facturacion.Enabled = True
-        txtDireccion2Facturacion.Enabled = True
-        txtDireccion3Facturacion.Enabled = True
         txtEstadoFacturacion.Enabled = True
-        cboPaisFacturacion.Enabled = True
-        txtColoniaFacturacion.Enabled = True
+        'cboPaisFacturacion.Enabled = True
         txtCiudadFacturacion.Enabled = True
         txtCodigoPostalFacturacion.Enabled = True
-        txtNumExteriorFacturacion.Enabled = True
         txtDireccion1Entrega.Enabled = True
-        txtDireccion2Entrega.Enabled = True
-        txtDireccion3Entrega.Enabled = True
         txtEstadoEntrega.Enabled = True
-        cboPaisEntrega.Enabled = True
-        txtColoniaEntrega.Enabled = True
+        'cboPaisEntrega.Enabled = True
         txtCiudadEntrega.Enabled = True
         txtCodigoPostalEntrega.Enabled = True
-        txtNumExteriorEntrega.Enabled = True
         cboOrigen.Enabled = True
         cboTipoIndustria.Enabled = True
         txtTerminosDePago.Enabled = True
@@ -417,32 +386,20 @@ Public Class FrmNuevoContacto
         txtCorreo2.Enabled = False
         txtFax.Enabled = False
         txtDireccion1.Enabled = False
-        txtDireccion2.Enabled = False
-        txtDireccion3.Enabled = False
         txtEstado.Enabled = False
-        cboPais.Enabled = False
-        txtColonia.Enabled = False
+        'cboPais.Enabled = False
         txtCiudad.Enabled = False
         txtCodigoPostal.Enabled = False
-        txtNumeroExterior.Enabled = False
         txtDireccion1Facturacion.Enabled = False
-        txtDireccion2Facturacion.Enabled = False
-        txtDireccion3Facturacion.Enabled = False
         txtEstadoFacturacion.Enabled = False
-        cboPaisFacturacion.Enabled = False
-        txtColoniaFacturacion.Enabled = False
+        'cboPaisFacturacion.Enabled = False
         txtCiudadFacturacion.Enabled = False
         txtCodigoPostalFacturacion.Enabled = False
-        txtNumExteriorFacturacion.Enabled = False
         txtDireccion1Entrega.Enabled = False
-        txtDireccion2Entrega.Enabled = False
-        txtDireccion3Entrega.Enabled = False
         txtEstadoEntrega.Enabled = False
-        cboPaisEntrega.Enabled = False
-        txtColoniaEntrega.Enabled = False
+        'cboPaisEntrega.Enabled = False
         txtCiudadEntrega.Enabled = False
         txtCodigoPostalEntrega.Enabled = False
-        txtNumExteriorEntrega.Enabled = False
         cboOrigen.Enabled = False
         cboTipoIndustria.Enabled = False
         txtTerminosDePago.Enabled = False
@@ -520,14 +477,14 @@ Public Class FrmNuevoContacto
         AdminType = "1"
         If btGuardar.Text = "Convertir" Then
             ''validar que no esten vacios los campos obligatorios, que se guarden en contactos
-            If txtNombre.Text.Equals("") Or txtApellidoPaterno.Text.Equals("") Or txtApellidoMaterno.Text.Equals("") Or txtCompania.Text.Equals("") Or txtRFC.Text.Equals("") Or txtOrganizacion.Text.Equals("") Or cboStatus.Text.Equals("") Or txtNumeroDeCuenta.Text.Equals("") Or txtCelular.Text.Equals("") Or txtCorreo1.Text.Equals("") Or txtDireccion1.Text.Equals("") Or txtEstado.Text.Equals("") Or cboPais.Text.Equals("") Or txtColonia.Text.Equals("") Or txtCiudad.Text.Equals("") Or txtCodigoPostal.Text.Equals("") Or txtNumeroExterior.Text.Equals("") Or cboDefaultPO.Text.Equals("") Then
+            If txtNombre.Text.Equals("") Or txtApellidoPaterno.Text.Equals("") Or txtApellidoMaterno.Text.Equals("") Or txtCompania.Text.Equals("") Or txtRFC.Text.Equals("") Or txtOrganizacion.Text.Equals("") Or cboStatus.Text.Equals("") Or txtNumeroDeCuenta.Text.Equals("") Or txtCelular.Text.Equals("") Or txtCorreo1.Text.Equals("") Or txtDireccion1.Text.Equals("") Or txtEstado.Text.Equals("") Or TextPais1.Text.Equals("") Or txtCiudad.Text.Equals("") Or txtCodigoPostal.Text.Equals("") Or cboDefaultPO.Text.Equals("") Then
                 MsgBox("Completa los campos obligatorios.", MsgBoxStyle.Exclamation)
             Else
                 ''Inserta
-                Try
-                    ''--------------------------------------------------------------guardar en Tabla principal de contactos con la insercion 2da en las direcciones de contactos adicionales-----------------------------------------------------------------------------------
-                    Dim cadena As String
-                    cadena = "IF NOT EXISTS (SELECT CompanyName FROM SetupCustomerDetails WHERE SetupCustomerDetails.CompanyName='" & txtCompania.Text & "')
+                'Try
+                ''--------------------------------------------------------------guardar en Tabla principal de contactos con la insercion 2da en las direcciones de contactos adicionales-----------------------------------------------------------------------------------
+                Dim cadena As String
+                cadena = "IF NOT EXISTS (SELECT CompanyName FROM SetupCustomerDetails WHERE SetupCustomerDetails.CompanyName='" & txtCompania.Text & "')
                      BEGIN
                            insert into SetupCustomerDetails (CustAccountNo, FirstName, MiddleName, LastName, Phone, Mobile, Email, 
                                 Fax, CompanyName, IsActive, Source, AdminType, PaymentTerms, IsCod, IsTaxable, IsCallDataReq, 
@@ -601,28 +558,22 @@ Public Class FrmNuevoContacto
                                 ,[ShipCountry]) values (
                                 '" & valorFinal & "',
                                 '" & txtDireccion1.Text.Trim & "',
-                                '" & txtDireccion2.Text.Trim & "',
-                                '" & txtDireccion3.Text.Trim & "',
                                 '" & txtCiudad.Text.Trim & "',
                                 '" & txtEstado.Text.Trim & "',
                                 '" & txtCodigoPostal.Text.Trim & "',
                                 '" & txtDireccion1Facturacion.Text.Trim & "',
-                                '" & txtDireccion2Facturacion.Text.Trim & "',
-                                '" & txtDireccion3Facturacion.Text.Trim & "',
                                 '" & txtCiudadFacturacion.Text.Trim & "',
                                 '" & txtEstadoFacturacion.Text.Trim & "',
                                 '" & txtCodigoPostalFacturacion.Text.Trim & "',
                                 '" & txtDireccion1Entrega.Text.Trim & "',
-                                '" & txtDireccion2Entrega.Text.Trim & "',
-                                '" & txtDireccion3Entrega.Text.Trim & "',
                                 '" & txtCiudadEntrega.Text.Trim & "',
                                 '" & txtEstadoEntrega.Text.Trim & "',
                                 '" & txtCodigoPostalEntrega.Text.Trim & "',
-                                '" & cboPais.Text.Trim & "',
-                                '" & cboPaisFacturacion.Text.Trim & "',
-                                '" & cboPaisEntrega.Text.Trim & "') END"
-                    'MsgBox(cadena)
-                    Dim comando As New SqlCommand(cadena, conexionLIMS)
+                                '" & TextPais1.Text.Trim & "',
+                                '" & TextPais2.Text.Trim & "',
+                                '" & TextPais3.Text.Trim & "') END"
+                'MsgBox(cadena)
+                Dim comando As New SqlCommand(cadena, conexionLIMS)
                     If comando.ExecuteNonQuery() <> True Then
                         MsgBox("Contacto guardado correctamente en LIMS", MsgBoxStyle.Information)
                         ''actualizar el estado del prospecto
@@ -634,15 +585,15 @@ Public Class FrmNuevoContacto
                         'Else
                         MsgBox("Ya existe el nombre de la compañia, no podemos agregar otro contacto con la misma empresa", MsgBoxStyle.Critical)
                     End If
-                Catch ex As Exception
-                    MsgBox("Ocurrio un error en insertar los datos, verifica nuevamente", MsgBoxStyle.Exclamation)
-                End Try
+                'Catch ex As Exception
+                '    MsgBox("Ocurrio un error en insertar los datos, verifica nuevamente", MsgBoxStyle.Exclamation)
+                'End Try
             End If
         Else
             'MsgBox("si sirve")
-            Try
-                'MsgBox(cboMoneda.Text)
-                moneda()
+            'Try
+            'MsgBox(cboMoneda.Text)
+            moneda()
                 aviso()
                 vencimiento()
                 requerimientos()
@@ -674,7 +625,7 @@ Public Class FrmNuevoContacto
                 CallDueDateAdj ='" & CalDueDateAdj & "',
                 LabNotes ='" & txtNotas.Text.Trim & "',
                 CreatedBy ='" & txtUsuarioActual.Text.Trim & "',
-                CreatedOn ='" & DTPFechaActual.Value.Date & "',                         
+                CreatedOn =" & DTPFechaActual.Value.Date & ",                         
                 DefaultPO ='" & DefaultPO & "',
                 ShipMode ='" & ShipMode & "',
                 CalDiscount ='" & txtDescuentoDeCalibracion.Text.Trim & "',
@@ -692,37 +643,31 @@ Public Class FrmNuevoContacto
                 KeyFiscal ='" & txtRFC.Text.Trim & "',
                 Organization ='" & txtOrganizacion.Text.Trim & "' 
                 where [CustomerId] ='" & Val(ID.Text) & "'"
-                'MsgBox(cadena)
-                conexionLIMS.Open()
+            'MsgBox(cadena)
+            conexionLIMS.Open()
                 Dim comando As New SqlCommand(cadena, conexionLIMS)
                 lectorLIMS = comando.ExecuteReader
                 lectorLIMS.Close()
                 Dim cadena2 As String
-                cadena2 = "Update SetupCustomerAddressDtls Set                                 
+            cadena2 = "Update SetupCustomerAddressDtls Set                                 
                 [ContAddress1] = '" & txtDireccion1.Text.Trim & "',
-                [ContAddress2] = '" & txtDireccion2.Text.Trim & "',
-                [ContAddress3] = '" & txtDireccion3.Text.Trim & "',
                 [ContCity] = '" & txtCiudad.Text.Trim & "',
                 [ContState] = '" & txtEstado.Text.Trim & "',
                 [ContZip] = '" & txtCodigoPostal.Text.Trim & "',
                 [BillAddress1] = '" & txtDireccion1Facturacion.Text.Trim & "',
-                [BillAddress2] = '" & txtDireccion2Facturacion.Text.Trim & "',
-                [BillAddress3] = '" & txtDireccion3Facturacion.Text.Trim & "',
                 [BillCity] = '" & txtCiudadFacturacion.Text.Trim & "',
                 [BillState] = '" & txtEstadoFacturacion.Text.Trim & "',
                 [BillZip] = '" & txtCodigoPostalFacturacion.Text.Trim & "',                   
                 [ShipAddress1] = '" & txtDireccion1Entrega.Text.Trim & "',
-                [ShipAddress2] = '" & txtDireccion2Entrega.Text.Trim & "',
-                [ShipAddress3] = '" & txtDireccion3Entrega.Text.Trim & "',
                 [ShipCity] = '" & txtCiudadEntrega.Text.Trim & "',
                 [ShipState] = '" & txtEstadoEntrega.Text.Trim & "',
                 [ShipZip] = '" & txtCodigoPostalEntrega.Text.Trim & "',
-                [ContCountry] = '" & cboPais.Text.Trim & "',
-                [BillCountry] = '" & cboPaisFacturacion.Text.Trim & "',
-                [ShipCountry] ='" & cboPaisEntrega.Text.Trim & "' 
+                [ContCountry] = '" & TextPais1.Text.Trim & "',
+                [BillCountry] = '" & TextPais2.Text.Trim & "',
+                [ShipCountry] ='" & TextPais3.Text.Trim & "' 
                 where [CustomerId] ='" & Val(ID.Text) & "'"
-                'MsgBox(cadena)
-                Dim comando2 As New SqlCommand(cadena2, conexionLIMS)
+            'MsgBox(cadena)
+            Dim comando2 As New SqlCommand(cadena2, conexionLIMS)
                 lectorLIMS = comando2.ExecuteReader
                 lectorLIMS.Close()
                 'MsgBox(cadena2)
@@ -730,12 +675,12 @@ Public Class FrmNuevoContacto
                 ''actualizar el estado del prospecto
                 'actualizarEstadoDeProspecto()
                 Me.Dispose()
-                'Dim admin As New 
-                'admin.MdiParent = FrmHOME
-                'admin.Show()
-            Catch ex As Exception
-                MsgBox("Ocurrio un error en insertar los datos, verifica nuevamente", MsgBoxStyle.Exclamation)
-            End Try
+            'Dim admin As New 
+            'admin.MdiParent = FrmHOME
+            'admin.Show()
+            'Catch ex As Exception
+            '    MsgBox("Ocurrio un error en insertar los datos, verifica nuevamente", MsgBoxStyle.Exclamation)
+            'End Try
         End If
     End Sub
 
@@ -806,8 +751,8 @@ Public Class FrmNuevoContacto
     'End Sub
 
     Private Sub txtCelular_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCelular.KeyPress,
-        txtTelefono.KeyPress, txtExtension.KeyPress, txtFax.KeyPress, txtCodigoPostal.KeyPress, txtNumeroExterior.KeyPress,
-        txtCodigoPostalEntrega.KeyPress, txtNumExteriorEntrega.KeyPress, txtCodigoPostalFacturacion.KeyPress, txtNumExteriorFacturacion.KeyPress
+        txtTelefono.KeyPress, txtExtension.KeyPress, txtFax.KeyPress, txtCodigoPostal.KeyPress,
+        txtCodigoPostalEntrega.KeyPress, txtCodigoPostalFacturacion.KeyPress
         If Not IsNumeric(e.KeyChar) Then
             e.Handled = True
         End If
@@ -838,48 +783,33 @@ Public Class FrmNuevoContacto
 
     Public Sub LimparDatosFacturacion()
         txtDireccion1Facturacion.Text = ""
-        txtDireccion2Facturacion.Text = ""
-        txtDireccion3Facturacion.Text = ""
         txtEstadoFacturacion.Text = ""
-        cboPaisFacturacion.Text = ""
-        txtColoniaFacturacion.Text = ""
+        'cboPaisFacturacion.Text = ""
         txtCiudadFacturacion.Text = ""
         txtCodigoPostalFacturacion.Text = ""
-        txtNumExteriorFacturacion.Text = ""
     End Sub
     Public Sub LimparDatosEntrega()
         txtDireccion1Entrega.Text = ""
-        txtDireccion2Entrega.Text = ""
-        txtDireccion3Entrega.Text = ""
         txtEstadoEntrega.Text = ""
-        cboPaisEntrega.Text = ""
-        txtColoniaEntrega.Text = ""
+        'cboPaisEntrega.Text = ""
         txtCiudadEntrega.Text = ""
         txtCodigoPostalEntrega.Text = ""
-        txtNumExteriorEntrega.Text = ""
 
     End Sub
     Public Sub DomicilioEntrega()
         txtDireccion1Entrega.Text = txtDireccion1.Text
-        txtDireccion2Entrega.Text = txtDireccion2.Text
-        txtDireccion3Entrega.Text = txtDireccion3.Text
         txtEstadoEntrega.Text = txtEstado.Text
-        cboPaisEntrega.Text = cboPais.Text
-        txtColoniaEntrega.Text = txtColonia.Text
+        'cboPaisEntrega.Text = cboPais.Text
         txtCiudadEntrega.Text = txtCiudad.Text
         txtCodigoPostalEntrega.Text = txtCodigoPostal.Text
-        txtNumExteriorEntrega.Text = txtNumeroExterior.Text
     End Sub
     Public Sub DomicilioFacturacion()
         txtDireccion1Facturacion.Text = txtDireccion1.Text
-        txtDireccion2Facturacion.Text = txtDireccion2.Text
-        txtDireccion3Facturacion.Text = txtDireccion3.Text
         txtEstadoFacturacion.Text = txtEstado.Text
-        cboPaisFacturacion.Text = cboPais.Text
-        txtColoniaFacturacion.Text = txtColonia.Text
+        'cboPaisFacturacion.Text = cboPais.Text
         txtCiudadFacturacion.Text = txtCiudad.Text
         txtCodigoPostalFacturacion.Text = txtCodigoPostal.Text
-        txtNumExteriorFacturacion.Text = txtNumeroExterior.Text
+
     End Sub
 
 

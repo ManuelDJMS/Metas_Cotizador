@@ -70,7 +70,6 @@ Public Class FrmSeguimientoCot
         Dim seleccionado As Boolean
         Dim R As String
         Dim b, RecDate, OnSite As Boolean
-
         RecDate = True
         OnSite = False '----------------------Ciclo para saber si hay articulos seleccionados-------------------------------
         For i As Integer = DGRes.Rows.Count() - 1 To 0 Step -1
@@ -295,5 +294,11 @@ Public Class FrmSeguimientoCot
     Private Sub PictureBox5_Click(sender As Object, e As EventArgs) Handles PictureBox5.Click
         FrmHOME.PL_Recordatorio.BackColor = Color.White
         Me.Dispose()
+    End Sub
+
+    Private Sub TabConsulta_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabConsulta.SelectedIndexChanged
+        If TabConsulta.SelectedTab Is TabPage1 Then
+
+        End If
     End Sub
 End Class

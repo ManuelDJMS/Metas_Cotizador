@@ -593,4 +593,8 @@ Public Class FrmCotizacion
             Bitacora("FrmCotizadorLIMS", "Error al seleccionar cot para editar", Err.Number, cadena)
         End Try
     End Sub
+
+    Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
+        FrmNuevoContacto.Show()
+    End Sub
 End Class

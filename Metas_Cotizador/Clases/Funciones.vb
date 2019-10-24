@@ -80,6 +80,26 @@ Module Funciones
             'Bitacora("FrmAutorizarSolicitudes", "Error al cargar el formulario", Err.Number, cadena)
         End Try
     End Sub
+    Public Sub consultaGeneralDeCotizacionesCot(ByVal dg As DataGridView)
+        Try
+            MetodoMetasCotizador()
+            R = "select x1.NumCot, Contacto, Empresa, Email, ContAddress1, ContZip, Phone, Referencia, FechaDesde, FechaHasta, Total, x2.CustomerId, CustAccountNo from [MetasCotizador].[dbo].[Cotizaciones] x1
+				INNER JOIN " & servidor & "[SetupCustomerDetails] x2 ON x1.idContacto = x2.[CustomerId] 
+                inner join " & servidor & "[SetupCustomerAddressDtls] x3 on x2.[CustomerId]=x3.[CustomerId] where Creado= 0"
+            Dim comando As New SqlCommand(R, conexionMetasCotizador)
+            Dim lector As SqlDataReader
+            lector = comando.ExecuteReader
+            While lector.Read()
+                dg.Rows.Add(False, lector(0), lector(1), lector(2), lector(3), lector(4), lector(5), lector(6), lector(7), lector(8), lector(9), lector(10), lector(11), lector(12))
+            End While
+            conexionMetasCotizador.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
+            'cadena = Err.Description
+            'cadena = cadena.Replace("'", "")
+            'Bitacora("FrmAutorizarSolicitudes", "Error al cargar el formulario", Err.Number, cadena)
+        End Try
+    End Sub
     Public Sub busquedas(ByVal dg As DataGridView, ByVal email As TextBox, ByVal cp As TextBox, ByVal empresa As TextBox, ByVal domicilio As TextBox, ByVal telefono As TextBox)
         Try
             dg.Rows.Clear()
