@@ -23,14 +23,11 @@ Partial Class FrmNuevoContacto
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.txtUsuarioActual = New System.Windows.Forms.Label()
-        Me.btCancelar = New System.Windows.Forms.Button()
         Me.btGuardar = New System.Windows.Forms.Button()
         Me.ID = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -48,7 +45,6 @@ Partial Class FrmNuevoContacto
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtFax = New System.Windows.Forms.TextBox()
         Me.txtExtension = New System.Windows.Forms.TextBox()
-        Me.cboStatus = New System.Windows.Forms.ComboBox()
         Me.txtRFC = New System.Windows.Forms.TextBox()
         Me.txtDepartamento = New System.Windows.Forms.TextBox()
         Me.txtCelular = New System.Windows.Forms.TextBox()
@@ -69,9 +65,9 @@ Partial Class FrmNuevoContacto
         Me.Label7 = New System.Windows.Forms.Label()
         Me.txtCompania = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label33 = New System.Windows.Forms.Label()
         Me.DTPFechaActual = New System.Windows.Forms.DateTimePicker()
         Me.GBGeneral = New System.Windows.Forms.GroupBox()
+        Me.TextPais1 = New System.Windows.Forms.TextBox()
         Me.Label96 = New System.Windows.Forms.Label()
         Me.Label97 = New System.Windows.Forms.Label()
         Me.Label64 = New System.Windows.Forms.Label()
@@ -105,6 +101,7 @@ Partial Class FrmNuevoContacto
         Me.Label42 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TextPais3 = New System.Windows.Forms.TextBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.Label58 = New System.Windows.Forms.Label()
         Me.txtEstadoEntrega = New System.Windows.Forms.ComboBox()
@@ -119,6 +116,7 @@ Partial Class FrmNuevoContacto
         Me.Label125 = New System.Windows.Forms.Label()
         Me.txtDireccion1Entrega = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextPais2 = New System.Windows.Forms.TextBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.txtEstadoFacturacion = New System.Windows.Forms.ComboBox()
@@ -190,9 +188,6 @@ Partial Class FrmNuevoContacto
         Me.Label82 = New System.Windows.Forms.Label()
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
-        Me.TextPais1 = New System.Windows.Forms.TextBox()
-        Me.TextPais2 = New System.Windows.Forms.TextBox()
-        Me.TextPais3 = New System.Windows.Forms.TextBox()
         Me.GBGeneral.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabInformacionPersonal.SuspendLayout()
@@ -217,34 +212,6 @@ Partial Class FrmNuevoContacto
         Me.Button1.UseVisualStyleBackColor = True
         Me.Button1.Visible = False
         '
-        'txtUsuarioActual
-        '
-        Me.txtUsuarioActual.AutoSize = True
-        Me.txtUsuarioActual.Enabled = False
-        Me.txtUsuarioActual.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUsuarioActual.Location = New System.Drawing.Point(307, 16)
-        Me.txtUsuarioActual.Name = "txtUsuarioActual"
-        Me.txtUsuarioActual.Size = New System.Drawing.Size(47, 14)
-        Me.txtUsuarioActual.TabIndex = 168
-        Me.txtUsuarioActual.Text = "Nombre"
-        Me.txtUsuarioActual.TextAlign = System.Drawing.ContentAlignment.TopRight
-        Me.txtUsuarioActual.Visible = False
-        '
-        'btCancelar
-        '
-        Me.btCancelar.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
-        Me.btCancelar.Cursor = System.Windows.Forms.Cursors.Default
-        Me.btCancelar.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray
-        Me.btCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btCancelar.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btCancelar.ForeColor = System.Drawing.Color.White
-        Me.btCancelar.Location = New System.Drawing.Point(659, 16)
-        Me.btCancelar.Name = "btCancelar"
-        Me.btCancelar.Size = New System.Drawing.Size(122, 34)
-        Me.btCancelar.TabIndex = 174
-        Me.btCancelar.Text = "INFORMAL"
-        Me.btCancelar.UseVisualStyleBackColor = False
-        '
         'btGuardar
         '
         Me.btGuardar.BackColor = System.Drawing.Color.MediumSeaGreen
@@ -256,7 +223,7 @@ Partial Class FrmNuevoContacto
         Me.btGuardar.Name = "btGuardar"
         Me.btGuardar.Size = New System.Drawing.Size(136, 34)
         Me.btGuardar.TabIndex = 166
-        Me.btGuardar.Text = "LIMS"
+        Me.btGuardar.Text = "Guardar"
         Me.btGuardar.UseVisualStyleBackColor = False
         '
         'ID
@@ -301,17 +268,6 @@ Partial Class FrmNuevoContacto
         Me.Label29.Size = New System.Drawing.Size(17, 19)
         Me.Label29.TabIndex = 160
         Me.Label29.Text = "*"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.ForeColor = System.Drawing.Color.Red
-        Me.Label18.Location = New System.Drawing.Point(18, 267)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(13, 16)
-        Me.Label18.TabIndex = 160
-        Me.Label18.Text = "*"
         '
         'Label17
         '
@@ -494,16 +450,6 @@ Partial Class FrmNuevoContacto
         Me.txtExtension.Name = "txtExtension"
         Me.txtExtension.Size = New System.Drawing.Size(64, 21)
         Me.txtExtension.TabIndex = 4
-        '
-        'cboStatus
-        '
-        Me.cboStatus.BackColor = System.Drawing.SystemColors.Menu
-        Me.cboStatus.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboStatus.FormattingEnabled = True
-        Me.cboStatus.Location = New System.Drawing.Point(160, 266)
-        Me.cboStatus.Name = "cboStatus"
-        Me.cboStatus.Size = New System.Drawing.Size(260, 21)
-        Me.cboStatus.TabIndex = 10
         '
         'txtRFC
         '
@@ -702,17 +648,6 @@ Partial Class FrmNuevoContacto
         Me.Label12.TabIndex = 58
         Me.Label12.Text = "Compañia:"
         '
-        'Label33
-        '
-        Me.Label33.AutoSize = True
-        Me.Label33.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.ForeColor = System.Drawing.Color.Black
-        Me.Label33.Location = New System.Drawing.Point(32, 269)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(127, 16)
-        Me.Label33.TabIndex = 145
-        Me.Label33.Text = "Estado del contacto:"
-        '
         'DTPFechaActual
         '
         Me.DTPFechaActual.Location = New System.Drawing.Point(296, 16)
@@ -748,12 +683,20 @@ Partial Class FrmNuevoContacto
         Me.GBGeneral.Controls.Add(Me.txtDireccion1)
         Me.GBGeneral.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GBGeneral.ForeColor = System.Drawing.Color.SteelBlue
-        Me.GBGeneral.Location = New System.Drawing.Point(10, 315)
+        Me.GBGeneral.Location = New System.Drawing.Point(10, 283)
         Me.GBGeneral.Name = "GBGeneral"
         Me.GBGeneral.Size = New System.Drawing.Size(889, 143)
         Me.GBGeneral.TabIndex = 167
         Me.GBGeneral.TabStop = False
         Me.GBGeneral.Text = "Domicilio de Contacto"
+        '
+        'TextPais1
+        '
+        Me.TextPais1.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextPais1.Location = New System.Drawing.Point(128, 107)
+        Me.TextPais1.Name = "TextPais1"
+        Me.TextPais1.Size = New System.Drawing.Size(292, 21)
+        Me.TextPais1.TabIndex = 200
         '
         'Label96
         '
@@ -995,7 +938,7 @@ Partial Class FrmNuevoContacto
         Me.TabControl1.Location = New System.Drawing.Point(5, 42)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(915, 793)
+        Me.TabControl1.Size = New System.Drawing.Size(915, 771)
         Me.TabControl1.TabIndex = 183
         '
         'TabInformacionPersonal
@@ -1008,7 +951,7 @@ Partial Class FrmNuevoContacto
         Me.TabInformacionPersonal.Location = New System.Drawing.Point(4, 22)
         Me.TabInformacionPersonal.Name = "TabInformacionPersonal"
         Me.TabInformacionPersonal.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabInformacionPersonal.Size = New System.Drawing.Size(907, 767)
+        Me.TabInformacionPersonal.Size = New System.Drawing.Size(907, 745)
         Me.TabInformacionPersonal.TabIndex = 0
         Me.TabInformacionPersonal.Text = "Información personal"
         '
@@ -1024,7 +967,6 @@ Partial Class FrmNuevoContacto
         Me.GroupBox5.Controls.Add(Me.ID)
         Me.GroupBox5.Controls.Add(Me.Label1)
         Me.GroupBox5.Controls.Add(Me.txtClaveRecopila)
-        Me.GroupBox5.Controls.Add(Me.Label33)
         Me.GroupBox5.Controls.Add(Me.Label12)
         Me.GroupBox5.Controls.Add(Me.Label40)
         Me.GroupBox5.Controls.Add(Me.txtCompania)
@@ -1032,7 +974,6 @@ Partial Class FrmNuevoContacto
         Me.GroupBox5.Controls.Add(Me.Label7)
         Me.GroupBox5.Controls.Add(Me.Label29)
         Me.GroupBox5.Controls.Add(Me.Label6)
-        Me.GroupBox5.Controls.Add(Me.Label18)
         Me.GroupBox5.Controls.Add(Me.Label8)
         Me.GroupBox5.Controls.Add(Me.Label17)
         Me.GroupBox5.Controls.Add(Me.Label9)
@@ -1063,13 +1004,12 @@ Partial Class FrmNuevoContacto
         Me.GroupBox5.Controls.Add(Me.txtDepartamento)
         Me.GroupBox5.Controls.Add(Me.txtRFC)
         Me.GroupBox5.Controls.Add(Me.txtFax)
-        Me.GroupBox5.Controls.Add(Me.cboStatus)
         Me.GroupBox5.Controls.Add(Me.txtExtension)
         Me.GroupBox5.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox5.ForeColor = System.Drawing.Color.SteelBlue
         Me.GroupBox5.Location = New System.Drawing.Point(10, 6)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(889, 299)
+        Me.GroupBox5.Size = New System.Drawing.Size(889, 271)
         Me.GroupBox5.TabIndex = 187
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Información Personal"
@@ -1169,12 +1109,20 @@ Partial Class FrmNuevoContacto
         Me.GroupBox2.Controls.Add(Me.txtDireccion1Entrega)
         Me.GroupBox2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.ForeColor = System.Drawing.Color.SteelBlue
-        Me.GroupBox2.Location = New System.Drawing.Point(10, 616)
+        Me.GroupBox2.Location = New System.Drawing.Point(10, 584)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(889, 144)
         Me.GroupBox2.TabIndex = 181
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Domicilio de Entrega"
+        '
+        'TextPais3
+        '
+        Me.TextPais3.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextPais3.Location = New System.Drawing.Point(96, 105)
+        Me.TextPais3.Name = "TextPais3"
+        Me.TextPais3.Size = New System.Drawing.Size(292, 21)
+        Me.TextPais3.TabIndex = 155
         '
         'CheckBox2
         '
@@ -1329,12 +1277,20 @@ Partial Class FrmNuevoContacto
         Me.GroupBox1.Controls.Add(Me.txtDireccion1Facturacion)
         Me.GroupBox1.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.ForeColor = System.Drawing.Color.SteelBlue
-        Me.GroupBox1.Location = New System.Drawing.Point(10, 464)
+        Me.GroupBox1.Location = New System.Drawing.Point(10, 432)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(889, 146)
         Me.GroupBox1.TabIndex = 180
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Domicilio de Facturación"
+        '
+        'TextPais2
+        '
+        Me.TextPais2.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextPais2.Location = New System.Drawing.Point(96, 106)
+        Me.TextPais2.Name = "TextPais2"
+        Me.TextPais2.Size = New System.Drawing.Size(292, 21)
+        Me.TextPais2.TabIndex = 154
         '
         'CheckBox1
         '
@@ -1479,7 +1435,7 @@ Partial Class FrmNuevoContacto
         Me.TabAdministrativa.Location = New System.Drawing.Point(4, 22)
         Me.TabAdministrativa.Name = "TabAdministrativa"
         Me.TabAdministrativa.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabAdministrativa.Size = New System.Drawing.Size(907, 767)
+        Me.TabAdministrativa.Size = New System.Drawing.Size(907, 745)
         Me.TabAdministrativa.TabIndex = 1
         Me.TabAdministrativa.Text = "Información administrativa"
         '
@@ -1759,9 +1715,9 @@ Partial Class FrmNuevoContacto
         Me.Label45.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label45.Location = New System.Drawing.Point(454, 253)
         Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(147, 17)
+        Me.Label45.Size = New System.Drawing.Size(98, 17)
         Me.Label45.TabIndex = 161
-        Me.Label45.Text = "Aviso de recuperación:"
+        Me.Label45.Text = "Aviso de retiro:"
         '
         'txtTaxException
         '
@@ -1812,9 +1768,10 @@ Partial Class FrmNuevoContacto
         Me.cboAvisoDeRecuperacion.BackColor = System.Drawing.SystemColors.Menu
         Me.cboAvisoDeRecuperacion.Font = New System.Drawing.Font("Calibri Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboAvisoDeRecuperacion.FormattingEnabled = True
-        Me.cboAvisoDeRecuperacion.Location = New System.Drawing.Point(609, 250)
+        Me.cboAvisoDeRecuperacion.Items.AddRange(New Object() {"Llamada", "Texto", "Ambos"})
+        Me.cboAvisoDeRecuperacion.Location = New System.Drawing.Point(578, 250)
         Me.cboAvisoDeRecuperacion.Name = "cboAvisoDeRecuperacion"
-        Me.cboAvisoDeRecuperacion.Size = New System.Drawing.Size(238, 23)
+        Me.cboAvisoDeRecuperacion.Size = New System.Drawing.Size(267, 23)
         Me.cboAvisoDeRecuperacion.TabIndex = 155
         '
         'Label35
@@ -1863,6 +1820,7 @@ Partial Class FrmNuevoContacto
         Me.cboCategoria.BackColor = System.Drawing.SystemColors.Menu
         Me.cboCategoria.Font = New System.Drawing.Font("Calibri Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboCategoria.FormattingEnabled = True
+        Me.cboCategoria.Items.AddRange(New Object() {"Client A", "Client B", "Client C"})
         Me.cboCategoria.Location = New System.Drawing.Point(168, 110)
         Me.cboCategoria.Name = "cboCategoria"
         Me.cboCategoria.Size = New System.Drawing.Size(260, 23)
@@ -1873,6 +1831,7 @@ Partial Class FrmNuevoContacto
         Me.cboOpcionesDePago.BackColor = System.Drawing.SystemColors.Menu
         Me.cboOpcionesDePago.Font = New System.Drawing.Font("Calibri Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboOpcionesDePago.FormattingEnabled = True
+        Me.cboOpcionesDePago.Items.AddRange(New Object() {"Diario", "Semanal", "Mensual", "Anual"})
         Me.cboOpcionesDePago.Location = New System.Drawing.Point(168, 247)
         Me.cboOpcionesDePago.Name = "cboOpcionesDePago"
         Me.cboOpcionesDePago.Size = New System.Drawing.Size(260, 23)
@@ -1883,6 +1842,7 @@ Partial Class FrmNuevoContacto
         Me.cboMoneda.BackColor = System.Drawing.SystemColors.Menu
         Me.cboMoneda.Font = New System.Drawing.Font("Calibri Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboMoneda.FormattingEnabled = True
+        Me.cboMoneda.Items.AddRange(New Object() {"Peso Mexicano", "U.S. Dollar", "Libra Esterlina", "Euro"})
         Me.cboMoneda.Location = New System.Drawing.Point(168, 221)
         Me.cboMoneda.Name = "cboMoneda"
         Me.cboMoneda.Size = New System.Drawing.Size(260, 23)
@@ -1931,6 +1891,7 @@ Partial Class FrmNuevoContacto
         Me.cboVencimientoDeCalibracion.BackColor = System.Drawing.SystemColors.Menu
         Me.cboVencimientoDeCalibracion.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboVencimientoDeCalibracion.FormattingEnabled = True
+        Me.cboVencimientoDeCalibracion.Items.AddRange(New Object() {"Ninguna", "Fin de Semana (domingo)", "Fin de mes"})
         Me.cboVencimientoDeCalibracion.Location = New System.Drawing.Point(311, 167)
         Me.cboVencimientoDeCalibracion.Name = "cboVencimientoDeCalibracion"
         Me.cboVencimientoDeCalibracion.Size = New System.Drawing.Size(92, 22)
@@ -2065,7 +2026,6 @@ Partial Class FrmNuevoContacto
         Me.Panel3.BackColor = System.Drawing.Color.White
         Me.Panel3.Controls.Add(Me.Label79)
         Me.Panel3.Controls.Add(Me.Label82)
-        Me.Panel3.Controls.Add(Me.btCancelar)
         Me.Panel3.Controls.Add(Me.btGuardar)
         Me.Panel3.Controls.Add(Me.DTPFechaActual)
         Me.Panel3.Controls.Add(Me.TabControl1)
@@ -2122,30 +2082,6 @@ Partial Class FrmNuevoContacto
         Me.btnCerrar.TabIndex = 185
         Me.btnCerrar.TabStop = False
         '
-        'TextPais1
-        '
-        Me.TextPais1.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextPais1.Location = New System.Drawing.Point(128, 107)
-        Me.TextPais1.Name = "TextPais1"
-        Me.TextPais1.Size = New System.Drawing.Size(292, 21)
-        Me.TextPais1.TabIndex = 200
-        '
-        'TextPais2
-        '
-        Me.TextPais2.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextPais2.Location = New System.Drawing.Point(96, 106)
-        Me.TextPais2.Name = "TextPais2"
-        Me.TextPais2.Size = New System.Drawing.Size(292, 21)
-        Me.TextPais2.TabIndex = 154
-        '
-        'TextPais3
-        '
-        Me.TextPais3.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextPais3.Location = New System.Drawing.Point(96, 105)
-        Me.TextPais3.Name = "TextPais3"
-        Me.TextPais3.Size = New System.Drawing.Size(292, 21)
-        Me.TextPais3.TabIndex = 155
-        '
         'FrmNuevoContacto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2155,7 +2091,6 @@ Partial Class FrmNuevoContacto
         Me.Controls.Add(Me.btnMinimizar)
         Me.Controls.Add(Me.btnCerrar)
         Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.txtUsuarioActual)
         Me.Controls.Add(Me.Panel3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MaximizeBox = False
@@ -2183,19 +2118,15 @@ Partial Class FrmNuevoContacto
         CType(Me.btnMinimizar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnCerrar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents Button1 As Button
-    Friend WithEvents txtUsuarioActual As Label
-    Friend WithEvents btCancelar As Button
     Friend WithEvents btGuardar As Button
     Friend WithEvents DTPFechaActual As DateTimePicker
     Friend WithEvents txtNombreEmplado As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents txtExtension As TextBox
-    Friend WithEvents cboStatus As ComboBox
     Friend WithEvents txtCelular As TextBox
     Friend WithEvents txtTelefono As TextBox
     Friend WithEvents txtNombre As TextBox
@@ -2209,7 +2140,6 @@ Partial Class FrmNuevoContacto
     Friend WithEvents Label7 As Label
     Friend WithEvents txtCompania As TextBox
     Friend WithEvents Label12 As Label
-    Friend WithEvents Label33 As Label
     Friend WithEvents GBGeneral As GroupBox
     Friend WithEvents Label28 As Label
     Friend WithEvents Label24 As Label
@@ -2313,7 +2243,6 @@ Partial Class FrmNuevoContacto
     Friend WithEvents Label40 As Label
     Friend WithEvents Label30 As Label
     Friend WithEvents Label29 As Label
-    Friend WithEvents Label18 As Label
     Friend WithEvents Label17 As Label
     Friend WithEvents Label16 As Label
     Friend WithEvents Label13 As Label

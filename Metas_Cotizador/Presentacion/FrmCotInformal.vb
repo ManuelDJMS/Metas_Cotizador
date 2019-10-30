@@ -85,7 +85,7 @@
 
     Private Sub btCotizacion_Click(sender As Object, e As EventArgs) Handles btCotizacion.Click
         '=============================================== CODIGO PARA MANDAR LOS ARTICULOS CON PRECIO A LA COTIZACION ===================================================
-        origen = "LIMS"
+        origen = "INFORMAL"
         editar = 3
         editar2 = True
         If DgAgregar.Rows.Count < 2 Then
