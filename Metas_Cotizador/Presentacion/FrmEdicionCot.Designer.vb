@@ -106,7 +106,6 @@ Partial Class FrmEdicionCot
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextCorreo = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.txtCotizo2019 = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.lbCotizo = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
@@ -124,6 +123,9 @@ Partial Class FrmEdicionCot
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.txtCotizo2019 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtcp = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.DGServicios, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGCopia, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -793,6 +795,9 @@ Partial Class FrmEdicionCot
         '
         'GroupBox6
         '
+        Me.GroupBox6.Controls.Add(Me.Label8)
+        Me.GroupBox6.Controls.Add(Me.txtcp)
+        Me.GroupBox6.Controls.Add(Me.txtCotizo2019)
         Me.GroupBox6.Controls.Add(Me.dgEliminar)
         Me.GroupBox6.Controls.Add(Me.btActualizarCliente)
         Me.GroupBox6.Controls.Add(Me.txtNumCond)
@@ -803,7 +808,6 @@ Partial Class FrmEdicionCot
         Me.GroupBox6.Controls.Add(Me.Label5)
         Me.GroupBox6.Controls.Add(Me.TextCorreo)
         Me.GroupBox6.Controls.Add(Me.Label6)
-        Me.GroupBox6.Controls.Add(Me.txtCotizo2019)
         Me.GroupBox6.Controls.Add(Me.Label7)
         Me.GroupBox6.Controls.Add(Me.lbCotizo)
         Me.GroupBox6.Controls.Add(Me.Label22)
@@ -888,8 +892,9 @@ Partial Class FrmEdicionCot
         Me.txtNumCond.ForeColor = System.Drawing.Color.Black
         Me.txtNumCond.Location = New System.Drawing.Point(101, 102)
         Me.txtNumCond.Name = "txtNumCond"
-        Me.txtNumCond.Size = New System.Drawing.Size(0, 14)
+        Me.txtNumCond.Size = New System.Drawing.Size(20, 14)
         Me.txtNumCond.TabIndex = 159
+        Me.txtNumCond.Text = "rfc"
         '
         'Label3
         '
@@ -907,10 +912,11 @@ Partial Class FrmEdicionCot
         Me.txtEstado.AutoSize = True
         Me.txtEstado.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEstado.ForeColor = System.Drawing.Color.Black
-        Me.txtEstado.Location = New System.Drawing.Point(101, 162)
+        Me.txtEstado.Location = New System.Drawing.Point(289, 164)
         Me.txtEstado.Name = "txtEstado"
-        Me.txtEstado.Size = New System.Drawing.Size(0, 14)
+        Me.txtEstado.Size = New System.Drawing.Size(40, 14)
         Me.txtEstado.TabIndex = 157
+        Me.txtEstado.Text = "estado"
         '
         'Label4
         '
@@ -930,15 +936,16 @@ Partial Class FrmEdicionCot
         Me.txtCveContacto.ForeColor = System.Drawing.Color.Black
         Me.txtCveContacto.Location = New System.Drawing.Point(102, 36)
         Me.txtCveContacto.Name = "txtCveContacto"
-        Me.txtCveContacto.Size = New System.Drawing.Size(0, 14)
+        Me.txtCveContacto.Size = New System.Drawing.Size(32, 14)
         Me.txtCveContacto.TabIndex = 156
+        Me.txtCveContacto.Text = "clave"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(22, 143)
+        Me.Label5.Location = New System.Drawing.Point(22, 162)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(54, 16)
         Me.Label5.TabIndex = 137
@@ -964,15 +971,6 @@ Partial Class FrmEdicionCot
         Me.Label6.Size = New System.Drawing.Size(62, 16)
         Me.Label6.TabIndex = 138
         Me.Label6.Text = "Telefono:"
-        '
-        'txtCotizo2019
-        '
-        Me.txtCotizo2019.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCotizo2019.Location = New System.Drawing.Point(104, 219)
-        Me.txtCotizo2019.Name = "txtCotizo2019"
-        Me.txtCotizo2019.Size = New System.Drawing.Size(170, 21)
-        Me.txtCotizo2019.TabIndex = 147
-        Me.txtCotizo2019.Visible = False
         '
         'Label7
         '
@@ -1033,10 +1031,11 @@ Partial Class FrmEdicionCot
         Me.txtCiudad.AutoSize = True
         Me.txtCiudad.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCiudad.ForeColor = System.Drawing.Color.Black
-        Me.txtCiudad.Location = New System.Drawing.Point(101, 143)
+        Me.txtCiudad.Location = New System.Drawing.Point(95, 162)
         Me.txtCiudad.Name = "txtCiudad"
-        Me.txtCiudad.Size = New System.Drawing.Size(0, 14)
+        Me.txtCiudad.Size = New System.Drawing.Size(39, 14)
         Me.txtCiudad.TabIndex = 153
+        Me.txtCiudad.Text = "ciudad"
         '
         'Label1
         '
@@ -1056,15 +1055,16 @@ Partial Class FrmEdicionCot
         Me.txtDomicilio.ForeColor = System.Drawing.Color.Black
         Me.txtDomicilio.Location = New System.Drawing.Point(101, 123)
         Me.txtDomicilio.Name = "txtDomicilio"
-        Me.txtDomicilio.Size = New System.Drawing.Size(0, 14)
+        Me.txtDomicilio.Size = New System.Drawing.Size(29, 14)
         Me.txtDomicilio.TabIndex = 152
+        Me.txtDomicilio.Text = "dom"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Black
-        Me.Label9.Location = New System.Drawing.Point(22, 162)
+        Me.Label9.Location = New System.Drawing.Point(234, 162)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(49, 16)
         Me.Label9.TabIndex = 142
@@ -1077,8 +1077,9 @@ Partial Class FrmEdicionCot
         Me.txtNombreC.ForeColor = System.Drawing.Color.Black
         Me.txtNombreC.Location = New System.Drawing.Point(101, 57)
         Me.txtNombreC.Name = "txtNombreC"
-        Me.txtNombreC.Size = New System.Drawing.Size(0, 14)
+        Me.txtNombreC.Size = New System.Drawing.Size(49, 14)
         Me.txtNombreC.TabIndex = 151
+        Me.txtNombreC.Text = "contacto"
         '
         'Label10
         '
@@ -1099,8 +1100,9 @@ Partial Class FrmEdicionCot
         Me.txtNombreEmpresa.ForeColor = System.Drawing.Color.Black
         Me.txtNombreEmpresa.Location = New System.Drawing.Point(101, 81)
         Me.txtNombreEmpresa.Name = "txtNombreEmpresa"
-        Me.txtNombreEmpresa.Size = New System.Drawing.Size(0, 14)
+        Me.txtNombreEmpresa.Size = New System.Drawing.Size(50, 14)
         Me.txtNombreEmpresa.TabIndex = 150
+        Me.txtNombreEmpresa.Text = "empresa"
         '
         'Label79
         '
@@ -1159,6 +1161,40 @@ Partial Class FrmEdicionCot
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1341, 30)
         Me.Panel2.TabIndex = 192
+        '
+        'txtCotizo2019
+        '
+        Me.txtCotizo2019.AutoSize = True
+        Me.txtCotizo2019.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCotizo2019.ForeColor = System.Drawing.Color.Black
+        Me.txtCotizo2019.Location = New System.Drawing.Point(88, 221)
+        Me.txtCotizo2019.Name = "txtCotizo2019"
+        Me.txtCotizo2019.Size = New System.Drawing.Size(48, 16)
+        Me.txtCotizo2019.TabIndex = 269
+        Me.txtCotizo2019.Text = "Cotizó:"
+        Me.txtCotizo2019.Visible = False
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.Black
+        Me.Label8.Location = New System.Drawing.Point(22, 142)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(27, 16)
+        Me.Label8.TabIndex = 270
+        Me.Label8.Text = "CP:"
+        '
+        'txtcp
+        '
+        Me.txtcp.AutoSize = True
+        Me.txtcp.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtcp.ForeColor = System.Drawing.Color.Black
+        Me.txtcp.Location = New System.Drawing.Point(101, 142)
+        Me.txtcp.Name = "txtcp"
+        Me.txtcp.Size = New System.Drawing.Size(18, 14)
+        Me.txtcp.TabIndex = 271
+        Me.txtcp.Text = "cp"
         '
         'FrmEdicionCot
         '
@@ -1280,6 +1316,8 @@ Partial Class FrmEdicionCot
     Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents precioUnitario As DataGridViewTextBoxColumn
     Friend WithEvents idListaCotizacion As DataGridViewTextBoxColumn
-    Friend WithEvents txtCotizo2019 As TextBox
     Friend WithEvents lbCotizo As Label
+    Friend WithEvents Label8 As Label
+    Friend WithEvents txtcp As Label
+    Friend WithEvents txtCotizo2019 As Label
 End Class
