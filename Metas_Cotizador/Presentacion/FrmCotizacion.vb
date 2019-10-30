@@ -334,25 +334,25 @@ Public Class FrmCotizacion
             comandoMetasCotizador = conexionMetasCotizador.CreateCommand
             ' Dim n As Integer = 0
             Dim desde, hasta As Date
-            Dim nombre, puesto, tel, ext, correo, emp, dom, lugar, moneda, cotizo, correoEla, depto,
-                pago, entrega, modalidad, obser, calmetho, services, domFac, rfc As String
+        Dim nombre, puesto, tel, ext, correo, emp, dom, lugar, moneda, cotizo, correoEla, depto,
+                pago, entrega, modalidad, obser, calmetho, services, domFac, rfc, origen, idCliente As String
         Dim cve As String
         Dim R As String
             Dim fir As Image
-            'Dim name, mfr, model, service, price, subt As String
-            R = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, isnull([SetupCustomerDetails].[Department], '-') AS Departament, isnull([SetupCustomerDetails].[Phone], '-') as Phone, isnull([SetupCustomerDetails].[Email], '-') as Email,
+        'Dim name, mfr, model, service, price, subt As String
+        R = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, isnull([SetupCustomerDetails].[Department], '-') AS Departament, isnull([SetupCustomerDetails].[Phone], '-') as Phone, isnull([SetupCustomerDetails].[Email], '-') as Email,
                     isnull([SetupCustomerDetails].[CompanyName],'-') as CompanyName, [ContAddress1] + ' '+  [ContCity] +', '+ [ContState]+'. ' + [ContCountry] +'. CP '+ [ContZip] AS DomCont, ROW_NUMBER() OVER(ORDER BY PartidaNo ASC) AS Partidad, Cantidad,[DetalleCotizaciones].[EquipId],
                     [SetUpEquipment].[EquipmentName]+', MARCA: '+[Mfr] +', MODELO: '+[Model] +'. ' + (CASE WHEN  [identificadorInventarioCliente] = '-' COLLATE SQL_Latin1_General_CP1_CI_AS  THEN [identificadorInventarioCliente]  COLLATE SQL_Latin1_General_CP1_CI_AS 
                     ELSE [identificadorInventarioCliente] COLLATE SQL_Latin1_General_CP1_CI_AS  END) AS Comparacion,[SetupServices].[ServiceName],[ServiceDescription] +', ' + [TurnAroundTime]+' dias para calibración' as Descrip, [SetupEquipmentServiceMapping].[Price], [SetupEquipmentServiceMapping].[Price] * Cantidad AS sub,
                     [UserId], [UserMaster].[UserName], [LugarCondicion].[Descripcion] AS lugar, [MonedaCondicion].[Descripcion] AS moneda, 
                     [PagoCondicion].[Descripcion] AS pago, [ModalidadCondicion].[Descripcion] AS modalidad,
                     [Cotizaciones].[Observaciones],[CalibrationMethod], [ServiceDescription], [BillAddress1] +' '+ [BillCity] +', '+ [BillState]+'. '+[BillCountry]+' CP '+[BillZip] AS domFac, [TaxIDNo],
-                    [UserMaster].[Email], isnull([UserMaster].[Department], '-') as depto
+                    [UserMaster].[Email], isnull([UserMaster].[Department], '-') as depto,[Origen],[idContacto],[IdCliente],[Contacto],[Empresa],[RFC],[Domicilio],[Cp],[Ciudad],[Estado],[Telefono],[Correo]
                     from [MetasCotizador].[dbo].[Cotizaciones]
                     INNER JOIN " & servidor & "[UserMaster] ON [Cotizaciones].[idUsuarioCotizacion] COLLATE SQL_Latin1_General_CP1_CI_AS = [UserMaster].[UserID]
-                    INNER JOIN " & servidor & "[SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
-                    INNER JOIN " & servidor & "[SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
-                                INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
+                    LEFT JOIN " & servidor & "[SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
+                    LEFT JOIN " & servidor & "[SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
+                    INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
                     INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].[idListaCotizacion] = [ServiciosEnCotizaciones].[idListaCotizacion]
                     INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].[idServicio] = [SetupServices].[ServicesId]
                     INNER JOIN [LugarCondicion] ON [Cotizaciones].[idLugarCondicion] = [LugarCondicion].[idLugarCondicion]
@@ -362,54 +362,52 @@ Public Class FrmCotizacion
                     INNER JOIN [ModalidadCondicion] ON [Cotizaciones].[idModalidadCondicion] = [ModalidadCondicion].[idModalidadCondicion]
                     INNER JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
                     INNER JOIN " & servidor & "[SetupEquipmentServiceMapping] ON [SetUpEquipment].[EquipId] =[SetupEquipmentServiceMapping].[EquipId]
-                                    WHERE [Cotizaciones].NumCot= '" & COT & "'"
-            comandoMetasCotizador.CommandText = R
-            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-
-            lectorMetasCotizador.Read()
-            'MsgBox(lectorMetasCotizador(0))
-            'MsgBox(lectorMetasCotizador(1))
-            desde = lectorMetasCotizador(1)
-            ' MsgBox(desde)
-            hasta = lectorMetasCotizador(2)
-            ' MsgBox(hasta)
+					LEFT JOIN [ClientesInformales] ON [Cotizaciones].[idContacto] = [ClientesInformales].[IdCliente]
+                    WHERE [Cotizaciones].NumCot= '" & COT & "'"
+        comandoMetasCotizador.CommandText = R
+        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+        lectorMetasCotizador.Read()
+        desde = lectorMetasCotizador(1)
+        ' MsgBox(desde)
+        hasta = lectorMetasCotizador(2)
+        ' MsgBox(hasta)
+        origen = lectorMetasCotizador(30)
+        If origen = "INFORMAL" Then
+            MsgBox("dentro if")
+            idCliente = lectorMetasCotizador(32)
+            nombre = lectorMetasCotizador(33)
+            puesto = " ".ToString
+            tel = lectorMetasCotizador(40)
+            correo = lectorMetasCotizador(41)
+            emp = lectorMetasCotizador(34)
+            dom = lectorMetasCotizador(36) & " " & lectorMetasCotizador(37) & " " & lectorMetasCotizador(38) & " " & lectorMetasCotizador(39)
+            domFac = " ".ToString
+            rfc = lectorMetasCotizador(35)
+        Else
+            MsgBox("else")
+            idCliente = lectorMetasCotizador(31)
             nombre = lectorMetasCotizador(3)
-            ' MsgBox(nombre)
             puesto = lectorMetasCotizador(4)
-            'MsgBox(puesto)
             tel = lectorMetasCotizador(5)
-            '  MsgBox(tel)
             correo = lectorMetasCotizador(6)
-            'MsgBox(correo)
             emp = lectorMetasCotizador(7)
-            ' MsgBox(emp)
             dom = lectorMetasCotizador(8)
-            ' MsgBox(dom)
-            cve = lectorMetasCotizador(17)
-            'MsgBox(cve)
-            cotizo = lectorMetasCotizador(18)
-            ' MsgBox(cotizo)
-            lugar = lectorMetasCotizador(19)
-            ' MsgBox(lugar)
-            moneda = lectorMetasCotizador(20)
-            'MsgBox(moneda)
-            pago = lectorMetasCotizador(21)
-            'MsgBox(pago)
-            modalidad = lectorMetasCotizador(22)
-            'MsgBox(modalidad)
-            obser = lectorMetasCotizador(23)
-            ' MsgBox(obser)
-            calmetho = lectorMetasCotizador(24)
-            'MsgBox(calmetho)
-            services = lectorMetasCotizador(25)
-            ' MsgBox(services)
             domFac = lectorMetasCotizador(26)
-
             rfc = lectorMetasCotizador(27)
-            correoEla = lectorMetasCotizador(28)
-            depto = lectorMetasCotizador(29)
-            entrega = "-"
-            lectorMetasCotizador.Close()
+        End If
+        cve = lectorMetasCotizador(17)
+        cotizo = lectorMetasCotizador(18)
+        lugar = lectorMetasCotizador(19)
+        moneda = lectorMetasCotizador(20)
+        pago = lectorMetasCotizador(21)
+        modalidad = lectorMetasCotizador(22)
+        obser = lectorMetasCotizador(23)
+        calmetho = lectorMetasCotizador(24)
+        services = lectorMetasCotizador(25)
+        correoEla = lectorMetasCotizador(28)
+        depto = lectorMetasCotizador(29)
+        entrega = "-"
+        lectorMetasCotizador.Close()
             'MsgBox(rfc)
             Dim Adaptador As New SqlDataAdapter
             Adaptador.SelectCommand = New SqlCommand
@@ -549,8 +547,8 @@ Public Class FrmCotizacion
             Dim Reportes As New ReportDataSource("DataSet1", Data.Tables(0))
             FrmReportes.ReportViewer1.LocalReport.DataSources.Clear()
             FrmReportes.ReportViewer1.LocalReport.DataSources.Add(Datasource)
-            FrmReportes.ReportViewer1.LocalReport.ReportPath = "D:\Users\Software TI\Documents\GitHub\Metas_Cotizador\Metas_Cotizador\Reportes\CotizacionModelo.rdlc"
-            FrmReportes.ReportViewer1.LocalReport.SetParameters(New ReportParameter() {p1, p2, p3, p4, p5, p6, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17,
+        FrmReportes.ReportViewer1.LocalReport.ReportPath = "C:\Users\Software-TI\Documents\GitHub\Metas_Cotizador\Metas_Cotizador\Reportes\CotizacionModelo.rdlc"
+        FrmReportes.ReportViewer1.LocalReport.SetParameters(New ReportParameter() {p1, p2, p3, p4, p5, p6, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17,
                                                                      p19, p20, p21, p22, p23, p24, p25})
             FrmReportes.ReportViewer1.RefreshReport()
             FrmReportes.Show()
