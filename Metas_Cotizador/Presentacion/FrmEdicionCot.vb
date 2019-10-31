@@ -456,8 +456,8 @@ Public Class FrmEdicionCot
                         '================================================================== GUARDAR EN COTIZACIONES ==================================================================================================
                         If editar2 = True Then
                             '***************************************************** INSERTAR DATOS EN LA TABLA DE CONTACTOS **************************************************************
-                            R = "insert into ClientesInformales (Contacto, Empresa, RFC, Domicilio, Ciudad, Estado, Telefono, Correo) values ('" & txtNombreC.Text & "','" & txtNombreEmpresa.Text &
-                                "','" & txtNumCond.Text & "','" & txtDomicilio.Text & "','" & txtCiudad.Text & "','" & txtEstado.Text & "','" & txtTelefono.Text & "','" & TextCorreo.Text & "')"
+                            R = "insert into ClientesInformales (Contacto, Empresa, RFC, Domicilio, Cp, Ciudad, Estado, Telefono, Correo) values ('" & txtNombreC.Text & "','" & txtNombreEmpresa.Text &
+                                "','" & txtNumCond.Text & "','" & txtDomicilio.Text & "','" & txtcp.Text & "','" & txtCiudad.Text & "','" & txtEstado.Text & "','" & txtTelefono.Text & "','" & TextCorreo.Text & "')"
                             comando.CommandText = R
                             comando.ExecuteNonQuery()
                             '========================================================== SACAR EL ULTIMO REGISTRO DEL CONTACTO PARA EL DETALLE DE COTIZACION=============================================================

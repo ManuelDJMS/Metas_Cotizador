@@ -97,8 +97,8 @@ Public Class Notificacion3
             Email = lectorLIMS(20)
             cliente = lectorLIMS(3)
             instrucciones = lectorLIMS(21)
-            Dim objOutlook As Object
-            Dim objOutlookMsg As Object
+            'Dim objOutlook As Object
+            'Dim objOutlookMsg As Object
             If cant = 0 Then
                 R = R & "<TABLE BORDER>
                                              <TR>

@@ -65,7 +65,7 @@ Public Class FrmSeguimientoCot
         ''Generar
         'Dim con As FrmCompletarOV
         'Dim cliente As String
-        Dim cu, ca As Integer
+        'Dim cu, ca As Integer
         'Try
         Dim seleccionado As Boolean
         Dim R As String

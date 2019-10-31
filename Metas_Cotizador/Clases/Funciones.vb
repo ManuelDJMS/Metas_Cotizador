@@ -63,9 +63,17 @@ Module Funciones
     Public Sub consultaGeneralDeCotizaciones(ByVal dg As DataGridView)
         Try
             MetodoMetasCotizador()
-            R = "select x1.NumCot, [FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, CompanyName, Email, ContAddress1, ContZip, Phone, Referencia, FechaDesde, FechaHasta, Total, x2.CustomerId, CustAccountNo from [MetasCotizador].[dbo].[Cotizaciones] x1
-				INNER JOIN " & servidor & "[SetupCustomerDetails] x2 ON x1.idContacto = x2.[CustomerId] 
-                inner join " & servidor & "[SetupCustomerAddressDtls] x3 on x2.[CustomerId]=x3.[CustomerId] where Creado= 0"
+            '        R = "select x1.NumCot, [FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, CompanyName, Email, ContAddress1, ContZip, Phone, Referencia, FechaDesde, FechaHasta, Total, x2.CustomerId, CustAccountNo from [MetasCotizador].[dbo].[Cotizaciones] x1
+            'INNER JOIN " & servidor & "[SetupCustomerDetails] x2 ON x1.idContacto = x2.[CustomerId] 
+            '            inner join " & servidor & "[SetupCustomerAddressDtls] x3 on x2.[CustomerId]=x3.[CustomerId] where Creado= 0"
+            R = "select x1.NumCot, [FirstName] +' '+ [MiddleName] +' '+ [LastName] COLLATE Latin1_General_CI_AS AS Nombre , CompanyName COLLATE Latin1_General_CI_AS, Email COLLATE Latin1_General_CI_AS, 
+                 ContAddress1 COLLATE Latin1_General_CI_AS , ContZip COLLATE Latin1_General_CI_AS, Phone COLLATE Latin1_General_CI_AS, Referencia, FechaDesde, FechaHasta, Total, x2.CustomerId, 
+                  CustAccountNo COLLATE Latin1_General_CI_AS from [MetasCotizador].[dbo].[Cotizaciones] x1
+				 INNER JOIN " & servidor & "[SetupCustomerDetails] x2 ON  x1.idContacto = x2.[CustomerId] 
+                 inner join " & servidor & "[SetupCustomerAddressDtls] x3 on x2.[CustomerId]=x3.[CustomerId] where Creado= 0 and Origen='LIMS'
+                 union
+                 select x1.NumCot, Contacto, Empresa, Correo, Domicilio, Cp, Telefono, Referencia, FechaDesde, FechaHasta, Total, x2.idCliente, Origen COLLATE Latin1_General_CI_AS from [MetasCotizador].[dbo].[Cotizaciones] x1
+				 INNER JOIN ClientesInformales x2 ON x1.idContacto = x2.IdCliente where Creado= 0 and Origen='INFORMAL'"
             Dim comando As New SqlCommand(R, conexionMetasCotizador)
             Dim lector As SqlDataReader
             lector = comando.ExecuteReader

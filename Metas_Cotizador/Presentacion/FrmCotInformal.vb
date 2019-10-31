@@ -101,6 +101,7 @@
                 FrmEdicionCot.txtEstado.Text = TextEstado.Text
                 FrmEdicionCot.txtTelefono.Text = TextTelefono.Text
                 FrmEdicionCot.TextCorreo.Text = TextCorreo.Text
+                FrmEdicionCot.txtcp.Text = TextCP.Text
                 '===============================================SELECCION DEL ARTICULO SELECCIONADO===================================================
                 comandoLIMS = conexionLIMS.CreateCommand
                 R = "SELECT SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price from 
@@ -131,4 +132,6 @@
             Next
         End If
     End Sub
+
+
 End Class
