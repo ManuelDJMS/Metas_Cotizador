@@ -83,14 +83,13 @@ Public Class FrmCompletarOV
             MetodoLIMS()
             '-------------------------------------------Domicilio igual al de envio------------------------------------------------------------------
             If NumOV.Text = "ov" Then
-                MsgBox("Entra")
                 If domEnvio.Checked = True Then
                     R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RecDate, DataRequested, OnSite,[PONo],[RecBy],[Priority],[ReceivedVia],[ShipVia],[Remarks],[CreatedBy],[CreatedOn],[TrackingNo],[BoxCount],[Weight],[Volume],[PaymentTerms], [RefNo], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]) 
-                                            values(" & customerId & ",'" & numCuenta.Text & "'," & dtpFechaRecep.Value.ToShortDateString & ", '" & True & "','" & False & "', '" & txtOrdenCompra.Text & "','" & cboRecibidoPor.Text & "','" & cboPrioridad.Text & "','" & cboRecepcion.Text & "', '" & embarcarPor.Text & "', '" & txtObservaciones.Text & "','" & usuario & "', " & dtpFechaRecep.Value.ToShortDateString & ", '" & txtNumGuia.Text & "','" & txtCantCajas.Text & "', '" & txtPeso.Text & "', '" & txtVolumen.Text & "','" & terminosPago.Text & "', ' ', '" & DirEnv.ToString & "', '" & cdEnv.ToString & "', '" & estEnv.ToString & "', '" & cpEnv.ToString & "')"
+                                            values(" & customerId & ",'" & numCuenta.Text & "',convert(datetime,'" & dtpFechaRecep.Value & "'), '" & True & "','" & False & "', '" & txtOrdenCompra.Text & "','" & cboRecibidoPor.Text & "','" & cboPrioridad.Text & "','" & cboRecepcion.Text & "', '" & embarcarPor.Text & "', '" & txtObservaciones.Text & "','" & usuario & "', " & dtpFechaRecep.Value.ToShortDateString & ", '" & txtNumGuia.Text & "','" & txtCantCajas.Text & "', '" & txtPeso.Text & "', '" & txtVolumen.Text & "','" & terminosPago.Text & "', ' ', '" & DirEnv.ToString & "', '" & cdEnv.ToString & "', '" & estEnv.ToString & "', '" & cpEnv.ToString & "')"
                     'MsgBox(R)
                 Else
                     R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RecDate, DataRequested, OnSite,[PONo],[RecBy],[Priority],[ReceivedVia],[ShipVia],[Remarks],[CreatedBy],[CreatedOn],[TrackingNo],[BoxCount],[Weight],[Volume],[PaymentTerms], [RefNo]) 
-                                        values(" & customerId & ",'" & numCuenta.Text & "'," & dtpFechaRecep.Value.ToShortDateString & ", '" & True & "','" & False & "', '" & txtOrdenCompra.Text & "','" & cboRecibidoPor.Text & "','" & cboPrioridad.Text & "','" & cboRecepcion.Text & "', '" & embarcarPor.Text & "', '" & txtObservaciones.Text & "','" & usuario & "'," & dtpFechaRecep.Value.ToShortDateString & ", '" & txtNumGuia.Text & "','" & txtCantCajas.Text & "', '" & txtPeso.Text & "', '" & txtVolumen.Text & "','" & terminosPago.Text & "', ' ')"
+                                        values(" & customerId & ",'" & numCuenta.Text & "',convert(datetime,'" & dtpFechaRecep.Value & "'), '" & True & "','" & False & "', '" & txtOrdenCompra.Text & "','" & cboRecibidoPor.Text & "','" & cboPrioridad.Text & "','" & cboRecepcion.Text & "', '" & embarcarPor.Text & "', '" & txtObservaciones.Text & "','" & usuario & "'," & dtpFechaRecep.Value.ToShortDateString & ", '" & txtNumGuia.Text & "','" & txtCantCajas.Text & "', '" & txtPeso.Text & "', '" & txtVolumen.Text & "','" & terminosPago.Text & "', ' ')"
                     ''MsgBox(R)
                 End If
                 Dim comando As New SqlCommand
@@ -100,12 +99,12 @@ Public Class FrmCompletarOV
                 MsgBox("ORDEN DE VENTA GUARDADA")
             Else
                 If domEnvio.Checked = True Then
-                    R = "UPDATE [MetAs_Live-pruebas].[dbo].[SalesOrderDetails] set [PONo] = '" & txtOrdenCompra.Text & "', RecDate =" & dtpFechaRecep.Value.ToShortDateString & ", [RecBy] = '" & cboRecibidoPor.Text & "',[Priority] ='" & cboPrioridad.Text & "',[TrackingNo]='" & txtNumGuia.Text & "',[BoxCount] = '" & txtCantCajas.Text & "', 
+                    R = "UPDATE [MetAs_Live-pruebas].[dbo].[SalesOrderDetails] set [PONo] = '" & txtOrdenCompra.Text & "', RecDate = Convert(datetime,'" & dtpFechaRecep.Value.ToShortDateString & "'), [RecBy] = '" & cboRecibidoPor.Text & "',[Priority] ='" & cboPrioridad.Text & "',[TrackingNo]='" & txtNumGuia.Text & "',[BoxCount] = '" & txtCantCajas.Text & "', 
                 [Weight] = '" & txtPeso.Text & "', [ReceivedVia] = '" & cboRecepcion.Text & "', [ShipVia] = '" & embarcarPor.Text & "', [Remarks] ='" & txtObservaciones.Text & "', [RefNo] = '" & txtRefCot.Text & "',
                 [Volume] = '" & txtVolumen.Text & "',  [ShipAddress1] = '" & DirEnv.ToString & "', [ShipCity] = '" & cdEnv.ToString & "',[ShipState] = '" & estEnv.ToString & "', [ShipZip]  = '" & cpEnv.ToString & "'
                 where [SOId] = " & Val(NumOV.Text) & ""
                 Else
-                    R = "UPDATE [MetAs_Live-pruebas].[dbo].[SalesOrderDetails] set [PONo] = '" & txtOrdenCompra.Text & "', RecDate =" & dtpFechaRecep.Value.ToShortDateString & ", [RecBy] = '" & cboRecibidoPor.Text & "',[Priority] ='" & cboPrioridad.Text & "',[TrackingNo]='" & txtNumGuia.Text & "', [BoxCount] = '" & txtCantCajas.Text & "', 
+                    R = "UPDATE [MetAs_Live-pruebas].[dbo].[SalesOrderDetails] set [PONo] = '" & txtOrdenCompra.Text & "', RecDate =Convert(datetime,'" & dtpFechaRecep.Value.ToShortDateString & "'), [RecBy] = '" & cboRecibidoPor.Text & "',[Priority] ='" & cboPrioridad.Text & "',[TrackingNo]='" & txtNumGuia.Text & "', [BoxCount] = '" & txtCantCajas.Text & "', 
                 [Weight] = '" & txtPeso.Text & "', [ReceivedVia] = '" & cboRecepcion.Text & "', [ShipVia] = '" & embarcarPor.Text & "', [Remarks] ='" & txtObservaciones.Text & "', [RefNo] = '" & txtRefCot.Text & "',
                 [Volume] = '" & txtVolumen.Text & "'
                 where [SOId] = " & Val(NumOV.Text) & ""
