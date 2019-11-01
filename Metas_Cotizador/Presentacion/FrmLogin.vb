@@ -18,11 +18,12 @@ Public Class FrmLogin
                     Dim lector As SqlDataReader
                     comando.Connection = conexion1
                     comando.Transaction = transaction
-                    Dim r As String = "select UserID, UserName, Password from UserMaster where UserName= " & "'" & txtUser.Text & "'"
+                    Dim r As String = "select UserID, UserName, Password, Department from UserMaster where UserName= " & "'" & txtUser.Text & "'"
                     comando.CommandText = r
                     lector = comando.ExecuteReader()
                     lector.Read()
                     usuario = lector(0)
+                    departamento = lector(3)
                     If txtUser.Text = lector(1) And txtpass.Text = lector(2) Then
                         Alert("Usuario Correcto, BIENVENIDO", frmAlert.alertTypeEnum.Success)
                         FrmHOME.lbInicio.Text = lector(1)
@@ -88,11 +89,12 @@ Public Class FrmLogin
                             Dim lector As SqlDataReader
                             comando.Connection = conexion1
                             comando.Transaction = transaction
-                            Dim r As String = "select UserID, UserName, Password from UserMaster where UserName= " & "'" & txtUser.Text & "'"
+                            Dim r As String = "select UserID, UserName, Password, Department from UserMaster where UserName= " & "'" & txtUser.Text & "'"
                             comando.CommandText = r
                             lector = comando.ExecuteReader()
                             lector.Read()
                             usuario = lector(0)
+                            departamento = lector(3)
                             If txtUser.Text = lector(1) And txtpass.Text = lector(2) Then
                                 Alert("Usuario Correcto, BIENVENIDO", frmAlert.alertTypeEnum.Success)
                                 FrmHOME.lbInicio.Text = lector(1)

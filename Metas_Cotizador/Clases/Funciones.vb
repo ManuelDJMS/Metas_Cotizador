@@ -29,6 +29,8 @@ Module Funciones
     Public equipo As Integer
     Public numcot As Integer
     Public tipo As String = "Generico" 'Esta variable sirve para saber si es generico o no
+    Public departamento As String 'Variable para obtener el departamento del usuario que usa el sistemas
+    Public ccc As Boolean '(CREAR CLIENTE COT) variable para validar si se crea un cliente por medio de una orden de venta o por proceso normal
     Public agregarArt As Boolean = False 'Esta variable es para poder usar el formulario de articulos en diferente situacion
     '--------------------------------------Llenar la WORK ORDER
     Public arreglosales()

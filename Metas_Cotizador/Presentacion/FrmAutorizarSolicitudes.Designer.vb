@@ -25,14 +25,34 @@ Partial Class FrmAutorizarSolicitudes
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAutorizarSolicitudes))
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabConsulta = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.DGRes = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column31 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column32 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column34 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column36 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column37 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column38 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column39 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column40 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TextTel = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -104,26 +124,6 @@ Partial Class FrmAutorizarSolicitudes
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label59 = New System.Windows.Forms.Label()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.Column1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column30 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column31 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column32 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column33 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column34 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column35 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column36 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column37 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column38 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column39 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column40 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabConsulta.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.DGRes, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -177,7 +177,7 @@ Partial Class FrmAutorizarSolicitudes
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(1140, 613)
         Me.TabPage2.TabIndex = 5
-        Me.TabPage2.Text = " "
+        Me.TabPage2.Text = " Lista de Cotizaciones"
         '
         'DGRes
         '
@@ -215,6 +215,119 @@ Partial Class FrmAutorizarSolicitudes
         Me.DGRes.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DGRes.Size = New System.Drawing.Size(1109, 443)
         Me.DGRes.TabIndex = 258
+        '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Generar"
+        Me.Column1.Name = "Column1"
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "NumCot"
+        Me.Column2.Name = "Column2"
+        Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Contacto"
+        Me.Column3.Name = "Column3"
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "Empresa"
+        Me.Column4.Name = "Column4"
+        '
+        'Column5
+        '
+        Me.Column5.HeaderText = "Correo"
+        Me.Column5.Name = "Column5"
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Domicilio"
+        Me.Column6.Name = "Column6"
+        '
+        'Column7
+        '
+        Me.Column7.HeaderText = "CP"
+        Me.Column7.Name = "Column7"
+        '
+        'Column15
+        '
+        Me.Column15.HeaderText = "Teléfono"
+        Me.Column15.Name = "Column15"
+        '
+        'Column19
+        '
+        Me.Column19.HeaderText = "Referencia"
+        Me.Column19.Name = "Column19"
+        '
+        'Column30
+        '
+        Me.Column30.HeaderText = "Fecha Desde"
+        Me.Column30.Name = "Column30"
+        '
+        'Column31
+        '
+        Me.Column31.HeaderText = "Fecha Hasta"
+        Me.Column31.Name = "Column31"
+        '
+        'Column32
+        '
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Green
+        DataGridViewCellStyle2.Format = "0"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.Column32.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Column32.HeaderText = "Total"
+        Me.Column32.Name = "Column32"
+        '
+        'Column33
+        '
+        Me.Column33.HeaderText = "CustomerId"
+        Me.Column33.Name = "Column33"
+        Me.Column33.Visible = False
+        '
+        'Column34
+        '
+        Me.Column34.HeaderText = "Cuenta"
+        Me.Column34.Name = "Column34"
+        '
+        'Column35
+        '
+        Me.Column35.HeaderText = "ShipCity"
+        Me.Column35.Name = "Column35"
+        Me.Column35.Visible = False
+        '
+        'Column36
+        '
+        Me.Column36.HeaderText = "ShipState"
+        Me.Column36.Name = "Column36"
+        Me.Column36.Visible = False
+        '
+        'Column37
+        '
+        Me.Column37.HeaderText = "ShipZip"
+        Me.Column37.Name = "Column37"
+        Me.Column37.Visible = False
+        '
+        'Column38
+        '
+        Me.Column38.HeaderText = "ShipTo"
+        Me.Column38.Name = "Column38"
+        Me.Column38.Visible = False
+        '
+        'Column39
+        '
+        Me.Column39.HeaderText = "CategoryCustomer"
+        Me.Column39.Name = "Column39"
+        Me.Column39.Visible = False
+        '
+        'Column40
+        '
+        Me.Column40.HeaderText = "ShipCounty"
+        Me.Column40.Name = "Column40"
+        Me.Column40.Visible = False
         '
         'TextTel
         '
@@ -1011,119 +1124,6 @@ Partial Class FrmAutorizarSolicitudes
         Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox5.TabIndex = 43
         Me.PictureBox5.TabStop = False
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Generar"
-        Me.Column1.Name = "Column1"
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "NumCot"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Contacto"
-        Me.Column3.Name = "Column3"
-        '
-        'Column4
-        '
-        Me.Column4.HeaderText = "Empresa"
-        Me.Column4.Name = "Column4"
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "Correo"
-        Me.Column5.Name = "Column5"
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "Domicilio"
-        Me.Column6.Name = "Column6"
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "CP"
-        Me.Column7.Name = "Column7"
-        '
-        'Column15
-        '
-        Me.Column15.HeaderText = "Teléfono"
-        Me.Column15.Name = "Column15"
-        '
-        'Column19
-        '
-        Me.Column19.HeaderText = "Referencia"
-        Me.Column19.Name = "Column19"
-        '
-        'Column30
-        '
-        Me.Column30.HeaderText = "Fecha Desde"
-        Me.Column30.Name = "Column30"
-        '
-        'Column31
-        '
-        Me.Column31.HeaderText = "Fecha Hasta"
-        Me.Column31.Name = "Column31"
-        '
-        'Column32
-        '
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Green
-        DataGridViewCellStyle2.Format = "0"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.Column32.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Column32.HeaderText = "Total"
-        Me.Column32.Name = "Column32"
-        '
-        'Column33
-        '
-        Me.Column33.HeaderText = "CustomerId"
-        Me.Column33.Name = "Column33"
-        Me.Column33.Visible = False
-        '
-        'Column34
-        '
-        Me.Column34.HeaderText = "Cuenta"
-        Me.Column34.Name = "Column34"
-        '
-        'Column35
-        '
-        Me.Column35.HeaderText = "ShipCity"
-        Me.Column35.Name = "Column35"
-        Me.Column35.Visible = False
-        '
-        'Column36
-        '
-        Me.Column36.HeaderText = "ShipState"
-        Me.Column36.Name = "Column36"
-        Me.Column36.Visible = False
-        '
-        'Column37
-        '
-        Me.Column37.HeaderText = "ShipZip"
-        Me.Column37.Name = "Column37"
-        Me.Column37.Visible = False
-        '
-        'Column38
-        '
-        Me.Column38.HeaderText = "ShipTo"
-        Me.Column38.Name = "Column38"
-        Me.Column38.Visible = False
-        '
-        'Column39
-        '
-        Me.Column39.HeaderText = "CategoryCustomer"
-        Me.Column39.Name = "Column39"
-        Me.Column39.Visible = False
-        '
-        'Column40
-        '
-        Me.Column40.HeaderText = "ShipCounty"
-        Me.Column40.Name = "Column40"
-        Me.Column40.Visible = False
         '
         'FrmAutorizarSolicitudes
         '

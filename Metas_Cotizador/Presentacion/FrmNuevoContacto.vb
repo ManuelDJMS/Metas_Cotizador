@@ -84,6 +84,7 @@ Public Class FrmNuevoContacto
     Dim bandera, bandera2 As Integer
     Private Sub FrmNuevoContacto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         MetodoLIMS()
+        '------------------------ LLENADO DE COMBOS -------------------------------------------
         llenarcombo("Select *from SetupCustomerSource", cboOrigen, "id")
         llenarcombo("Select *from SetupQualityRequirement", cboRequerimientosDeCalidad, "id")
         llenarcombo("Select *from MasterCustomerType", cboTipoIndustria, "id")
@@ -92,32 +93,45 @@ Public Class FrmNuevoContacto
         llenarEstado("Select *from [StateMaster]", txtEstado, "StateId", TextPais1)
         llenarEstado("Select *from [StateMaster]", txtEstadoEntrega, "StateId", TextPais2)
         llenarEstado("Select *from [StateMaster]", txtEstadoFacturacion, "StateId", TextPais3)
-        If ban = False Then
-            btGuardar.Text = "ACTUALIZAR"
-            Me.Text = "Actualizar datos de contacto"
-
-        Else
-            cboMoneda.Items.Add("Mexican Peso")
-            cboMoneda.Items.Add("U.S. Dollar")
-            cboMoneda.Items.Add("Pound Sterling")
-            cboOpcionesDePago.Items.Add("Diario")
-            cboOpcionesDePago.Items.Add("Semanal")
-            cboOpcionesDePago.Items.Add("Mensual")
-            cboOpcionesDePago.Items.Add("Anual")
-            cboAvisoDeRecuperacion.Items.Add("Llamada")
-            cboAvisoDeRecuperacion.Items.Add("Texto")
-            cboAvisoDeRecuperacion.Items.Add("Ambos")
-            cboVencimientoDeCalibracion.Items.Add("Ninguna")
-            cboVencimientoDeCalibracion.Items.Add("Fin de semana (Domingo)")
-            cboVencimientoDeCalibracion.Items.Add("Fin de mes")
-            cboCategoria.Items.Add("Categoria 1")
-            cboCategoria.Items.Add("Categoria 2")
-            cboCategoria.Items.Add("Categoria 3")
-            cboCategoria.Items.Add("Categoria 4")
-            cboCategoria.Items.Add("Categoria 5")
-
-            conexionLIMS.Close()
+        cboMoneda.Items.Add("Mexican Peso")
+        cboMoneda.Items.Add("U.S. Dollar")
+        cboMoneda.Items.Add("Pound Sterling")
+        cboOpcionesDePago.Items.Add("Diario")
+        cboOpcionesDePago.Items.Add("Semanal")
+        cboOpcionesDePago.Items.Add("Mensual")
+        cboOpcionesDePago.Items.Add("Anual")
+        cboAvisoDeRecuperacion.Items.Add("Llamada")
+        cboAvisoDeRecuperacion.Items.Add("Texto")
+        cboAvisoDeRecuperacion.Items.Add("Ambos")
+        cboVencimientoDeCalibracion.Items.Add("Ninguna")
+        cboVencimientoDeCalibracion.Items.Add("Fin de semana (Domingo)")
+        cboVencimientoDeCalibracion.Items.Add("Fin de mes")
+        cboCategoria.Items.Add("Categoria 1")
+        cboCategoria.Items.Add("Categoria 2")
+        cboCategoria.Items.Add("Categoria 3")
+        cboCategoria.Items.Add("Categoria 4")
+        cboCategoria.Items.Add("Categoria 5")
+        If ccc = True Then
+            MetodoMetasCotizador()
+            R = "select NumCot, idCliente, Contacto, Empresa, isnull(RFC,'-'), isnull(Domicilio, '-'), isnull(Cp,'-'),  isnull(Ciudad,'-'), isnull(Estado,'-'), isnull(Telefono,'-'),
+                 isnull(Correo,'-') from Cotizaciones inner join ClientesInformales on Cotizaciones.idContacto=ClientesInformales.idCliente where NumCot=" & numcot
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            comandoMetasCotizador.CommandText = R
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            txtNombre.Text = lectorMetasCotizador(2)
+            txtCompania.Text = lectorMetasCotizador(3)
+            txtRFC.Text = lectorMetasCotizador(4)
+            txtDireccion1.Text = lectorMetasCotizador(5)
+            txtCodigoPostal.Text = lectorMetasCotizador(6)
+            txtCiudad.Text = lectorMetasCotizador(7)
+            txtEstado.Text = lectorMetasCotizador(8)
+            txtTelefono.Text = lectorMetasCotizador(9)
+            txtCorreo1.Text = lectorMetasCotizador(10)
+            lectorMetasCotizador.Close()
+            conexionMetasCotizador.Close()
         End If
+        '--------------------------------------------------------------------------------------
     End Sub
     Sub llenarcombo(ByVal query As String, ByVal combo As ComboBox, ByVal id As String)
         '=============================================== METODO PARA LLENAR LOS COMBOS ===================================================
@@ -159,8 +173,21 @@ Public Class FrmNuevoContacto
     Private Sub cboModoDeEnvio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboModoDeEnvio.SelectedIndexChanged
         seleccionarcombo("select [Id] from [SetupShippingMode] where [ShipVia]='", cboModoDeEnvio)
     End Sub
-
+    Public Sub verificarFinal()
+        'Debemos hacer un Select count para saber el valor del registro para asignarlo a las diferentes tablas
+        MetodoLIMS()
+        Dim comando As New SqlCommand("SELECT MAX(CustomerId) as ultimo from SetupCustomerDetails", conexionLIMS)
+        Dim lector As SqlDataReader
+        lector = comando.ExecuteReader
+        lector.Read()
+        valorFinal = lector(0)
+        valorFinal = valorFinal + 1
+        lector.Close()
+        conexionLIMS.Close()
+        'MsgBox(valorFinal)
+    End Sub
     Private Sub btGuardar_Click(sender As Object, e As EventArgs) Handles btGuardar.Click
+        verificarFinal()
         Dim indicador1, indicador2 As String
         If cbActivo1.Checked = True Then
             indicador1 = "Y"
@@ -267,109 +294,72 @@ Public Class FrmNuevoContacto
                                 '" & txtIDFiscal.Text.Trim & "',
                                 '" & txtOrganizacion.Text.Trim & "')"
 
-        MsgBox(cadena)
+
         Dim comando As New SqlCommand(cadena, conexionLIMS)
         comando.ExecuteNonQuery()
-        '        If comando.ExecuteNonQuery() <> True Then
-        '            MsgBox("Contacto guardado correctamente en LIMS", MsgBoxStyle.Information)
-        '            ''actualizar el estado del prospecto
-        '            '    actualizarEstadoDeProspecto()
-        '            '    Me.Dispose()
-        '            '    Dim admin As New FrmProspectos
-        '            '    admin.MdiParent = FrmHOME
-        '            '    admin.Show()
-        '            'Else
-        '            MsgBox("Ya existe el nombre de la compañia, no podemos agregar otro contacto con la misma empresa", MsgBoxStyle.Critical)
-        '        End If
-        '        'Catch ex As Exception
-        '        '    MsgBox("Ocurrio un error en insertar los datos, verifica nuevamente", MsgBoxStyle.Exclamation)
-        '        'End Try
-        '    End If
-        'Else
-        '    envio()
-        '    'MsgBox(MonedaSeleccionada)
 
-        '    Dim cadena As String
-        '    cadena = "Update SetupCustomerDetails Set 
-        '        CustAccountNo = '" & txtNumeroDeCuenta.Text.Trim & "',
-        '        FirstName = '" & txtNombre.Text.Trim & "',
-        '        MiddleName ='" & txtApellidoPaterno.Text.Trim & "',
-        '        LastName = '" & txtApellidoMaterno.Text.Trim & "',
-        '        Phone ='" & txtTelefono.Text.Trim & "',
-        '        Mobile ='" & txtCelular.Text.Trim & "',
-        '        Email ='" & txtCorreo1.Text.Trim & "',
-        '        Fax ='" & txtFax.Text.Trim & "',
-        '        CompanyName ='" & txtCompania.Text.Trim & "',
-        '        IsActive ='" & indicador1 & "',
-        '        source ='" & source & "',
-        '        AdminType ='" & AdminType & "',
-        '        PaymentTerms ='" & txtTerminosDePago.Text.Trim & "',
-        '        isCod ='" & isCod & "',
-        '        isTaxable ='" & isTaxable & "',
-        '        IsCallDataReq ='" & isCalDataReq & "',
-        '        IsOOTNoticeReq ='" & isOOT & "',
-        '        IsCallHistoryReq ='" & isCalHistory & "',
-        '        QualityReqment ='" & QualityRequerment & "',
-        '        CallDueDateAdj ='" & CalDueDateAdj & "',
-        '        LabNotes ='" & txtNotas.Text.Trim & "',
-        '        CreatedBy ='" & txtUsuarioActual.Text.Trim & "',
-        '        CreatedOn =" & DTPFechaActual.Value.Date & ",                         
-        '        DefaultPO ='" & DefaultPO & "',
-        '        ShipMode ='" & ShipMode & "',
-        '        CalDiscount ='" & txtDescuentoDeCalibracion.Text.Trim & "',
-        '        TaxExemption ='" & txtTaxException.Text.Trim & "',
-        '        Department ='" & txtDepartamento.Text.Trim & "',
-        '        Email2 ='" & txtCorreo2.Text.Trim & "',
-        '        CategoryCustomer ='" & cboCategoria.Text.Trim & "',
-        '        Currency ='" & MonedaSeleccionada & "',
-        '        PaymentOption ='" & cboOpcionesDePago.Text.Trim & "',
-        '        ShipmentAccount ='" & txtCuentaDeEnvio.Text.Trim & "',
-        '        WorkingHours ='" & txtHorarioDeTrabajo.Text.Trim & "',
-        '        RecallNotice ='" & RecallNotice & "',
-        '        IsDigitalCertificate ='" & isDigitalCertified & "',
-        '        IsShipAccActive ='" & AccActive & "',
-        '        KeyFiscal ='" & txtRFC.Text.Trim & "',
-        '        Organization ='" & txtOrganizacion.Text.Trim & "' 
-        '        where [CustomerId] ='" & Val(ID.Text) & "'"
-        '    'MsgBox(cadena)
-        '    conexionLIMS.Open()
-        '    Dim comando As New SqlCommand(cadena, conexionLIMS)
-        '    lectorLIMS = comando.ExecuteReader
-        '    lectorLIMS.Close()
-        '    Dim cadena2 As String
-        '    cadena2 = "Update SetupCustomerAddressDtls Set                                 
-        '        [ContAddress1] = '" & txtDireccion1.Text.Trim & "',
-        '        [ContCity] = '" & txtCiudad.Text.Trim & "',
-        '        [ContState] = '" & txtEstado.Text.Trim & "',
-        '        [ContZip] = '" & txtCodigoPostal.Text.Trim & "',
-        '        [BillAddress1] = '" & txtDireccion1Facturacion.Text.Trim & "',
-        '        [BillCity] = '" & txtCiudadFacturacion.Text.Trim & "',
-        '        [BillState] = '" & txtEstadoFacturacion.Text.Trim & "',
-        '        [BillZip] = '" & txtCodigoPostalFacturacion.Text.Trim & "',                   
-        '        [ShipAddress1] = '" & txtDireccion1Entrega.Text.Trim & "',
-        '        [ShipCity] = '" & txtCiudadEntrega.Text.Trim & "',
-        '        [ShipState] = '" & txtEstadoEntrega.Text.Trim & "',
-        '        [ShipZip] = '" & txtCodigoPostalEntrega.Text.Trim & "',
-        '        [ContCountry] = '" & TextPais1.Text.Trim & "',
-        '        [BillCountry] = '" & TextPais2.Text.Trim & "',
-        '        [ShipCountry] ='" & TextPais3.Text.Trim & "' 
-        '        where [CustomerId] ='" & Val(ID.Text) & "'"
-        '    'MsgBox(cadena)
-        '    Dim comando2 As New SqlCommand(cadena2, conexionLIMS)
-        '    lectorLIMS = comando2.ExecuteReader
-        '    lectorLIMS.Close()
-        '    'MsgBox(cadena2)
-        '    MsgBox("Contacto actualizado correctamente en LIMS", MsgBoxStyle.Information)
-        '    ''actualizar el estado del prospecto
-        '    'actualizarEstadoDeProspecto()
-        '    Me.Dispose()
-        '    'Dim admin As New 
-        '    'admin.MdiParent = FrmHOME
-        '    'admin.Show()
-        '    'Catch ex As Exception
-        '    '    MsgBox("Ocurrio un error en insertar los datos, verifica nuevamente", MsgBoxStyle.Exclamation)
-        '    'End Try
-        'End If
+        R = "insert into SetupCustomerAddressDtls (
+                                 [CustomerId]
+                                ,[ContAddress1]
+                                ,[ContCity]
+                                ,[ContState]
+                                ,[ContZip]
+                                ,[BillAddress1]
+                                ,[BillCity]  
+                                ,[BillState]
+                                ,[BillZip]                           
+                                ,[ShipAddress1]  
+                                ,[ShipCity]
+                                ,[ShipState]
+                                ,[ShipZip]
+                          ,[ContCountry]
+                          ,[BillCountry]
+                                ,[ShipCountry]) values (
+                                '" & valorFinal & "',
+                                '" & txtDireccion1.Text.Trim & "',
+                                '" & txtCiudad.Text.Trim & "',
+                                '" & txtEstado.Text.Trim & "',
+                                '" & txtCodigoPostal.Text.Trim & "',
+                                '" & txtDireccion1Facturacion.Text.Trim & "',
+                                '" & txtCiudadFacturacion.Text.Trim & "',
+                                '" & txtEstadoFacturacion.Text.Trim & "',
+                                '" & txtCodigoPostalFacturacion.Text.Trim & "',
+                                '" & txtDireccion1Entrega.Text.Trim & "',
+                                '" & txtCiudadEntrega.Text.Trim & "',
+                                '" & txtEstadoEntrega.Text.Trim & "',
+                                '" & txtCodigoPostalEntrega.Text.Trim & "',
+                                '" & TextPais1.Text.Trim & "',
+                                '" & TextPais2.Text.Trim & "',
+                                '" & TextPais3.Text.Trim & "')"
+        Dim comando1 As New SqlCommand(R, conexionLIMS)
+        comando1.ExecuteNonQuery()
+
+        '################################################################# CODIGO PARA ACTUALIZAR LA COTIZACION DEL CLIENTE NUEVO CREADO ######################################################################
+        If ccc = True Then
+            '========================================================== SACAR EL ULTIMO REGISTRO DEL CONTACTO PARA EL DETALLE DE COTIZACION=============================================================
+            Dim maximo As Integer
+            MetodoLIMS()
+            R = "select MAX(CustomerId) from [SetupCustomerDetails]"
+            comandoLIMS = conexionLIMS.CreateCommand
+            comandoLIMS.CommandText = R
+            lectorMetasCotizador = comandoLIMS.ExecuteReader
+            lectorMetasCotizador.Read()
+            If ((lectorMetasCotizador(0) Is DBNull.Value) OrElse (lectorMetasCotizador(0) Is Nothing)) Then
+                maximo = 1
+            Else
+                maximo = lectorMetasCotizador(0)
+            End If
+            lectorMetasCotizador.Close()
+            conexionLIMS.Close()
+            '==============================================================================================================================================================================================
+            MetodoMetasCotizador()
+            R = "update Cotizaciones set idContacto=" & maximo & ", Origen='LIMS' where NumCot=" & numcot
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            comandoMetasCotizador.CommandText = R
+            comandoMetasCotizador.ExecuteNonQuery()
+            conexionMetasCotizador.Close()
+            ccc = False
+        End If
     End Sub
     Private Sub txtCelular_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCelular.KeyPress,
         txtTelefono.KeyPress, txtExtension.KeyPress, txtFax.KeyPress, txtCodigoPostal.KeyPress,
