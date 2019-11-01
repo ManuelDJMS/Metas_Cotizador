@@ -373,18 +373,16 @@ Public Class FrmCotizacion
         ' MsgBox(hasta)
         origen = lectorMetasCotizador(30)
         If origen = "INFORMAL" Then
-            MsgBox("dentro if")
             idCliente = lectorMetasCotizador(32)
             nombre = lectorMetasCotizador(33)
             puesto = " ".ToString
             tel = lectorMetasCotizador(40)
             correo = lectorMetasCotizador(41)
             emp = lectorMetasCotizador(34)
-            dom = lectorMetasCotizador(36) & " " & lectorMetasCotizador(37) & " " & lectorMetasCotizador(38) & " " & lectorMetasCotizador(39)
+            dom = lectorMetasCotizador(36) & " CP:" & lectorMetasCotizador(37) & " " & lectorMetasCotizador(38) & " " & lectorMetasCotizador(39)
             domFac = " ".ToString
             rfc = lectorMetasCotizador(35)
         Else
-            MsgBox("else")
             idCliente = lectorMetasCotizador(31)
             nombre = lectorMetasCotizador(3)
             puesto = lectorMetasCotizador(4)
