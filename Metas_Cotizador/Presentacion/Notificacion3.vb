@@ -5,7 +5,8 @@ Imports System.Reflection
 Public Class Notificacion3
     Dim OV, cant As Integer
     Dim filas As Boolean = False
-    Dim OT, MetasId, Marca, Modelo, Serie, compañia, cuenta, servicio, equipo, creacion, status, Email, notas, cliente, instrucciones As String
+    Dim OT, MetasId, Marca, Modelo, Serie, compañia, cuenta, servicio, equipo, creacion, Email, notas, cliente, instrucciones, status2 As String
+    Dim status As Boolean
     Dim ban = False
     Private Sub cmdBuscar_Click(sender As Object, e As EventArgs) Handles cmdBuscar.Click
         If txtOT.Text = "" Then
@@ -87,7 +88,7 @@ Public Class Notificacion3
                                 	                font-family:'Calibri',sans-serif;
                                 	                mso-ascii-font-family:Calibri;
                                 	                mso-ascii-theme-font:minor-latin;
-                                	                mso-hansi-font-family:Calibri;
+                                	                 mso-hansi-font-family:Calibri;
                                 	                mso-hansi-theme-font:minor-latin;
                                 	                mso-bidi-font-family:'Times New Roman';
                                 	                mso-bidi-theme-font:minor-bidi;
@@ -97,7 +98,6 @@ Public Class Notificacion3
 
                     While lectorLIMS.Read()
                         OT = lectorLIMS(8)
-                        MsgBox(OT)
                         MetasId = lectorLIMS(10)
                         Marca = lectorLIMS(13)
                         Modelo = lectorLIMS(12)
@@ -114,13 +114,13 @@ Public Class Notificacion3
                         'Dim objOutlook As Object
                         'Dim objOutlookMsg As Object
 
-                        R = R & "<body lang=ES-MX link='#0563C1' vlink='#954F72' style='tab-interval:35.4pt'>
+
+                        If cant = 0 Then
+                            R = R & "<body lang=ES-MX link='#0563C1' vlink='#954F72' style='tab-interval:35.4pt'>
                                     <span style=font-size:11.0pt;font-family:Helvetica><b>Estimado Cliente: " & cliente & "</b></span>
                                     <p style='font-size:110%;'>" & compañia & "<p>
                                             <p>Hago de su conocimiento que estaré dando seguimiento a sus servicios de calibración</p>
-                                            "
-                        If cant = 0 Then
-                            R = R & "<TABLE BORDER>
+<TABLE BORDER>
                                                 <TR>
                                                     <TH><b>#OT</b></TH>
                                                     <TH><b>#OV</b></TH>
@@ -268,16 +268,19 @@ Public Class Notificacion3
         End If
     End Sub
     Public Sub agregarfilas()
+        If status = False Then
+            status2 = "Orden de Trabajo en Progreso".ToString
+        End If
         R = R & " <TR>
                                                     <TD>" & OT & "</TD>
                                                     <TD>" & OV & "</TD>
                                                     <TD>" & equipo & "</TD>
                                                     <TD>" & MetasId & "</TD>
-                                                    <TD>" & Marca & "</TD>
+                                                    <TD>" & Marca & "</pauTD>
                                                     <TD>" & Modelo & "</TD>
                                                     <TD>" & Serie & "</TD>
                                                     <TD>" & servicio & "</TD>
-                                                    <TD>" & status & "</TD>
+                                                    <TD>" & status2 & "</TD>
                                                     <TD>" & notas & "</TD>
                                                     <TD>" & creacion & "</TD>
                                                     <TD>" & instrucciones & "</TD>
