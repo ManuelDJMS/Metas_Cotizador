@@ -49,6 +49,22 @@ Public Class FrmNuevoContacto
         End If
     End Sub
 
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        txtDireccion1Facturacion.Text = txtDireccion1.Text
+        txtCodigoPostalFacturacion.Text = txtCodigoPostal.Text
+        txtEstadoFacturacion.Text = txtEstado.Text
+        txtCiudadFacturacion.Text = txtCiudad.Text
+        TextPais2.Text = TextPais1.Text
+    End Sub
+
+    Private Sub CheckBox2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox2.CheckedChanged
+        txtDireccion1Entrega.Text = txtDireccion1.Text
+        txtCodigoPostalEntrega.Text = txtCodigoPostal.Text
+        txtEstadoEntrega.Text = txtEstado.Text
+        txtCiudadEntrega.Text = txtCiudad.Text
+        TextPais3.Text = TextPais1.Text
+    End Sub
+
     Private Sub cboRequerimientosDeCalidad_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboRequerimientosDeCalidad.SelectedIndexChanged
         seleccionarcombo("select id from [SetupQualityRequirement] where [QualityRqment]='", cboRequerimientosDeCalidad)
     End Sub
