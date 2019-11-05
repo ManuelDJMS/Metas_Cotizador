@@ -156,7 +156,11 @@ Public Class FrmHOME
         'FrmCotInformal.Show()
     End Sub
 
+    Private Sub btnConfirmacionOT_Click(sender As Object, e As EventArgs) Handles btnConfirmacionOT.Click
+        Notificacion3.Show()
+    End Sub
 #End Region
+
     'METODO DE ABRIR FORMULARIO
     Private Sub AbrirFormEnPanel(Of Miform As {Form, New})()
         Dim Formulario As Form

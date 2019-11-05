@@ -112,15 +112,15 @@ Public Class Notificacion3
                         cliente = lectorLIMS(3)
                         instrucciones = lectorLIMS(21)
                         'Dim objOutlook As Object
-                        'Dim objOutlookMsg As Object
-
+                        'Dim objOutlookMsg As Objec
 
                         If cant = 0 Then
                             R = R & "<body lang=ES-MX link='#0563C1' vlink='#954F72' style='tab-interval:35.4pt'>
                                     <span style=font-size:11.0pt;font-family:Helvetica><b>Estimado Cliente: " & cliente & "</b></span>
                                     <p style='font-size:110%;'>" & compañia & "<p>
                                             <p>Hago de su conocimiento que estaré dando seguimiento a sus servicios de calibración</p>
-<TABLE BORDER>
+                                                }
+                                            <TABLE BORDER>
                                                 <TR>
                                                     <TH><b>#OT</b></TH>
                                                     <TH><b>#OV</b></TH>
