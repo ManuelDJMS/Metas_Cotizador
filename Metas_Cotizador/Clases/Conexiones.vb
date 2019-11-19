@@ -16,7 +16,8 @@ Module Conexiones
     '--------------------------------------------------------------------------------------------------------------------------
     Public ban As Boolean = True
     Public banderaform As Boolean
-    Public numcotfrm, Total As Integer
+    Public numcotfrm As Integer
+    Public total As Decimal
     Public empresafrm, Contacto, Referencia, corrreofrm As String
     Public usuario As String 'Variable para almacenar el user id del login
     '================================================VARIABLE PARA UTILIZAR LA TRANSACCION DEL LIMS=========================================================================
