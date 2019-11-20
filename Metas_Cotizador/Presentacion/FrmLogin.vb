@@ -29,7 +29,7 @@ Public Class FrmLogin
                         FrmHOME.lbInicio.Text = lector(1)
                         FrmHOME.Show()
                         lector.Close()
-                        Me.Dispose()
+                        Me.Close()
                         conexion1.Close()
                     Else
                         Alert("Contraseña Incorrecta", frmAlert.alertTypeEnum.Error)
@@ -100,7 +100,7 @@ Public Class FrmLogin
                                 FrmHOME.lbInicio.Text = lector(1)
                                 FrmHOME.Show()
                                 lector.Close()
-                                Me.Dispose()
+                                Me.Close()
                                 conexion1.Close()
                             Else
                                 Alert("Contraseña Incorrecta", frmAlert.alertTypeEnum.Error)

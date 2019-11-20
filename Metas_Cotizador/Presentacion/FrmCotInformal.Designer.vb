@@ -31,6 +31,8 @@ Partial Class FrmCotInformal
         Me.Tab2018 = New System.Windows.Forms.TabPage()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.TextCP = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.TextCorreo = New System.Windows.Forms.TextBox()
         Me.TextTelefono = New System.Windows.Forms.TextBox()
         Me.TextEstado = New System.Windows.Forms.TextBox()
@@ -54,13 +56,6 @@ Partial Class FrmCotInformal
         Me.btCargarArticulos = New System.Windows.Forms.PictureBox()
         Me.DgAgregar = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DGCotizaciones = New System.Windows.Forms.DataGridView()
-        Me.s = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TextArticulo = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -70,8 +65,14 @@ Partial Class FrmCotInformal
         Me.TextID = New System.Windows.Forms.TextBox()
         Me.lblModelo = New System.Windows.Forms.Label()
         Me.txtModelo = New System.Windows.Forms.TextBox()
-        Me.TextCP = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.DGCotizaciones = New System.Windows.Forms.DataGridView()
+        Me.s = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TabConsulta.SuspendLayout()
         Me.Tab2018.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -153,6 +154,25 @@ Partial Class FrmCotInformal
         Me.GroupBox2.TabIndex = 248
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Informacion General"
+        '
+        'TextCP
+        '
+        Me.TextCP.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextCP.Location = New System.Drawing.Point(748, 62)
+        Me.TextCP.Name = "TextCP"
+        Me.TextCP.Size = New System.Drawing.Size(116, 22)
+        Me.TextCP.TabIndex = 194
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Black
+        Me.Label2.Location = New System.Drawing.Point(715, 65)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(27, 16)
+        Me.Label2.TabIndex = 193
+        Me.Label2.Text = "CP:"
         '
         'TextCorreo
         '
@@ -397,83 +417,6 @@ Partial Class FrmCotInformal
         Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
         Me.DataGridViewTextBoxColumn4.Width = 200
         '
-        'DGCotizaciones
-        '
-        Me.DGCotizaciones.AllowUserToDeleteRows = False
-        Me.DGCotizaciones.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DGCotizaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.DGCotizaciones.BackgroundColor = System.Drawing.SystemColors.Window
-        Me.DGCotizaciones.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.DGCotizaciones.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(170, Byte), Integer))
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGCotizaciones.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
-        Me.DGCotizaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGCotizaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.s, Me.ID, Me.Column5, Me.Column6, Me.Column7, Me.Column8})
-        Me.DGCotizaciones.EnableHeadersVisualStyles = False
-        Me.DGCotizaciones.Location = New System.Drawing.Point(26, 263)
-        Me.DGCotizaciones.Name = "DGCotizaciones"
-        Me.DGCotizaciones.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGCotizaciones.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
-        Me.DGCotizaciones.RowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.DGCotizaciones.Size = New System.Drawing.Size(1107, 390)
-        Me.DGCotizaciones.TabIndex = 274
-        '
-        's
-        '
-        Me.s.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.s.FillWeight = 126.9036!
-        Me.s.HeaderText = "Seleccionar"
-        Me.s.Name = "s"
-        Me.s.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.s.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.s.Width = 80
-        '
-        'ID
-        '
-        Me.ID.HeaderText = "ID"
-        Me.ID.Name = "ID"
-        Me.ID.Visible = False
-        '
-        'Column5
-        '
-        Me.Column5.FillWeight = 93.27411!
-        Me.Column5.HeaderText = "N° de Artículo (SKU)"
-        Me.Column5.Name = "Column5"
-        '
-        'Column6
-        '
-        Me.Column6.FillWeight = 93.27411!
-        Me.Column6.HeaderText = "Descripción"
-        Me.Column6.Name = "Column6"
-        '
-        'Column7
-        '
-        Me.Column7.FillWeight = 93.27411!
-        Me.Column7.HeaderText = "Marca/Fabricante"
-        Me.Column7.Name = "Column7"
-        '
-        'Column8
-        '
-        Me.Column8.FillWeight = 93.27411!
-        Me.Column8.HeaderText = "Modelo"
-        Me.Column8.Name = "Column8"
-        '
         'TextArticulo
         '
         Me.TextArticulo.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -557,24 +500,88 @@ Partial Class FrmCotInformal
         Me.txtModelo.Size = New System.Drawing.Size(117, 21)
         Me.txtModelo.TabIndex = 265
         '
-        'TextCP
+        'DGCotizaciones
         '
-        Me.TextCP.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextCP.Location = New System.Drawing.Point(748, 62)
-        Me.TextCP.Name = "TextCP"
-        Me.TextCP.Size = New System.Drawing.Size(116, 22)
-        Me.TextCP.TabIndex = 194
+        Me.DGCotizaciones.AllowUserToDeleteRows = False
+        Me.DGCotizaciones.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DGCotizaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DGCotizaciones.BackgroundColor = System.Drawing.SystemColors.Window
+        Me.DGCotizaciones.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DGCotizaciones.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(170, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGCotizaciones.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.DGCotizaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DGCotizaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.s, Me.ID, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column16})
+        Me.DGCotizaciones.EnableHeadersVisualStyles = False
+        Me.DGCotizaciones.Location = New System.Drawing.Point(25, 274)
+        Me.DGCotizaciones.Name = "DGCotizaciones"
+        Me.DGCotizaciones.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGCotizaciones.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
+        Me.DGCotizaciones.RowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.DGCotizaciones.Size = New System.Drawing.Size(1111, 379)
+        Me.DGCotizaciones.TabIndex = 276
         '
-        'Label2
+        's
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(715, 65)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(27, 16)
-        Me.Label2.TabIndex = 193
-        Me.Label2.Text = "CP:"
+        Me.s.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.s.HeaderText = "Seleccionar"
+        Me.s.Name = "s"
+        Me.s.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.s.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.s.Width = 70
+        '
+        'ID
+        '
+        Me.ID.HeaderText = "ID"
+        Me.ID.Name = "ID"
+        Me.ID.Visible = False
+        '
+        'Column5
+        '
+        Me.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column5.HeaderText = "# Artículo (SKU)"
+        Me.Column5.Name = "Column5"
+        Me.Column5.Width = 120
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Descripción"
+        Me.Column6.Name = "Column6"
+        '
+        'Column7
+        '
+        Me.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column7.HeaderText = "Marca/Fabricante"
+        Me.Column7.Name = "Column7"
+        Me.Column7.Width = 170
+        '
+        'Column8
+        '
+        Me.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column8.HeaderText = "Modelo"
+        Me.Column8.Name = "Column8"
+        Me.Column8.Width = 170
+        '
+        'Column16
+        '
+        Me.Column16.HeaderText = "Descripción del Servicio"
+        Me.Column16.Name = "Column16"
         '
         'FrmCotInformal
         '
@@ -582,9 +589,9 @@ Partial Class FrmCotInformal
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1157, 673)
+        Me.Controls.Add(Me.DGCotizaciones)
         Me.Controls.Add(Me.btCargarArticulos)
         Me.Controls.Add(Me.DgAgregar)
-        Me.Controls.Add(Me.DGCotizaciones)
         Me.Controls.Add(Me.TextArticulo)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label3)
@@ -641,7 +648,6 @@ Partial Class FrmCotInformal
     Friend WithEvents btCargarArticulos As PictureBox
     Friend WithEvents DgAgregar As DataGridView
     Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
-    Friend WithEvents DGCotizaciones As DataGridView
     Friend WithEvents TextArticulo As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Label3 As Label
@@ -651,12 +657,14 @@ Partial Class FrmCotInformal
     Friend WithEvents TextID As TextBox
     Friend WithEvents lblModelo As Label
     Friend WithEvents txtModelo As TextBox
+    Friend WithEvents TextCP As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents DGCotizaciones As DataGridView
     Friend WithEvents s As DataGridViewCheckBoxColumn
     Friend WithEvents ID As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
     Friend WithEvents Column8 As DataGridViewTextBoxColumn
-    Friend WithEvents TextCP As TextBox
-    Friend WithEvents Label2 As Label
+    Friend WithEvents Column16 As DataGridViewTextBoxColumn
 End Class

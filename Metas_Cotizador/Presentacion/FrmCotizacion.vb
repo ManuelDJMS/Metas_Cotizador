@@ -35,11 +35,11 @@ Public Class FrmCotizacion
         Try
             MetodoLIMS()
             comandoLIMS = conexionLIMS.CreateCommand
-            R = "SELECT SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model from SetUpEquipment"
+            R = "SELECT SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription from SetUpEquipment"
             comandoLIMS.CommandText = R
             lectorLIMS = comandoLIMS.ExecuteReader
             While lectorLIMS.Read()
-                DGCotizaciones.Rows.Add(False, lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4))
+                DGCotizaciones.Rows.Add(False, lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5))
             End While
             lectorLIMS.Close()
             conexionLIMS.Close()

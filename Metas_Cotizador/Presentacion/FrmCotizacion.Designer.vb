@@ -43,12 +43,6 @@ Partial Class FrmCotizacion
         Me.DgAgregar = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGCotizaciones = New System.Windows.Forms.DataGridView()
-        Me.s = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGEmpresas = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -67,6 +61,7 @@ Partial Class FrmCotizacion
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextCorreo = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.btnAgregar = New System.Windows.Forms.PictureBox()
         Me.txtNombreProspecto = New System.Windows.Forms.Label()
         Me.txtclavee = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -136,7 +131,13 @@ Partial Class FrmCotizacion
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
-        Me.btnAgregar = New System.Windows.Forms.PictureBox()
+        Me.s = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column16 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.btCerrar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabConsulta.SuspendLayout()
         Me.Tab2018.SuspendLayout()
@@ -147,10 +148,10 @@ Partial Class FrmCotizacion
         Me.PanelNormal.SuspendLayout()
         CType(Me.btCargarClientes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.btnAgregar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
         CType(Me.dgCot, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgEmpresa, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.btnAgregar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btCerrar
@@ -270,7 +271,7 @@ Partial Class FrmCotizacion
         DataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DGCotizaciones.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle15
         Me.DGCotizaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGCotizaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.s, Me.ID, Me.Column5, Me.Column6, Me.Column7, Me.Column8})
+        Me.DGCotizaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.s, Me.ID, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column16})
         Me.DGCotizaciones.EnableHeadersVisualStyles = False
         Me.DGCotizaciones.Location = New System.Drawing.Point(6, 375)
         Me.DGCotizaciones.Name = "DGCotizaciones"
@@ -287,39 +288,6 @@ Partial Class FrmCotizacion
         Me.DGCotizaciones.RowsDefaultCellStyle = DataGridViewCellStyle17
         Me.DGCotizaciones.Size = New System.Drawing.Size(1128, 240)
         Me.DGCotizaciones.TabIndex = 261
-        '
-        's
-        '
-        Me.s.HeaderText = "Seleccionar"
-        Me.s.Name = "s"
-        Me.s.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.s.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'ID
-        '
-        Me.ID.HeaderText = "ID"
-        Me.ID.Name = "ID"
-        Me.ID.Visible = False
-        '
-        'Column5
-        '
-        Me.Column5.HeaderText = "# Artículo (SKU)"
-        Me.Column5.Name = "Column5"
-        '
-        'Column6
-        '
-        Me.Column6.HeaderText = "Descripción"
-        Me.Column6.Name = "Column6"
-        '
-        'Column7
-        '
-        Me.Column7.HeaderText = "Marca/Fabricante"
-        Me.Column7.Name = "Column7"
-        '
-        'Column8
-        '
-        Me.Column8.HeaderText = "Modelo"
-        Me.Column8.Name = "Column8"
         '
         'DGEmpresas
         '
@@ -514,6 +482,17 @@ Partial Class FrmCotizacion
         Me.GroupBox2.TabIndex = 248
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Informacion General"
+        '
+        'btnAgregar
+        '
+        Me.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnAgregar.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_add_48
+        Me.btnAgregar.Location = New System.Drawing.Point(357, 219)
+        Me.btnAgregar.Name = "btnAgregar"
+        Me.btnAgregar.Size = New System.Drawing.Size(32, 32)
+        Me.btnAgregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.btnAgregar.TabIndex = 174
+        Me.btnAgregar.TabStop = False
         '
         'txtNombreProspecto
         '
@@ -1194,16 +1173,51 @@ Partial Class FrmCotizacion
         Me.Label28.TabIndex = 191
         Me.Label28.Text = "CP:"
         '
-        'btnAgregar
+        's
         '
-        Me.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnAgregar.Image = Global.Metas_Cotizador.My.Resources.Resources.icons8_add_48
-        Me.btnAgregar.Location = New System.Drawing.Point(357, 219)
-        Me.btnAgregar.Name = "btnAgregar"
-        Me.btnAgregar.Size = New System.Drawing.Size(32, 32)
-        Me.btnAgregar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.btnAgregar.TabIndex = 174
-        Me.btnAgregar.TabStop = False
+        Me.s.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.s.HeaderText = "Seleccionar"
+        Me.s.Name = "s"
+        Me.s.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.s.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.s.Width = 70
+        '
+        'ID
+        '
+        Me.ID.HeaderText = "ID"
+        Me.ID.Name = "ID"
+        Me.ID.Visible = False
+        '
+        'Column5
+        '
+        Me.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column5.HeaderText = "# Artículo (SKU)"
+        Me.Column5.Name = "Column5"
+        Me.Column5.Width = 120
+        '
+        'Column6
+        '
+        Me.Column6.HeaderText = "Descripción"
+        Me.Column6.Name = "Column6"
+        '
+        'Column7
+        '
+        Me.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column7.HeaderText = "Marca/Fabricante"
+        Me.Column7.Name = "Column7"
+        Me.Column7.Width = 170
+        '
+        'Column8
+        '
+        Me.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column8.HeaderText = "Modelo"
+        Me.Column8.Name = "Column8"
+        Me.Column8.Width = 170
+        '
+        'Column16
+        '
+        Me.Column16.HeaderText = "Descripción del Servicio"
+        Me.Column16.Name = "Column16"
         '
         'FrmCotizacion
         '
@@ -1232,11 +1246,11 @@ Partial Class FrmCotizacion
         CType(Me.btCargarClientes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.btnAgregar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.dgCot, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgEmpresa, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.btnAgregar, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1323,12 +1337,6 @@ Partial Class FrmCotizacion
     Friend WithEvents Label28 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents TextEmpresa As TextBox
-    Friend WithEvents s As DataGridViewCheckBoxColumn
-    Friend WithEvents ID As DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As DataGridViewTextBoxColumn
-    Friend WithEvents Column6 As DataGridViewTextBoxColumn
-    Friend WithEvents Column7 As DataGridViewTextBoxColumn
-    Friend WithEvents Column8 As DataGridViewTextBoxColumn
     Friend WithEvents NumCot As DataGridViewTextBoxColumn
     Friend WithEvents partida As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
@@ -1342,4 +1350,11 @@ Partial Class FrmCotizacion
     Friend WithEvents precioUnitario As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
     Friend WithEvents btnAgregar As PictureBox
+    Friend WithEvents s As DataGridViewCheckBoxColumn
+    Friend WithEvents ID As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column7 As DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As DataGridViewTextBoxColumn
+    Friend WithEvents Column16 As DataGridViewTextBoxColumn
 End Class
