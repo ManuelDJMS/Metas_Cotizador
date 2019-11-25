@@ -165,7 +165,7 @@ Partial Class FrmCompletarOV
         Me.cboPrioridad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboPrioridad.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboPrioridad.FormattingEnabled = True
-        Me.cboPrioridad.Items.AddRange(New Object() {"1.- Normal", "2.-Alto", "3.-Bajo", "4.-Urgente"})
+        Me.cboPrioridad.Items.AddRange(New Object() {"1.- Normal", "2.-Alto", "3.-Urgente"})
         Me.cboPrioridad.Location = New System.Drawing.Point(149, 107)
         Me.cboPrioridad.Name = "cboPrioridad"
         Me.cboPrioridad.Size = New System.Drawing.Size(200, 21)
@@ -321,7 +321,7 @@ Partial Class FrmCompletarOV
         Me.cboRecibidoPor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboRecibidoPor.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboRecibidoPor.FormattingEnabled = True
-        Me.cboRecibidoPor.Items.AddRange(New Object() {"Susana", "Osvaldo", "Karina"})
+        Me.cboRecibidoPor.Items.AddRange(New Object() {"Susana", "Osvaldo", "Karina", "Paty"})
         Me.cboRecibidoPor.Location = New System.Drawing.Point(149, 79)
         Me.cboRecibidoPor.Name = "cboRecibidoPor"
         Me.cboRecibidoPor.Size = New System.Drawing.Size(200, 21)
