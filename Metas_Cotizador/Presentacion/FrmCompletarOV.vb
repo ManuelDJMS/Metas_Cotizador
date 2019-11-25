@@ -171,10 +171,10 @@ Public Class FrmCompletarOV
                         </style>
                     </head>
                     <body lang=ES-MX link='#0563C1' vlink='#954F72' style='tab-interval:35.4pt'>
-                        <p style ='color:#4169E1';><span style=font-size:11.0pt;font-family:Helvetica><b>Estimado Cliente,</b></span></p>
+                        <p style ='color:#4169E1';><span style=font-size:11.0pt;font-family:Helvetica><b>Estimado Cliente:  " & txtNombreCompania.Text & "</b></span></p>
                         <p style='font-size:110%;'>Le informamos que ha llegado al almacén de MetAs un envío por parte de ustedes.<p>
-                        <p style='font-size:110%;'>Mensajería de recepción: " & cboRecepcion.Text & ".           Número de guía: " & txtNumGuia.Text & ".<p>
-                        <p style='font-size:110%;'>Fecha de recepción: " & dtpFechaRecep.Value & ".              Número de cajas: " & txtCantCajas.Text & ".<p>   
+                        <p style='font-size:110%;'><b>Mensajería de recepción: </b> " & cboRecepcion.Text & ". <b>Número de guía: </b>" & txtNumGuia.Text & ".<p> 
+                        <p style='font-size:110%;'><b>Fecha de registro: </b> " & dtpFechaRecep.Value.ToShortDateString & ". <b>Número de cajas: </b>" & txtCantCajas.Text & ".<p>   
                         <p style='font-size:110%;'><b>El proceso de su servicio iniciará con la ORDEN DE VENTA número: " & NumOV.Text & ".<p></b>
                         <table>
                             <tr>
@@ -216,11 +216,8 @@ Public Class FrmCompletarOV
 
                             </tr>
                         </table>
-                        <p style='color:#4169E1';><span style=font-size:11.0pt;font-family:Helvetica><b>Saludos Cordiales,</b></span></p><br>
-                        <p style='color:#4169E1';><span style=font-size:11.0pt;font-family:Helvetica><b>Atentamente,</b></span></p><br>
-                        <div Class=WordSection1>
-                        <p class=MsoNormal><span style='font-size:12.0pt;font-family:' Bahnschrift Light',sans-serif'><o:p>&nbsp;</o:p></span></p>
-                        <p class=MsoNormal><span style='font-size:12.0pt;font-family:' Bahnschrift Light',sans-serif'>
+                        <p style='color:#4169E1';><span style=font-size:11.0pt;font-family:Helvetica><b>Saludos Cordiales</b></span></p>
+                        <p style='color:#4169E1';><span style=font-size:11.0pt;font-family:Helvetica><b>Atentamente</b></span></p>
                         Almacén y Envíos.<br>
                         Equipo de Almacén y Envíos<br>
                         </span><span style='font-family:' Bahnschrift Light',sans-serif'><a href='mailto:logistica@metas.mx'>logistica<span style='font-size:12.0pt'>@metas.mx</span></a></span><span style='font-size:12.0pt;font-family:' Bahnschrift Light',sans-serif'><br>
@@ -228,7 +225,7 @@ Public Class FrmCompletarOV
                         <p class=MsoNormal>
                         <span style='mso-ignore:vglayout;position:
                             absolute;z-index:-1895824384;margin-left:4px;margin-top:12px;width:696px;
-                            height:193px'><img border='0' src='file:///C:\Users\Software TI\Documents\GitHub\image002.png' width='xxxx' height='xxxx'></span>
+                            height:193px'><img border='0' src='\\10.10.10.7\Public-2\Firma2019.jpg' width='xxxx' height='xxxx'></span>
                         <p class=MsoNormal style='text-align:justify;text-justify:inter-ideograph;
                             background:white'><b><span lang=ES style='font-size:8.0pt;color:#002060;
                             mso-ansi-language:ES'>AVISO DE CONFIDENCIALIDAD -</span></b><span lang=ES
@@ -253,7 +250,7 @@ Public Class FrmCompletarOV
                 objOutlookMsg = objOutlook.CreateItem(0)
                 With objOutlookMsg
                     '.CC = cca
-                    .Subject = "AVISO DE LLEGADA DE ENVÍO AL ALMACÉN DE METAS"
+                    .Subject = "AVISO DE LLEGADA DE ENVÍO AL ALMACÉN DE METAS CD GUZMÁN"
                     .HTMLBody = R
                     .To = txtCorreo.Text
                     .Display
