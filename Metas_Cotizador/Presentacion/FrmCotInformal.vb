@@ -63,25 +63,7 @@
         consultasarticuloscot()
     End Sub
 
-    Private Sub DGCotizaciones_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
-        '============================================================ CODIGO PARA VALIDAR SI YA REGISTRO UN ARTICULO =======================================================================================
-        Dim bandera As Boolean
-        If e.ColumnIndex = DGCotizaciones.Columns.Item("s").Index Then
-            For i = 0 To DgAgregar.Rows.Count - 1
-                If DGCotizaciones.Rows(e.RowIndex).Cells(1).Value = DgAgregar.Rows(i).Cells(0).Value Then
-                    bandera = True
-                    Exit For
-                End If
-            Next
-            If bandera = True Then
-                If MessageBox.Show("Ya selecciono este artículo anteriormente, ¿Desea agregarlo a otra partida?", "Registro Duplicado", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
-                    DgAgregar.Rows.Add(DGCotizaciones.Rows(e.RowIndex).Cells(1).Value)
-                End If
-            Else
-                DgAgregar.Rows.Add(DGCotizaciones.Rows(e.RowIndex).Cells(1).Value)
-            End If
-        End If
-    End Sub
+
 
     Private Sub btCotizacion_Click(sender As Object, e As EventArgs) Handles btCotizacion.Click
         '=============================================== CODIGO PARA MANDAR LOS ARTICULOS CON PRECIO A LA COTIZACION ===================================================
@@ -133,5 +115,23 @@
         End If
     End Sub
 
-
+    Private Sub DGCotizaciones_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGCotizaciones.CellContentClick
+        '============================================================ CODIGO PARA VALIDAR SI YA REGISTRO UN ARTICULO =======================================================================================
+        Dim bandera As Boolean
+        If e.ColumnIndex = DGCotizaciones.Columns.Item("s").Index Then
+            For i = 0 To DgAgregar.Rows.Count - 1
+                If DGCotizaciones.Rows(e.RowIndex).Cells(1).Value = DgAgregar.Rows(i).Cells(0).Value Then
+                    bandera = True
+                    Exit For
+                End If
+            Next
+            If bandera = True Then
+                If MessageBox.Show("Ya selecciono este artículo anteriormente, ¿Desea agregarlo a otra partida?", "Registro Duplicado", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+                    DgAgregar.Rows.Add(DGCotizaciones.Rows(e.RowIndex).Cells(1).Value)
+                End If
+            Else
+                DgAgregar.Rows.Add(DGCotizaciones.Rows(e.RowIndex).Cells(1).Value)
+            End If
+        End If
+    End Sub
 End Class

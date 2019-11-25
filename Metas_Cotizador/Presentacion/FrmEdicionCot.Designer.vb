@@ -95,6 +95,9 @@ Partial Class FrmEdicionCot
         Me.Label25 = New System.Windows.Forms.Label()
         Me.CboValidez = New System.Windows.Forms.ComboBox()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtcp = New System.Windows.Forms.Label()
+        Me.txtCotizo2019 = New System.Windows.Forms.Label()
         Me.dgEliminar = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btActualizarCliente = New System.Windows.Forms.Button()
@@ -123,9 +126,6 @@ Partial Class FrmEdicionCot
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.txtCotizo2019 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.txtcp = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.DGServicios, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGCopia, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -829,6 +829,40 @@ Partial Class FrmEdicionCot
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Información del cliente"
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.Black
+        Me.Label8.Location = New System.Drawing.Point(22, 142)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(27, 16)
+        Me.Label8.TabIndex = 270
+        Me.Label8.Text = "CP:"
+        '
+        'txtcp
+        '
+        Me.txtcp.AutoSize = True
+        Me.txtcp.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtcp.ForeColor = System.Drawing.Color.Black
+        Me.txtcp.Location = New System.Drawing.Point(101, 142)
+        Me.txtcp.Name = "txtcp"
+        Me.txtcp.Size = New System.Drawing.Size(18, 14)
+        Me.txtcp.TabIndex = 271
+        Me.txtcp.Text = "cp"
+        '
+        'txtCotizo2019
+        '
+        Me.txtCotizo2019.AutoSize = True
+        Me.txtCotizo2019.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtCotizo2019.ForeColor = System.Drawing.Color.Black
+        Me.txtCotizo2019.Location = New System.Drawing.Point(88, 221)
+        Me.txtCotizo2019.Name = "txtCotizo2019"
+        Me.txtCotizo2019.Size = New System.Drawing.Size(48, 16)
+        Me.txtCotizo2019.TabIndex = 269
+        Me.txtCotizo2019.Text = "Cotizó:"
+        Me.txtCotizo2019.Visible = False
+        '
         'dgEliminar
         '
         Me.dgEliminar.AllowUserToDeleteRows = False
@@ -1161,40 +1195,6 @@ Partial Class FrmEdicionCot
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1341, 30)
         Me.Panel2.TabIndex = 192
-        '
-        'txtCotizo2019
-        '
-        Me.txtCotizo2019.AutoSize = True
-        Me.txtCotizo2019.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCotizo2019.ForeColor = System.Drawing.Color.Black
-        Me.txtCotizo2019.Location = New System.Drawing.Point(88, 221)
-        Me.txtCotizo2019.Name = "txtCotizo2019"
-        Me.txtCotizo2019.Size = New System.Drawing.Size(48, 16)
-        Me.txtCotizo2019.TabIndex = 269
-        Me.txtCotizo2019.Text = "Cotizó:"
-        Me.txtCotizo2019.Visible = False
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.ForeColor = System.Drawing.Color.Black
-        Me.Label8.Location = New System.Drawing.Point(22, 142)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(27, 16)
-        Me.Label8.TabIndex = 270
-        Me.Label8.Text = "CP:"
-        '
-        'txtcp
-        '
-        Me.txtcp.AutoSize = True
-        Me.txtcp.Font = New System.Drawing.Font("Calibri Light", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtcp.ForeColor = System.Drawing.Color.Black
-        Me.txtcp.Location = New System.Drawing.Point(101, 142)
-        Me.txtcp.Name = "txtcp"
-        Me.txtcp.Size = New System.Drawing.Size(18, 14)
-        Me.txtcp.TabIndex = 271
-        Me.txtcp.Text = "cp"
         '
         'FrmEdicionCot
         '
