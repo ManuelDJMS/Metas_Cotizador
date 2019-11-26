@@ -8,6 +8,7 @@ Public Class Notificacion3
     Dim OT, MetasId, Marca, Modelo, Serie, compañia, cuenta, servicio, equipo, creacion, Email, notas, cliente, instrucciones, status2 As String
     Dim status As Boolean
     Dim ban = False
+    Dim banOt = False
     Private Sub cmdBuscar_Click(sender As Object, e As EventArgs) Handles cmdBuscar.Click
         If txtOT.Text = "" Then
             MsgBox("Favor de Ingresar una Orden de Venta")
@@ -25,19 +26,19 @@ Public Class Notificacion3
             End While
             lectorLIMS.Close()
             If ban = True Then
-                Try
-                    MetodoLIMS()
+                'Try
+                MetodoLIMS()
                     comandoLIMS = conexionLIMS.CreateCommand
                     R = "SELECT [SalesOrderDetails].[SOId],[SalesOrderDetails].[CustomerId], [CompanyName],[FirstName] + ' ' + [MiddleName]+' '+[LastName] AS Cliente, [Phone], [Email], 
                             [SetupCustomerDetails].[PaymentTerms],ROW_NUMBER() OVER(ORDER BY [SalesOrderDetails].SOId ASC) AS Partidad, isnull (WOId,'N'), [WorkOrderDetails].[CustEquipMapId],
                             [SetupCustomerEquipmentMapping].[InstrumentId],[EquipmentName],[Model],[Mfr],[SetupCustomerEquipmentMapping].[SrlNo],[WorkOrderDetails].CreatedOn,
                             [WorkOrderDetails].WOStatus,[SetupCustomerDetails].CustAccountNo, SetupServices.ServiceName, isnull(WorkOrderDetails.LabInst,''), SetupCustomerDetails.Email,isnull([SpcInst],'') 
-                            FROM [MetAs_Live-pruebas].[dbo].[SalesOrderDetails]
+                            FROM [MetAs_Live].[dbo].[SalesOrderDetails]
                             INNER JOIN [SetupCustomerDetails] ON [SalesOrderDetails].[CustomerId] = [SetupCustomerDetails].[CustomerId]
                             INNER JOIN [WorkOrderDetails] ON [SalesOrderDetails].[SOId] = [WorkOrderDetails].[SOId]
-							INNER JOIN [SetupServices] ON [WorkOrderDetails].ServiceId = [SetupServices].ServicesId
-                            INNER JOIN [SetupCustomerEquipmentMapping] ON [WorkOrderDetails].[CustEquipMapId] = [SetupCustomerEquipmentMapping].[CustEquipMapId]
-                            INNER JOIN [SetUpEquipment] ON [SetupCustomerEquipmentMapping].[EquipId] =  [SetUpEquipment].[EquipId]  WHERE  [SalesOrderDetails].[SOId]='" & OV & "'"
+							LEFT JOIN [SetupServices] ON [WorkOrderDetails].ServiceId = [SetupServices].ServicesId
+                            LEFT JOIN [SetupCustomerEquipmentMapping] ON [WorkOrderDetails].[CustEquipMapId] = [SetupCustomerEquipmentMapping].[CustEquipMapId]
+                            LEFT JOIN [SetUpEquipment] ON [SetupCustomerEquipmentMapping].[EquipId] =  [SetUpEquipment].[EquipId]  WHERE  [SalesOrderDetails].[SOId]='" & OV & "'"
                     comandoLIMS.CommandText = R
                     lectorLIMS = comandoLIMS.ExecuteReader
                     R = "<html xmlns:v='urn:schemas-microsoft-com:vml'
@@ -95,7 +96,6 @@ Public Class Notificacion3
                                                 }
                                               </style>
                                         </head>"
-
                     While lectorLIMS.Read()
                         OT = lectorLIMS(8)
                         MetasId = lectorLIMS(10)
@@ -106,14 +106,13 @@ Public Class Notificacion3
                         cuenta = lectorLIMS(17)
                         servicio = lectorLIMS(18)
                         equipo = lectorLIMS(11)
-                        creacion = lectorLIMS(15)
-                        notas = lectorLIMS(19)
+                    creacion = lectorLIMS(15)
+                    notas = lectorLIMS(19)
                         Email = lectorLIMS(20)
                         cliente = lectorLIMS(3)
                         instrucciones = lectorLIMS(21)
                         'Dim objOutlook As Object
                         'Dim objOutlookMsg As Objec
-
                         If cant = 0 Then
                             R = R & "<body lang=ES-MX link='#0563C1' vlink='#954F72' style='tab-interval:35.4pt'>
                                     <span style=font-size:11.0pt;font-family:Helvetica><b>Estimado Cliente: " & cliente & "</b></span>
@@ -204,8 +203,10 @@ Public Class Notificacion3
                             End If
                         End If
                         cant = cant + 1
+                        banOt = True
                     End While
-                    R = R & "           </TABLE>
+                    If banOt = True Then
+                        R = R & "           </TABLE>
                                             <p><span style=font-size:11.0pt;font-family:Helvetica><b>Saludos Cordiales</b></span></p>
                                             <p><span style=font-size:11.0pt;font-family:Helvetica><b>Atentamente</b></span></p>
                                             <div Class=WordSection1
@@ -239,30 +240,34 @@ Public Class Notificacion3
                                                 ser de la misma manera suministrada a petición. </span><span lang=ES-TRAD
                                                 style='font-size:8.0pt;color:#222222;mso-ansi-language:ES-TRAD'><o:p></o:p></span></p>
                                                     <p class=MsoAutoSig><o:p>&nbsp;</o:p></p>"
-                    R = R & "</body></html>"
-                    objOutlook = CreateObject("Outlook.Application")
-                    objOutlookMsg = objOutlook.CreateItem(0)
-                    With objOutlookMsg
-                        '.CC = ccalj
-                        .Subject = "Confirmación de Orden de Trabajo"
-                        .HTMLBody = R
-                        .To = Email
-                        '.Attachments.Add(pdfPath)
-                        '.Attachments.Add(pdfPath2)
-                        .Display
-                    End With
-                    'End If
-                    objOutlookMsg = Nothing
-                    objOutlook = Nothing
-                    ban = False
-                Catch ex As Exception
-                    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
-                    cadena = Err.Description
-                    cadena = cadena.Replace("'", "")
-                    Bitacora("FrmNotificacion3", "Error confirmar los datos de OT", Err.Number, cadena)
-                End Try
+                        R = R & "</body></html>"
+                        objOutlook = CreateObject("Outlook.Application")
+                        objOutlookMsg = objOutlook.CreateItem(0)
+                        With objOutlookMsg
+                            '.CC = ccalj
+                            .Subject = "Confirmación de Orden de Trabajo"
+                            .HTMLBody = R
+                            .To = Email
+                            '.Attachments.Add(pdfPath)
+                            '.Attachments.Add(pdfPath2)
+                            .Display
+                        End With
+                        'End If
+                        objOutlookMsg = Nothing
+                        objOutlook = Nothing
+                        ban = False
+                        banOt = False
+                    Else
+                        MsgBox("La orden de venta num: " & OV & ". " & vbNewLine & "No cuenta con Ordenes de Trabajo registradas")
+                    End If
+                'Catch ex As Exception
+                '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+                '    cadena = Err.Description
+                '    cadena = cadena.Replace("'", "")
+                '    Bitacora("FrmNotificacion3", "Error confirmar los datos de OT", Err.Number, cadena)
+                'End Try
             Else
-                MsgBox("La orden de venta num: " & OV & " No se encuentra registrada en LIMS. Favor de Confirmar")
+                MsgBox("La orden de venta num: " & OV & "." & vbNewLine & "No se encuentra registrada en LIMS. Favor de Confirmar")
                 ban = False
             End If
         End If
