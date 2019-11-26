@@ -9,11 +9,11 @@ Public Class FrmContactos
     Private Sub FrmContactos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             MetodoLIMS()
-            R = "select [CustomerId] as idContacto, [FirstName] as [Nombre], [LastName] as [Apellidos], [CompanyName] as Empresa, [CustAccountNo] as [No. Cuenta], [Email] as Correo, [PaymentTerms] as [Terminos de pago], [CustomerType] as [Tipo de Contacto], [IsTaxable] as [¿Con IVA?] from [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails] 
-                inner join [MetAs_Live-pruebas].[dbo].[MasterPoPickList] on [MetAs_Live-pruebas].[dbo].[MasterPoPickList].[Id] = [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails].[DefaultPO] 
-                left join [MetAs_Live-pruebas].[dbo].[SetupCustomerSource] on [MetAs_Live-pruebas].[dbo].[SetupCustomerSource].[id] = [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails].[Source] 
-                left join [MetAs_Live-pruebas].[dbo].[MasterCustomerType] on [MetAs_Live-pruebas].[dbo].[MasterCustomerType].[Id] = [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails].[AdminType] 
-                left join [MetAs_Live-pruebas].[dbo].[SetupShippingMode] on [MetAs_Live-pruebas].[dbo].[SetupShippingMode].[Id] = [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails].[ShipMode] where AdminType > 0 order by [CustomerId]"
+            R = "select [CustomerId] as idContacto, [FirstName] as [Nombre], [LastName] as [Apellidos], [CompanyName] as Empresa, [CustAccountNo] as [No. Cuenta], [Email] as Correo, [PaymentTerms] as [Terminos de pago], [CustomerType] as [Tipo de Contacto], [IsTaxable] as [¿Con IVA?] from [SetupCustomerDetails] 
+                inner join [MasterPoPickList] on [dbo].[MasterPoPickList].[Id] = [SetupCustomerDetails].[DefaultPO] 
+                left join [SetupCustomerSource] on [SetupCustomerSource].[id] = [SetupCustomerDetails].[Source] 
+                left join [MasterCustomerType] on [MasterCustomerType].[Id] = [SetupCustomerDetails].[AdminType] 
+                left join [SetupShippingMode] on [SetupShippingMode].[Id] = [SetupCustomerDetails].[ShipMode] where AdminType > 0 order by [CustomerId]"
             consultasLIMS(R, DGConsulta)
             alternarColorColumnas(DGConsulta)
             alternarColorColumnas(DGAdicionales)

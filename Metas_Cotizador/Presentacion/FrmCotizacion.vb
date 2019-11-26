@@ -254,21 +254,28 @@ Public Class FrmCotizacion
     End Sub
 
     Private Sub TabConsulta_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabConsulta.SelectedIndexChanged
-        '===============================================METODO PARA LLENAR EL DATAGRID CON EMPRESAS QUE TENGAN COTIZACIONES (EDITAR)===================================================
-        If TabConsulta.SelectedTab Is TabPage1 Then
-            MetodoMetasCotizador()
-            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-            R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone, x2.Email from [MetasCotizador].[dbo].[Cotizaciones] x1
+        Try
+            '===============================================METODO PARA LLENAR EL DATAGRID CON EMPRESAS QUE TENGAN COTIZACIONES (EDITAR)===================================================
+            If TabConsulta.SelectedTab Is TabPage1 Then
+                MetodoMetasCotizador()
+                comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+                R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone, x2.Email from [Cotizaciones] x1
              inner join " & servidor & "[SetupCustomerDetails] x2 on x1.idContacto =x2.CustomerId inner join " & servidor & "[SetupCustomerAddressDtls] x3
              on x2.Customerid=x3.CustomerId"
-            comandoMetasCotizador.CommandText = R
-            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-            While lectorMetasCotizador.Read()
-                dgEmpresa.Rows.Add(lectorMetasCotizador(0), lectorMetasCotizador(1), lectorMetasCotizador(2), lectorMetasCotizador(3), lectorMetasCotizador(4), lectorMetasCotizador(5), lectorMetasCotizador(6))
-            End While
-            lectorMetasCotizador.Close()
-            conexionMetasCotizador.Close()
-        End If
+                comandoMetasCotizador.CommandText = R
+                lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+                While lectorMetasCotizador.Read()
+                    dgEmpresa.Rows.Add(lectorMetasCotizador(0), lectorMetasCotizador(1), lectorMetasCotizador(2), lectorMetasCotizador(3), lectorMetasCotizador(4), lectorMetasCotizador(5), lectorMetasCotizador(6))
+                End While
+                lectorMetasCotizador.Close()
+                conexionMetasCotizador.Close()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmCotizacion", "Error al cambiar de ventana", Err.Number, cadena)
+        End Try
     End Sub
 
     Private Sub TxtNombreE_TextChanged(sender As Object, e As EventArgs) Handles txtNombreE.TextChanged
@@ -300,7 +307,7 @@ Public Class FrmCotizacion
         empresa = Val(dgEmpresa.Rows(e.RowIndex).Cells(0).Value)
         MetodoMetasCotizador()
         comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-        R = "SELECT idContacto, x1.NumCot, PartidaNo,  ItemNumber, EquipmentName, Mfr, Model, x1.identificadorInventarioCliente, ServiceDescription, Uncertainity, Cantidad, Precio
+        R = "SELECT distinct idContacto, x1.NumCot, PartidaNo,  ItemNumber, EquipmentName, Mfr, Model, x1.identificadorInventarioCliente, ServiceDescription, Uncertainity, Cantidad, Precio
              , Creado, x1.EquipId from [DetalleCotizaciones] x1 inner join ServiciosEnCotizaciones s on x1.idListaCotizacion=s.idListaCotizacion
              inner join " & servidor & "[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join " & servidor & "[SetupEquipmentServiceMapping] x3
 			 on x1.EquipId=x3.EquipId inner join [Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa
@@ -335,8 +342,8 @@ Public Class FrmCotizacion
     End Sub
     Sub imprimircot(ByVal COT As Integer)
         '=============================================== METODO PARA GENERAR EL PDF DE LA COTIZACION ===================================================
-        Try
-            MetodoMetasCotizador()
+        'Try
+        MetodoMetasCotizador()
             comandoMetasCotizador = conexionMetasCotizador.CreateCommand
             Dim desde, hasta As Date
             Dim nombre, puesto, tel, correo, emp, dom, lugar, moneda, cotizo, correoEla, depto,
@@ -536,18 +543,18 @@ Public Class FrmCotizacion
             Dim Reportes As New ReportDataSource("DataSet1", Data.Tables(0))
             FrmReportes.ReportViewer1.LocalReport.DataSources.Clear()
             FrmReportes.ReportViewer1.LocalReport.DataSources.Add(Datasource)
-            FrmReportes.ReportViewer1.LocalReport.ReportPath = "D:\Users\Software-TI\Documents\GitHub\Metas_Cotizador\Metas_Cotizador\Reportes\CotizacionModelo.rdlc"
-            FrmReportes.ReportViewer1.LocalReport.SetParameters(New ReportParameter() {p1, p2, p3, p4, p5, p6, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17,
+        FrmReportes.ReportViewer1.LocalReport.ReportPath = "D:\Usuarios\Software-TI\Documentos\GitHub\Metas_Cotizador\Metas_Cotizador\Reportes\CotizacionModelo.rdlc"
+        FrmReportes.ReportViewer1.LocalReport.SetParameters(New ReportParameter() {p1, p2, p3, p4, p5, p6, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17,
                                                                      p19, p20, p21, p22, p23, p24, p25})
             FrmReportes.ReportViewer1.RefreshReport()
             FrmReportes.Show()
             conexionMetasCotizador.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion", "Error al reimprimir cotización", Err.Number, cadena)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+        '    cadena = Err.Description
+        '    cadena = cadena.Replace("'", "")
+        '    Bitacora("FrmCotizacion", "Error al reimprimir cotización", Err.Number, cadena)
+        'End Try
     End Sub
 
     Private Sub BtnReImpresion_Click(sender As Object, e As EventArgs) Handles btnReImpresion.Click
