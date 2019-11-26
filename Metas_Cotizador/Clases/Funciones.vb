@@ -75,7 +75,7 @@ Module Funciones
 				 INNER JOIN " & servidor & "[SetupCustomerDetails] x2 ON  x1.idContacto = x2.[CustomerId] 
                  inner join " & servidor & "[SetupCustomerAddressDtls] x3 on x2.[CustomerId]=x3.[CustomerId] where Creado= 0 and Origen='LIMS'
                  union
-                 select x1.NumCot, Contacto, Empresa, Correo, Domicilio, Cp, Telefono, Referencia, FechaDesde, FechaHasta, Total, x2.idCliente, Origen COLLATE Latin1_General_CI_AS from [MetasCotizador].[dbo].[Cotizaciones] x1
+                 select x1.NumCot, Contacto, Empresa, Correo, Domicilio, Cp, Telefono, Referencia, FechaDesde, FechaHasta, Total, x2.idCliente, Origen COLLATE Latin1_General_CI_AS from [Cotizaciones] x1
 				 INNER JOIN ClientesInformales x2 ON x1.idContacto = x2.IdCliente where Creado= 0 and Origen='INFORMAL'"
             Dim comando As New SqlCommand(R, conexionMetasCotizador)
             Dim lector As SqlDataReader
