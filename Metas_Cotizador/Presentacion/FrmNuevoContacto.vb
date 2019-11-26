@@ -64,7 +64,6 @@ Public Class FrmNuevoContacto
         txtCiudadEntrega.Text = txtCiudad.Text
         TextPais3.Text = TextPais1.Text
     End Sub
-
     Private Sub cboRequerimientosDeCalidad_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboRequerimientosDeCalidad.SelectedIndexChanged
         seleccionarcombo("select id from [SetupQualityRequirement] where [QualityRqment]='", cboRequerimientosDeCalidad)
     End Sub
@@ -105,7 +104,7 @@ Public Class FrmNuevoContacto
         llenarcombo("Select *from SetupQualityRequirement", cboRequerimientosDeCalidad, "id")
         llenarcombo("Select *from MasterCustomerType", cboTipoIndustria, "id")
         llenarcombo("Select *from [MasterPoPickList]", cboDefaultPO, "id")
-        llenarcombo("Select *from [SetupShippingMode]", cboModoDeEnvio, "id")
+        llenarcombo("Select *from [SetupShippingMode]", cboModoDeEnvio, "Id")
         llenarEstado("Select *from [StateMaster]", txtEstado, "StateId", TextPais1)
         llenarEstado("Select *from [StateMaster]", txtEstadoEntrega, "StateId", TextPais2)
         llenarEstado("Select *from [StateMaster]", txtEstadoFacturacion, "StateId", TextPais3)
@@ -160,7 +159,7 @@ Public Class FrmNuevoContacto
         End While
         lectorLIMS.Close()
         comandoLIMS.CommandText = query & " where " & id & "=1"
-
+        'MsgBox(comandoLIMS.CommandText)
         lectorLIMS = comandoLIMS.ExecuteReader
         lectorLIMS.Read()
         combo.Tag = lectorLIMS(0)

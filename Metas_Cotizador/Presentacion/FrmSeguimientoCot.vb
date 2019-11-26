@@ -14,7 +14,7 @@ Public Class FrmSeguimientoCot
             DGRes.Rows.Clear()
             fechadesde = Convert.ToDateTime(DtpDesde.Text).ToShortDateString
             fechahasta = Convert.ToDateTime(DtpHasta.Text).ToShortDateString
-            Dim R As String = "select x1.NumCot, [FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, CompanyName, Email, ContAddress1, ContZip, Phone, Referencia, FechaDesde, FechaHasta, Total, x2.CustomerId, CustAccountNo from [MetasCotizador].[dbo].[Cotizaciones] x1
+            Dim R As String = "select x1.NumCot, [FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, CompanyName, Email, ContAddress1, ContZip, Phone, Referencia, FechaDesde, FechaHasta, Total, x2.CustomerId, CustAccountNo from [Cotizaciones] x1
 				INNER JOIN " & servidor & "[SetupCustomerDetails] x2 ON x1.idContacto = x2.[CustomerId] 
                 inner join " & servidor & "[SetupCustomerAddressDtls] x3 on x2.[CustomerId]=x3.[CustomerId] where Creado= 0 and FechaDesde between '" & fechadesde & "' 
                             and '" & fechahasta & "'"
@@ -40,7 +40,7 @@ Public Class FrmSeguimientoCot
             DGRes.Rows.Clear()
             fechadesde = Convert.ToDateTime(DtpDesde.Text).ToShortDateString
             fechahasta = Convert.ToDateTime(DtpHasta.Text).ToShortDateString
-            Dim R As String = "select x1.NumCot, [FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, CompanyName, Email, ContAddress1, ContZip, Phone, Referencia, FechaDesde, FechaHasta, Total, x2.CustomerId, CustAccountNo from [MetasCotizador].[dbo].[Cotizaciones] x1
+            Dim R As String = "select x1.NumCot, [FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, CompanyName, Email, ContAddress1, ContZip, Phone, Referencia, FechaDesde, FechaHasta, Total, x2.CustomerId, CustAccountNo from [Cotizaciones] x1
 				INNER JOIN " & servidor & "[SetupCustomerDetails] x2 ON x1.idContacto = x2.[CustomerId] 
                 inner join " & servidor & "[SetupCustomerAddressDtls] x3 on x2.[CustomerId]=x3.[CustomerId] where Creado= 0 and FechaDesde between '" & fechadesde & "' 
                             and '" & fechahasta & "'"
@@ -61,50 +61,45 @@ Public Class FrmSeguimientoCot
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
-        ''Generar
-        'Dim con As FrmCompletarOV
-        'Dim cliente As String
-        'Dim cu, ca As Integer
-        'Try
-        Dim seleccionado As Boolean
-        Dim R As String
-        Dim b, RecDate, OnSite As Boolean
-        RecDate = True
-        OnSite = False '----------------------Ciclo para saber si hay articulos seleccionados-------------------------------
-        For i As Integer = DGRes.Rows.Count() - 1 To 0 Step -1
-            seleccionado = DGRes.Rows(i).Cells(0).Value
-            If seleccionado = True Then
-                b = True
-                Exit For
-            Else
-                b = False
-            End If
-        Next
-        '----------------------------------------------------------------------------------------------------
-        If b = True Then
+        Try
+            Dim seleccionado As Boolean
+            Dim R As String
+            Dim b, RecDate, OnSite As Boolean
+            RecDate = True
+            OnSite = False '----------------------Ciclo para saber si hay articulos seleccionados-------------------------------
             For i As Integer = DGRes.Rows.Count() - 1 To 0 Step -1
                 seleccionado = DGRes.Rows(i).Cells(0).Value
                 If seleccionado = True Then
-                    Dim correos As String
-                    correos = DGRes.Rows(i).Cells(4).Value
-                    Dim vColeccion() As String = correos.Split(";")
-                    numcotfrm = DGRes.Rows(i).Cells(1).Value
-                    empresafrm = DGRes.Rows(i).Cells(3).Value
-                    Contacto = DGRes.Rows(i).Cells(2).Value
-                    Total = DGRes.Rows(i).Cells(11).Value
-                    Referencia = DGRes.Rows(i).Cells(8).Value
-                    corrreofrm = DGRes.Rows(i).Cells(4).Value
-                    If vColeccion.Length > 1 Then
-                        For ii = 0 To vColeccion.Length - 1
-                            'FrmFiltarCampo.dgEmpresas.Rows.Add(False, vColeccion(ii))
-                        Next
-                        banderaform = True
-                        'FrmFiltarCampo.Show()
+                    b = True
+                    Exit For
+                Else
+                    b = False
+                End If
+            Next
+            '----------------------------------------------------------------------------------------------------
+            If b = True Then
+                For i As Integer = DGRes.Rows.Count() - 1 To 0 Step -1
+                    seleccionado = DGRes.Rows(i).Cells(0).Value
+                    If seleccionado = True Then
+                        Dim correos As String
+                        correos = DGRes.Rows(i).Cells(4).Value
+                        Dim vColeccion() As String = correos.Split(";")
+                        numcotfrm = DGRes.Rows(i).Cells(1).Value
+                        empresafrm = DGRes.Rows(i).Cells(3).Value
+                        Contacto = DGRes.Rows(i).Cells(2).Value
+                        total = DGRes.Rows(i).Cells(11).Value
+                        Referencia = DGRes.Rows(i).Cells(8).Value
+                        corrreofrm = DGRes.Rows(i).Cells(4).Value
+                        If vColeccion.Length > 1 Then
+                            For ii = 0 To vColeccion.Length - 1
+                                'FrmFiltarCampo.dgEmpresas.Rows.Add(False, vColeccion(ii))
+                            Next
+                            banderaform = True
+                            'FrmFiltarCampo.Show()
 
-                    Else
-                        'Aqui va el correo 
-                        R = "<html xmlns:v='urn:schemas-microsoft-com:vml'
+                        Else
+                            'Aqui va el correo 
+                            R = "<html xmlns:v='urn:schemas-microsoft-com:vml'
                         xmlns:o='urn:schemas-microsoft-com:office:office'
                         xmlns:w='urn:schemas-microsoft-com:office:word'
                         xmlns:m='http://schemas.microsoft.com/office/2004/12/omml'
@@ -180,7 +175,7 @@ Public Class FrmSeguimientoCot
                             </tr>
                             <tr>
                                 <td>Total:</td>
-                                <td>" & Total & "</td>
+                                <td>" & total & "</td>
                             </tr>
                         </table>
                         <p><span style=font-size:11.0pt;font-family:Helvetica>Le agradecería pudiera confirmar la recepción de la misma, o en que estatus se encuentra, esto con la finalidad de poder ofrecerle un mejor servicio, y atender todas y cada una de sus inquietudes.</span></p>
@@ -215,80 +210,33 @@ Public Class FrmSeguimientoCot
                             ser de la misma manera suministrada a petición. </span><span lang=ES-TRAD
                             style='font-size:8.0pt;color:#222222;mso-ansi-language:ES-TRAD'><o:p></o:p></span></p>
                         <p class=MsoAutoSig><o:p>&nbsp;</o:p></p>"
-                        R = R & "</body></html>"
-                        objOutlook = CreateObject("Outlook.Application")
-                        objOutlookMsg = objOutlook.CreateItem(0)
-                        With objOutlookMsg
-                            '.CC = cca
-                            .Subject = "Seguimiento a Cotización (" & numcotfrm & ")"
-                            .HTMLBody = R
-                            .To = corrreofrm
-                            .Display
-                            '.send
-                        End With
-                        'End If
-                        objOutlookMsg = Nothing
-                        objOutlook = Nothing
+                            R = R & "</body></html>"
+                            objOutlook = CreateObject("Outlook.Application")
+                            objOutlookMsg = objOutlook.CreateItem(0)
+                            With objOutlookMsg
+                                '.CC = cca
+                                .Subject = "Seguimiento a Cotización (" & numcotfrm & ")"
+                                .HTMLBody = R
+                                .To = corrreofrm
+                                .Display
+                                '.send
+                            End With
+                            'End If
+                            objOutlookMsg = Nothing
+                            objOutlook = Nothing
 
+                        End If
                     End If
-                End If
-            Next
-            'frmEdicionCot2018_2019.Show()
-
-        Else
-            MsgBox("No ha seleccionado ningún artículo", MsgBoxStyle.Critical, "Error del sistema.")
-        End If
-
-
-
-
-
-
-
-        'If DGRes.Rows.Count < 2 Then
-        '    MsgBox("No hay ordenes de venta seleccionadas.", MsgBoxStyle.Critical, "Error del sistema.")
-        'Else
-        '    '----------------------Ciclo para saber si hay articulos seleccionados-------------------------------
-        '    For i As Integer = DGRes.Rows.Count() - 1 To 0 Step -1
-        '        seleccionado = DGRes.Rows(i).Cells(0).Value
-        '        If seleccionado = True Then
-        '            'b = True
-        '            'Exit For
-
-        '        Else
-        '            MsgBox("No ha seleccionado ningúna cotización", MsgBoxStyle.Critical, "Error del sistema.")
-        '        End If
-        '    Next
-        '----------------------------------------------------------------------------------------------------
-        'If b = True Then
-        '    For i As Integer = DGRes.Rows.Count() - 1 To 0 Step -1
-        '        seleccionado = DGRes.Rows(i).Cells(0).Value
-        '        Dim correos As String
-        '        correos = DGRes.Rows(i).Cells(0).Value
-        '        MsgBox(correos)
-        '        Dim vColeccion() As String = correos.Split(";")
-        '        If vColeccion.Length > 1 Then
-        '            For ii = 0 To vColeccion.Length - 1
-        '                FrmFiltarCampo.dgEmpresas.Rows.Add(False, vColeccion(ii))
-        '            Next
-        '            'empresa = DGRes.Rows(e.RowIndex).Cells(0).Value.ToString()
-        '            FrmFiltarCampo.Show()
-        '        Else
-
-
-        '        End If
-        '        Me.Dispose()
-        '    Next
-        'Else
-        '    MsgBox("No ha seleccionado ningúna cotización", MsgBoxStyle.Critical, "Error del sistema.")
-        'End If
-        'End If
-        'Catch ex As Exception
-        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
-        '    cadena = Err.Description
-        '    cadena = cadena.Replace("'", "")
-        '    Bitacora("FrmAutorizarSolicitudes", "Error al guardar la OV", Err.Number, cadena)
-        'End Try
+                Next
+            Else
+                MsgBox("No ha seleccionado ningún artículo", MsgBoxStyle.Critical, "Error del sistema.")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmSeguimientoCot", "Error al guardar la OV", Err.Number, cadena)
+        End Try
     End Sub
 
     Private Sub PictureBox5_Click(sender As Object, e As EventArgs) Handles PictureBox5.Click

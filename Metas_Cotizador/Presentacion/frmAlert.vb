@@ -38,9 +38,6 @@
                 Me.BackColor = Color.FromArgb(255, 179, 2)
         End Select
         Me.GunaLabel1.Text = msg
-        '  Me.TopMost = True
-        '  Me.ShowIcon = False
-        '  Me.ShowInTaskbar = False
         Me.Show()
         Me.Timer1.Interval = 1
         Me.Timer1.Start()
@@ -83,7 +80,4 @@
                 End If
         End Select
     End Sub
-
-
-
 End Class

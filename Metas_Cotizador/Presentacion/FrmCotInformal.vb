@@ -15,7 +15,6 @@
             End While
             lectorLIMS.Close()
             conexionLIMS.Close()
-
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
             cadena = Err.Description
@@ -63,56 +62,61 @@
         consultasarticuloscot()
     End Sub
 
-
-
     Private Sub btCotizacion_Click(sender As Object, e As EventArgs) Handles btCotizacion.Click
-        '=============================================== CODIGO PARA MANDAR LOS ARTICULOS CON PRECIO A LA COTIZACION ===================================================
-        origen = "INFORMAL"
-        editar = 3
-        editar2 = True
-        If DgAgregar.Rows.Count < 2 Then
-            MsgBox("No hay articulos para Cotizar", MsgBoxStyle.Critical, "Error del sistema.")
-        Else
-            For i As Integer = DgAgregar.Rows.Count() - 2 To 0 Step -1
-                MetodoLIMS()
-                FrmEdicionCot.txtNombreC.Text = TextContacto.Text
-                FrmEdicionCot.txtNombreEmpresa.Text = TextEmpresa.Text
-                FrmEdicionCot.txtNumCond.Text = TextRFC.Text
-                FrmEdicionCot.txtDomicilio.Text = TextDireccion.Text
-                FrmEdicionCot.txtCiudad.Text = TextCiudad.Text
-                FrmEdicionCot.txtEstado.Text = TextEstado.Text
-                FrmEdicionCot.txtTelefono.Text = TextTelefono.Text
-                FrmEdicionCot.TextCorreo.Text = TextCorreo.Text
-                FrmEdicionCot.txtcp.Text = TextCP.Text
-                '===============================================SELECCION DEL ARTICULO SELECCIONADO===================================================
-                comandoLIMS = conexionLIMS.CreateCommand
-                R = "SELECT SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price from 
+        Try
+            '=============================================== CODIGO PARA MANDAR LOS ARTICULOS CON PRECIO A LA COTIZACION ===================================================
+            origen = "INFORMAL"
+            editar = 3
+            editar2 = True
+            If DgAgregar.Rows.Count < 2 Then
+                MsgBox("No hay articulos para Cotizar", MsgBoxStyle.Critical, "Error del sistema.")
+            Else
+                For i As Integer = DgAgregar.Rows.Count() - 2 To 0 Step -1
+                    MetodoLIMS()
+                    FrmEdicionCot.txtNombreC.Text = TextContacto.Text
+                    FrmEdicionCot.txtNombreEmpresa.Text = TextEmpresa.Text
+                    FrmEdicionCot.txtNumCond.Text = TextRFC.Text
+                    FrmEdicionCot.txtDomicilio.Text = TextDireccion.Text
+                    FrmEdicionCot.txtCiudad.Text = TextCiudad.Text
+                    FrmEdicionCot.txtEstado.Text = TextEstado.Text
+                    FrmEdicionCot.txtTelefono.Text = TextTelefono.Text
+                    FrmEdicionCot.TextCorreo.Text = TextCorreo.Text
+                    FrmEdicionCot.txtcp.Text = TextCP.Text
+                    '===============================================SELECCION DEL ARTICULO SELECCIONADO===================================================
+                    comandoLIMS = conexionLIMS.CreateCommand
+                    R = "SELECT SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price from 
                             SetUpEquipment inner join SetupEquipmentServiceMapping on  
                             SetupEquipment.EquipId=SetupEquipmentServiceMapping.EquipId where SetUpEquipment.EquipId=" & DgAgregar.Rows(i).Cells(0).Value
-                comandoLIMS.CommandText = R
-                lectorLIMS = comandoLIMS.ExecuteReader
-                lectorLIMS.Read()
-                equipo = lectorLIMS(0)
-                FrmEdicionCot.DGCopia.Rows.Add(lectorLIMS(0), i + 1, lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), 1, False, " ")
-                lectorLIMS.Close()
-                '===================== SELECCION DEL SERVICIO POR DEFAUL (CALIBRACION DEL EQUIPO SELECCIONADO) ======================================
-                comandoLIMS = conexionLIMS.CreateCommand
-                R = "SELECT EquipId, ServicesId, Price from SetupEquipmentServiceMapping where EquipId=" & equipo
-                comandoLIMS.CommandText = R
-                lectorLIMS = comandoLIMS.ExecuteReader
-                lectorLIMS.Read()
-                FrmEdicionCot.DGServicios.Rows.Add(lectorLIMS(0), lectorLIMS(1), lectorLIMS(2))
-                lectorLIMS.Close()
-                conexionLIMS.Close()
+                    comandoLIMS.CommandText = R
+                    lectorLIMS = comandoLIMS.ExecuteReader
+                    lectorLIMS.Read()
+                    equipo = lectorLIMS(0)
+                    FrmEdicionCot.DGCopia.Rows.Add(lectorLIMS(0), i + 1, lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), 1, False, " ")
+                    lectorLIMS.Close()
+                    '===================== SELECCION DEL SERVICIO POR DEFAUL (CALIBRACION DEL EQUIPO SELECCIONADO) ======================================
+                    comandoLIMS = conexionLIMS.CreateCommand
+                    R = "SELECT EquipId, ServicesId, Price from SetupEquipmentServiceMapping where EquipId=" & equipo
+                    comandoLIMS.CommandText = R
+                    lectorLIMS = comandoLIMS.ExecuteReader
+                    lectorLIMS.Read()
+                    FrmEdicionCot.DGServicios.Rows.Add(lectorLIMS(0), lectorLIMS(1), lectorLIMS(2))
+                    lectorLIMS.Close()
+                    conexionLIMS.Close()
 
-            Next
-            '=============== LIMPIAR LOS DATAGRID POR ENVIADOS ================
-            DgAgregar.Rows.Clear()
-            FrmEdicionCot.ShowDialog()
-            For i = 0 To DGCotizaciones.Rows.Count - 2
-                DGCotizaciones.Rows(i).Cells(0).Value = False
-            Next
-        End If
+                Next
+                '=============== LIMPIAR LOS DATAGRID POR ENVIADOS ================
+                DgAgregar.Rows.Clear()
+                FrmEdicionCot.ShowDialog()
+                For i = 0 To DGCotizaciones.Rows.Count - 2
+                    DGCotizaciones.Rows(i).Cells(0).Value = False
+                Next
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmCotInformal", "Error al intentar abrir la cotización", Err.Number, cadena)
+        End Try
     End Sub
 
     Private Sub DGCotizaciones_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGCotizaciones.CellContentClick

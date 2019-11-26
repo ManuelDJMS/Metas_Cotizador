@@ -75,8 +75,9 @@ Public Class FrmAutorizarSolicitudes
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim cu, ca As Int64
+        Dim cu As Int64
         Dim correos As String
+        Dim ca As String
         Try
             Dim seleccionado As Boolean
             Dim b, RecDate, OnSite As Boolean
@@ -112,7 +113,7 @@ Public Class FrmAutorizarSolicitudes
                                 FrmNuevoContacto.Show()
                                 '################################################ PROCESO NORMAL DE CREAR LA ORDEN DE VENTAS ##############################################################
                             Else
-                                If departamento.Equals("Logistica") Then
+                                If departamento.Equals("Logística") Then
                                     correos = DGRes.Rows(i).Cells(4).Value
                                     Dim vColeccion() As String = correos.Split(";")
                                     If vColeccion.Length > 1 Then
@@ -183,8 +184,8 @@ Public Class FrmAutorizarSolicitudes
                                         conexionLIMS.Close()
                                         MetodoLIMS()
                                         R = "SELECT top 1 [SOId], [CustomerId],[CustAccountNo],[RecDate]
-                            FROM SalesOrderDetails where RefNo= " & Val(DGRes.Rows(i).Cells(1).Value) & " ORDER BY [SOId] DESC"
-
+                            FROM SalesOrderDetails where RefNo= '" & DGRes.Rows(i).Cells(1).Value & "' ORDER BY [SOId] DESC"
+                                        MsgBox(R & "  hola")
                                         Dim comando2 As New SqlCommand(R, conexionLIMS)
                                         Dim lector As SqlDataReader
                                         lector = comando2.ExecuteReader
@@ -248,7 +249,10 @@ Public Class FrmAutorizarSolicitudes
                 End If
             Next
         Catch ex As Exception
-            MsgBox("No se encuentra dicho número de cotización.", MsgBoxStyle.Exclamation)
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmCotizacion2018", "Error al buscar el numero de cuenta", Err.Number, cadena)
         End Try
     End Sub
 

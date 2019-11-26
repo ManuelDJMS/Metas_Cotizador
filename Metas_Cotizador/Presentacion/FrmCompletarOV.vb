@@ -2,8 +2,6 @@
 Imports System.Data.SqlClient
 Public Class FrmCompletarOV
     Dim customerId As Integer
-    'Dim objOutlook As Object
-    'Dim objOutlookMsg As Object
     Dim DirEnv, estEnv, cdEnv, cpEnv As String
 
     Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
@@ -11,71 +9,59 @@ Public Class FrmCompletarOV
     End Sub
 
     Private Sub FrmCompletarOV_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        MetodoLIMS()
-        'Dim R As String
-        If bancorreo = 1 Then
-            'MsgBox("Entra opcion1")
-            R = "Select [SetupCustomerAddressDtls].[CustomerId], [CustAccountNo], [FirstName] +' '+[MiddleName] +' '+ [LastName] as Nombre ,[Phone],[Email],[CompanyName],[PaymentTerms], [ContAddress1], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]
-                FROM [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails] x1 INNER JOIN [SetupCustomerAddressDtls] ON x1.[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
+        Try
+            MetodoLIMS()
+            If bancorreo = 1 Then
+                R = "Select [SetupCustomerAddressDtls].[CustomerId], [CustAccountNo], [FirstName] +' '+[MiddleName] +' '+ [LastName] as Nombre ,[Phone],[Email],[CompanyName],[PaymentTerms], [ContAddress1], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]
+                FROM [SetupCustomerDetails] x1 INNER JOIN [SetupCustomerAddressDtls] ON x1.[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
 		        where x1.[CustomerId] =" & empresa
-            Label22.Visible = False
-            NumOV.Visible = False
-            Label13.Visible = False
-            txtRefCot.Visible = False
-            'bancorreo = 3
-        ElseIf bancorreo = 2 Then
-            'MsgBox("Entra opcion2")
-            R = "SELECT [SetupCustomerAddressDtls].[CustomerId],[CustAccountNo],[FirstName] +' '+[MiddleName] +' '+ [LastName] as Nombre ,[Phone],[Email],[CompanyName],[PaymentTerms], [ContAddress1], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]
-            FROM [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails] 
-	        INNER JOIN [SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
+                Label22.Visible = False
+                NumOV.Visible = False
+                Label13.Visible = False
+                txtRefCot.Visible = False
+            ElseIf bancorreo = 2 Then
+                R = "SELECT [SetupCustomerAddressDtls].[CustomerId],[CustAccountNo],[FirstName] +' '+[MiddleName] +' '+ [LastName] as Nombre ,[Phone],[Email],[CompanyName],[PaymentTerms], [ContAddress1], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]
+            FROM [SetupCustomerDetails] INNER JOIN [SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
 		    where [CustAccountNo] = '" & var.Text & "'"
-        End If
-        Dim comando As New SqlCommand(R, conexionLIMS)
-        Dim lector As SqlDataReader
-        lector = comando.ExecuteReader
-        lector.Read()
-
-        txtNombreCompania.Text = lector(5)
-        'If correos2 = False Then
-        '    txtCorreo.Text = correos
-        'Else
-
-        '    txtCorreo.Text = lector(4)
-        'End If
-
-        txtDireccion.Text = lector(7)
-        terminosPago.Text = lector(6)
-        numCuenta.Text = var.Text
-        customerId = (lector(0))
-
-
-        numCuenta.Text = lector(1)
-        If correos2 = False Then
-            txtCorreo.Text = lector(4)
-            'MsgBox(txtCorreo.Text)
-        Else
-            txtCorreo.Text = correos
-            'numCuenta.Text = var.Text
-
-        End If
-        DirEnv = lector(8)
-        cdEnv = lector(9)
-        estEnv = lector(10)
-        cpEnv = lector(11)
-        lector.Close()
-        bancorreo = False
-        correos = ""
-        bancorreo = 0
-
-        empresa = 0
-        R = "SELECT [Id],[ShipVia] FROM [MetAs_Live-pruebas].[dbo].[SetupShippingMode]"
-        Dim comando2 As New SqlCommand(R, conexionLIMS)
-        Dim lector2 As SqlDataReader
-        lector2 = comando2.ExecuteReader
-        While lector2.Read()
-            cboRecepcion.Items.Add(lector2(1))
-            embarcarPor.Items.Add(lector2(1))
-        End While
+            End If
+            Dim comando As New SqlCommand(R, conexionLIMS)
+            Dim lector As SqlDataReader
+            lector = comando.ExecuteReader
+            lector.Read()
+            txtNombreCompania.Text = lector(5)
+            txtDireccion.Text = lector(7)
+            terminosPago.Text = lector(6)
+            numCuenta.Text = var.Text
+            customerId = (lector(0))
+            numCuenta.Text = lector(1)
+            If correos2 = False Then
+                txtCorreo.Text = lector(4)
+            Else
+                txtCorreo.Text = correos
+            End If
+            DirEnv = lector(8)
+            cdEnv = lector(9)
+            estEnv = lector(10)
+            cpEnv = lector(11)
+            lector.Close()
+            bancorreo = False
+            correos = ""
+            bancorreo = 0
+            empresa = 0
+            R = "SELECT [Id],[ShipVia] FROM [SetupShippingMode]"
+            Dim comando2 As New SqlCommand(R, conexionLIMS)
+            Dim lector2 As SqlDataReader
+            lector2 = comando2.ExecuteReader
+            While lector2.Read()
+                cboRecepcion.Items.Add(lector2(1))
+                embarcarPor.Items.Add(lector2(1))
+            End While
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmCompletarOV", "Error al cargar el formulario", Err.Number, cadena)
+        End Try
     End Sub
 
     Private Sub btCotizacion_Click(sender As Object, e As EventArgs) Handles btCotizacion.Click
@@ -86,11 +72,9 @@ Public Class FrmCompletarOV
                 If domEnvio.Checked = True Then
                     R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RecDate, DataRequested, OnSite,[PONo],[RecBy],[Priority],[ReceivedVia],[ShipVia],[Remarks],[CreatedBy],[CreatedOn],[TrackingNo],[BoxCount],[Weight],[Volume],[PaymentTerms], [RefNo], [ShipAddress1],[ShipCity],[ShipState],[ShipZip]) 
                                             values(" & customerId & ",'" & numCuenta.Text & "',convert(datetime,'" & dtpFechaRecep.Value & "'), '" & True & "','" & False & "', '" & txtOrdenCompra.Text & "','" & cboRecibidoPor.Text & "','" & cboPrioridad.Text & "','" & cboRecepcion.Text & "', '" & embarcarPor.Text & "', '" & txtObservaciones.Text & "','" & usuario & "', " & dtpFechaRecep.Value.ToShortDateString & ", '" & txtNumGuia.Text & "','" & txtCantCajas.Text & "', '" & txtPeso.Text & "', '" & txtVolumen.Text & "','" & terminosPago.Text & "', ' ', '" & DirEnv.ToString & "', '" & cdEnv.ToString & "', '" & estEnv.ToString & "', '" & cpEnv.ToString & "')"
-                    'MsgBox(R)
                 Else
                     R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RecDate, DataRequested, OnSite,[PONo],[RecBy],[Priority],[ReceivedVia],[ShipVia],[Remarks],[CreatedBy],[CreatedOn],[TrackingNo],[BoxCount],[Weight],[Volume],[PaymentTerms], [RefNo]) 
                                         values(" & customerId & ",'" & numCuenta.Text & "',convert(datetime,'" & dtpFechaRecep.Value & "'), '" & True & "','" & False & "', '" & txtOrdenCompra.Text & "','" & cboRecibidoPor.Text & "','" & cboPrioridad.Text & "','" & cboRecepcion.Text & "', '" & embarcarPor.Text & "', '" & txtObservaciones.Text & "','" & usuario & "'," & dtpFechaRecep.Value.ToShortDateString & ", '" & txtNumGuia.Text & "','" & txtCantCajas.Text & "', '" & txtPeso.Text & "', '" & txtVolumen.Text & "','" & terminosPago.Text & "', ' ')"
-                    ''MsgBox(R)
                 End If
                 Dim comando As New SqlCommand
                 comando = conexionLIMS.CreateCommand
@@ -249,13 +233,11 @@ Public Class FrmCompletarOV
                 objOutlook = CreateObject("Outlook.Application")
                 objOutlookMsg = objOutlook.CreateItem(0)
                 With objOutlookMsg
-                    '.CC = cca
                     .Subject = "AVISO DE LLEGADA DE ENVÍO AL ALMACÉN DE METAS CD GUZMÁN"
                     .HTMLBody = R
                     .To = txtCorreo.Text
                     .Display
                 End With
-                'End If
                 objOutlookMsg = Nothing
                 objOutlook = Nothing
             End If

@@ -1,7 +1,8 @@
 ﻿Imports System.Data.SqlClient
 Module Funciones
     Public R As String 'Variable que almacena todos los scripts de base de datos
-    Public servidor As String = "[DATABASESERVER\COMPAC].[MetAs_Live-pruebas].[dbo]." 'Esta variable sirve para alojar el servidor para las consultas
+    Public servidor As String = "[MetAs_Live].[dbo]." 'Esta variable sirve para alojar el servidor para las consultas
+    Public servidor2 As String = "[MetasCotizador].[dbo]." ' Esta variable sirve para alojar el servidor del cotizador
     Public cadena As String 'VARIABLE PARA ALMACENAR LA CADENA DEL ERROR DE LA BITACORA
     '---------------------------Variables utilizadas para el uso del correo------------------------------------------------------
     Public objOutlook As Object

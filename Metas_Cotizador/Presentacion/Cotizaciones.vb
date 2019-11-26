@@ -24,43 +24,32 @@ Public Class Cotizaciones
             conexionLIMS.Close()
             lector.Close()
         Catch ex As Exception
-            MsgBox("Ocurrio un error en la lectura de datos.", MsgBoxStyle.Information)
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("Cotizaciones", "Error en la consulta de los servicios", Err.Number, cadena)
         End Try
-        'For n As Integer = DGRes.Rows.Count - 1 To 0 Step -1
-
-        '    Dim row As DataGridViewRow = DGRes.Rows(n)
-
-        '    If (row.Cells(1).Value Is DBNull.Value) Then
-        '        DGRes.Rows.Remove(row)
-        '    End If
-        'Next
     End Sub
 
-    'Private Sub _DGV1_RowValidated(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DGRes.RowValidated
-    '    If (DGRes.RowCount > 0) Then
-    '        If DGRes.Rows(e.RowIndex).Cells(0).Value() = String.Empty Then
-    '            DGRes.Rows.Remove(DGRes.CurrentRow)
-    '        End If
-    '    End If
-    'End Sub
-
-
     Public Sub consultaDetalleCotizaciones(ByVal numCot As Integer)
-        'Try
-        MetodoMetasCotizador()
-        Dim R As String
-        R = "select [DetalleCotizaciones].idListaCotizacion from [DetalleCotizaciones] where [DetalleCotizaciones].NumCot =" & numCot & ""
-        Dim comando As New SqlCommand(R, conexionMetasCotizador)
-        Dim lector As SqlDataReader
-        lector = comando.ExecuteReader
-        While lector.Read
-            frmEdicionCot2018_2019.DGServicios.Rows.Add(lector(0))
-        End While
-        conexionMetasCotizador.Close()
-        lector.Close()
-        'Catch ex As Exception
-        '    MsgBox("Ocurrio un error en la lectura de datos.", MsgBoxStyle.Information)
-        'End Try
+        Try
+            MetodoMetasCotizador()
+            Dim R As String
+            R = "select [DetalleCotizaciones].idListaCotizacion from [DetalleCotizaciones] where [DetalleCotizaciones].NumCot =" & numCot & ""
+            Dim comando As New SqlCommand(R, conexionMetasCotizador)
+            Dim lector As SqlDataReader
+            lector = comando.ExecuteReader
+            While lector.Read
+                frmEdicionCot2018_2019.DGServicios.Rows.Add(lector(0))
+            End While
+            conexionMetasCotizador.Close()
+            lector.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("Cotizaciones", "Error al hacer la consulta de detalle de cotizaciones", Err.Number, cadena)
+        End Try
     End Sub
 
     Private Sub btCotizacion_Click(sender As Object, e As EventArgs) Handles btCotizacion.Click

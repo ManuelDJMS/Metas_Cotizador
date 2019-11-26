@@ -7,29 +7,30 @@ Public Class FrmFiltarCampo
         Me.Dispose()
     End Sub
     Private Sub BtSinCot_Click(sender As Object, e As EventArgs) Handles btSinCot.Click
-        Dim seleccionado, b As Boolean
-        For i As Integer = dgEmpresas.Rows.Count() - 1 To 0 Step -1
-            seleccionado = dgEmpresas.Rows(i).Cells(0).Value
-            If seleccionado = True Then
-                b = True
-                Exit For
-            Else
-                b = False
-            End If
-        Next
-        '----------------------------------------------------------------------------------------------------
-        If b = True Then
+        Try
+            Dim seleccionado, b As Boolean
             For i As Integer = dgEmpresas.Rows.Count() - 1 To 0 Step -1
                 seleccionado = dgEmpresas.Rows(i).Cells(0).Value
                 If seleccionado = True Then
-                    MetodoLIMS()
-                    correos = correos & "; " & dgEmpresas.Rows(i).Cells(1).Value
+                    b = True
+                    Exit For
+                Else
+                    b = False
                 End If
             Next
-            correos = RTrim(LTrim(correos.Substring(1, correos.Length - 1)))
-            If banderaform = True Then
-                'Aqui va el correo 
-                r = "<html xmlns:v='urn:schemas-microsoft-com:vml'
+            '----------------------------------------------------------------------------------------------------
+            If b = True Then
+                For i As Integer = dgEmpresas.Rows.Count() - 1 To 0 Step -1
+                    seleccionado = dgEmpresas.Rows(i).Cells(0).Value
+                    If seleccionado = True Then
+                        MetodoLIMS()
+                        correos = correos & "; " & dgEmpresas.Rows(i).Cells(1).Value
+                    End If
+                Next
+                correos = RTrim(LTrim(correos.Substring(1, correos.Length - 1)))
+                If banderaform = True Then
+                    'Aqui va el correo 
+                    r = "<html xmlns:v='urn:schemas-microsoft-com:vml'
                         xmlns:o='urn:schemas-microsoft-com:office:office'
                         xmlns:w='urn:schemas-microsoft-com:office:word'
                         xmlns:m='http://schemas.microsoft.com/office/2004/12/omml'
@@ -140,33 +141,39 @@ Public Class FrmFiltarCampo
                             ser de la misma manera suministrada a petición. </span><span lang=ES-TRAD
                             style='font-size:8.0pt;color:#222222;mso-ansi-language:ES-TRAD'><o:p></o:p></span></p>
                         <p class=MsoAutoSig><o:p>&nbsp;</o:p></p>"
-                r = r & "</body></html>"
-                objOutlook = CreateObject("Outlook.Application")
-                objOutlookMsg = objOutlook.CreateItem(0)
-                banderaform = False
-                With objOutlookMsg
-                    '.CC = cca
-                    .Subject = "AVISO DE LLEGADA DE ENVÍO AL ALMACÉN DE METAS"
-                    .HTMLBody = r
-                    .To = correos
-                    .Display
-                End With
-                'End If
-                objOutlookMsg = Nothing
-                objOutlook = Nothing
+                    r = r & "</body></html>"
+                    objOutlook = CreateObject("Outlook.Application")
+                    objOutlookMsg = objOutlook.CreateItem(0)
+                    banderaform = False
+                    With objOutlookMsg
+                        '.CC = cca
+                        .Subject = "AVISO DE LLEGADA DE ENVÍO AL ALMACÉN DE METAS"
+                        .HTMLBody = r
+                        .To = correos
+                        .Display
+                    End With
+                    'End If
+                    objOutlookMsg = Nothing
+                    objOutlook = Nothing
 
+                Else
+                    bancorreo = 2
+                    correos2 = True
+                    FrmCompletarOV.Show()
+                End If
+                If formcorreos = 1 Then
+
+                End If
+                Me.Dispose()
             Else
-                bancorreo = 2
-                correos2 = True
-                FrmCompletarOV.Show()
+                MsgBox("No ha seleccionado ningúna cotización", MsgBoxStyle.Critical, "Error del sistema.")
             End If
-            If formcorreos = 1 Then
-
-            End If
-            Me.Dispose()
-        Else
-            MsgBox("No ha seleccionado ningúna cotización", MsgBoxStyle.Critical, "Error del sistema.")
-        End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmFiltrarCampo", "Error al mandar el correo", Err.Number, cadena)
+        End Try
     End Sub
 
     Private Sub BtnMinimizar_Click(sender As Object, e As EventArgs) Handles btnMinimizar.Click

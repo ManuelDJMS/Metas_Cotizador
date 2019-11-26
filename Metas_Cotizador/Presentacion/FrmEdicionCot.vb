@@ -78,7 +78,7 @@ Public Class FrmEdicionCot
                 isnull(ContAddress1,'-'), isnull(ContCity,'-'), isnull(ContState,'-'), isnull(Phone,'-'), isnull(Email,'-') 
                 from " & servidor & "[SetupCustomerDetails] inner join  
                 SetupCustomerAddressDtls on [SetupCustomerDetails].CustomerId=[SetupCustomerAddressDtls].CustomerId
-                where [MetAs_Live-pruebas].[dbo].[SetupCustomerDetails].CustomerId=" & empresa
+                where [SetupCustomerDetails].CustomerId=" & empresa
                 comandoLIMS.CommandText = R
                 lectorLIMS = comandoLIMS.ExecuteReader
                 lectorLIMS.Read()
@@ -139,38 +139,52 @@ Public Class FrmEdicionCot
         End Try
     End Sub
     Sub llenarcombo(ByVal query As String, ByVal combo As ComboBox)
-        '=============================================== METODO PARA LLENAR LOS COMBOS ===================================================
-        MetodoMetasCotizador()
-        comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-        comandoMetasCotizador.CommandText = query
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        While lectorMetasCotizador.Read()
-            combo.Items.Add(lectorMetasCotizador(1))
-        End While
-        lectorMetasCotizador.Close()
-        comandoMetasCotizador.CommandText = query & " where id" & query.Substring(14) & "=1"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        combo.Tag = lectorMetasCotizador(0)
-        combo.Text = lectorMetasCotizador(1)
-        lectorMetasCotizador.Close()
+        Try
+            '=============================================== METODO PARA LLENAR LOS COMBOS ===================================================
+            MetodoMetasCotizador()
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            comandoMetasCotizador.CommandText = query
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                combo.Items.Add(lectorMetasCotizador(1))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = query & " where id" & query.Substring(14) & "=1"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            combo.Tag = lectorMetasCotizador(0)
+            combo.Text = lectorMetasCotizador(1)
+            lectorMetasCotizador.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmEdicionCot", "Error en el metodo de llenado de los combos", Err.Number, cadena)
+        End Try
     End Sub
     Sub llenarcombo2(ByVal query As String, ByVal combo As ComboBox)
         '=============================================== METODO PARA LLENAR LOS COMBOS ===================================================
-        MetodoMetasCotizador()
-        comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-        comandoMetasCotizador.CommandText = query
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        While lectorMetasCotizador.Read()
-            combo.Items.Add(lectorMetasCotizador(1))
-        End While
-        lectorMetasCotizador.Close()
-        comandoMetasCotizador.CommandText = query & " where id" & query.Substring(14) & "=2"
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        lectorMetasCotizador.Read()
-        combo.Tag = lectorMetasCotizador(0)
-        combo.Text = lectorMetasCotizador(1)
-        lectorMetasCotizador.Close()
+        Try
+            MetodoMetasCotizador()
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            comandoMetasCotizador.CommandText = query
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                combo.Items.Add(lectorMetasCotizador(1))
+            End While
+            lectorMetasCotizador.Close()
+            comandoMetasCotizador.CommandText = query & " where id" & query.Substring(14) & "=2"
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            lectorMetasCotizador.Read()
+            combo.Tag = lectorMetasCotizador(0)
+            combo.Text = lectorMetasCotizador(1)
+            lectorMetasCotizador.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmEdicionCot", "Error en el metodo de llenado de los combos 2", Err.Number, cadena)
+        End Try
     End Sub
     Sub seleccioncombo(ByVal tabla As String, ByVal combo As ComboBox)
         MetodoMetasCotizador()
@@ -206,7 +220,7 @@ Public Class FrmEdicionCot
                 MetodoMetasCotizador()
                 comandoMetasCotizador = conexionMetasCotizador.CreateCommand
                 R = "if exists (Select [Cotizaciones].NumCot,[SetUpEquipment].[EquipId],[SetupServices].[ServicesId]
-                            from [MetasCotizador].[dbo].[Cotizaciones]
+                            from [Cotizaciones]
                             INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
 				            INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
 				            INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
@@ -310,7 +324,7 @@ Public Class FrmEdicionCot
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del Sistema")
             cadena = Err.Description
             cadena = cadena.Replace("'", "")
-            Bitacora("Ventas", "Error al realizar un descuento en el DataGrid", Err.Number, cadena)
+            Bitacora("FrmEdicionCot", "Error al realizar un descuento en el DataGrid", Err.Number, cadena)
         End Try
     End Sub
     'ARRASTRAR EL FORMULARIO
@@ -396,13 +410,13 @@ Public Class FrmEdicionCot
                         '-----INSERTA EN DETALLECOTIZACIONES-------
                         For i = 0 To DGCopia.Rows.Count - 2
                             comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-                            comandoMetasCotizador.CommandText = "select top 1 [idListaCotizacion] from [MetasCotizador].[dbo].[DetalleCotizaciones] order by  [idListaCotizacion] desc"
+                            comandoMetasCotizador.CommandText = "select top 1 [idListaCotizacion] from [DetalleCotizaciones] order by  [idListaCotizacion] desc"
                             lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
                             lectorMetasCotizador.Read()
                             agregar1 = lectorMetasCotizador(0)
                             lectorMetasCotizador.Close()
                             R = "if exists (Select [Cotizaciones].NumCot,[SetUpEquipment].[EquipId],[SetupServices].[ServicesId]
-                            from [MetasCotizador].[dbo].[Cotizaciones]
+                            from [Cotizaciones]
                             INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
 				            INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
 				            INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]

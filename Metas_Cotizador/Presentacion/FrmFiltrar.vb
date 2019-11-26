@@ -3,7 +3,6 @@
         Try
             MetodoLIMS()
             comandoLIMS = conexionLIMS.CreateCommand
-            Dim R As String
             R = "select x1.CustomerId, FirstName, (MiddleName + ' ' + LastName) as Apellidos, CompanyName, CustAccountNo, Email, ContAddress1, ContZip from [SetupCustomerDetails] x1 
                  inner join [SetupCustomerAddressDtls] x2 on x1.CustomerId=x2.CustomerId"
             comandoLIMS.CommandText = R
@@ -14,7 +13,10 @@
             lectorLIMS.Close()
             conexionLIMS.Close()
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del Sistema")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmFiltrar", "Error al cargar el formulario", Err.Number, cadena)
         End Try
     End Sub
     Private Sub TextEmpresa_TextChanged(sender As Object, e As EventArgs) Handles TextEmpresa.TextChanged
@@ -22,7 +24,6 @@
             MetodoLIMS()
             comandoLIMS = conexionLIMS.CreateCommand
             dgEmpresas.Rows.Clear()
-            Dim R As String
             R = "select x1.CustomerId, FirstName, (MiddleName + ' ' + LastName) as Apellidos, CompanyName, CustAccountNo, Email, ContAddress1, ContZip from [SetupCustomerDetails] x1 
                  inner join [SetupCustomerAddressDtls] x2 on x1.CustomerId=x2.CustomerId where CompanyName like '" & TextEmpresa.Text & "%' and x1.CustomerId like '" & txtidCliente.Text &
                  "%' and Email like '" & TextCorreo.Text & "%' and ContAddress1 like '" & TextDireccion.Text & "%' and ContZip like '" & TextCP.Text & "%'"
@@ -43,7 +44,6 @@
             MetodoLIMS()
             comandoLIMS = conexionLIMS.CreateCommand
             dgEmpresas.Rows.Clear()
-            Dim R As String
             R = "select x1.CustomerId, FirstName, (MiddleName + ' ' + LastName) as Apellidos, CompanyName, CustAccountNo, Email, ContAddress1, ContZip from [SetupCustomerDetails] x1 
                  inner join [SetupCustomerAddressDtls] x2 on x1.CustomerId=x2.CustomerId where CompanyName like '" & TextEmpresa.Text & "%' and x1.CustomerId like '" & txtidCliente.Text &
                  "%' and Email like '" & TextCorreo.Text & "%' and ContAddress1 like '" & TextDireccion.Text & "%' and ContZip like '" & TextCP.Text & "%'"
@@ -64,7 +64,6 @@
             MetodoLIMS()
             comandoLIMS = conexionLIMS.CreateCommand
             dgEmpresas.Rows.Clear()
-            Dim R As String
             R = "select x1.CustomerId, FirstName, (MiddleName + ' ' + LastName) as Apellidos, CompanyName, CustAccountNo, Email, ContAddress1, ContZip from [SetupCustomerDetails] x1 
                  inner join [SetupCustomerAddressDtls] x2 on x1.CustomerId=x2.CustomerId where CompanyName like '" & TextEmpresa.Text & "%' and x1.CustomerId like '" & txtidCliente.Text &
                  "%' and Email like '" & TextCorreo.Text & "%' and ContAddress1 like '" & TextDireccion.Text & "%' and ContZip like '" & TextCP.Text & "%'"
@@ -85,7 +84,6 @@
             MetodoLIMS()
             comandoLIMS = conexionLIMS.CreateCommand
             dgEmpresas.Rows.Clear()
-            Dim R As String
             R = "select x1.CustomerId, FirstName, (MiddleName + ' ' + LastName) as Apellidos, CompanyName, CustAccountNo, Email, ContAddress1, ContZip from [SetupCustomerDetails] x1 
                  inner join [SetupCustomerAddressDtls] x2 on x1.CustomerId=x2.CustomerId where CompanyName like '" & TextEmpresa.Text & "%' and x1.CustomerId like '" & txtidCliente.Text &
                  "%' and Email like '" & TextCorreo.Text & "%' and ContAddress1 like '" & TextDireccion.Text & "%' and ContZip like '" & TextCP.Text & "%'"
@@ -106,7 +104,6 @@
             MetodoLIMS()
             comandoLIMS = conexionLIMS.CreateCommand
             dgEmpresas.Rows.Clear()
-            Dim R As String
             R = "select x1.CustomerId, FirstName, (MiddleName + ' ' + LastName) as Apellidos, CompanyName, CustAccountNo, Email, ContAddress1, ContZip from [SetupCustomerDetails] x1 
                  inner join [SetupCustomerAddressDtls] x2 on x1.CustomerId=x2.CustomerId where CompanyName like '" & TextEmpresa.Text & "%' and x1.CustomerId like '" & txtidCliente.Text &
                  "%' and Email like '" & TextCorreo.Text & "%' and ContAddress1 like '" & TextDireccion.Text & "%' and ContZip like '" & TextCP.Text & "%'"

@@ -26,33 +26,31 @@ Public Class FrmCotizadorLIMS
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
             cadena = Err.Description
             cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al buscar la empresa", Err.Number, cadena)
+            Bitacora("FrmCotizadorLIMS", "Error al buscar la empresa", Err.Number, cadena)
         End Try
     End Sub
-    Public Sub consultaID(ByVal idProspecto As String)
-        Try
-            MetodoMetasCotizador()
-            R = "select idProspecto, Nombre, Apellidos, Compania, Telefono, Correo FROM Prospectos where idProspecto = '" & idProspecto & "'"
-            Dim comando As New SqlCommand(R, conexionMetasCotizador)
-            Dim lector As SqlDataReader
-            lector = comando.ExecuteReader
-            lector.Read()
-            txtclavee.Text = lector(0)
-            txtNombreProspecto.Text = lector(1) & " " & lector(2)
-            txtNombreCompania.Text = lector(3)
-            txtTelefono.Text = lector(4)
-            txtCorreo.Text = lector(5)
-            lector.Close()
-            conexionMetasCotizador.Close()
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al buscar la empresa", Err.Number, cadena)
-        End Try
-    End Sub
-
-
+    'Public Sub consultaID(ByVal idProspecto As String)
+    '    Try
+    '        MetodoMetasCotizador()
+    '        R = "select idProspecto, Nombre, Apellidos, Compania, Telefono, Correo FROM Prospectos where idProspecto = '" & idProspecto & "'"
+    '        Dim comando As New SqlCommand(R, conexionMetasCotizador)
+    '        Dim lector As SqlDataReader
+    '        lector = comando.ExecuteReader
+    '        lector.Read()
+    '        txtclavee.Text = lector(0)
+    '        txtNombreProspecto.Text = lector(1) & " " & lector(2)
+    '        txtNombreCompania.Text = lector(3)
+    '        txtTelefono.Text = lector(4)
+    '        txtCorreo.Text = lector(5)
+    '        lector.Close()
+    '        conexionMetasCotizador.Close()
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+    '        cadena = Err.Description
+    '        cadena = cadena.Replace("'", "")
+    '        Bitacora("FrmCotizadorLIMS", "Error al buscar la empresa", Err.Number, cadena)
+    '    End Try
+    'End Sub
 
     Private Sub PictureBox5_Click(sender As Object, e As EventArgs) Handles PictureBox5.Click
         Me.Dispose()
@@ -77,7 +75,7 @@ Public Class FrmCotizadorLIMS
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
             cadena = Err.Description
             cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al filtrar por empresa", Err.Number, cadena)
+            Bitacora("FrmCotizadorLIMS", "Error al consultar los articulos", Err.Number, cadena)
         End Try
     End Sub
 
@@ -119,45 +117,59 @@ Public Class FrmCotizadorLIMS
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
             cadena = Err.Description
             cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al buscar la empresa", Err.Number, cadena)
+            Bitacora("FrmCotizadorLIMS", "Error al buscar la empresa por clave", Err.Number, cadena)
         End Try
     End Sub
     Private Sub TabConsulta_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabConsulta.SelectedIndexChanged
-        If TabConsulta.SelectedTab Is TabPage1 Then
-            MetodoMetasCotizador()
-            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-            R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone, x2.Email from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x1
+        Try
+            If TabConsulta.SelectedTab Is TabPage1 Then
+                MetodoMetasCotizador()
+                comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+                R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone, x2.Email from " & servidor2 & "[Cotizaciones] x1
              inner join " & servidor & "[SetupCustomerDetails] x2 on x1.idContacto =x2.CustomerId inner join " & servidor & "[SetupCustomerAddressDtls] x3
              on x2.Customerid=x3.CustomerId"
-            comandoMetasCotizador.CommandText = R
-            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-            While lectorMetasCotizador.Read()
-                dgEmpresa.Rows.Add(lectorMetasCotizador(0), lectorMetasCotizador(1), lectorMetasCotizador(2), lectorMetasCotizador(3), lectorMetasCotizador(4), lectorMetasCotizador(5), lectorMetasCotizador(6))
-            End While
-            lectorMetasCotizador.Close()
-            conexionMetasCotizador.Close()
-        End If
+                comandoMetasCotizador.CommandText = R
+                lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+                While lectorMetasCotizador.Read()
+                    dgEmpresa.Rows.Add(lectorMetasCotizador(0), lectorMetasCotizador(1), lectorMetasCotizador(2), lectorMetasCotizador(3), lectorMetasCotizador(4), lectorMetasCotizador(5), lectorMetasCotizador(6))
+                End While
+                lectorMetasCotizador.Close()
+                conexionMetasCotizador.Close()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmCotizadorLIMS", "Error al cambiar de pestaña", Err.Number, cadena)
+        End Try
     End Sub
 
     Private Sub DgEmpresa_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs)
-        If dgCot.Rows.Count < 2 Then
-        Else
-            dgCot.Rows.RemoveAt(DGCotizaciones.CurrentRow.Index)
-            dgCot.Rows.Clear()
-        End If
-        empresa = Val(DGEmpresas.Rows(e.RowIndex).Cells(0).Value)
-        MetodoMetasCotizador()
-        comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-        R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[DetalleCotizaciones] x1
+        Try
+            If dgCot.Rows.Count < 2 Then
+            Else
+                dgCot.Rows.RemoveAt(DGCotizaciones.CurrentRow.Index)
+                dgCot.Rows.Clear()
+            End If
+            empresa = Val(DGEmpresas.Rows(e.RowIndex).Cells(0).Value)
+            MetodoMetasCotizador()
+            comandoMetasCotizador = conexionMetasCotizador.CreateCommand
+            R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from " & servidor2 & "[DetalleCotizaciones] x1
               inner join " & servidor & "[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join " & servidor & " [SetupEquipmentServiceMapping] x3
-			  on x1.EquipId=x3.EquipId inner join [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa
-        comandoMetasCotizador.CommandText = R
-        lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-        While lectorMetasCotizador.Read()
-            dgCot.Rows.Add(lectorMetasCotizador(1), lectorMetasCotizador(2), lectorMetasCotizador(4), lectorMetasCotizador(8), lectorMetasCotizador(11), lectorMetasCotizador(5), lectorMetasCotizador(6), lectorMetasCotizador(7), lectorMetasCotizador(8), lectorMetasCotizador(10), lectorMetasCotizador(12), lectorMetasCotizador(14))
-        End While
-        lectorMetasCotizador.Close()
-        conexionMetasCotizador.Close()
+			  on x1.EquipId=x3.EquipId inner join " & servidor2 & "[Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa
+            comandoMetasCotizador.CommandText = R
+            lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
+            While lectorMetasCotizador.Read()
+                dgCot.Rows.Add(lectorMetasCotizador(1), lectorMetasCotizador(2), lectorMetasCotizador(4), lectorMetasCotizador(8), lectorMetasCotizador(11), lectorMetasCotizador(5), lectorMetasCotizador(6), lectorMetasCotizador(7), lectorMetasCotizador(8), lectorMetasCotizador(10), lectorMetasCotizador(12), lectorMetasCotizador(14))
+            End While
+            lectorMetasCotizador.Close()
+            conexionMetasCotizador.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmCotizadorLIMS", "Error al seleccionar las cotizaciones de las empresas", Err.Number, cadena)
+        End Try
     End Sub
 
     Private Sub TxtNombreE_TextChanged(sender As Object, e As EventArgs) Handles txtNombreE.TextChanged
@@ -169,7 +181,7 @@ Public Class FrmCotizadorLIMS
             Else
                 dgEmpresa.Rows.RemoveAt(dgEmpresa.CurrentRow.Index)
             End If
-            R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone,Email from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x1
+            R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone,Email from " & servidor2 & "[Cotizaciones] x1
                 inner join " & servidor & " [SetupCustomerDetails] x2 on x1.idContacto =x2.CustomerId inner join " & servidor & " [SetupCustomerAddressDtls] x3
                 on x2.Customerid=x3.CustomerId where CompanyName like '" & txtNombreE.Text & "%' and Email like '" & TextEmail.Text & "%' and ContAddress1 like '" & TextDom.Text &
                 "%' and ContZip like '" & txtCP.Text & "%' and Phone like '" & TextTel.Text & "%'"
@@ -184,7 +196,7 @@ Public Class FrmCotizadorLIMS
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
             cadena = Err.Description
             cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al buscar la empresa", Err.Number, cadena)
+            Bitacora("FrmCotizadorLIMS", "Error al buscar la empresa por nombre", Err.Number, cadena)
         End Try
     End Sub
 
@@ -197,7 +209,7 @@ Public Class FrmCotizadorLIMS
             Else
                 dgEmpresa.Rows.RemoveAt(dgEmpresa.CurrentRow.Index)
             End If
-            R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone,Email from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x1
+            R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone,Email from " & servidor2 & "[Cotizaciones] x1
                 inner join " & servidor & "[SetupCustomerDetails] x2 on x1.idContacto =x2.CustomerId inner join " & servidor & "[SetupCustomerAddressDtls] x3
                 on x2.Customerid=x3.CustomerId where CompanyName like '" & txtNombreE.Text & "%' and Email like '" & TextEmail.Text & "%' and ContAddress1 like '" & TextDom.Text &
                 "%' and ContZip like '" & txtCP.Text & "%' and Phone like '" & TextTel.Text & "%'"
@@ -212,7 +224,7 @@ Public Class FrmCotizadorLIMS
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
             cadena = Err.Description
             cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al buscar la empresa", Err.Number, cadena)
+            Bitacora("FrmCotizadorLIMS", "Error al buscar la empresa por domicilio", Err.Number, cadena)
         End Try
     End Sub
 
@@ -225,7 +237,7 @@ Public Class FrmCotizadorLIMS
             Else
                 dgEmpresa.Rows.RemoveAt(dgEmpresa.CurrentRow.Index)
             End If
-            R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone,Email from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x1
+            R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone,Email from [Cotizaciones] x1
                 inner join " & servidor & "[SetupCustomerDetails] x2 on x1.idContacto =x2.CustomerId inner join " & servidor & "[SetupCustomerAddressDtls] x3
                 on x2.Customerid=x3.CustomerId where CompanyName like '" & txtNombreE.Text & "%' and Email like '" & TextEmail.Text & "%' and ContAddress1 like '" & TextDom.Text &
                 "%' and ContZip like '" & txtCP.Text & "%' and Phone like '" & TextTel.Text & "%'"
@@ -240,7 +252,7 @@ Public Class FrmCotizadorLIMS
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
             cadena = Err.Description
             cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al buscar la empresa", Err.Number, cadena)
+            Bitacora("FrmCotizadorLIMS", "Error al buscar la empresa", Err.Number, cadena)
         End Try
     End Sub
 
@@ -253,7 +265,7 @@ Public Class FrmCotizadorLIMS
             Else
                 dgEmpresa.Rows.RemoveAt(dgEmpresa.CurrentRow.Index)
             End If
-            R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone,Email from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x1
+            R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone,Email from [Cotizaciones] x1
                 inner join " & servidor & "[SetupCustomerDetails] x2 on x1.idContacto =x2.CustomerId inner join " & servidor & "[SetupCustomerAddressDtls] x3
                 on x2.Customerid=x3.CustomerId where CompanyName like '" & txtNombreE.Text & "%' and Email like '" & TextEmail.Text & "%' and ContAddress1 like '" & TextDom.Text &
                 "%' and ContZip like '" & txtCP.Text & "%' and Phone like '" & TextTel.Text & "%'"
@@ -268,7 +280,7 @@ Public Class FrmCotizadorLIMS
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
             cadena = Err.Description
             cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al buscar la empresa", Err.Number, cadena)
+            Bitacora("FrmCotizadorLIMS", "Error al buscar la empresa por codigo postal", Err.Number, cadena)
         End Try
     End Sub
 
@@ -281,7 +293,7 @@ Public Class FrmCotizadorLIMS
             Else
                 dgEmpresa.Rows.RemoveAt(dgEmpresa.CurrentRow.Index)
             End If
-            R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone,Email from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x1
+            R = "select distinct idContacto, FirstName + ' ' + MiddleName as Cliente, CompanyName, ContAddress1, ContZip, Phone,Email from [Cotizaciones] x1
                 inner join " & servidor & "[SetupCustomerDetails] x2 on x1.idContacto =x2.CustomerId inner join " & servidor & "[SetupCustomerAddressDtls] x3
                 on x2.Customerid=x3.CustomerId where CompanyName like '" & txtNombreE.Text & "%' and Email like '" & TextEmail.Text & "%' and ContAddress1 like '" & TextDom.Text &
                 "%' and ContZip like '" & txtCP.Text & "%' and Phone like '" & TextTel.Text & "%'"
@@ -296,7 +308,7 @@ Public Class FrmCotizadorLIMS
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
             cadena = Err.Description
             cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al buscar la empresa", Err.Number, cadena)
+            Bitacora("FrmCotizacion2018", "Error al buscar la empresa por telefono", Err.Number, cadena)
         End Try
     End Sub
 
@@ -309,10 +321,9 @@ Public Class FrmCotizadorLIMS
             Else
                 dgCot.Rows.RemoveAt(dgCot.CurrentRow.Index)
             End If
-            R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[DetalleCotizaciones] x1
-              inner join " & servidor & "[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join " & servidor & "[SetupEquipmentServiceMapping] x3
-			  on x1.EquipId=x3.EquipId inner join [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa &
-              " and ItemNumber like '" & TextSKU.Text & "%' and EquipmentName like '" & TextDescripcion.Text & "%' and Mfr like '" & TextMarca.Text & "%' and " &
+            R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from [DetalleCotizaciones] x1
+              inner join " & servidor & "[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join " & servidor & "[SetupEquipmentServiceMapping] x3 on x1.EquipId=x3.EquipId inner join [Cotizaciones] x4 
+              on x1.NumCot=x4.NumCot where idContacto=" & empresa & " and ItemNumber like '" & TextSKU.Text & "%' and EquipmentName like '" & TextDescripcion.Text & "%' and Mfr like '" & TextMarca.Text & "%' and " &
               "Model like '" & TextModelo.Text & "%'"
             comandoMetasCotizador.CommandText = R
             lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
@@ -325,7 +336,7 @@ Public Class FrmCotizadorLIMS
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
             cadena = Err.Description
             cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al buscar la empresa", Err.Number, cadena)
+            Bitacora("FrmCotizadorLIMS", "Error al buscar artiulos por el SKU", Err.Number, cadena)
         End Try
     End Sub
 
@@ -338,11 +349,11 @@ Public Class FrmCotizadorLIMS
             Else
                 dgCot.Rows.RemoveAt(dgCot.CurrentRow.Index)
             End If
-            R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[DetalleCotizaciones] x1
-              inner join " & servidor & "[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join " & servidor & "[SetupEquipmentServiceMapping] x3
-			  on x1.EquipId=x3.EquipId inner join [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa &
-              " and ItemNumber like '" & TextSKU.Text & "%' and EquipmentName like '" & TextDescripcion.Text & "%' and Mfr like '" & TextMarca.Text & "%' and " &
-              "Model like '" & TextModelo.Text & "%'"
+            R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from 
+                [DetalleCotizaciones] x1 inner join " & servidor & "[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join " & servidor & "[SetupEquipmentServiceMapping] x3
+			    on x1.EquipId=x3.EquipId inner join [Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa &
+                " and ItemNumber like '" & TextSKU.Text & "%' and EquipmentName like '" & TextDescripcion.Text & "%' and Mfr like '" & TextMarca.Text & "%' and " &
+                "Model like '" & TextModelo.Text & "%'"
             comandoMetasCotizador.CommandText = R
             lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
             While lectorMetasCotizador.Read()
@@ -354,7 +365,7 @@ Public Class FrmCotizadorLIMS
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
             cadena = Err.Description
             cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion2018", "Error al buscar la empresa", Err.Number, cadena)
+            Bitacora("FrmCotizadorLIMS", "Error al buscar la empresa", Err.Number, cadena)
         End Try
     End Sub
 
@@ -367,9 +378,9 @@ Public Class FrmCotizadorLIMS
             Else
                 dgCot.Rows.RemoveAt(dgCot.CurrentRow.Index)
             End If
-            R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[DetalleCotizaciones] x1
+            R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from [DetalleCotizaciones] x1
               inner join " & servidor & "[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join " & servidor & "[SetupEquipmentServiceMapping] x3
-			  on x1.EquipId=x3.EquipId inner join [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa &
+			  on x1.EquipId=x3.EquipId inner join [Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa &
               " and ItemNumber like '" & TextSKU.Text & "%' and EquipmentName like '" & TextDescripcion.Text & "%' and Mfr like '" & TextMarca.Text & "%' and " &
               "Model like '" & TextModelo.Text & "%'"
             comandoMetasCotizador.CommandText = R
@@ -396,9 +407,9 @@ Public Class FrmCotizadorLIMS
             Else
                 dgCot.Rows.RemoveAt(dgCot.CurrentRow.Index)
             End If
-            R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[DetalleCotizaciones] x1
+            R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from [DetalleCotizaciones] x1
               inner join " & servidor & "[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join " & servidor & "[SetupEquipmentServiceMapping] x3
-			  on x1.EquipId=x3.EquipId inner join [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa &
+			  on x1.EquipId=x3.EquipId inner join [Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa &
               " and ItemNumber like '" & TextSKU.Text & "%' and EquipmentName like '" & TextDescripcion.Text & "%' and Mfr like '" & TextMarca.Text & "%' and " &
               "Model like '" & TextModelo.Text & "%'"
             comandoMetasCotizador.CommandText = R
@@ -420,43 +431,38 @@ Public Class FrmCotizadorLIMS
         Try
             Dim COT As Integer
             COT = InputBox("Ingrese el número de Cotización", "Folios")
-            'COT = Val(txtCot.Text)
             MetodoMetasCotizador()
             comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-            ' Dim n As Integer = 0
             Dim desde, hasta As Date
             Dim nombre, puesto, tel, correo, emp, dom, lugar, moneda, cotizo, correoEla, depto,
             pago, entrega, modalidad, obser, calmetho, services, domFac, rfc As String
             Dim cve As Integer
             Dim R As String
-            'Dim fir As Image
-            'Dim name, mfr, model, service, price, subt As String
-            R = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, isnull([Department], '-') AS Departament, isnull([Phone], '-') as Phone, isnull([SetupCustomerDetails].[Email], '-') as Email,
-        isnull([CompanyName],'-') as CompanyName, [ContAddress1] + ' '+  [ContCity] +', '+ [ContState]+'. ' + [ContCountry] +'. CP '+ [ContZip] AS DomCont, ROW_NUMBER() OVER(ORDER BY PartidaNo ASC) AS Partidad, Cantidad,[DetalleCotizaciones].[EquipId],
-        [SetUpEquipment].[EquipmentName]+', '+[Mfr] +', '+[Model] +'. ' + (CASE WHEN  [identificadorInventarioCliente] = '-' COLLATE SQL_Latin1_General_CP1_CI_AS  THEN [identificadorInventarioCliente]  COLLATE SQL_Latin1_General_CP1_CI_AS 
-        ELSE [identificadorInventarioCliente] COLLATE SQL_Latin1_General_CP1_CI_AS  END) AS Comparacion,[SetupServices].[ServiceName],[ServiceDescription] +', ' + [TurnAroundTime]+' dias para calibración' as Descrip, [SetupEquipmentServiceMapping].[Price], [SetupEquipmentServiceMapping].[Price] * Cantidad AS sub,
-        [idUsuarioAdministrador], [Usuarios].[Nombre], [LugarCondicion].[Descripcon] AS lugar, [MonedaCondicion].[Descripcion] AS moneda, 
-        [PagoCondicion].[Descripcion] AS pago, [ModalidadCondicion].[Descripcion] AS modalidad,
-        [Cotizaciones].[Observaciones],isnull([CalibrationMethod], '-'), [ServiceDescription], [BillAddress1] +' '+ [BillCity] +', '+ [BillState]+'. '+[BillCountry]+' CP '+[BillZip] AS domFac, [TaxIDNo],
-        [Usuarios].[Email], [Usuarios].[Depto]
-                    from [MetasCotizador].[dbo].[Cotizaciones]
-        INNER JOIN [Usuarios] ON [Cotizaciones].[idUsuarioCotizacion] = [Usuarios].[idUsuarioAdministrador]
-        INNER JOIN " & servidor & " [SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
-        INNER JOIN " & servidor & " [SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
-                    INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
-        INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].[idListaCotizacion] = [ServiciosEnCotizaciones].[idListaCotizacion]
-        INNER JOIN " & servidor & " [SetupServices] ON [ServiciosEnCotizaciones].[idServicio] = [SetupServices].[ServicesId]
-        INNER JOIN [LugarCondicion] ON [Cotizaciones].[idLugarCondicion] = [LugarCondicion].[idLugarCondicion]
-        INNER JOIN [MonedaCondicion] ON [Cotizaciones].[idMonedaCondicion] = [MonedaCondicion].[idMonedaCondicion]
-        INNER JOIN [PagoCondicion] ON [Cotizaciones].[idPagoCondicion] = [PagoCondicion].[idPagoCondicion]
-        INNER JOIN [TiemposEntregaCondicion] ON [Cotizaciones].[idTiempoEntregaCondicion] = [TiemposEntregaCondicion].[idTiempoEntregaCondicion]
-        INNER JOIN [ModalidadCondicion] ON [Cotizaciones].[idModalidadCondicion] = [ModalidadCondicion].[idModalidadCondicion]
-        INNER JOIN " & servidor & " [SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
-        INNER JOIN " & servidor & " [SetupEquipmentServiceMapping] ON [SetUpEquipment].[EquipId] =[SetupEquipmentServiceMapping].[EquipId]
+            R = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, isnull([Department], '-') AS Departament, isnull([Phone], '-') as Phone, 
+                isnull([SetupCustomerDetails].[Email], '-') as Email, isnull([CompanyName],'-') as CompanyName, [ContAddress1] + ' '+  [ContCity] +', '+ [ContState]+'. ' + [ContCountry] +'. CP '+ [ContZip] AS DomCont, 
+                ROW_NUMBER() OVER(ORDER BY PartidaNo ASC) AS Partidad, Cantidad,[DetalleCotizaciones].[EquipId],[SetUpEquipment].[EquipmentName]+', '+[Mfr] +', '+[Model] +'. ' + 
+                (CASE WHEN  [identificadorInventarioCliente] = '-' COLLATE SQL_Latin1_General_CP1_CI_AS  THEN [identificadorInventarioCliente]  COLLATE SQL_Latin1_General_CP1_CI_AS 
+                ELSE [identificadorInventarioCliente] COLLATE SQL_Latin1_General_CP1_CI_AS  END) AS Comparacion,[SetupServices].[ServiceName],[ServiceDescription] +', ' + [TurnAroundTime]+' dias para calibración' as Descrip, [SetupEquipmentServiceMapping].[Price], [SetupEquipmentServiceMapping].[Price] * Cantidad AS sub,
+                [idUsuarioAdministrador], [Usuarios].[Nombre], [LugarCondicion].[Descripcon] AS lugar, [MonedaCondicion].[Descripcion] AS moneda, 
+                [PagoCondicion].[Descripcion] AS pago, [ModalidadCondicion].[Descripcion] AS modalidad,
+                [Cotizaciones].[Observaciones],isnull([CalibrationMethod], '-'), [ServiceDescription], [BillAddress1] +' '+ [BillCity] +', '+ [BillState]+'. '+[BillCountry]+' CP '+[BillZip] AS domFac, [TaxIDNo],
+                [Usuarios].[Email], [Usuarios].[Depto] from [Cotizaciones]
+                INNER JOIN [Usuarios] ON [Cotizaciones].[idUsuarioCotizacion] = [Usuarios].[idUsuarioAdministrador]
+                INNER JOIN " & servidor & " [SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
+                INNER JOIN " & servidor & " [SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
+                            INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
+                INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].[idListaCotizacion] = [ServiciosEnCotizaciones].[idListaCotizacion]
+                INNER JOIN " & servidor & " [SetupServices] ON [ServiciosEnCotizaciones].[idServicio] = [SetupServices].[ServicesId]
+                INNER JOIN [LugarCondicion] ON [Cotizaciones].[idLugarCondicion] = [LugarCondicion].[idLugarCondicion]
+                INNER JOIN [MonedaCondicion] ON [Cotizaciones].[idMonedaCondicion] = [MonedaCondicion].[idMonedaCondicion]
+                INNER JOIN [PagoCondicion] ON [Cotizaciones].[idPagoCondicion] = [PagoCondicion].[idPagoCondicion]
+                INNER JOIN [TiemposEntregaCondicion] ON [Cotizaciones].[idTiempoEntregaCondicion] = [TiemposEntregaCondicion].[idTiempoEntregaCondicion]
+                INNER JOIN [ModalidadCondicion] ON [Cotizaciones].[idModalidadCondicion] = [ModalidadCondicion].[idModalidadCondicion]
+                INNER JOIN " & servidor & " [SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
+                INNER JOIN " & servidor & " [SetupEquipmentServiceMapping] ON [SetUpEquipment].[EquipId] =[SetupEquipmentServiceMapping].[EquipId]
                         WHERE [Cotizaciones].NumCot = '" & COT & "'"
             comandoMetasCotizador.CommandText = R
             lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
-            'While lectorMetasCotizador.Read()
             lectorMetasCotizador.Read()
             desde = lectorMetasCotizador(1)
             ' MsgBox(desde)
@@ -493,22 +499,17 @@ Public Class FrmCotizadorLIMS
             Else
                 calmetho = lectorMetasCotizador(24)
             End If
-            'MsgBox(calmetho)
             If lectorMetasCotizador(24) = "" Then
                 services = "-"
             Else
                 services = lectorMetasCotizador(25)
             End If
-
-            ' MsgBox(services)
             domFac = lectorMetasCotizador(26)
-
             rfc = lectorMetasCotizador(27)
             correoEla = lectorMetasCotizador(28)
             depto = lectorMetasCotizador(29)
             entrega = "-"
             lectorMetasCotizador.Close()
-            'MsgBox(rfc)
             Dim Adaptador As New SqlDataAdapter
             Adaptador.SelectCommand = New SqlCommand
             Adaptador.SelectCommand.Connection = conexionMetasCotizador
@@ -639,11 +640,10 @@ Public Class FrmCotizadorLIMS
             Dim p22 As New ReportParameter("serDescription", services)
             Dim p23 As New ReportParameter("domFac", domFac)
             Dim p24 As New ReportParameter("rfc", rfc)
-
             Dim Reportes As New ReportDataSource("DataSet1", Data.Tables(0))
             FrmReportes.ReportViewer1.LocalReport.DataSources.Clear()
             FrmReportes.ReportViewer1.LocalReport.DataSources.Add(Datasource)
-            FrmReportes.ReportViewer1.LocalReport.ReportPath = "C:\Users\Software TI\Documents\GitHub\MetasCRM\Reportes\CotizacionModelo.rdlc"
+            FrmReportes.ReportViewer1.LocalReport.ReportPath = "D:\Users\Software TI\Documents\GitHub\MetasCRM\Reportes\CotizacionModelo.rdlc"
             FrmReportes.ReportViewer1.LocalReport.SetParameters(New ReportParameter() {p1, p2, p3, p4, p5, p6, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17,
                                                                  p19, p20, p21, p22, p23, p24})
             FrmReportes.ReportViewer1.RefreshReport()
@@ -667,7 +667,6 @@ Public Class FrmCotizadorLIMS
                 R = "SELECT SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price from 
                             SetUpEquipment inner join SetupEquipmentServiceMapping on  
                             SetupEquipment.EquipId=SetupEquipmentServiceMapping.EquipId where SetUpEquipment.EquipId=" & DgAgregar.Rows(i).Cells(0).Value
-                'MsgBox(R)
                 comandoLIMS.CommandText = R
                 lectorLIMS = comandoLIMS.ExecuteReader
                 lectorLIMS.Read()
@@ -699,13 +698,6 @@ Public Class FrmCotizadorLIMS
     Private Sub BtCargarArticulos_Click(sender As Object, e As EventArgs) Handles btCargarArticulos.Click
         MetodoLIMS()
         comandoLIMS = conexionLIMS.CreateCommand
-        'R = "select CustomerId, concat(FirstName, ' ' , MiddleName) as Nombre, LastName,  Organization, KeyFiscal, Email, Phone FROM SetupCustomerDetails"
-        'comandoLIMS.CommandText = R
-        'lectorLIMS = comandoLIMS.ExecuteReader
-        'While lectorLIMS.Read()
-        '    DGEmpresas.Rows.Add(lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5), lectorLIMS(6))
-        'End While
-        'lectorLIMS.Close()
         R = "SELECT SetUpEquipment.EquipId, ItemNumber, EquipmentName, Mfr, Model from SetUpEquipment"
         comandoLIMS.CommandText = R
         lectorLIMS = comandoLIMS.ExecuteReader
@@ -715,8 +707,6 @@ Public Class FrmCotizadorLIMS
         lectorLIMS.Close()
         conexionLIMS.Close()
     End Sub
-
-
 
     Private Sub DgCot_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles dgCot.RowHeaderMouseClick
         Try
@@ -731,8 +721,6 @@ Public Class FrmCotizadorLIMS
             pago, entrega, modalidad, obser, calmetho, services, domFac, rfc As String
             Dim cve As Integer
             Dim R As String
-            'Dim fir As Image
-            'Dim name, mfr, model, service, price, subt As String
             R = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre, isnull([Department], '-') AS Departament, isnull([Phone], '-') as Phone, isnull([SetupCustomerDetails].[Email], '-') as Email,
         isnull([CompanyName],'-') as CompanyName, [ContAddress1] + ' '+  [ContCity] +', '+ [ContState]+'. ' + [ContCountry] +'. CP '+ [ContZip] AS DomCont, ROW_NUMBER() OVER(ORDER BY PartidaNo ASC) AS Partidad, Cantidad,[DetalleCotizaciones].[EquipId],
         [SetUpEquipment].[EquipmentName]+', '+[Mfr] +', '+[Model] +'. ' + (CASE WHEN  [identificadorInventarioCliente] = '-' COLLATE SQL_Latin1_General_CP1_CI_AS  THEN [identificadorInventarioCliente]  COLLATE SQL_Latin1_General_CP1_CI_AS 
@@ -961,9 +949,9 @@ Public Class FrmCotizadorLIMS
         empresa = Val(dgEmpresa.Rows(e.RowIndex).Cells(0).Value)
         MetodoMetasCotizador()
         comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-        R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from [SERVER3\COMPAC2].[MetasCotizador].[dbo].[DetalleCotizaciones] x1
-              inner join " & servidor & "[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join " & servidor & "[SetupEquipmentServiceMapping] x3
-			  on x1.EquipId=x3.EquipId inner join [SERVER3\COMPAC2].[MetasCotizador].[dbo].[Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa
+        R = "SELECT idContacto, x1.NumCot, PartidaNo, x1.EquipId, ItemNumber, EquipmentName, Mfr, Model, ServiceDescription,RelationItemNo, Price, Cantidad, SrlNo, RelationItemNo, Creado from
+             [DetalleCotizaciones] x1 inner join " & servidor & "[SetupEquipment] x2 on x1.EquipId=x2.EquipId inner join " & servidor & "[SetupEquipmentServiceMapping] x3
+			  on x1.EquipId=x3.EquipId inner join [Cotizaciones] x4 on x1.NumCot=x4.NumCot where idContacto=" & empresa
         comandoMetasCotizador.CommandText = R
         lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
         While lectorMetasCotizador.Read()
@@ -1000,19 +988,4 @@ Public Class FrmCotizadorLIMS
         End If
 
     End Sub
-
-
-    'Private Sub DGCotizaciones_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DGCotizaciones.CellClick
-    '    If e.ColumnIndex = 0 Then
-    '        For Each fila In DGCotizaciones.Rows
-    '            fila.Cells(21).Value = fila.Cells(15).Value * fila.Cells(20).Value
-    '            If Convert.ToBoolean(fila.Cells(0).Value) = True Then
-    '                fila.Cells(0).Value = False
-    '            End If
-    '            If Convert.ToBoolean(fila.Cells(0).Value) = True Then
-    '                MsgBox(fila.Cells(0).Value)
-    '            End If
-    '        Next
-    '    End If
-    'End Sub
 End Class
