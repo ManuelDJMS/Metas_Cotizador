@@ -83,12 +83,12 @@ Public Class FrmCompletarOV
                 MsgBox("ORDEN DE VENTA GUARDADA")
             Else
                 If domEnvio.Checked = True Then
-                    R = "UPDATE [MetAs_Live-pruebas].[dbo].[SalesOrderDetails] set [PONo] = '" & txtOrdenCompra.Text & "', RecDate = Convert(datetime,'" & dtpFechaRecep.Value.ToShortDateString & "'), [RecBy] = '" & cboRecibidoPor.Text & "',[Priority] ='" & cboPrioridad.Text & "',[TrackingNo]='" & txtNumGuia.Text & "',[BoxCount] = '" & txtCantCajas.Text & "', 
+                    R = "UPDATE [SalesOrderDetails] set [PONo] = '" & txtOrdenCompra.Text & "', RecDate = Convert(datetime,'" & dtpFechaRecep.Value.ToShortDateString & "'), [RecBy] = '" & cboRecibidoPor.Text & "',[Priority] ='" & cboPrioridad.Text & "',[TrackingNo]='" & txtNumGuia.Text & "',[BoxCount] = '" & txtCantCajas.Text & "', 
                 [Weight] = '" & txtPeso.Text & "', [ReceivedVia] = '" & cboRecepcion.Text & "', [ShipVia] = '" & embarcarPor.Text & "', [Remarks] ='" & txtObservaciones.Text & "', [RefNo] = '" & txtRefCot.Text & "',
                 [Volume] = '" & txtVolumen.Text & "',  [ShipAddress1] = '" & DirEnv.ToString & "', [ShipCity] = '" & cdEnv.ToString & "',[ShipState] = '" & estEnv.ToString & "', [ShipZip]  = '" & cpEnv.ToString & "'
                 where [SOId] = " & Val(NumOV.Text) & ""
                 Else
-                    R = "UPDATE [MetAs_Live-pruebas].[dbo].[SalesOrderDetails] set [PONo] = '" & txtOrdenCompra.Text & "', RecDate =Convert(datetime,'" & dtpFechaRecep.Value.ToShortDateString & "'), [RecBy] = '" & cboRecibidoPor.Text & "',[Priority] ='" & cboPrioridad.Text & "',[TrackingNo]='" & txtNumGuia.Text & "', [BoxCount] = '" & txtCantCajas.Text & "', 
+                    R = "UPDATE [SalesOrderDetails] set [PONo] = '" & txtOrdenCompra.Text & "', RecDate =Convert(datetime,'" & dtpFechaRecep.Value.ToShortDateString & "'), [RecBy] = '" & cboRecibidoPor.Text & "',[Priority] ='" & cboPrioridad.Text & "',[TrackingNo]='" & txtNumGuia.Text & "', [BoxCount] = '" & txtCantCajas.Text & "', 
                 [Weight] = '" & txtPeso.Text & "', [ReceivedVia] = '" & cboRecepcion.Text & "', [ShipVia] = '" & embarcarPor.Text & "', [Remarks] ='" & txtObservaciones.Text & "', [RefNo] = '" & txtRefCot.Text & "',
                 [Volume] = '" & txtVolumen.Text & "'
                 where [SOId] = " & Val(NumOV.Text) & ""

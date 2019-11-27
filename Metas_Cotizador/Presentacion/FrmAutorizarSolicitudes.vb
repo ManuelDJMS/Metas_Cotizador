@@ -78,8 +78,8 @@ Public Class FrmAutorizarSolicitudes
         Dim cu As Int64
         Dim correos As String
         Dim ca As String
-        Try
-            Dim seleccionado As Boolean
+        'Try
+        Dim seleccionado As Boolean
             Dim b, RecDate, OnSite As Boolean
             RecDate = True
             OnSite = False
@@ -129,10 +129,10 @@ Public Class FrmAutorizarSolicitudes
                                         R = "insert into SalesOrderDetails (CustomerId, CustAccountNo, RefNo,RecDate, DataRequested, OnSite, ShipAddress1, ShipAddress2, ShipAddress3, [CreatedBy],[CreatedOn]) 
                                     values(" & Val(DGRes.Rows(i).Cells(12).Value) & ",'" & DGRes.Rows(i).Cells(13).Value & "','" & DGRes.Rows(i).Cells(1).Value & "','" & dtp.Value.ToShortDateString & "', '" & True & "','" &
                                         False & "','" & DGRes.Rows(i).Cells(5).Value & "','-','-','" & usuario & "', getdate())"
-                                        MsgBox(R & "2dassadasd")
+                                        'MsgBox(R & "2dassadasd")
                                         cotizacion = Val(DGRes.Rows(i).Cells(1).Value)
-                                        Dim comando As New SqlCommand
-                                        comando = conexionLIMS.CreateCommand
+                                    Dim comando As New SqlCommand
+                                    comando = conexionLIMS.CreateCommand
                                         comando.CommandText = R
                                         comando.ExecuteNonQuery()
                                         cotizacion = Val(DGRes.Rows(i).Cells(1).Value)
@@ -185,7 +185,7 @@ Public Class FrmAutorizarSolicitudes
                                         MetodoLIMS()
                                         R = "SELECT top 1 [SOId], [CustomerId],[CustAccountNo],[RecDate]
                             FROM SalesOrderDetails where RefNo= '" & DGRes.Rows(i).Cells(1).Value & "' ORDER BY [SOId] DESC"
-                                        MsgBox(R & "  hola")
+                                        'MsgBox(R & "  hola")
                                         Dim comando2 As New SqlCommand(R, conexionLIMS)
                                         Dim lector As SqlDataReader
                                         lector = comando2.ExecuteReader
@@ -226,12 +226,12 @@ Public Class FrmAutorizarSolicitudes
             Else
                 MsgBox("No ha seleccionado ningúna cotización", MsgBoxStyle.Critical, "Error del sistema.")
             End If
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("FrmAutorizarSolicitudes", "Error al guardar la OV", Err.Number, cadena)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
+        '    cadena = Err.Description
+        '    cadena = cadena.Replace("'", "")
+        '    Bitacora("FrmAutorizarSolicitudes", "Error al guardar la OV", Err.Number, cadena)
+        'End Try
 
     End Sub
 
