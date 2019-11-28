@@ -13,6 +13,7 @@ Public Class FrmEdicionCot
     Private Sub FrmEdicionCot_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             If editar = 1 Then
+                MsgBox("1")
                 DGCopia.Rows.Clear()
                 DGServicios.Rows.Clear()
                 DGCopia.Columns(9).Width = 80
@@ -29,21 +30,21 @@ Public Class FrmEdicionCot
                 Label79.Text = "ACTUALIZAR COTIZACIÓN NUM. "
                 MetodoMetasCotizador()
                 comandoMetasCotizador = conexionMetasCotizador.CreateCommand
-                comandoMetasCotizador.CommandText = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre,[SetupCustomerDetails].[CustomerId],[CompanyName],[TaxIDNo],
-                [ContAddress1] AS DomCont,[ContCity], [ContState],[Phone],[SetupCustomerDetails].[Email],
+                comandoMetasCotizador.CommandText = "Select [Cotizaciones].NumCot,FechaDesde,FechaHasta,[FirstName] +' '+ [MiddleName] +' '+ [LastName] AS Nombre,[SetupCustomerDetails].[CustomerId],[SetupCustomerDetails].[CompanyName],[TaxIDNo],
+                [ContAddress1] AS DomCont,[ContCity], [ContState],[SetupCustomerDetails].[Phone],[SetupCustomerDetails].[Email],
                 PartidaNo,[SetUpEquipment].[EquipmentName] AS Articulo, [Mfr],[Model],[SetUpEquipment].[EquipId], [DetalleCotizaciones].[Observaciones], [SetupServices].[ServicesId],
                 [SetupServices].[ServiceName],[idUsuarioCotizacion],[Referencia], [DetalleCotizaciones].[idListaCotizacion],[Subtotal],[Total], [Cantidad], [SetupEquipmentServiceMapping].Price,[Serie],[identificadorInventarioCliente],[ObservacionesServicios] 
                 from [MetasCotizador].[dbo].[Cotizaciones]
-                INNER JOIN [Usuarios] ON [Cotizaciones].[idUsuarioCotizacion] = [Usuarios].[idUsuarioAdministrador]
-                INNER JOIN " & servidor & "[SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
-                INNER JOIN " & servidor & "[SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
-                            INNER JOIN [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
-                INNER JOIN [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
-                INNER JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
-                INNER JOIN [ModalidadCondicion] ON [Cotizaciones].[idModalidadCondicion] = [ModalidadCondicion].[idModalidadCondicion]
-                INNER JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
-                INNER JOIN " & servidor & "[SetupEquipmentServiceMapping] ON [SetUpEquipment].[EquipId] =[SetupEquipmentServiceMapping].[EquipId] 	
-                WHERE [Cotizaciones].NumCot = " & COT2 & " order by PartidaNo"
+                LEFT JOIN " & servidor & " [UserMaster] ON [Cotizaciones].[idUsuarioCotizacion] COLLATE SQL_Latin1_General_CP1_CI_AS = [UserMaster].[UserID]
+                LEFT JOIN " & servidor & "[SetupCustomerDetails] ON [Cotizaciones].idContacto = [SetupCustomerDetails].[CustomerId]
+                LEFT JOIN " & servidor & "[SetupCustomerAddressDtls] ON [SetupCustomerDetails].[CustomerId] = [SetupCustomerAddressDtls].[CustomerId]
+                LEFT JOIN " & servidor2 & " [DetalleCotizaciones] ON [Cotizaciones].NumCot =[DetalleCotizaciones].NumCot
+                LEFT JOIN " & servidor2 & " [ServiciosEnCotizaciones] ON [DetalleCotizaciones].idListaCotizacion = [ServiciosEnCotizaciones].[idListaCotizacion]
+                LEFT JOIN " & servidor & "[SetupServices] ON [ServiciosEnCotizaciones].idServicio = [SetupServices].[ServicesId]
+                LEFT JOIN " & servidor2 & " [ModalidadCondicion] ON [Cotizaciones].[idModalidadCondicion] = [ModalidadCondicion].[idModalidadCondicion]
+                LEFT JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
+                LEFT JOIN " & servidor & " [SetupEquipmentServiceMapping] ON [SetUpEquipment].[EquipId] =[SetupEquipmentServiceMapping].[EquipId] 	
+                WHERE [Cotizaciones].NumCot = 5 order by PartidaNo"
                 lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
                 While lectorMetasCotizador.Read()
                     numCot.Text = lectorMetasCotizador(0)
@@ -68,6 +69,7 @@ Public Class FrmEdicionCot
                     numPartida = lectorMetasCotizador(12)
                 End While
             ElseIf editar = 2 Then
+                MsgBox("2")
                 btGuardarInf.Text = "Guardar cotización"
                 Label79.Text = "Guardar cotización"
                 numCot.Visible = False
@@ -96,9 +98,9 @@ Public Class FrmEdicionCot
                     subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
                 Next
                 iva = (subtotal * 0.16)
-                Total = subtotal + iva
+                total = subtotal + iva
                 TextSubtotal.Text = subtotal
-                TextTotal.Text = Total
+                TextTotal.Text = total
             Else
                 lbTiituloClave.Visible = False
                 txtCveContacto.Visible = False
@@ -107,9 +109,9 @@ Public Class FrmEdicionCot
                     subtotal += Convert.ToDecimal(fila.Cells("precioUnitario").Value)
                 Next
                 iva = (subtotal * 0.16)
-                Total = subtotal + iva
+                total = subtotal + iva
                 TextSubtotal.Text = subtotal
-                TextTotal.Text = Total
+                TextTotal.Text = total
             End If
             '-----------------Combo cuando ------------------------
             llenarcombo("select * from CuandoCondicion", Cbcuando)
