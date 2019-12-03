@@ -184,6 +184,7 @@ Partial Class FrmNuevoContacto
         Me.cbOOT = New System.Windows.Forms.CheckBox()
         Me.cbDatosRequeridos = New System.Windows.Forms.CheckBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.btCotizacion = New System.Windows.Forms.Button()
         Me.Label79 = New System.Windows.Forms.Label()
         Me.Label82 = New System.Windows.Forms.Label()
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
@@ -1458,6 +1459,7 @@ Partial Class FrmNuevoContacto
         Me.GroupBox6.Controls.Add(Me.cbCOD)
         Me.GroupBox6.Controls.Add(Me.txtIDFiscal)
         Me.GroupBox6.Controls.Add(Me.Label31)
+        Me.GroupBox6.Controls.Add(Me.cboCategoria)
         Me.GroupBox6.Controls.Add(Me.Label78)
         Me.GroupBox6.Controls.Add(Me.txtTerminosDePago)
         Me.GroupBox6.Controls.Add(Me.Label77)
@@ -1474,7 +1476,6 @@ Partial Class FrmNuevoContacto
         Me.GroupBox6.Controls.Add(Me.cboModoDeEnvio)
         Me.GroupBox6.Controls.Add(Me.cboTipoIndustria)
         Me.GroupBox6.Controls.Add(Me.cboDefaultPO)
-        Me.GroupBox6.Controls.Add(Me.cboCategoria)
         Me.GroupBox6.Controls.Add(Me.cboOpcionesDePago)
         Me.GroupBox6.Controls.Add(Me.cboMoneda)
         Me.GroupBox6.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -1491,7 +1492,7 @@ Partial Class FrmNuevoContacto
         Me.Label75.AutoSize = True
         Me.Label75.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label75.ForeColor = System.Drawing.Color.Red
-        Me.Label75.Location = New System.Drawing.Point(12, 114)
+        Me.Label75.Location = New System.Drawing.Point(12, 172)
         Me.Label75.Name = "Label75"
         Me.Label75.Size = New System.Drawing.Size(17, 19)
         Me.Label75.TabIndex = 167
@@ -1616,7 +1617,7 @@ Partial Class FrmNuevoContacto
         '
         Me.cbTaxable.AutoSize = True
         Me.cbTaxable.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbTaxable.Location = New System.Drawing.Point(168, 172)
+        Me.cbTaxable.Location = New System.Drawing.Point(32, 137)
         Me.cbTaxable.Name = "cbTaxable"
         Me.cbTaxable.Size = New System.Drawing.Size(73, 21)
         Me.cbTaxable.TabIndex = 166
@@ -1637,7 +1638,7 @@ Partial Class FrmNuevoContacto
         '
         Me.cbCOD.AutoSize = True
         Me.cbCOD.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cbCOD.Location = New System.Drawing.Point(168, 143)
+        Me.cbCOD.Location = New System.Drawing.Point(32, 110)
         Me.cbCOD.Name = "cbCOD"
         Me.cbCOD.Size = New System.Drawing.Size(61, 21)
         Me.cbCOD.TabIndex = 166
@@ -1656,7 +1657,7 @@ Partial Class FrmNuevoContacto
         '
         Me.Label31.AutoSize = True
         Me.Label31.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label31.Location = New System.Drawing.Point(29, 114)
+        Me.Label31.Location = New System.Drawing.Point(29, 172)
         Me.Label31.Name = "Label31"
         Me.Label31.Size = New System.Drawing.Size(72, 17)
         Me.Label31.TabIndex = 165
@@ -1677,8 +1678,9 @@ Partial Class FrmNuevoContacto
         Me.txtTerminosDePago.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTerminosDePago.Location = New System.Drawing.Point(168, 82)
         Me.txtTerminosDePago.MaxLength = 80
+        Me.txtTerminosDePago.Multiline = True
         Me.txtTerminosDePago.Name = "txtTerminosDePago"
-        Me.txtTerminosDePago.Size = New System.Drawing.Size(260, 21)
+        Me.txtTerminosDePago.Size = New System.Drawing.Size(260, 79)
         Me.txtTerminosDePago.TabIndex = 162
         '
         'Label77
@@ -1821,7 +1823,7 @@ Partial Class FrmNuevoContacto
         Me.cboCategoria.Font = New System.Drawing.Font("Calibri Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboCategoria.FormattingEnabled = True
         Me.cboCategoria.Items.AddRange(New Object() {"Client A", "Client B", "Client C"})
-        Me.cboCategoria.Location = New System.Drawing.Point(168, 110)
+        Me.cboCategoria.Location = New System.Drawing.Point(168, 167)
         Me.cboCategoria.Name = "cboCategoria"
         Me.cboCategoria.Size = New System.Drawing.Size(260, 23)
         Me.cboCategoria.TabIndex = 155
@@ -2024,6 +2026,7 @@ Partial Class FrmNuevoContacto
         '
         Me.Panel3.AutoScroll = True
         Me.Panel3.BackColor = System.Drawing.Color.White
+        Me.Panel3.Controls.Add(Me.btCotizacion)
         Me.Panel3.Controls.Add(Me.Label79)
         Me.Panel3.Controls.Add(Me.Label82)
         Me.Panel3.Controls.Add(Me.btGuardar)
@@ -2033,6 +2036,20 @@ Partial Class FrmNuevoContacto
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(939, 580)
         Me.Panel3.TabIndex = 184
+        '
+        'btCotizacion
+        '
+        Me.btCotizacion.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(134, Byte), Integer))
+        Me.btCotizacion.FlatAppearance.BorderSize = 0
+        Me.btCotizacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btCotizacion.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btCotizacion.ForeColor = System.Drawing.Color.White
+        Me.btCotizacion.Location = New System.Drawing.Point(669, 16)
+        Me.btCotizacion.Name = "btCotizacion"
+        Me.btCotizacion.Size = New System.Drawing.Size(111, 35)
+        Me.btCotizacion.TabIndex = 186
+        Me.btCotizacion.Text = "ACCESS"
+        Me.btCotizacion.UseVisualStyleBackColor = False
         '
         'Label79
         '
@@ -2287,4 +2304,5 @@ Partial Class FrmNuevoContacto
     Friend WithEvents TextPais1 As TextBox
     Friend WithEvents TextPais3 As TextBox
     Friend WithEvents TextPais2 As TextBox
+    Friend WithEvents btCotizacion As Button
 End Class

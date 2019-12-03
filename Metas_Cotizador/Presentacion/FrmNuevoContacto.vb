@@ -64,6 +64,65 @@ Public Class FrmNuevoContacto
         txtCiudadEntrega.Text = txtCiudad.Text
         TextPais3.Text = TextPais1.Text
     End Sub
+
+    Private Sub btCotizacion_Click(sender As Object, e As EventArgs) Handles btCotizacion.Click
+        Dim claveaccess As Integer
+        Dim observaciones As String
+        claveaccess = InputBox("Ingrese la clave del contacto almacenado en ACCESS", "Nuevo Cliente")
+        MetodoMetasInf()
+        R = "select distinct isnull(Nombre,'-'), isnull((CASE WHEN CHARINDEX(' ', Apellidos)= 0 then
+									Apellidos
+								ELSE
+									PARSENAME(REPLACE(Apellidos, ' ', '.'),2) END),'-') as PrimerApellido, 
+							   isnull((CASE WHEN CHARINDEX(' ', Apellidos)>0 then
+							   PARSENAME(REPLACE(Apellidos, ' ', '.'),1)
+							   else
+							   '' end),'-') as SegundoApellido,
+		 isnull(Tel,'-'), isnull(Celular,'-'), isnull(Email,'-'), isnull(Fax,'-'), isnull(RazonSocial,'-'), isnull(Credito,'-'), isnull(RFC,'-'), isnull(DomicilioConsig,'-'), isnull(CiudadConsig,'-'),
+         isnull(EdoConsig,'-'), isnull(CPConsig,'-'), isnull(DomicilioFiscal,'-'), isnull(Ciudad,'-'), isnull(EdooProv,'-'), isnull(CPFiscal,'-'), isnull(PaisConsig,'-'), isnull(Pais,'-'),
+         isnull([Num Prov MetAs],'-'), isnull(CondicionesClienteAdmon,'-'), isnull(ObservAdminpaq,'-')  from [Contactos-Clientes-Usuarios] clientes inner join MetAsInf on 
+         clientes.Clavempresa=MetAsInf.Clavempresa where clientes.ClaveContacto=" & claveaccess
+        comandoMetasInf = conexionMetasInf.CreateCommand
+        comandoMetasInf.CommandText = R
+        lectorMetasInf = comandoMetasInf.ExecuteReader
+        lectorMetasInf.Read()
+        txtNombre.Text = lectorMetasInf(0)
+        txtApellidoPaterno.Text = lectorMetasInf(1)
+        txtApellidoMaterno.Text = lectorMetasInf(2)
+        txtTelefono.Text = lectorMetasInf(3)
+        txtCelular.Text = lectorMetasInf(4)
+        txtCorreo1.Text = lectorMetasInf(5)
+        txtFax.Text = lectorMetasInf(6)
+        txtCompania.Text = lectorMetasInf(7)
+        If lectorMetasInf(8).ToUpper() = "SIN CRÉDITO" Then
+            cbCOD.Checked = True
+            txtTerminosDePago.Text = "CONSULTAR CON COBRANZA"
+        ElseIf lectorMetasInf(8).ToUpper() = "CON CRÉDITO" Then
+            cbCOD.Checked = False
+            txtTerminosDePago.Text = "Depósito a Cuenta 100 %  para envió de sus servicios. Para solicitud, aclaración de crédito o envió de comprobante de pago, favor de contactar al departamento de cobranza en el correo electrónico: cobranza@metas.mx"
+        End If
+        txtRFC.Text = lectorMetasInf(9)
+        txtDireccion1.Text = lectorMetasInf(10)
+        txtCiudad.Text = lectorMetasInf(11)
+        txtEstado.Text = lectorMetasInf(12)
+        txtCodigoPostal.Text = lectorMetasInf(13)
+        txtDireccion1Facturacion.Text = lectorMetasInf(14)
+        txtCiudadFacturacion.Text = lectorMetasInf(15)
+        txtEstadoFacturacion.Text = lectorMetasInf(16)
+        txtCodigoPostalFacturacion.Text = lectorMetasInf(17)
+        TextPais1.Text = lectorMetasInf(18)
+        TextPais3.Text = lectorMetasInf(18)
+        TextPais2.Text = lectorMetasInf(19)
+        If lectorMetasInf(20) <> "-" Then
+            observaciones = observaciones & "Número de Proveedor METAS: " & lectorMetasInf(20)
+        End If
+        txtCorreo2.Text = lectorMetasInf(21)
+        observaciones = observaciones & " Clave de AdminPAQ: " & lectorMetasInf(22)
+        txtNotas.Text = LTrim(observaciones)
+        lectorLIMS.Close()
+        conexionLIMS.Close()
+    End Sub
+
     Private Sub cboRequerimientosDeCalidad_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboRequerimientosDeCalidad.SelectedIndexChanged
         seleccionarcombo("select id from [SetupQualityRequirement] where [QualityRqment]='", cboRequerimientosDeCalidad)
     End Sub
@@ -348,7 +407,7 @@ Public Class FrmNuevoContacto
                                 '" & TextPais3.Text.Trim & "')"
         Dim comando1 As New SqlCommand(R, conexionLIMS)
         comando1.ExecuteNonQuery()
-
+        MsgBox("La Cotización se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
         '################################################################# CODIGO PARA ACTUALIZAR LA COTIZACION DEL CLIENTE NUEVO CREADO ######################################################################
         If ccc = True Then
             '========================================================== SACAR EL ULTIMO REGISTRO DEL CONTACTO PARA EL DETALLE DE COTIZACION=============================================================

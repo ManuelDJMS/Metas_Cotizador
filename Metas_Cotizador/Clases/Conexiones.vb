@@ -14,7 +14,12 @@ Module Conexiones
     Public adapterMetasCotizador As SqlDataAdapter
     Public datatableMetasCotizador As DataTable
     '--------------------------------------------------------------------------------------------------------------------------
+    '-----------------------------Variables para la conexion con bases de Datos COTIZADOR-------------------------------------------
+    Public conexionMetasInf As SqlConnection
+    Public comandoMetasInf As SqlCommand
+    Public lectorMetasInf As SqlDataReader
     Public ban As Boolean = True
+    '-----------------------------------------------------------------------------------------------------------------------
     Public banderaform As Boolean
     Public numcotfrm As Integer
     Public total As Decimal
@@ -41,6 +46,13 @@ Module Conexiones
         Try
             conexionMetasCotizador = New SqlConnection("Data Source=185.166.213.202;Initial Catalog=MetasCotizador; User Id=sa; Password=Met99011578a;Integrated Security=False")
             conexionMetasCotizador.Open()
+        Catch ex As Exception
+        End Try
+    End Sub
+    Sub MetodoMetasInf()
+        Try
+            conexionMetasInf = New SqlConnection("Data Source=SERVER3\COMPAC2;Initial Catalog=InformacionGeneral; User Id=sa; Password=Met99011578a;Integrated Security=False")
+            conexionMetasInf.Open()
         Catch ex As Exception
         End Try
     End Sub
