@@ -13,7 +13,7 @@ Public Class FrmEdicionCot
     Private Sub FrmEdicionCot_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             If editar = 1 Then
-                MsgBox("1")
+                'MsgBox("1")
                 DGCopia.Rows.Clear()
                 DGServicios.Rows.Clear()
                 DGCopia.Columns(9).Width = 80
@@ -69,7 +69,7 @@ Public Class FrmEdicionCot
                     numPartida = lectorMetasCotizador(12)
                 End While
             ElseIf editar = 2 Then
-                MsgBox("2")
+                'MsgBox("2")
                 btGuardarInf.Text = "Guardar cotización"
                 Label79.Text = "Guardar cotización"
                 numCot.Visible = False

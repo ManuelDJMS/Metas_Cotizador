@@ -35,7 +35,7 @@ Partial Class FrmLogin
         Me.h = New Guna.UI.WinForms.GunaTextBox()
         Me.GunaPictureBox1 = New Guna.UI.WinForms.GunaPictureBox()
         Me.GunaLabel1 = New Guna.UI.WinForms.GunaLabel()
-        Me.GunaLinkLabel1 = New Guna.UI.WinForms.GunaLinkLabel()
+        Me.lbVersion = New Guna.UI.WinForms.GunaLinkLabel()
         Me.GunaLinkLabel3 = New Guna.UI.WinForms.GunaLinkLabel()
         Me.GunaAnimateWindow1 = New Guna.UI.WinForms.GunaAnimateWindow(Me.components)
         Me.GunaPanel1.SuspendLayout()
@@ -126,6 +126,7 @@ Partial Class FrmLogin
         Me.GunaButton1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.GunaButton1.BorderSize = 1
         Me.GunaButton1.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.GunaButton1.DialogResult = System.Windows.Forms.DialogResult.None
         Me.GunaButton1.FocusedColor = System.Drawing.Color.Empty
         Me.GunaButton1.Font = New System.Drawing.Font("Segoe UI", 14.0!)
         Me.GunaButton1.ForeColor = System.Drawing.Color.White
@@ -211,19 +212,19 @@ Partial Class FrmLogin
         Me.GunaLabel1.TabIndex = 1
         Me.GunaLabel1.Text = "INICIO DE SESIÓN"
         '
-        'GunaLinkLabel1
+        'lbVersion
         '
-        Me.GunaLinkLabel1.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.GunaLinkLabel1.AutoSize = True
-        Me.GunaLinkLabel1.Font = New System.Drawing.Font("Segoe UI", 7.0!)
-        Me.GunaLinkLabel1.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
-        Me.GunaLinkLabel1.LinkColor = System.Drawing.Color.Gray
-        Me.GunaLinkLabel1.Location = New System.Drawing.Point(269, 339)
-        Me.GunaLinkLabel1.Name = "GunaLinkLabel1"
-        Me.GunaLinkLabel1.Size = New System.Drawing.Size(31, 12)
-        Me.GunaLinkLabel1.TabIndex = 7
-        Me.GunaLinkLabel1.TabStop = True
-        Me.GunaLinkLabel1.Text = "1.0.0.0"
+        Me.lbVersion.ActiveLinkColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.lbVersion.AutoSize = True
+        Me.lbVersion.Font = New System.Drawing.Font("Segoe UI", 7.0!)
+        Me.lbVersion.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline
+        Me.lbVersion.LinkColor = System.Drawing.Color.Gray
+        Me.lbVersion.Location = New System.Drawing.Point(269, 339)
+        Me.lbVersion.Name = "lbVersion"
+        Me.lbVersion.Size = New System.Drawing.Size(31, 12)
+        Me.lbVersion.TabIndex = 7
+        Me.lbVersion.TabStop = True
+        Me.lbVersion.Text = "1.0.0.1"
         '
         'GunaLinkLabel3
         '
@@ -252,7 +253,7 @@ Partial Class FrmLogin
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(247, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(390, 368)
         Me.Controls.Add(Me.GunaLinkLabel3)
-        Me.Controls.Add(Me.GunaLinkLabel1)
+        Me.Controls.Add(Me.lbVersion)
         Me.Controls.Add(Me.GunaLinkLabel2)
         Me.Controls.Add(Me.GunaSeparator1)
         Me.Controls.Add(Me.GunaPanel1)
@@ -279,7 +280,7 @@ Partial Class FrmLogin
     Friend WithEvents GunaSeparator1 As Guna.UI.WinForms.GunaSeparator
     Friend WithEvents GunaDragControl1 As Guna.UI.WinForms.GunaDragControl
     Friend WithEvents GunaLinkLabel3 As Guna.UI.WinForms.GunaLinkLabel
-    Friend WithEvents GunaLinkLabel1 As Guna.UI.WinForms.GunaLinkLabel
+    Friend WithEvents lbVersion As Guna.UI.WinForms.GunaLinkLabel
     Friend WithEvents GunaAnimateWindow1 As Guna.UI.WinForms.GunaAnimateWindow
     Friend WithEvents txtUser As TextBox
     Friend WithEvents txtpass As TextBox

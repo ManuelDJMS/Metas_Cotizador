@@ -258,6 +258,7 @@ Partial Class FrmCompletarOV
         'dtpFechaRecep
         '
         Me.dtpFechaRecep.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpFechaRecep.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpFechaRecep.Location = New System.Drawing.Point(149, 52)
         Me.dtpFechaRecep.Name = "dtpFechaRecep"
         Me.dtpFechaRecep.Size = New System.Drawing.Size(200, 20)

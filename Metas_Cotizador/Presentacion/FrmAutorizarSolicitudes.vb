@@ -179,8 +179,8 @@ Public Class FrmAutorizarSolicitudes
                                         comando.ExecuteNonQuery()
                                         cu = Val(DGRes.Rows(i).Cells(2).Value)
                                         ca = DGRes.Rows(i).Cells(13).Value
-                                        cusAcount.Text = ca
-                                        fecha = dtp.Value.ToShortDateString
+                                    cusAcount.Text = ca
+                                    fecha = dtp.Value.ToShortDateString
                                         conexionLIMS.Close()
                                         MetodoLIMS()
                                         R = "SELECT top 1 [SOId], [CustomerId],[CustAccountNo],[RecDate]

@@ -137,6 +137,7 @@
             FrmCompletarOV.Show()
 
         End If
+        FrmCompletarOV.var.Text = dgEmpresas.Rows(e.RowIndex).Cells(4).Value.ToString()
         Me.Dispose()
         'Dim direccion As String
         'Dim colonia As String

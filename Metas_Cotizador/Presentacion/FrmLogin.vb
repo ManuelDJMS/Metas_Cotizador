@@ -1,10 +1,13 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
 Public Class FrmLogin
+
+    Public variable As String
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GunaAnimateWindow1.AnimationType = Guna.UI.WinForms.GunaAnimateWindow.AnimateWindowType.AW_BLEND
         GunaAnimateWindow1.Start()
         Guna.UI.Lib.GraphicsHelper.ShadowForm(Me)
-
+        LeerArchivo()
     End Sub
 
     Private Sub GunaButton1_Click(sender As Object, e As EventArgs) Handles GunaButton1.Click
@@ -118,5 +121,27 @@ Public Class FrmLogin
             Bitacora("Sesión", "Error al iniciar el formulario", Err.Number, cadena)
         End Try
 
+    End Sub
+    Sub LeerArchivo()
+        Dim leer As New StreamReader("\\10.10.10.7\Public-2\Nuevo_Cotizador\Actualizaciones\Version\version.txt")
+        Try
+            'Se abre el txt para ver la version
+            While leer.Peek <> -1
+                Dim linea As String = leer.ReadLine()
+                If String.IsNullOrEmpty(linea) Then
+                    Continue While
+                End If
+                variable = (linea)
+            End While
+            leer.Close()
+            If Not variable = lbVersion.Text Then 'Verifica si la version es igual a la del txt
+                MsgBox("Existe una nueva actualizacion", MsgBoxStyle.Exclamation, "METAS COTIZADOR")
+                Dim OpenFileDialog As New OpenFileDialog
+                Process.Start("\\10.10.10.7\Public-2\Nuevo_Cotizador\Actualizaciones\Ultima_Version\Cotizador.msp")
+                Me.Close()
+            End If
+        Catch ex As Exception
+            MsgBox("Se presento un problema al leer el archivo: " & ex.Message, MsgBoxStyle.Critical, ":::Aprendamos de Programación:::")
+        End Try
     End Sub
 End Class
