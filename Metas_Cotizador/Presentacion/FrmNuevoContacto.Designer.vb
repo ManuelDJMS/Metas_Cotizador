@@ -149,6 +149,7 @@ Partial Class FrmNuevoContacto
         Me.cbCOD = New System.Windows.Forms.CheckBox()
         Me.txtIDFiscal = New System.Windows.Forms.TextBox()
         Me.Label31 = New System.Windows.Forms.Label()
+        Me.cboCategoria = New System.Windows.Forms.ComboBox()
         Me.Label78 = New System.Windows.Forms.Label()
         Me.txtTerminosDePago = New System.Windows.Forms.TextBox()
         Me.Label77 = New System.Windows.Forms.Label()
@@ -165,7 +166,6 @@ Partial Class FrmNuevoContacto
         Me.cboModoDeEnvio = New System.Windows.Forms.ComboBox()
         Me.cboTipoIndustria = New System.Windows.Forms.ComboBox()
         Me.cboDefaultPO = New System.Windows.Forms.ComboBox()
-        Me.cboCategoria = New System.Windows.Forms.ComboBox()
         Me.cboOpcionesDePago = New System.Windows.Forms.ComboBox()
         Me.cboMoneda = New System.Windows.Forms.ComboBox()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
@@ -359,7 +359,7 @@ Partial Class FrmNuevoContacto
         '
         Me.txtNumeroDeCuenta.Font = New System.Drawing.Font("Calibri Light", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNumeroDeCuenta.Location = New System.Drawing.Point(572, 57)
-        Me.txtNumeroDeCuenta.MaxLength = 20
+        Me.txtNumeroDeCuenta.MaxLength = 300
         Me.txtNumeroDeCuenta.Name = "txtNumeroDeCuenta"
         Me.txtNumeroDeCuenta.Size = New System.Drawing.Size(289, 21)
         Me.txtNumeroDeCuenta.TabIndex = 156
@@ -1630,9 +1630,9 @@ Partial Class FrmNuevoContacto
         Me.Label80.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label80.Location = New System.Drawing.Point(29, 197)
         Me.Label80.Name = "Label80"
-        Me.Label80.Size = New System.Drawing.Size(59, 17)
+        Me.Label80.Size = New System.Drawing.Size(131, 17)
         Me.Label80.TabIndex = 141
-        Me.Label80.Text = "ID Fiscal:"
+        Me.Label80.Text = "Clave de Comercial:"
         '
         'cbCOD
         '
@@ -1662,6 +1662,17 @@ Partial Class FrmNuevoContacto
         Me.Label31.Size = New System.Drawing.Size(72, 17)
         Me.Label31.TabIndex = 165
         Me.Label31.Text = "Categoría:"
+        '
+        'cboCategoria
+        '
+        Me.cboCategoria.BackColor = System.Drawing.SystemColors.Menu
+        Me.cboCategoria.Font = New System.Drawing.Font("Calibri Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cboCategoria.FormattingEnabled = True
+        Me.cboCategoria.Items.AddRange(New Object() {"Client A", "Client B", "Client C"})
+        Me.cboCategoria.Location = New System.Drawing.Point(168, 167)
+        Me.cboCategoria.Name = "cboCategoria"
+        Me.cboCategoria.Size = New System.Drawing.Size(260, 23)
+        Me.cboCategoria.TabIndex = 155
         '
         'Label78
         '
@@ -1816,17 +1827,6 @@ Partial Class FrmNuevoContacto
         Me.cboDefaultPO.Name = "cboDefaultPO"
         Me.cboDefaultPO.Size = New System.Drawing.Size(268, 23)
         Me.cboDefaultPO.TabIndex = 155
-        '
-        'cboCategoria
-        '
-        Me.cboCategoria.BackColor = System.Drawing.SystemColors.Menu
-        Me.cboCategoria.Font = New System.Drawing.Font("Calibri Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboCategoria.FormattingEnabled = True
-        Me.cboCategoria.Items.AddRange(New Object() {"Client A", "Client B", "Client C"})
-        Me.cboCategoria.Location = New System.Drawing.Point(168, 167)
-        Me.cboCategoria.Name = "cboCategoria"
-        Me.cboCategoria.Size = New System.Drawing.Size(260, 23)
-        Me.cboCategoria.TabIndex = 155
         '
         'cboOpcionesDePago
         '

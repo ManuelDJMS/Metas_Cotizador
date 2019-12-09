@@ -224,7 +224,7 @@ Partial Class FrmLogin
         Me.lbVersion.Size = New System.Drawing.Size(31, 12)
         Me.lbVersion.TabIndex = 7
         Me.lbVersion.TabStop = True
-        Me.lbVersion.Text = "1.0.0.1"
+        Me.lbVersion.Text = "1.0.0.2"
         '
         'GunaLinkLabel3
         '

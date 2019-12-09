@@ -6,7 +6,7 @@ Public Class FrmCotizacion
         Try
             MetodoLIMS()
             comandoLIMS = conexionLIMS.CreateCommand
-            R = "select CustomerId, concat(FirstName, ' ' , MiddleName) as Nombre, LastName,  Organization, KeyFiscal, Email, Phone FROM SetupCustomerDetails"
+            R = "select CustomerId, concat(FirstName, ' ' , MiddleName) as Nombre, LastName,  CompanyName, TaxIDNo, Email, Phone FROM SetupCustomerDetails"
             comandoLIMS.CommandText = R
             lectorLIMS = comandoLIMS.ExecuteReader
             While lectorLIMS.Read()
@@ -68,12 +68,12 @@ Public Class FrmCotizacion
             Else
                 DGEmpresas.Rows.RemoveAt(DGEmpresas.CurrentRow.Index)
             End If
-            R = "select CustomerId, concat(FirstName, ' ' , MiddleName) as Nombre, LastName,  Organization, KeyFiscal, Email, Phone FROM SetupCustomerDetails 
-                where CustomerId like '" & txtClave.Text & "%' and Email like '" & TextCorreo.Text & "%' and Organization like '" & TextEmpresa.Text & "%'"
+            R = "select CustomerId, concat(FirstName, ' ' , MiddleName) as Nombre, LastName,  CompanyName, TaxIDNo, Email, Phone FROM SetupCustomerDetails 
+                where CustomerId like '" & txtClave.Text & "%' and Email like '" & TextCorreo.Text & "%' and CompanyName like '" & TextEmpresa.Text & "%'"
             comandoLIMS.CommandText = R
             lectorLIMS = comandoLIMS.ExecuteReader
             While lectorLIMS.Read()
-                DGEmpresas.Rows.Add(lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5))
+                DGEmpresas.Rows.Add(lectorLIMS(0), lectorLIMS(1), lectorLIMS(2), lectorLIMS(3), lectorLIMS(4), lectorLIMS(5), lectorLIMS(6))
             End While
             lectorLIMS.Close()
             conexionLIMS.Close()
