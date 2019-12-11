@@ -260,10 +260,8 @@ Public Class FrmNuevoContacto
         lector.Read()
         valorFinal = lector(0)
         valorFinal = valorFinal + 1
-        MsgBox(valorFinal)
         lector.Close()
         conexionLIMS.Close()
-        'MsgBox(valorFinal)
     End Sub
     Private Sub btGuardar_Click(sender As Object, e As EventArgs) Handles btGuardar.Click
         verificarFinal()
