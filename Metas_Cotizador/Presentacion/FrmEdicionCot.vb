@@ -444,7 +444,7 @@ Public Class FrmEdicionCot
                                     observacion = observacion + "Marca: " + marcaGen + "  Modelo:" + modGen
                                     Dim cad As String = "update DetalleCotizaciones set  Observaciones='" & observacion & "'where idListaCotizacion =" & Val(DGServicios.Item(3, i).Value) & ""
                                     Dim v As New SqlCommand(cad, conexionMetasCotizador)
-                                    MsgBox("adshaskjdkjahdskjads")
+                                    'MsgBox("adshaskjdkjahdskjads")
                                     v.ExecuteNonQuery()
                                 Else
                                     R = "update DetalleCotizaciones set  Observaciones='" & observacion & "'where idListaCotizacion =" & agregar2 & ""
