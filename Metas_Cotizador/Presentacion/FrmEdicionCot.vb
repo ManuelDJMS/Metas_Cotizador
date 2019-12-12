@@ -45,6 +45,7 @@ Public Class FrmEdicionCot
                 LEFT JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
                 LEFT JOIN " & servidor & " [SetupEquipmentServiceMapping] ON [SetUpEquipment].[EquipId] =[SetupEquipmentServiceMapping].[EquipId] 	
                 WHERE [Cotizaciones].NumCot = " & COT2 & "order by PartidaNo"
+
                 lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
                 While lectorMetasCotizador.Read()
                     numCot.Text = lectorMetasCotizador(0)
@@ -69,7 +70,6 @@ Public Class FrmEdicionCot
                     numPartida = lectorMetasCotizador(12)
                 End While
             ElseIf editar = 2 Then
-                'MsgBox("2")
                 btGuardarInf.Text = "Guardar cotización"
                 Label79.Text = "Guardar cotización"
                 numCot.Visible = False
@@ -81,7 +81,6 @@ Public Class FrmEdicionCot
                 from " & servidor & "[SetupCustomerDetails] inner join  
                 SetupCustomerAddressDtls on [SetupCustomerDetails].CustomerId=[SetupCustomerAddressDtls].CustomerId
                 where [SetupCustomerDetails].CustomerId=" & empresa
-                MsgBox(R)
                 comandoLIMS.CommandText = R
                 lectorLIMS = comandoLIMS.ExecuteReader
                 lectorLIMS.Read()
@@ -446,7 +445,7 @@ Public Class FrmEdicionCot
                                     observacion = observacion + "Marca: " + marcaGen + "  Modelo:" + modGen
                                     Dim cad As String = "update DetalleCotizaciones set  Observaciones='" & observacion & "'where idListaCotizacion =" & Val(DGServicios.Item(3, i).Value) & ""
                                     Dim v As New SqlCommand(cad, conexionMetasCotizador)
-                                    MsgBox("adshaskjdkjahdskjads")
+                                    'MsgBox("adshaskjdkjahdskjads")
                                     v.ExecuteNonQuery()
                                 Else
                                     R = "update DetalleCotizaciones set  Observaciones='" & observacion & "'where idListaCotizacion =" & agregar2 & ""
