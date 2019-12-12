@@ -6,7 +6,7 @@ Public Class FrmCotizacion
         Try
             MetodoLIMS()
             comandoLIMS = conexionLIMS.CreateCommand
-            R = "select CustomerId, concat(FirstName, ' ' , MiddleName) as Nombre, LastName,  CompanyName, TaxIDNo, Email, Phone FROM SetupCustomerDetails"
+            R = "select CustomerId, FirstName, concat(MiddleName, ' ' , LastName) as Apellidos, CompanyName, TaxIDNo, Email, Phone FROM SetupCustomerDetails"
             comandoLIMS.CommandText = R
             lectorLIMS = comandoLIMS.ExecuteReader
             While lectorLIMS.Read()
@@ -26,17 +26,6 @@ Public Class FrmCotizacion
         FrmHOME.PL_Cotizacion.BackColor = Color.White
         Me.Close()
     End Sub
-
-    Private Sub DGEmpresas_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGEmpresas.RowHeaderMouseClick
-        '================================= EVENTO QUE SELECCIONA UN CLIENTE DE LA REGILLA DE CLIENTES =====================================================
-        'clave1 = DGEmpresas.Rows(e.RowIndex).Cells(0).Value.ToString()
-        txtNombreProspecto.Text = DGEmpresas.Rows(e.RowIndex).Cells(1).Value & " " & DGEmpresas.Rows(e.RowIndex).Cells(2).Value
-        txtNombreCompania.Text = DGEmpresas.Rows(e.RowIndex).Cells(3).Value
-        txtCorreo.Text = DGEmpresas.Rows(e.RowIndex).Cells(5).Value
-        txtTelefono.Text = DGEmpresas.Rows(e.RowIndex).Cells(6).Value
-        empresa = Val(DGEmpresas.Rows(e.RowIndex).Cells(0).Value)
-    End Sub
-
     Private Sub BtCargarArticulos_Click(sender As Object, e As EventArgs) Handles btCargarArticulos.Click
         '=============================================== BOTON QUE LLENA EL DATAGRID DE ARTICULOS =========================================================
         Try
@@ -68,7 +57,7 @@ Public Class FrmCotizacion
             Else
                 DGEmpresas.Rows.RemoveAt(DGEmpresas.CurrentRow.Index)
             End If
-            R = "select CustomerId, concat(FirstName, ' ' , MiddleName) as Nombre, LastName,  CompanyName, TaxIDNo, Email, Phone FROM SetupCustomerDetails 
+            R = "select CustomerId, FirstName, concat(MiddleName, ' ' , LastName) as Apellidos,  CompanyName, TaxIDNo, Email, Phone FROM SetupCustomerDetails 
                 where CustomerId like '" & txtClave.Text & "%' and Email like '" & TextCorreo.Text & "%' and CompanyName like '" & TextEmpresa.Text & "%'"
             comandoLIMS.CommandText = R
             lectorLIMS = comandoLIMS.ExecuteReader
@@ -246,7 +235,7 @@ Public Class FrmCotizacion
             Next
             '=============== LIMPIAR LOS DATAGRID POR ENVIADOS ================
             DgAgregar.Rows.Clear()
-            FrmEdicionCot.ShowDialog()
+            FrmEdicionCot.Show()
             For i = 0 To DGCotizaciones.Rows.Count - 2
                 DGCotizaciones.Rows(i).Cells(0).Value = False
             Next
@@ -591,5 +580,15 @@ Public Class FrmCotizacion
 
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
         FrmNuevoContacto.Show()
+    End Sub
+
+    Private Sub DGEmpresas_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DGEmpresas.RowHeaderMouseClick
+        '================================= EVENTO QUE SELECCIONA UN CLIENTE DE LA REGILLA DE CLIENTES =====================================================
+        'clave1 = DGEmpresas.Rows(e.RowIndex).Cells(0).Value.ToString()
+        txtNombreProspecto.Text = DGEmpresas.Rows(e.RowIndex).Cells(1).Value & " " & DGEmpresas.Rows(e.RowIndex).Cells(2).Value
+        txtNombreCompania.Text = DGEmpresas.Rows(e.RowIndex).Cells(3).Value
+        txtCorreo.Text = DGEmpresas.Rows(e.RowIndex).Cells(5).Value
+        txtTelefono.Text = DGEmpresas.Rows(e.RowIndex).Cells(6).Value
+        empresa = Val(DGEmpresas.Rows(e.RowIndex).Cells(0).Value)
     End Sub
 End Class

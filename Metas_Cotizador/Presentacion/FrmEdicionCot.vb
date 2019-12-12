@@ -44,7 +44,7 @@ Public Class FrmEdicionCot
                 LEFT JOIN " & servidor2 & " [ModalidadCondicion] ON [Cotizaciones].[idModalidadCondicion] = [ModalidadCondicion].[idModalidadCondicion]
                 LEFT JOIN " & servidor & "[SetUpEquipment] ON [SetUpEquipment].[EquipId] = [DetalleCotizaciones].[EquipId]
                 LEFT JOIN " & servidor & " [SetupEquipmentServiceMapping] ON [SetUpEquipment].[EquipId] =[SetupEquipmentServiceMapping].[EquipId] 	
-                WHERE [Cotizaciones].NumCot = 5 order by PartidaNo"
+                WHERE [Cotizaciones].NumCot = " & COT2 & " order by PartidaNo"
                 lectorMetasCotizador = comandoMetasCotizador.ExecuteReader
                 While lectorMetasCotizador.Read()
                     numCot.Text = lectorMetasCotizador(0)
@@ -69,7 +69,6 @@ Public Class FrmEdicionCot
                     numPartida = lectorMetasCotizador(12)
                 End While
             ElseIf editar = 2 Then
-                'MsgBox("2")
                 btGuardarInf.Text = "Guardar cotización"
                 Label79.Text = "Guardar cotización"
                 numCot.Visible = False
@@ -81,7 +80,6 @@ Public Class FrmEdicionCot
                 from " & servidor & "[SetupCustomerDetails] inner join  
                 SetupCustomerAddressDtls on [SetupCustomerDetails].CustomerId=[SetupCustomerAddressDtls].CustomerId
                 where [SetupCustomerDetails].CustomerId=" & empresa
-                MsgBox(R)
                 comandoLIMS.CommandText = R
                 lectorLIMS = comandoLIMS.ExecuteReader
                 lectorLIMS.Read()
