@@ -292,6 +292,7 @@
     <Compile Include="Reportes\DataSet1.vb">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\DataSet2.Designer.vb" />
     <Compile Include="Reportes\FrmReportes.Designer.vb">
       <DependentUpon>FrmReportes.vb</DependentUpon>
     </Compile>
@@ -379,6 +380,7 @@
     <EmbeddedResource Include="Reportes\FrmReportes.resx">
       <DependentUpon>FrmReportes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Report2.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\Application.myapp">
@@ -407,6 +409,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Reportes\DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="Reportes\DataSet2.xsd" />
+    <None Include="Reportes\DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
     <None Include="Resources\icons8-close-window-50.png" />
   </ItemGroup>
   <ItemGroup>

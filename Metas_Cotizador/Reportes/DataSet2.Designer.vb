@@ -2048,7 +2048,7 @@ Namespace DataSet2TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitConnection()
             Me._connection = New Global.System.Data.SqlClient.SqlConnection()
-            Me._connection.ConnectionString = Global.Metas_Cotizador.My.MySettings.Default.MetasCotizadorConnectionString1
+            Me._connection.ConnectionString = Global.Metas_Cotizador.My.MySettings.Default.MetasCotizadorConnectionString
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

@@ -11,8 +11,8 @@ Public Class FrmEdicionCot
     Dim eliminar1, eliminar2 As Integer
     Dim marcaGen, modGen As String
     Private Sub FrmEdicionCot_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-            If editar = 1 Then
+        'Try
+        If editar = 1 Then
                 'MsgBox("1")
                 DGCopia.Rows.Clear()
                 DGServicios.Rows.Clear()
@@ -133,12 +133,12 @@ Public Class FrmEdicionCot
             llenarcombo2("select * from TiempoEntregaCondicion", CboTiempo)
             ''-----------------Combo validez ------------------------
             llenarcombo("select * from ValidezCondicion", CboValidez)
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("frmEdicionCot2018-2019", "Error al cargar el formulario", Err.Number, cadena)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error en el Sistema")
+        '    cadena = Err.Description
+        '    cadena = cadena.Replace("'", "")
+        '    Bitacora("frmEdicionCot2018-2019", "Error al cargar el formulario", Err.Number, cadena)
+        'End Try
     End Sub
     Sub llenarcombo(ByVal query As String, ByVal combo As ComboBox)
         Try

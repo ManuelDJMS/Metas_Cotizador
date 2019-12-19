@@ -571,10 +571,10 @@ Public Class FrmCotizacion
                 conexionMetasCotizador.Close()
             End If
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
-            cadena = Err.Description
-            cadena = cadena.Replace("'", "")
-            Bitacora("FrmCotizacion", "Error al seleccionar cot para editar", Err.Number, cadena)
+        MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+        cadena = Err.Description
+        cadena = cadena.Replace("'", "")
+        Bitacora("FrmCotizacion", "Error al seleccionar cot para editar", Err.Number, cadena)
         End Try
     End Sub
 
