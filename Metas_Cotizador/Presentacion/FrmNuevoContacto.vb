@@ -127,6 +127,7 @@ Public Class FrmNuevoContacto
         conexionLIMS.Close()
     End Sub
 
+
     Private Sub cboRequerimientosDeCalidad_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboRequerimientosDeCalidad.SelectedIndexChanged
         seleccionarcombo("select id from [SetupQualityRequirement] where [QualityRqment]='", cboRequerimientosDeCalidad)
     End Sub
