@@ -493,7 +493,7 @@ Public Class FrmEdicionCot
                                 idValidezCondicion,idMonedaCondicion,idDocumentoCondicion,idModoCont,Referencia,FechaDesde,FechaHasta,Observaciones,idUsuarioCotizacion,Subtotal,IVA,Total,Creado)
                                 values (" & maximo & ",'" & origen & "'," & Val(cboServicio.Tag) & "," & Val(Cbcuando.Tag) & "," & Val(CbModalidad.Tag) & "," & Val(CboTiempo.Tag) & "," &
                             Val(CCondPago.Tag) & "," & Val(CboLeyenda.Tag) & "," & Val(CboValidez.Tag) & "," & Val(CboMoneda.Tag) & "," & Val(ComboDocCond.Tag) & "," & Val(CboContabilizar.Tag) & ",'" &
-                            txtReferencia.Text & "','" & fechaActual & "','" & fecharecepcion & "','" & txtObservaciones.Text & "','" & usuario & "'," & subtotal & "," & iva & "," & Total & ",0)"
+                            txtReferencia.Text & "','" & fechaActual & "','" & fecharecepcion & "','" & txtObservaciones.Text & "','" & usuario & "'," & subtotal & "," & iva & "," & total & ",0)"
                             comando.CommandText = R
                             comando.ExecuteNonQuery()
                             '**************************************************** COTIZACION NORMAL *************************************************************************************
@@ -569,7 +569,7 @@ Public Class FrmEdicionCot
                     Try
                         If MessageBox.Show("¿Desea Guardar la información?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
                             transaction.Commit()
-                            MsgBox("La Cotización se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
+                            MsgBox("La Cotización " & maximo & "se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
                             FrmCotizacion.DgAgregar.Rows.Clear()
                             Me.Dispose()
                         Else
