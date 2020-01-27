@@ -569,7 +569,7 @@ Public Class FrmEdicionCot
                     Try
                         If MessageBox.Show("¿Desea Guardar la información?", "Guardar", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
                             transaction.Commit()
-                            MsgBox("La Cotización " & maximo & "se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
+                            MsgBox("La Cotización " & maximo & " se guardó correctamente", MsgBoxStyle.Information, "Guardado Exitoso")
                             FrmCotizacion.DgAgregar.Rows.Clear()
                             Me.Dispose()
                         Else
