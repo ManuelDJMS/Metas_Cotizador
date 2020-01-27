@@ -41,6 +41,13 @@ Partial Class FrmCotizacion
         Me.TabConsulta = New System.Windows.Forms.TabControl()
         Me.Tab2018 = New System.Windows.Forms.TabPage()
         Me.DGEmpresas = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btCargarArticulos = New System.Windows.Forms.PictureBox()
         Me.DgAgregar = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -132,13 +139,6 @@ Partial Class FrmCotizacion
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.btCerrar, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabConsulta.SuspendLayout()
         Me.Tab2018.SuspendLayout()
@@ -250,6 +250,61 @@ Partial Class FrmCotizacion
         Me.DGEmpresas.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DGEmpresas.Size = New System.Drawing.Size(709, 224)
         Me.DGEmpresas.TabIndex = 265
+        '
+        'Column1
+        '
+        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column1.HeaderText = "idContacto"
+        Me.Column1.Name = "Column1"
+        Me.Column1.Width = 70
+        '
+        'Column2
+        '
+        Me.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column2.FillWeight = 481.8898!
+        Me.Column2.HeaderText = "Nombre"
+        Me.Column2.Name = "Column2"
+        Me.Column2.Width = 150
+        '
+        'Column3
+        '
+        Me.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column3.FillWeight = 23.62205!
+        Me.Column3.HeaderText = "Apellidos"
+        Me.Column3.Name = "Column3"
+        Me.Column3.Width = 150
+        '
+        'Column4
+        '
+        Me.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column4.FillWeight = 23.62205!
+        Me.Column4.HeaderText = "Compañia"
+        Me.Column4.Name = "Column4"
+        Me.Column4.Width = 300
+        '
+        'Column9
+        '
+        Me.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column9.FillWeight = 23.62205!
+        Me.Column9.HeaderText = "RFC"
+        Me.Column9.Name = "Column9"
+        Me.Column9.Width = 150
+        '
+        'Column10
+        '
+        Me.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column10.FillWeight = 23.62205!
+        Me.Column10.HeaderText = "Correo"
+        Me.Column10.Name = "Column10"
+        Me.Column10.Width = 300
+        '
+        'Column11
+        '
+        Me.Column11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        Me.Column11.FillWeight = 23.62205!
+        Me.Column11.HeaderText = "Teléfono"
+        Me.Column11.Name = "Column11"
+        Me.Column11.Width = 200
         '
         'btCargarArticulos
         '
@@ -544,7 +599,7 @@ Partial Class FrmCotizacion
         '
         Me.txtNombreCompania.Font = New System.Drawing.Font("Century Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtNombreCompania.ForeColor = System.Drawing.Color.Black
-        Me.txtNombreCompania.Location = New System.Drawing.Point(116, 90)
+        Me.txtNombreCompania.Location = New System.Drawing.Point(116, 96)
         Me.txtNombreCompania.Name = "txtNombreCompania"
         Me.txtNombreCompania.Size = New System.Drawing.Size(273, 43)
         Me.txtNombreCompania.TabIndex = 156
@@ -1184,61 +1239,6 @@ Partial Class FrmCotizacion
         Me.Label28.Size = New System.Drawing.Size(31, 17)
         Me.Label28.TabIndex = 191
         Me.Label28.Text = "CP:"
-        '
-        'Column1
-        '
-        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.Column1.HeaderText = "idContacto"
-        Me.Column1.Name = "Column1"
-        Me.Column1.Width = 70
-        '
-        'Column2
-        '
-        Me.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.Column2.FillWeight = 481.8898!
-        Me.Column2.HeaderText = "Nombre"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Width = 150
-        '
-        'Column3
-        '
-        Me.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.Column3.FillWeight = 23.62205!
-        Me.Column3.HeaderText = "Apellidos"
-        Me.Column3.Name = "Column3"
-        Me.Column3.Width = 150
-        '
-        'Column4
-        '
-        Me.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.Column4.FillWeight = 23.62205!
-        Me.Column4.HeaderText = "Compañia"
-        Me.Column4.Name = "Column4"
-        Me.Column4.Width = 300
-        '
-        'Column9
-        '
-        Me.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.Column9.FillWeight = 23.62205!
-        Me.Column9.HeaderText = "RFC"
-        Me.Column9.Name = "Column9"
-        Me.Column9.Width = 150
-        '
-        'Column10
-        '
-        Me.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.Column10.FillWeight = 23.62205!
-        Me.Column10.HeaderText = "Correo"
-        Me.Column10.Name = "Column10"
-        Me.Column10.Width = 300
-        '
-        'Column11
-        '
-        Me.Column11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        Me.Column11.FillWeight = 23.62205!
-        Me.Column11.HeaderText = "Teléfono"
-        Me.Column11.Name = "Column11"
-        Me.Column11.Width = 200
         '
         'FrmCotizacion
         '
