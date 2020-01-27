@@ -331,8 +331,8 @@ Public Class FrmCotizacion
     End Sub
     Sub imprimircot(ByVal COT As Integer)
         '=============================================== METODO PARA GENERAR EL PDF DE LA COTIZACION ===================================================
-        'Try
-        MetodoMetasCotizador()
+        Try
+            MetodoMetasCotizador()
             comandoMetasCotizador = conexionMetasCotizador.CreateCommand
             Dim desde, hasta As Date
             Dim nombre, puesto, tel, correo, emp, dom, lugar, moneda, cotizo, correoEla, depto,
@@ -502,10 +502,10 @@ Public Class FrmCotizacion
             Adaptador.SelectCommand.Parameters.Add(param25)
             Dim Data As New DataSet
             Adaptador.Fill(Data)
-        Data.DataSetName = "Data2"
-        Dim Datasource As New ReportDataSource("DataSet2", Data.Tables(0))
-        Datasource.Name = "DataSet2"
-        Datasource.Value = Data.Tables(0)
+            Data.DataSetName = "Data2"
+            Dim Datasource As New ReportDataSource("DataSet2", Data.Tables(0))
+            Datasource.Name = "DataSet2"
+            Datasource.Value = Data.Tables(0)
             Dim p1 As New ReportParameter("numCot", COT)
             Dim p2 As New ReportParameter("fechaDesde", desde)
             Dim p3 As New ReportParameter("fechaHasta", hasta)
@@ -529,22 +529,22 @@ Public Class FrmCotizacion
             Dim p23 As New ReportParameter("domFac", domFac)
             Dim p24 As New ReportParameter("rfc", rfc)
             Dim p25 As New ReportParameter("tipo", tipo)
-        Dim Reportes As New ReportDataSource("DataSet2", Data.Tables(0))
-        FrmReportes.ReportViewer1.LocalReport.DataSources.Clear()
+            Dim Reportes As New ReportDataSource("DataSet2", Data.Tables(0))
+            FrmReportes.ReportViewer1.LocalReport.DataSources.Clear()
             FrmReportes.ReportViewer1.LocalReport.DataSources.Add(Datasource)
-        FrmReportes.ReportViewer1.LocalReport.ReportPath = "C:\Program Files (x86)\MetAs\Cotizador\Reportes\Report2.rdlc"
-        'FrmReportes.ReportViewer1.LocalReport.ReportPath = "C:\Users\Software-TI\Documents\GitHub\Metas_Cotizador\Metas_Cotizador\Reportes\Report2.rdlc"
-        FrmReportes.ReportViewer1.LocalReport.SetParameters(New ReportParameter() {p1, p2, p3, p4, p5, p6, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17,
-                                                             p19, p20, p21, p22, p23, p24, p25})
+            FrmReportes.ReportViewer1.LocalReport.ReportPath = "C:\Program Files (x86)\MetAs\Cotizador\Reportes\Report2.rdlc"
+            'FrmReportes.ReportViewer1.LocalReport.ReportPath = "C:\Users\Software-TI\Documents\GitHub\Metas_Cotizador\Metas_Cotizador\Reportes\Report2.rdlc"
+            FrmReportes.ReportViewer1.LocalReport.SetParameters(New ReportParameter() {p1, p2, p3, p4, p5, p6, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17,
+                                                                 p19, p20, p21, p22, p23, p24, p25})
             FrmReportes.ReportViewer1.RefreshReport()
             FrmReportes.Show()
             conexionMetasCotizador.Close()
-        'Catch ex As Exception
-        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
-        '    cadena = Err.Description
-        '    cadena = cadena.Replace("'", "")
-        '    Bitacora("FrmCotizacion", "Error al reimprimir cotización", Err.Number, cadena)
-        'End Try
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error del sistema.")
+            cadena = Err.Description
+            cadena = cadena.Replace("'", "")
+            Bitacora("FrmCotizacion", "Error al reimprimir cotización", Err.Number, cadena)
+        End Try
     End Sub
 
     Private Sub BtnReImpresion_Click(sender As Object, e As EventArgs) Handles btnReImpresion.Click

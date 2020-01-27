@@ -1709,7 +1709,7 @@
                 <Top>0.11162cm</Top>
                 <Left>1.74682cm</Left>
                 <Height>0.49417cm</Height>
-                <Width>1.31566cm</Width>
+                <Width>1.75285cm</Width>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1742,7 +1742,7 @@
                 <Top>0.74689cm</Top>
                 <Left>1.74682cm</Left>
                 <Height>0.45889cm</Height>
-                <Width>1.31566cm</Width>
+                <Width>1.75285cm</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -1882,7 +1882,7 @@
                 <Top>1.38217cm</Top>
                 <Left>1.74682cm</Left>
                 <Height>0.52062cm</Height>
-                <Width>1.31566cm</Width>
+                <Width>1.75285cm</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
                   <Border>
@@ -1898,9 +1898,9 @@
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>5.67573cm</Top>
-            <Left>16.62575cm</Left>
+            <Left>16.26203cm</Left>
             <Height>1.99729cm</Height>
-            <Width>3.26578cm</Width>
+            <Width>3.49967cm</Width>
             <ZIndex>13</ZIndex>
             <Style>
               <Border>
